@@ -20,7 +20,7 @@ function Input({ className, wrapperClassName, type, label, description, action, 
       type={type}
       data-slot="input"
       className={cn(
-        "h-9 w-full min-w-0 text-sm rounded ring-1 hover:ring-2 focus:ring-2 ring-inset ring-border hover:ring-border-hover focus-visible:ring-border-active bg-input/40 px-2.5 outline-none  transition-all duration-200 placeholder:text-muted disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 ",
+        "h-9 w-full min-w-0 text-sm rounded ring-2 ring-inset ring-border hover:ring-border-hover focus-visible:ring-border-active bg-white/5 px-2.5 outline-none  transition-all duration-200 placeholder:text-muted disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 ",
         className
       )}
       {...props}
@@ -45,7 +45,7 @@ function Input({ className, wrapperClassName, type, label, description, action, 
       )}
       {contentElement}
       {description && (
-        <p className="text-xs text-muted">
+        <p className="text-sub text-secondary">
           {description}
         </p>
       )}

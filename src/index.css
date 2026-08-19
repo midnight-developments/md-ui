@@ -1,44 +1,46 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "@fontsource-variable/outfit";
 @import "@fontsource-variable/inter";
 
 @theme inline {
-    --font-heading: var(--font-sans);
     --font-sans: 'Inter Variable', sans-serif;
+    --font-header: 'Outfit Variable', sans-serif;
 
     --color-background: rgb(0, 0, 0);
     --color-foreground: rgb(225, 225, 225);
-    --color-accent: rgb(175, 100, 255);
-    --color-secondary: rgb(28, 28, 31);
+    --color-secondary: rgb(165, 165, 165);
+    --color-muted: rgb(115, 115, 115);
+    --color-accent: rgb(120, 105, 230);
     --color-destructive: rgb(255, 100, 103);
     --color-success: rgb(95, 176, 107);
-    --color-muted: rgb(161, 161, 161);
 
-    --color-input: rgba(255, 255, 255, 0.1);
     --color-border: rgba(255, 255, 255, 0.075);
     --color-border-hover: rgba(255, 255, 255, 0.25);
     --color-border-active: rgba(255, 255, 255, 0.8);
     --color-card: rgb(12, 12, 12);
 
-    --background-image-accent-gradient: linear-gradient(to bottom, rgba(180, 80, 245, 0.9), rgba(165, 75, 235, 0.9));
-    --background-image-dark-gradient: linear-gradient(to bottom, rgba(225, 255, 255, 0.075), rgba(255, 255, 255, 0.05));
+    --background-image-accent-gradient: linear-gradient(to bottom, rgba(120, 105, 230, 0.9), rgba(120, 105, 230, 0.9));
+    /* --background-image-accent-gradient: linear-gradient(to bottom, rgba(180, 80, 245, 0.9), rgba(165, 75, 235, 0.9)); */
+    --background-image-dark-gradient: linear-gradient(to bottom, rgba(225, 255, 255, 0.075), rgba(255, 255, 255, 0.025));
 
     --tracking-somewhat-tight: -0.0125em;
+    --text-sub: 0.8125rem;
 }
 
 @layer base {
 
     body {
-        @apply bg-background text-foreground outline-none;
+        @apply font-sans bg-background text-foreground outline-none;
     }
 
-    html {
-        @apply font-sans;
+    body {
+        background-image: url('/src/assets/bg.png');
     }
 
-    button {
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
+    input {
+        transform: translate3d(0, 0, 0);
+        will-change: box-shadow;
     }
 }

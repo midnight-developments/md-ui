@@ -11,9 +11,9 @@ const buttonVariants = cva(
         default:
           "ring-[1.5px] ring-inset ring-white/20 hover:brightness-110 bg-accent-gradient text-foreground active:text-foreground/80",
         outline:
-          "ring-1 ring-inset ring-border hover:ring-border-hover hover:ring-2 bg-dark-gradient text-foreground active:text-foreground/80 ",
+          "ring-2 ring-inset ring-border hover:ring-border-hover bg-dark-gradient text-foreground active:text-foreground/80 ",
         link:
-          "p-0 gap-1 hover:underline hover:opacity-100 transition-none font-normal text-foreground",
+          "h-auto p-0 bg-transparent gap-1 active:scale-[1]",
         destructive:
           "border-destructive/40 bg-destructive/20 text-destructive hover:bg-destructive/30 focus-visible:border-destructive/40",
       },
