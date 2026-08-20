@@ -4,13 +4,13 @@ import { Input as InputPrimitive } from "@base-ui/react/input"
 import { cn } from "@/lib/utils"
 
 export interface InputProps extends React.ComponentProps<"input"> {
-  label?: string
+  label: string
   description?: string
   wrapperClassName?: string
-  action?: React.ReactNode
+  actionButton?: React.ReactNode
 }
 
-function Input({ className, wrapperClassName, type, label, description, action, id, ...props }: InputProps) {
+function Input({ className, wrapperClassName, type, label, description, actionButton, id, ...props }: InputProps) {
   const generatedId = React.useId()
   const inputId = id || generatedId
 
@@ -27,25 +27,23 @@ function Input({ className, wrapperClassName, type, label, description, action, 
     />
   )
 
-  const contentElement = action ? (
+  const contentElement = actionButton ? (
     <div className="flex flex-row items-center gap-2 w-full">
       {inputElement}
-      {action}
+      {actionButton}
     </div>
   ) : (
     inputElement
   )
 
   return (
-    <div className={cn("flex flex-col gap-1.5 w-full", wrapperClassName)}>
-      {label && (
-        <label className="text-sm font-normal text-foreground tracking-somewhat-tight">
-          {label}
-        </label>
-      )}
+    <div className={cn("flex flex-col gap-2 w-full py-", wrapperClassName)}>
+      <label className="text-md font-normal text-foreground tracking-somewhat-tight leading-none">
+        {label}
+      </label>
       {contentElement}
       {description && (
-        <p className="text-sub text-secondary">
+        <p className="text-sm tracking-somewhat-tight text-secondary leading-none">
           {description}
         </p>
       )}

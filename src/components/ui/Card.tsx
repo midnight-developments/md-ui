@@ -111,7 +111,7 @@ function CardContentSection({ className, ...props }: React.ComponentProps<"div">
     <div
       data-slot="card-content-section"
       className={cn(
-        "border-t border-white/3 py-4 flex flex-col",
+        "border-t border-white/3 py-6 flex flex-col",
         className
       )}
       {...props}

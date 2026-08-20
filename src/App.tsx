@@ -15,9 +15,11 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from './components/ui/input'
 import { Button } from "./components/ui/button"
+import { Slider } from './components/ui/slider'
 
 export default function App() {
     const [isOpen, setIsOpen] = useState(false)
+    const [sliderValue, setSliderValue] = useState(30)
 
     return (
         <div className="min-h-screen flex items-center justify-center">
@@ -32,22 +34,29 @@ export default function App() {
 
                         </CardHeader>
                         <CardContent>
-                            <CardContentSection className='flex flex-col gap-6'>
+                            <CardContentSection className='flex flex-col gap-8'>
                                 <Input
                                     label='Document Link'
                                     description='Share this link with others'
                                     value='https://docs.google.com/document/d/1234567890/edit?usp=sharing'
-                                    action={<Button variant='outline'>Copy</Button>}
+                                    actionButton={<Button variant='outline'>Copy</Button>}
                                 />
                                 <Input
                                     label='Search Recipents'
                                     description='Add collaborators by username'
                                     placeholder=''
-                                    action={<Button variant='outline'>Invite</Button>}
+                                    actionButton={<Button variant='outline'>Invite</Button>}
                                 />
                             </CardContentSection>
                             <CardContentSection>
-                                Soemthing
+                                <Slider
+                                    label="Link Expiration"
+                                    description="Set when the link will automatically expire (in days)"
+                                    value={[sliderValue]}
+                                    min={1}
+                                    max={90}
+                                    onValueChange={(val) => setSliderValue(Array.isArray(val) ? val[0] : val)}
+                                />
                             </CardContentSection>
                             <CardContentSection>
                                 Soemthing
@@ -55,10 +64,7 @@ export default function App() {
                         </CardContent>
                         <CardFooter className="justify-between">
                             <div className="flex items-center gap-2">
-                                <Button variant='link' className='text-muted hover:text-foreground'>
-                                    <CodeBracketIcon className="size-5" />
-                                    Get Embed Code
-                                </Button>
+
 
                             </div>
                             <div className="flex items-center gap-2">

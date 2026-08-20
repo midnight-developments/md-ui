@@ -43,7 +43,7 @@ const overlayVariants = {
         opacity: 0,
         backdropFilter: "blur(0px)",
         transition: {
-            duration: 0.25,
+            duration: 0.35,
             ease: [0.16, 1, 0.3, 1]
         }
     }
@@ -67,7 +67,7 @@ const contentVariants = {
         x: "-50%",
         y: "-50%",
         transition: {
-            duration: 0.25,
+            duration: 0.35,
             ease: [0.16, 1, 0.3, 1]
         }
     }
