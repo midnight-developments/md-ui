@@ -15,11 +15,11 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from './components/ui/input'
 import { Button } from "./components/ui/button"
-import { Slider } from './components/ui/slider'
 
 export default function App() {
     const [isOpen, setIsOpen] = useState(false)
-    const [sliderValue, setSliderValue] = useState(30)
+    const [expirationDays, setExpirationDays] = useState(30)
+    const [passcode, setPasscode] = useState("")
 
     return (
         <div className="min-h-screen flex items-center justify-center">
@@ -48,18 +48,22 @@ export default function App() {
                                     actionButton={<Button variant='outline'>Invite</Button>}
                                 />
                             </CardContentSection>
-                            <CardContentSection>
-                                <Slider
-                                    label="Link Expiration"
-                                    description="Set when the link will automatically expire (in days)"
-                                    value={[sliderValue]}
-                                    min={1}
-                                    max={90}
-                                    onValueChange={(val) => setSliderValue(Array.isArray(val) ? val[0] : val)}
+                            <CardContentSection className='flex flex-col gap-8'>
+                                <Input
+                                    type="number"
+                                    label="Expiration Period"
+                                    description="Number of days before the link expires"
+                                    value={expirationDays}
+                                    onChange={(e) => setExpirationDays(Number(e.target.value))}
                                 />
-                            </CardContentSection>
-                            <CardContentSection>
-                                Soemthing
+                                <Input
+                                    type="password"
+                                    label="Access Passcode"
+                                    description="Require visitors to enter this passcode to view"
+                                    value={passcode}
+                                    onChange={(e) => setPasscode(e.target.value)}
+                                    placeholder="Enter passcode"
+                                />
                             </CardContentSection>
                         </CardContent>
                         <CardFooter className="justify-between">

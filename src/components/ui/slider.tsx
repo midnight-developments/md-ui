@@ -71,7 +71,7 @@ function Slider({
             </div>
             {sliderElement}
             {description && (
-                <p className="text-sm tracking-somewhat-tight text-secondary leading-none">
+                <p className="text-sm tracking-somewhat-tight text-secondary leading-none -mt-0.5">
                     {description}
                 </p>
             )}
