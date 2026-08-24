@@ -6,7 +6,6 @@ import {
     CardTitle,
     CardTitleIcon,
     CardContent,
-    CardContentSection,
     CardFooter,
 } from "@/components/ui/card"
 import {
@@ -15,11 +14,20 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from './components/ui/input'
 import { Button } from "./components/ui/button"
+import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSeparator, FieldSet } from './components/ui/field'
 
 export default function App() {
     const [isOpen, setIsOpen] = useState(false)
     const [expirationDays, setExpirationDays] = useState(30)
     const [passcode, setPasscode] = useState("")
+
+    const passcodeError = passcode.length > 0 && passcode.length < 4
+        ? "Passcode must be at least 4 characters."
+        : undefined
+
+    const expirationError = expirationDays < 1
+        ? "Expiration period must be at least 1 day."
+        : undefined
 
     return (
         <div className="min-h-screen flex items-center justify-center">
@@ -34,37 +42,67 @@ export default function App() {
 
                         </CardHeader>
                         <CardContent>
-                            <CardContentSection className='flex flex-col gap-8'>
-                                <Input
-                                    label='Document Link'
-                                    description='Share this link with others'
-                                    value='https://docs.google.com/document/d/1234567890/edit?usp=sharing'
-                                    actionButton={<Button variant='outline'>Copy</Button>}
-                                />
-                                <Input
-                                    label='Search Recipents'
-                                    description='Add collaborators by username'
-                                    placeholder=''
-                                    actionButton={<Button variant='outline'>Invite</Button>}
-                                />
-                            </CardContentSection>
-                            <CardContentSection className='flex flex-col gap-8'>
-                                <Input
-                                    type="number"
-                                    label="Expiration Period"
-                                    description="Number of days before the link expires"
-                                    value={expirationDays}
-                                    onChange={(e) => setExpirationDays(Number(e.target.value))}
-                                />
-                                <Input
-                                    type="password"
-                                    label="Access Passcode"
-                                    description="Require visitors to enter this passcode to view"
-                                    value={passcode}
-                                    onChange={(e) => setPasscode(e.target.value)}
-                                    placeholder="Enter passcode"
-                                />
-                            </CardContentSection>
+                            <FieldSet>
+                                <FieldSeparator className="my-0" />
+                                <FieldGroup>
+                                    <Field>
+                                        <FieldLabel>Document Link</FieldLabel>
+                                        <div className="flex flex-row items-center gap-2 w-full">
+                                            <Input
+                                                value='https://docs.google.com/document/d/1234567890/edit?usp=sharing'
+                                                readOnly
+                                            />
+                                            <Button
+                                                variant='outline'
+                                                onClick={() => {
+                                                    navigator.clipboard.writeText('https://docs.google.com/document/d/1234567890/edit?usp=sharing')
+                                                }}
+                                            >
+                                                Copy
+                                            </Button>
+                                        </div>
+                                        <FieldDescription description="Share this link with others" />
+                                    </Field>
+                                    <Field>
+                                        <FieldLabel>Search Recipents</FieldLabel>
+                                        <div className="flex flex-row items-center gap-2 w-full">
+                                            <Input placeholder='' />
+                                            <Button variant='outline'>Invite</Button>
+                                        </div>
+                                        <FieldDescription description="Add collaborators by username" />
+                                    </Field>
+                                </FieldGroup>
+                                <FieldSeparator />
+                                <FieldGroup>
+                                    <Field data-invalid={!!expirationError}>
+                                        <FieldLabel>Expiration Period</FieldLabel>
+                                        <Input
+                                            type="number"
+                                            value={expirationDays}
+                                            onChange={(e) => setExpirationDays(Number(e.target.value))}
+                                        />
+                                        <FieldDescription
+                                            description="Number of days before the link expires"
+                                            error={expirationError}
+                                        />
+                                    </Field>
+                                    <Field data-invalid={!!passcodeError}>
+                                        <FieldLabel>Access Passcode</FieldLabel>
+                                        <Input
+                                            type="password"
+                                            value={passcode}
+                                            onChange={(e) => setPasscode(e.target.value)}
+                                            placeholder="Enter passcode"
+                                        />
+                                        <FieldDescription
+                                            description="Require visitors to enter this passcode to view"
+                                            error={passcodeError}
+                                        />
+                                    </Field>
+                                </FieldGroup>
+                                <FieldSeparator />
+
+                            </FieldSet>
                         </CardContent>
                         <CardFooter className="justify-between">
                             <div className="flex items-center gap-2">
