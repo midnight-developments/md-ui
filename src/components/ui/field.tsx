@@ -1,6 +1,5 @@
 "use client"
 
-import { useMemo } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
@@ -25,7 +24,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-group"
             className={cn(
-                "group/field-group @container/field-group flex w-full flex-col gap-6 data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4",
+                "group/field-group @container/field-group flex w-full flex-col gap-6.5 data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4",
                 className
             )}
             {...props}
@@ -122,45 +121,31 @@ function FieldDescription({
     ...props
 }: FieldDescriptionProps) {
     const isError = !!error
+    const content = isError ? error : description
 
     return (
         <div className="overflow-hidden w-full relative -mt-1">
             <AnimatePresence mode="popLayout" initial={false}>
-                {isError ? (
+                {content && (
                     <motion.p
-                        key="error"
-                        role="alert"
-                        data-slot="field-error"
+                        key={isError ? "error" : "description"}
+                        role={isError ? "alert" : undefined}
+                        data-slot={isError ? "field-error" : "field-description"}
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 20 }}
                         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                         className={cn(
-                            "text-sm font-normal text-destructive w-full will-change-transform",
+                            "text-sm w-full will-change-transform",
+                            isError
+                                ? "font-normal text-destructive"
+                                : "tracking-somewhat-tight text-secondary",
                             className
                         )}
                         {...props}
                     >
-                        {error}
+                        {content}
                     </motion.p>
-                ) : (
-                    description && (
-                        <motion.p
-                            key="description"
-                            data-slot="field-description"
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 20 }}
-                            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                            className={cn(
-                                "text-sm tracking-somewhat-tight text-secondary w-full will-change-transform",
-                                className
-                            )}
-                            {...props}
-                        >
-                            {description}
-                        </motion.p>
-                    )
                 )}
             </AnimatePresence>
         </div>

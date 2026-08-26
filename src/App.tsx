@@ -12,9 +12,18 @@ import {
     Dialog,
     DialogContent,
 } from "@/components/ui/dialog"
-import { Input } from './components/ui/input'
-import { Button } from "./components/ui/button"
-import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSeparator, FieldSet } from './components/ui/field'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Button } from "@/components/ui/button"
+import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSeparator, FieldSet } from '@/components/ui/field'
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupButton,
+    InputGroupInput,
+} from '@/components/ui/input-group'
+import { CopyIcon } from 'lucide-react'
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -31,6 +40,8 @@ type ShareFormValues = z.infer<typeof shareFormSchema>
 
 export default function App() {
     const [isOpen, setIsOpen] = useState(false)
+    const [message, setMessage] = useState("")
+    const { copyToClipboard } = useCopyToClipboard()
 
     const {
         register,
@@ -47,9 +58,10 @@ export default function App() {
     })
 
     const onSubmit = (data: ShareFormValues) => {
-        console.log("Form Submitted:", data)
+        console.log("Form Submitted:", { ...data, message })
         setIsOpen(false)
         reset()
+        setMessage("")
     }
 
     return (
@@ -60,6 +72,7 @@ export default function App() {
                 setIsOpen(open)
                 if (!open) {
                     reset()
+                    setMessage("")
                 }
             }}>
                 <DialogContent>
@@ -75,21 +88,24 @@ export default function App() {
                                     <FieldGroup>
                                         <Field>
                                             <FieldLabel>Document Link</FieldLabel>
-                                            <div className="flex flex-row items-center gap-2 w-full">
-                                                <Input
+                                            <InputGroup>
+                                                <InputGroupInput
                                                     value='https://docs.google.com/document/d/1234567890/edit?usp=sharing'
                                                     readOnly
                                                 />
-                                                <Button
-                                                    type="button"
-                                                    variant='outline'
-                                                    onClick={() => {
-                                                        navigator.clipboard.writeText('https://docs.google.com/document/d/1234567890/edit?usp=sharing')
-                                                    }}
-                                                >
-                                                    Copy
-                                                </Button>
-                                            </div>
+
+                                                <InputGroupAddon align="inline-end">
+                                                    <InputGroupButton
+                                                        aria-label="Copy"
+                                                        title="Copy"
+                                                        onClick={() => {
+                                                            copyToClipboard("https://x.com/shadcn")
+                                                        }}
+                                                    >
+                                                        <CopyIcon strokeWidth={2} />
+                                                    </InputGroupButton>
+                                                </InputGroupAddon>
+                                            </InputGroup>
                                             <FieldDescription description="Share this link with others" />
                                         </Field>
                                         <Field>
@@ -99,6 +115,15 @@ export default function App() {
                                                 <Button type="button" variant='outline'>Invite</Button>
                                             </div>
                                             <FieldDescription description="Add collaborators by username" />
+                                        </Field>
+                                        <Field>
+                                            <FieldLabel>Invitation Message (Optional)</FieldLabel>
+                                            <Textarea
+                                                placeholder="Add a message to include with the invitation link..."
+                                                value={message}
+                                                onChange={(e) => setMessage(e.target.value)}
+                                            />
+                                            <FieldDescription description="This message will be included in the notification email." />
                                         </Field>
                                     </FieldGroup>
                                     <FieldSeparator />
@@ -139,6 +164,7 @@ export default function App() {
                                         onClick={() => {
                                             setIsOpen(false)
                                             reset()
+                                            setMessage("")
                                         }}
                                     >
                                         Cancel

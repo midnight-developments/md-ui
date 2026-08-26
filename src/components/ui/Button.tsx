@@ -16,6 +16,8 @@ const buttonVariants = cva(
           "h-auto p-0 bg-transparent gap-1 active:scale-[1]",
         destructive:
           "border-destructive/40 bg-destructive/20 text-destructive hover:bg-destructive/30 focus-visible:border-destructive/40",
+        ghost:
+          "bg-transparent hover:bg-white/10 text-foreground",
       },
     },
     defaultVariants: {
