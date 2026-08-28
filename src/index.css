@@ -4,6 +4,7 @@
 @import "@fontsource-variable/outfit";
 @import "@fontsource-variable/inter";
 
+
 @theme inline {
     --font-sans: 'Inter Variable', sans-serif;
     --font-header: 'Outfit Variable', sans-serif;
@@ -13,6 +14,7 @@
     --color-secondary: rgb(165, 165, 165);
     --color-muted: rgb(130, 130, 130);
     --color-accent: rgb(120, 105, 230);
+    --color-accent-active: rgb(155, 142, 250);
     --color-destructive: rgb(255, 100, 103);
     --color-success: rgb(95, 176, 107);
 
@@ -28,7 +30,11 @@
 
     --tracking-somewhat-tight: -0.0125em;
     --text-md: 0.9375rem;
+
+
 }
+
+
 
 @layer base {
 
@@ -43,5 +49,10 @@
     input {
         transform: translate3d(0, 0, 0);
         will-change: box-shadow;
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield;
+        appearance: textfield;
     }
 }

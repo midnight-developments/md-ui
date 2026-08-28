@@ -63,12 +63,7 @@ function InputGroupAddon({
             data-slot="input-group-addon"
             data-align={align}
             className={cn(inputGroupAddonVariants({ align }), className)}
-            onClick={(e) => {
-                if ((e.target as HTMLElement).closest("button")) {
-                    return
-                }
-                e.currentTarget.parentElement?.querySelector("input")?.focus()
-            }}
+            onMouseDown={(e) => e.preventDefault()}
             {...props}
         />
     )
@@ -86,9 +81,10 @@ function InputGroupButton({
             type={type}
             variant="ghost"
             className={cn(
-                "flex items-center justify-center h-9 p-0 bg-transparent hover:bg-transparent! active:scale-100 group-hover/button:[&_svg]:text-foreground!",
+                "flex items-center justify-center h-9 p-0 bg-transparent hover:bg-transparent! active:scale-100 hover:[&_svg]:text-white! active:[&_svg]:text-white!",
                 className
             )}
+            onMouseDown={(e) => e.preventDefault()}
             {...props}
         />
     )

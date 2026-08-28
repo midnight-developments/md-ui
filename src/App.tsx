@@ -1,5 +1,12 @@
 import { useState } from 'react'
-import { ShareIcon } from '@heroicons/react/24/solid'
+import {
+    ShareIcon,
+    Square3Stack3DIcon,
+    ExclamationTriangleIcon,
+    ClockIcon,
+    CalendarIcon,
+    CreditCardIcon,
+} from '@heroicons/react/24/solid'
 import {
     Card,
     CardHeader,
@@ -27,6 +34,14 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select'
+
 
 const shareFormSchema = z.object({
     expirationDays: z.number({ message: "Expiration period must be a number." })
@@ -37,6 +52,14 @@ const shareFormSchema = z.object({
 })
 
 type ShareFormValues = z.infer<typeof shareFormSchema>
+
+const statusItems = [
+    { value: "all-invoices", label: "All Invoices" },
+    { value: "outstanding-invoices", label: "Outstanding invoices" },
+    { value: "overdue", label: "Overdue" },
+    { value: "scheduled", label: "Scheduled" },
+    { value: "paid", label: "Paid" },
+]
 
 export default function App() {
     const [isOpen, setIsOpen] = useState(false)
@@ -115,6 +138,37 @@ export default function App() {
                                                 <Button type="button" variant='outline'>Invite</Button>
                                             </div>
                                             <FieldDescription description="Add collaborators by username" />
+                                        </Field>
+                                        <Field>
+                                            <FieldLabel>Access Level</FieldLabel>
+                                            <Select defaultValue="outstanding-invoices" items={statusItems}>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select invoice status" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="all-invoices">
+                                                        <Square3Stack3DIcon className="size-4" />
+                                                        <span>All Invoices</span>
+                                                    </SelectItem>
+                                                    <SelectItem value="outstanding-invoices">
+                                                        <ExclamationTriangleIcon className="size-4" />
+                                                        <span>Outstanding invoices</span>
+                                                    </SelectItem>
+                                                    <SelectItem value="overdue">
+                                                        <ClockIcon className="size-4" />
+                                                        <span>Overdue</span>
+                                                    </SelectItem>
+                                                    <SelectItem value="scheduled">
+                                                        <CalendarIcon className="size-4" />
+                                                        <span>Scheduled</span>
+                                                    </SelectItem>
+                                                    <SelectItem value="paid">
+                                                        <CreditCardIcon className="size-4" />
+                                                        <span>Paid</span>
+                                                    </SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                            <FieldDescription description="Select the permissions for new collaborators" />
                                         </Field>
                                         <Field>
                                             <FieldLabel>Invitation Message (Optional)</FieldLabel>
