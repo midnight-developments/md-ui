@@ -15,9 +15,9 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
             role="group"
             className={cn(
                 "group/input-group relative flex h-9 w-full min-w-0 items-center rounded bg-white/5 outline-none transition-all duration-200",
-                "ring-2 ring-inset ring-border hover:ring-border-hover focus-within:ring-border-active focus-within:hover:ring-border-active",
+                "ring-1 ring-inset ring-border hover:ring-border-hover focus-within:ring-2 focus-within:ring-border-active focus-within:hover:ring-border-active",
                 "has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50",
-                "group-data-[invalid=true]/field:ring-destructive group-data-[invalid=true]/field:hover:ring-destructive group-data-[invalid=true]/field:focus-within:ring-destructive",
+                "group-data-[invalid=true]/field:ring-destructive group-data-[invalid=true]/field:hover:ring-destructive group-data-[invalid=true]/field:focus-within:ring-2 group-data-[invalid=true]/field:focus-within:ring-destructive",
                 "has-[[data-slot=input-group-control][aria-invalid=true]]:ring-destructive has-[[data-slot=input-group-control][aria-invalid=true]]:hover:ring-destructive has-[[data-slot=input-group-control][aria-invalid=true]]:focus-within:ring-destructive",
                 "has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col",
                 "has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col",

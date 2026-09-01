@@ -12,7 +12,7 @@ function Card({
       data-slot="card"
       data-size={size}
       className={cn(
-        "group/card flex flex-col gap-4 p-4 rounded-lg bg-card border-2 border-border overflow-hidden",
+        "group/card flex flex-col gap-4 p-4 rounded-md bg-card border border-border overflow-hidden",
         className
       )}
       {...props}
@@ -57,7 +57,7 @@ function CardTitleIcon({
     <div
       data-slot="card-title-icon"
       className={cn(
-        "flex p-1.5 items-center justify-center rounded bg-white/10",
+        "flex p-1.5 items-center justify-center rounded-md bg-white/10",
         className
       )}
       {...props}

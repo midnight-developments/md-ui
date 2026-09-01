@@ -20,7 +20,6 @@ import {
     DialogContent,
 } from "@/components/ui/dialog"
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import { Button } from "@/components/ui/button"
 import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSeparator, FieldSet } from '@/components/ui/field'
 import {
@@ -41,11 +40,33 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
+import {
+    Popover,
+    PopoverContent,
+    PopoverDescription,
+    PopoverHeader,
+    PopoverTitle,
+    PopoverTrigger,
+} from '@/components/ui/popover'
+import {
+    Combobox,
+    ComboboxInput,
+    ComboboxContent,
+    ComboboxItem,
+    ComboboxEmpty,
+} from '@/components/ui/combobox'
+import { ColourPicker } from '@/components/ui/colour-picker'
+
+const recipientsList = [
+    { value: "jane-doe", label: "Jane Doe" },
+    { value: "john-smith", label: "John Smith" },
+    { value: "alice-williams", label: "Alice Williams" },
+    { value: "bob-johnson", label: "Bob Johnson" },
+    { value: "charlie-brown", label: "Charlie Brown" },
+]
 
 
 const shareFormSchema = z.object({
-    expirationDays: z.number({ message: "Expiration period must be a number." })
-        .min(1, { message: "Expiration period must be at least 1 day." }),
     passcode: z.string()
         .min(4, { message: "Passcode must be at least 4 characters." })
         .or(z.literal(""))
@@ -63,7 +84,8 @@ const statusItems = [
 
 export default function App() {
     const [isOpen, setIsOpen] = useState(false)
-    const [message, setMessage] = useState("")
+    const [selectedRecipient, setSelectedRecipient] = useState<string | null>(null)
+    const [color, setColor] = useState("#7869e6")
     const { copyToClipboard } = useCopyToClipboard()
 
     const {
@@ -74,17 +96,16 @@ export default function App() {
     } = useForm<ShareFormValues>({
         resolver: zodResolver(shareFormSchema),
         defaultValues: {
-            expirationDays: 30,
             passcode: "",
         },
         mode: "onChange",
     })
 
     const onSubmit = (data: ShareFormValues) => {
-        console.log("Form Submitted:", { ...data, message })
+        console.log("Form Submitted:", { ...data, selectedRecipient })
         setIsOpen(false)
         reset()
-        setMessage("")
+        setSelectedRecipient(null)
     }
 
     return (
@@ -95,7 +116,7 @@ export default function App() {
                 setIsOpen(open)
                 if (!open) {
                     reset()
-                    setMessage("")
+                    setSelectedRecipient(null)
                 }
             }}>
                 <DialogContent>
@@ -132,20 +153,52 @@ export default function App() {
                                             <FieldDescription description="Share this link with others" />
                                         </Field>
                                         <Field>
-                                            <FieldLabel>Search Recipents</FieldLabel>
+                                            <FieldLabel>Search Recipients</FieldLabel>
                                             <div className="flex flex-row items-center gap-2 w-full">
-                                                <Input placeholder='' />
+                                                <Combobox value={selectedRecipient} onValueChange={setSelectedRecipient}>
+                                                    <ComboboxInput placeholder="Select recipient..." className="w-full" />
+                                                    <ComboboxContent className="z-50">
+                                                        {recipientsList.map((recipient) => (
+                                                            <ComboboxItem key={recipient.value} value={recipient.value}>
+                                                                {recipient.label}
+                                                            </ComboboxItem>
+                                                        ))}
+                                                        <ComboboxEmpty>No recipients found</ComboboxEmpty>
+                                                    </ComboboxContent>
+                                                </Combobox>
                                                 <Button type="button" variant='outline'>Invite</Button>
                                             </div>
                                             <FieldDescription description="Add collaborators by username" />
                                         </Field>
                                         <Field>
-                                            <FieldLabel>Access Level</FieldLabel>
+                                            <div className="flex items-center justify-between">
+                                                <FieldLabel>Access Level</FieldLabel>
+                                                <Popover>
+                                                    <PopoverTrigger
+                                                        className="text-xs text-secondary hover:text-foreground cursor-pointer underline underline-offset-2 outline-hidden"
+                                                    >
+                                                        What is this?
+                                                    </PopoverTrigger>
+                                                    <PopoverContent className="w-80">
+                                                        <PopoverHeader>
+                                                            <PopoverTitle>Access Levels Info</PopoverTitle>
+                                                            <PopoverDescription>
+                                                                Define what billing and invoice details the recipients are allowed to view.
+                                                            </PopoverDescription>
+                                                        </PopoverHeader>
+                                                        <div className="text-xs text-secondary mt-2.5 space-y-1.5 leading-relaxed">
+                                                            <p><strong>All Invoices:</strong> Full access to all invoice data.</p>
+                                                            <p><strong>Outstanding Invoices:</strong> Only show invoices awaiting payment.</p>
+                                                            <p><strong>Overdue:</strong> Only show past due invoices.</p>
+                                                        </div>
+                                                    </PopoverContent>
+                                                </Popover>
+                                            </div>
                                             <Select defaultValue="outstanding-invoices" items={statusItems}>
                                                 <SelectTrigger>
                                                     <SelectValue placeholder="Select invoice status" />
                                                 </SelectTrigger>
-                                                <SelectContent>
+                                                <SelectContent >
                                                     <SelectItem value="all-invoices">
                                                         <Square3Stack3DIcon className="size-4" />
                                                         <span>All Invoices</span>
@@ -170,29 +223,9 @@ export default function App() {
                                             </Select>
                                             <FieldDescription description="Select the permissions for new collaborators" />
                                         </Field>
-                                        <Field>
-                                            <FieldLabel>Invitation Message (Optional)</FieldLabel>
-                                            <Textarea
-                                                placeholder="Add a message to include with the invitation link..."
-                                                value={message}
-                                                onChange={(e) => setMessage(e.target.value)}
-                                            />
-                                            <FieldDescription description="This message will be included in the notification email." />
-                                        </Field>
                                     </FieldGroup>
                                     <FieldSeparator />
                                     <FieldGroup>
-                                        <Field data-invalid={!!errors.expirationDays}>
-                                            <FieldLabel>Expiration Period</FieldLabel>
-                                            <Input
-                                                type="number"
-                                                {...register('expirationDays', { valueAsNumber: true })}
-                                            />
-                                            <FieldDescription
-                                                description="Number of days before the link expires"
-                                                error={errors.expirationDays?.message}
-                                            />
-                                        </Field>
                                         <Field data-invalid={!!errors.passcode}>
                                             <FieldLabel>Access Passcode</FieldLabel>
                                             <Input
@@ -207,6 +240,13 @@ export default function App() {
                                         </Field>
                                     </FieldGroup>
                                     <FieldSeparator />
+                                    <FieldGroup>
+                                        <Field>
+                                            <FieldLabel>Theme Colour</FieldLabel>
+                                            <ColourPicker color={color} onChange={setColor} />
+                                        </Field>
+                                    </FieldGroup>
+                                    <FieldSeparator />
                                 </FieldSet>
                             </CardContent>
                             <CardFooter className="justify-between">
@@ -218,7 +258,6 @@ export default function App() {
                                         onClick={() => {
                                             setIsOpen(false)
                                             reset()
-                                            setMessage("")
                                         }}
                                     >
                                         Cancel

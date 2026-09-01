@@ -24,7 +24,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-group"
             className={cn(
-                "group/field-group @container/field-group flex w-full flex-col gap-6.5 data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4",
+                "group/field-group @container/field-group flex w-full flex-col gap-8 data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4",
                 className
             )}
             {...props}
@@ -134,7 +134,7 @@ function FieldDescription({
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 20 }}
-                        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] as any }}
                         className={cn(
                             "text-sm w-full will-change-transform",
                             isError
@@ -142,7 +142,7 @@ function FieldDescription({
                                 : "tracking-somewhat-tight text-secondary",
                             className
                         )}
-                        {...props}
+                        {...props as any}
                     >
                         {content}
                     </motion.p>

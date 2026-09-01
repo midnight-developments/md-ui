@@ -34,6 +34,34 @@
 
 }
 
+@utility animate-popup {
+    /* Timing & Duration */
+    @apply duration-100;
+
+    /* Dynamic Transform Origin based on side & align */
+    @apply data-[align=start]:origin-top-left;
+    @apply data-[align=end]:origin-top-right;
+    @apply data-[align=center]:origin-top;
+
+    @apply data-[side=top]:data-[align=start]:origin-bottom-left;
+    @apply data-[side=top]:data-[align=end]:origin-bottom-right;
+    @apply data-[side=top]:data-[align=center]:origin-bottom;
+
+    /* Entry Animations */
+    @apply data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95;
+
+    /* Exit Animations */
+    @apply data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 data-closed:overflow-hidden;
+
+    /* Directional Offsets */
+    @apply data-[side=bottom]:slide-in-from-top-2;
+    @apply data-[side=top]:slide-in-from-bottom-2;
+    @apply data-[side=left]:slide-in-from-right-2;
+    @apply data-[side=right]:slide-in-from-left-2;
+    @apply data-[side=inline-start]:slide-in-from-right-2;
+    @apply data-[side=inline-end]:slide-in-from-left-2;
+}
+
 
 
 @layer base {
@@ -55,4 +83,18 @@
         -moz-appearance: textfield;
         appearance: textfield;
     }
+}
+
+/* Custom react-colorful dark theme overrides - rounded corners without clipping the pointer handle */
+.react-colorful {
+    overflow: visible !important;
+    border-radius: 4px !important;
+}
+
+.react-colorful__saturation {
+    border-radius: 4px 4px 0 0 !important;
+}
+
+.react-colorful__hue {
+    border-radius: 0 0 4px 4px !important;
 }
