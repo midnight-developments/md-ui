@@ -34,7 +34,7 @@ function PopoverContent({
                     data-align={align}
                     data-side={side}
                     className={cn(
-                        "z-50 flex w-72 flex-col gap-2.5 rounded-md border border-border outline-hidden bg-black/40 text-foreground p-2.5 text-sm",
+                        "relative z-50 flex w-72 flex-col gap-2.5 rounded-md border border-border outline-hidden text-foreground p-2.5 text-sm",
                         "shadow-xl animate-popup",
                         className
                     )}

@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Input, inputVariants } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
 function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
@@ -14,11 +14,9 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
             data-slot="input-group"
             role="group"
             className={cn(
-                "group/input-group relative flex h-9 w-full min-w-0 items-center rounded bg-white/5 outline-none transition-all duration-200",
-                "ring-1 ring-inset ring-border hover:ring-border-hover focus-within:ring-2 focus-within:ring-border-active focus-within:hover:ring-border-active",
-                "has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50",
-                "group-data-[invalid=true]/field:ring-destructive group-data-[invalid=true]/field:hover:ring-destructive group-data-[invalid=true]/field:focus-within:ring-2 group-data-[invalid=true]/field:focus-within:ring-destructive",
-                "has-[[data-slot=input-group-control][aria-invalid=true]]:ring-destructive has-[[data-slot=input-group-control][aria-invalid=true]]:hover:ring-destructive has-[[data-slot=input-group-control][aria-invalid=true]]:focus-within:ring-destructive",
+                inputVariants(),
+                "group/input-group relative px-0",
+                "has-[[data-slot=input-group-control][aria-invalid=true]]:ring-2 has-[[data-slot=input-group-control][aria-invalid=true]]:ring-destructive",
                 "has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col",
                 "has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col",
                 "has-[>textarea]:h-auto",
@@ -81,7 +79,7 @@ function InputGroupButton({
             type={type}
             variant="ghost"
             className={cn(
-                "flex items-center justify-center h-9 p-0 bg-transparent hover:bg-transparent! active:scale-100 hover:[&_svg]:text-white! active:[&_svg]:text-white!",
+                "flex items-center justify-center h-9 p-0 bg-transparent hover:bg-transparent! active:scale-100 hover:[&_svg]:text-foreground active:[&_svg]:text-foreground",
                 className
             )}
             onMouseDown={(e) => e.preventDefault()}
@@ -110,11 +108,9 @@ function InputGroupInput({
     return (
         <Input
             ref={ref}
+            variant="ghost"
             data-slot="input-group-control"
-            className={cn(
-                "flex-1 rounded-none border-0 bg-transparent shadow-none ring-0 hover:ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 focus:ring-0 group-data-[invalid=true]/field:ring-0 group-data-[invalid=true]/field:hover:ring-0 group-data-[invalid=true]/field:focus-visible:ring-0",
-                className
-            )}
+            className={cn("h-full flex-1 rounded-none px-2.5", className)}
             {...props}
         />
     )
@@ -129,10 +125,7 @@ function InputGroupTextarea({
         <Textarea
             ref={ref}
             data-slot="input-group-control"
-            className={cn(
-                "flex-1 resize-none rounded-none border-0 bg-transparent py-2 shadow-none ring-0 hover:ring-0 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0 focus:ring-0 group-data-[invalid=true]/field:ring-0 group-data-[invalid=true]/field:hover:ring-0 group-data-[invalid=true]/field:focus-visible:ring-0",
-                className
-            )}
+            className={cn("flex-1 resize-none rounded-none py-2 px-2.5", className)}
             {...props}
         />
     )

@@ -14,7 +14,7 @@
     --color-secondary: rgb(165, 165, 165);
     --color-muted: rgb(130, 130, 130);
     --color-accent: rgb(120, 105, 230);
-    --color-accent-active: rgb(155, 142, 250);
+    --color-accent-active: rgb(170, 155, 255);
     --color-destructive: rgb(255, 100, 103);
     --color-success: rgb(95, 176, 107);
 
@@ -22,6 +22,11 @@
     --color-border-hover: rgba(255, 255, 255, 0.25);
     --color-border-active: rgba(255, 255, 255, 0.8);
     --color-card: rgb(12, 12, 12);
+    --color-popup: rgb(0, 0, 0, 0.4);
+
+    --color-input: rgba(255, 255, 255, 0.05);
+    --color-input-hover: rgba(255, 255, 255, 0.08);
+    --color-input-active: rgba(255, 255, 255, 0.08);
 
     --background-image-accent-gradient: linear-gradient(to bottom, rgba(120, 105, 230, 0.9), rgba(120, 105, 230, 0.9));
     --background-image-accent-gradient-x: linear-gradient(to right, rgba(120, 105, 230, 0.9), rgba(120, 105, 230, 0.9));
@@ -30,37 +35,11 @@
 
     --tracking-somewhat-tight: -0.0125em;
     --text-md: 0.9375rem;
-
-
 }
 
-@utility animate-popup {
-    /* Timing & Duration */
-    @apply duration-100;
 
-    /* Dynamic Transform Origin based on side & align */
-    @apply data-[align=start]:origin-top-left;
-    @apply data-[align=end]:origin-top-right;
-    @apply data-[align=center]:origin-top;
 
-    @apply data-[side=top]:data-[align=start]:origin-bottom-left;
-    @apply data-[side=top]:data-[align=end]:origin-bottom-right;
-    @apply data-[side=top]:data-[align=center]:origin-bottom;
 
-    /* Entry Animations */
-    @apply data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95;
-
-    /* Exit Animations */
-    @apply data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 data-closed:overflow-hidden;
-
-    /* Directional Offsets */
-    @apply data-[side=bottom]:slide-in-from-top-2;
-    @apply data-[side=top]:slide-in-from-bottom-2;
-    @apply data-[side=left]:slide-in-from-right-2;
-    @apply data-[side=right]:slide-in-from-left-2;
-    @apply data-[side=inline-start]:slide-in-from-right-2;
-    @apply data-[side=inline-end]:slide-in-from-left-2;
-}
 
 
 

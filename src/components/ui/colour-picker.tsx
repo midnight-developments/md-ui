@@ -1,14 +1,20 @@
 import * as React from "react";
 import { HexColorPicker, HexColorInput } from "react-colorful";
-import { ChevronDownIcon } from "lucide-react";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown";
-import { Input } from "@/components/ui/input";
+    Select,
+    SelectTrigger,
+    SelectValue,
+    SelectContent,
+    SelectItem,
+} from "@/components/ui/select";
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupInput,
+    InputGroupText,
+} from "@/components/ui/input-group";
 import { cn } from "@/lib/utils";
+import { inputVariants } from "@/components/ui/input.variants";
 
 function hexToRgb(hex: string) {
     const cleanHex = hex.replace("#", "");
@@ -44,60 +50,51 @@ function ColourPicker({ color, onChange, className, ...props }: ColourPickerProp
         <div className={cn("flex flex-col items-center gap-3 w-64 max-w-64", className)} {...props}>
             <HexColorPicker color={color} onChange={onChange} className="w-full! h-48! rounded-sm" />
 
-            <div className="flex flex-col items-center gap-2 w-full">
-                <DropdownMenu>
-                    <DropdownMenuTrigger className="flex h-9 w-full items-center justify-between gap-1.5 rounded bg-white/5 px-2.5 text-xs font-semibold uppercase text-foreground ring-1 ring-inset ring-border hover:ring-border-hover focus-visible:ring-2 focus-visible:ring-border-active cursor-pointer outline-none select-none transition-all duration-200">
-                        <span>{format}</span>
-                        <ChevronDownIcon className="size-3 text-muted-foreground shrink-0" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="center" className="w-(--anchor-width) min-w-0">
-                        <DropdownMenuItem onClick={() => setFormat("HEX")}>
-                            HEX
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setFormat("RGB")}>
-                            RGB
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+            <div className="flex items-center gap-2 w-full">
+                <Select value={format} onValueChange={(val) => setFormat(val as "HEX" | "RGB")}>
+                    <SelectTrigger className="w-17.5 ">
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent align="start" className="w-25">
+                        <SelectItem value="HEX">HEX</SelectItem>
+                        <SelectItem value="RGB">RGB</SelectItem>
+                    </SelectContent>
+                </Select>
 
-                {format === "HEX" ? (
-                    <HexColorInput
-                        color={color}
-                        onChange={onChange}
-                        prefixed
-                        className="h-9 w-full min-w-0 text-sm uppercase text-center rounded ring-1 ring-inset ring-border hover:ring-border-hover focus-visible:ring-2 focus-visible:ring-border-active bg-white/5 px-2 outline-none transition-all duration-200 placeholder:text-muted disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
-                    />
-                ) : (
-                    <div className="flex items-center gap-1.5 w-full min-w-0">
-                        <Input
-                            type="number"
-                            min={0}
-                            max={255}
-                            value={rgb.r}
-                            onChange={(e) => handleChannelChange("r", e.target.value)}
-                            className="text-center px-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                            placeholder="R"
+                <div className="flex-1 min-w-0">
+                    {format === "HEX" ? (
+                        <HexColorInput
+                            color={color}
+                            onChange={onChange}
+                            prefixed
+                            className={cn(
+                                inputVariants(),
+                                "uppercase text-center px-2"
+                            )}
                         />
-                        <Input
-                            type="number"
-                            min={0}
-                            max={255}
-                            value={rgb.g}
-                            onChange={(e) => handleChannelChange("g", e.target.value)}
-                            className="text-center px-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                            placeholder="G"
-                        />
-                        <Input
-                            type="number"
-                            min={0}
-                            max={255}
-                            value={rgb.b}
-                            onChange={(e) => handleChannelChange("b", e.target.value)}
-                            className="text-center px-1 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                            placeholder="B"
-                        />
-                    </div>
-                )}
+                    ) : (
+                        <InputGroup className="w-full h-9">
+                            {(["r", "g", "b"] as const).map((channel, index) => (
+                                <React.Fragment key={channel}>
+                                    {index > 0 && <div className="h-4 w-px bg-border/40 shrink-0" />}
+                                    <InputGroupAddon align="inline-start" className="order-0 pl-1.5 pr-0">
+                                        <InputGroupText className="text-[10px] font-semibold uppercase text-muted">
+                                            {channel}
+                                        </InputGroupText>
+                                    </InputGroupAddon>
+                                    <InputGroupInput
+                                        type="number"
+                                        min={0}
+                                        max={255}
+                                        value={rgb[channel]}
+                                        onChange={(e) => handleChannelChange(channel, e.target.value)}
+                                        className="text-center px-0.5 text-xs min-w-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                    />
+                                </React.Fragment>
+                            ))}
+                        </InputGroup>
+                    )}
+                </div>
             </div>
         </div>
     );

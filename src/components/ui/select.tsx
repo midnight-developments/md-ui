@@ -4,6 +4,8 @@ import { Select as SelectPrimitive } from "@base-ui/react/select"
 import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { inputVariants } from "@/components/ui/input.variants"
+import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
 
 const Select = SelectPrimitive.Root
 
@@ -36,17 +38,16 @@ function SelectTrigger({
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
             className={cn(
-                "flex h-9 w-full min-w-0 items-center justify-between gap-1.5 rounded bg-white/5 px-2.5 text-sm ring-1 ring-inset ring-border transition-all duration-200 cursor-pointer select-none outline-none",
-                "hover:ring-border-hover focus-visible:ring-2 focus-visible:ring-border-active data-[popup-open]:ring-2 data-[popup-open]:ring-border-active data-[state=open]:ring-2 data-[state=open]:ring-border-active disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-placeholder:text-muted",
+                inputVariants(),
+                "group/trigger justify-between cursor-pointer",
                 "*:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 *:data-[slot=select-value]:line-clamp-1",
-                "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
                 className
             )}
             {...props}
         >
             {children}
             <SelectPrimitive.Icon
-                render={<ChevronDownIcon className="pointer-events-none size-4 text-muted-foreground" />}
+                render={<ChevronDownIcon className="-mr-0.5 opacity-50 pointer-events-none size-4 text-muted-foreground transition-transform duration-200 group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />}
             />
         </SelectPrimitive.Trigger>
     )
@@ -81,15 +82,10 @@ function SelectContent({
                     data-align-trigger={alignItemWithTrigger}
                     data-align={align}
                     data-side={side}
-                    className={cn(
-                        "relative overflow-x-hidden overflow-y-auto rounded border border-border outline-hidden bg-black/40 text-foreground",
-                        "max-h-(--available-height) min-w-(--anchor-width)",
-                        "shadow-xl animate-popup",
-                        className
-                    )}
+                    className={cn(popupContentVariants(), className)}
                     {...props}
                 >
-                    <SelectPrimitive.List data-slot="select-list" className="p-1">
+                    <SelectPrimitive.List data-slot="select-list">
                         {children}
                     </SelectPrimitive.List>
                 </SelectPrimitive.Popup>
@@ -116,14 +112,7 @@ function SelectItem({
     return (
         <SelectPrimitive.Item
             data-slot="select-item"
-            className={cn(
-                "relative flex w-full cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-sm font-medium text-muted outline-hidden select-none transition-colors duration-150",
-                "data-[highlighted]:bg-white/5 data-[highlighted]:text-foreground",
-                "data-[selected]:bg-accent/15 data-[selected]:text-accent-active data-[selected]:data-[highlighted]:bg-accent/20",
-                "data-disabled:pointer-events-none data-disabled:opacity-50",
-                "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-muted data-[selected]:[&_svg]:text-accent-active",
-                className
-            )}
+            className={cn(popupItemVariants(), className)}
             {...props}
         >
             <SelectPrimitive.ItemText className="flex flex-1 shrink-0 items-center gap-2 whitespace-nowrap">

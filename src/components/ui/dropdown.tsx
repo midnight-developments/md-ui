@@ -5,6 +5,7 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu"
 import { CheckIcon, ChevronRightIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
 
 const DropdownMenu = MenuPrimitive.Root
 
@@ -42,12 +43,7 @@ function DropdownMenuContent({
                     data-slot="dropdown-menu-content"
                     data-align={align}
                     data-side={side}
-                    className={cn(
-                        "relative overflow-x-hidden overflow-y-auto rounded border border-border outline-hidden bg-black/40 text-foreground",
-                        "max-h-(--available-height) min-w-(--anchor-width)",
-                        "shadow-xl animate-popup p-1",
-                        className
-                    )}
+                    className={cn(popupContentVariants(), className)}
                     {...props}
                 >
                     {children}
@@ -101,15 +97,7 @@ function DropdownMenuItem({
             data-slot="dropdown-menu-item"
             data-inset={inset}
             data-variant={variant}
-            className={cn(
-                "relative flex w-full cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-sm font-medium text-muted outline-hidden select-none transition-colors duration-150",
-                "data-[highlighted]:bg-white/5 data-[highlighted]:text-foreground",
-                "data-[selected]:bg-accent/15 data-[selected]:text-accent-active data-[selected]:data-[highlighted]:bg-accent/20",
-                "data-disabled:pointer-events-none data-disabled:opacity-50",
-                "data-[variant=destructive]:text-destructive data-[variant=destructive]:data-[highlighted]:bg-destructive/10 data-[variant=destructive]:data-[highlighted]:text-destructive",
-                "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-muted data-[selected]:[&_svg]:text-accent-active data-[variant=destructive]:[&_svg]:text-destructive",
-                className
-            )}
+            className={cn(popupItemVariants(), className)}
             {...props}
         />
     )
@@ -140,7 +128,7 @@ function DropdownMenuSubTrigger({
             {...props}
         >
             {children}
-            <ChevronRightIcon className="ml-auto size-4" />
+            <ChevronRightIcon className="-mr-1 ml-auto size-4" />
         </MenuPrimitive.SubmenuTrigger>
     )
 }

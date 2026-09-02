@@ -52,6 +52,7 @@ import {
     Combobox,
     ComboboxInput,
     ComboboxContent,
+    ComboboxList,
     ComboboxItem,
     ComboboxEmpty,
 } from '@/components/ui/combobox'
@@ -155,15 +156,17 @@ export default function App() {
                                         <Field>
                                             <FieldLabel>Search Recipients</FieldLabel>
                                             <div className="flex flex-row items-center gap-2 w-full">
-                                                <Combobox value={selectedRecipient} onValueChange={setSelectedRecipient}>
-                                                    <ComboboxInput placeholder="Select recipient..." className="w-full" />
+                                                <Combobox items={recipientsList} value={selectedRecipient} onValueChange={setSelectedRecipient}>
+                                                    <ComboboxInput placeholder="Select recipient..." showTrigger={false} className="w-full" />
                                                     <ComboboxContent className="z-50">
-                                                        {recipientsList.map((recipient) => (
-                                                            <ComboboxItem key={recipient.value} value={recipient.value}>
-                                                                {recipient.label}
-                                                            </ComboboxItem>
-                                                        ))}
                                                         <ComboboxEmpty>No recipients found</ComboboxEmpty>
+                                                        <ComboboxList>
+                                                            {(recipient) => (
+                                                                <ComboboxItem key={recipient.value} value={recipient.value}>
+                                                                    {recipient.label}
+                                                                </ComboboxItem>
+                                                            )}
+                                                        </ComboboxList>
                                                     </ComboboxContent>
                                                 </Combobox>
                                                 <Button type="button" variant='outline'>Invite</Button>

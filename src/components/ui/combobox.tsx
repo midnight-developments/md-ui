@@ -5,6 +5,7 @@ import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 import { ChevronDownIcon, XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
 import { Button } from "@/components/ui/button"
 import {
     InputGroup,
@@ -27,11 +28,11 @@ function ComboboxTrigger({
     return (
         <ComboboxPrimitive.Trigger
             data-slot="combobox-trigger"
-            className={cn("[&_svg:not([class*='size-'])]:size-4", className)}
+            className={cn("group/trigger [&_svg:not([class*='size-'])]:size-4", className)}
             {...props}
         >
             {children}
-            <ChevronDownIcon className="pointer-events-none size-4 text-muted-foreground" />
+            <ChevronDownIcon className="-mr-1 pointer-events-none size-4 text-muted-foreground transition-transform duration-200 group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
         </ComboboxPrimitive.Trigger>
     )
 }
@@ -104,23 +105,26 @@ function ComboboxContent({
                     data-chips={!!anchor}
                     data-align={align}
                     data-side={side}
-                    className={cn(
-                        "relative overflow-hidden rounded border border-border outline-hidden bg-black/50 text-foreground",
-                        "max-h-(--available-height) min-w-(--anchor-width) max-w-(--available-width) shadow-md",
-                        "shadow-xl animate-popup",
-                        className
-                    )}
+                    className={cn(popupContentVariants(), className)}
                     {...props}
                 >
-                    <ComboboxPrimitive.List
-                        data-slot="combobox-list"
-                        className="no-scrollbar scroll-py-1 overflow-y-auto overscroll-contain p-1 "
-                    >
-                        {children}
-                    </ComboboxPrimitive.List>
+                    {children}
                 </ComboboxPrimitive.Popup>
             </ComboboxPrimitive.Positioner>
         </ComboboxPrimitive.Portal>
+    )
+}
+
+function ComboboxList({
+    className,
+    ...props
+}: ComboboxPrimitive.List.Props) {
+    return (
+        <ComboboxPrimitive.List
+            data-slot="combobox-list"
+            className={cn("no-scrollbar scroll-py-1 overflow-y-auto overscroll-contain", className)}
+            {...props}
+        />
     )
 }
 
@@ -132,14 +136,7 @@ function ComboboxItem({
     return (
         <ComboboxPrimitive.Item
             data-slot="combobox-item"
-            className={cn(
-                "relative flex w-full cursor-pointer items-center gap-2 rounded px-2 py-1.5 text-sm font-medium text-muted outline-hidden select-none transition-colors duration-150",
-                "data-[highlighted]:bg-white/5 data-[highlighted]:text-foreground",
-                "data-[selected]:bg-accent/15 data-[selected]:text-accent-active data-[selected]:data-[highlighted]:bg-accent/20",
-                "data-disabled:pointer-events-none data-disabled:opacity-50",
-                "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-muted data-[selected]:[&_svg]:text-accent-active",
-                className
-            )}
+            className={cn(popupItemVariants(), className)}
             {...props}
         >
             {children}
@@ -270,6 +267,7 @@ export {
     Combobox,
     ComboboxInput,
     ComboboxContent,
+    ComboboxList,
     ComboboxItem,
     ComboboxGroup,
     ComboboxLabel,
