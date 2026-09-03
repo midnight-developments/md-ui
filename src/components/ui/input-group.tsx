@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Input, inputVariants } from "@/components/ui/input"
+import { Input, inputShellVariants } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
 function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
@@ -14,14 +14,11 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
             data-slot="input-group"
             role="group"
             className={cn(
-                inputVariants(),
-                "group/input-group relative px-0",
-                "has-[[data-slot=input-group-control][aria-invalid=true]]:ring-2 has-[[data-slot=input-group-control][aria-invalid=true]]:ring-destructive",
-                "has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col",
-                "has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col",
-                "has-[>textarea]:h-auto",
-                "has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3",
-                "has-[>[data-align=inline-end]]:[&>input]:pr-2 has-[>[data-align=inline-start]]:[&>input]:pl-1.5",
+                inputShellVariants(),
+                "group/input-group relative gap-2.5 px-2.5",
+                "has-[[data-slot=input-group-control]:is([aria-invalid=true],[data-invalid=true])]:ring-2 has-[[data-slot=input-group-control]:is([aria-invalid=true],[data-invalid=true])]:ring-destructive",
+                "has-[>[data-align^=block]]:h-auto has-[>[data-align^=block]]:flex-col",
+                "has-[[data-slot=textarea]]:h-auto",
                 className
             )}
             {...props}
@@ -35,13 +32,13 @@ const inputGroupAddonVariants = cva(
         variants: {
             align: {
                 "inline-start":
-                    "order-first pl-2.5",
+                    "order-first",
                 "inline-end":
-                    "order-last pr-2.5",
+                    "order-last",
                 "block-start":
-                    "order-first w-full justify-start px-2.5 pt-2 group-has-[>input]/input-group:pt-2 [.border-b]:pb-2",
+                    "order-first w-full justify-start pt-2 group-has-[>input]/input-group:pt-2 [.border-b]:pb-2",
                 "block-end":
-                    "order-last w-full justify-start px-2.5 pb-2 group-has-[>input]/input-group:pb-2 [.border-t]:pt-2",
+                    "order-last w-full justify-start pb-2 group-has-[>input]/input-group:pb-2 [.border-t]:pt-2",
             },
         },
         defaultVariants: {
@@ -110,7 +107,7 @@ function InputGroupInput({
             ref={ref}
             variant="ghost"
             data-slot="input-group-control"
-            className={cn("h-full flex-1 rounded-none px-2.5", className)}
+            className={cn("h-full flex-1 rounded-none px-0", className)}
             {...props}
         />
     )
@@ -125,7 +122,7 @@ function InputGroupTextarea({
         <Textarea
             ref={ref}
             data-slot="input-group-control"
-            className={cn("flex-1 resize-none rounded-none py-2 px-2.5", className)}
+            className={cn("flex-1 resize-none rounded-none py-2", className)}
             {...props}
         />
     )

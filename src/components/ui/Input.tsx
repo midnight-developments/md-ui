@@ -1,13 +1,12 @@
 import * as React from "react"
 import { Input as InputPrimitive } from "@base-ui/react/input"
-import { type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { inputVariants } from "@/components/ui/input.variants"
+import { inputVariants, inputShellVariants, inputControlVariants, type InputShellVariantProps } from "@/components/ui/input.variants"
 
 export interface InputProps
   extends React.ComponentProps<"input">,
-  VariantProps<typeof inputVariants> {
+  InputShellVariantProps {
   ref?: React.Ref<HTMLInputElement>
 }
 
@@ -26,4 +25,4 @@ function Input({ className, variant, type, id, ref, ...props }: InputProps) {
   )
 }
 
-export { Input, inputVariants }
+export { Input, inputVariants, inputShellVariants, inputControlVariants }

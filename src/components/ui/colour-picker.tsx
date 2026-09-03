@@ -47,10 +47,10 @@ function ColourPicker({ color, onChange, className, ...props }: ColourPickerProp
     };
 
     return (
-        <div className={cn("flex flex-col items-center gap-3 w-64 max-w-64", className)} {...props}>
+        <div className={cn("flex flex-col items-center gap-3 w-70 max-w-70", className)} {...props}>
             <HexColorPicker color={color} onChange={onChange} className="w-full! h-48! rounded-sm" />
 
-            <div className="flex items-center gap-2 w-full">
+            <div className="flex items-center gap-1.5 w-full">
                 <Select value={format} onValueChange={(val) => setFormat(val as "HEX" | "RGB")}>
                     <SelectTrigger className="w-17.5 ">
                         <SelectValue />
@@ -73,12 +73,14 @@ function ColourPicker({ color, onChange, className, ...props }: ColourPickerProp
                             )}
                         />
                     ) : (
-                        <InputGroup className="w-full h-9">
-                            {(["r", "g", "b"] as const).map((channel, index) => (
-                                <React.Fragment key={channel}>
-                                    {index > 0 && <div className="h-4 w-px bg-border/40 shrink-0" />}
-                                    <InputGroupAddon align="inline-start" className="order-0 pl-1.5 pr-0">
-                                        <InputGroupText className="text-[10px] font-semibold uppercase text-muted">
+                        <div className="flex items-center gap-1.5 w-full">
+                            {(["r", "g", "b"] as const).map((channel) => (
+                                <InputGroup key={channel} className="h-9 gap-0 flex items-center justify-between overflow-hidden">
+                                    <InputGroupAddon
+                                        align="inline-start"
+                                        className="order-0 p-0 shrink-0 flex items-center"
+                                    >
+                                        <InputGroupText className="text-sm font-semibold uppercase text-muted leading-none">
                                             {channel}
                                         </InputGroupText>
                                     </InputGroupAddon>
@@ -88,11 +90,11 @@ function ColourPicker({ color, onChange, className, ...props }: ColourPickerProp
                                         max={255}
                                         value={rgb[channel]}
                                         onChange={(e) => handleChannelChange(channel, e.target.value)}
-                                        className="text-center px-0.5 text-xs min-w-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                        className="flex-1 h-full text-right text-sm font-medium leading-none px-0 py-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-inner-spin-button]:m-0"
                                     />
-                                </React.Fragment>
+                                </InputGroup>
                             ))}
-                        </InputGroup>
+                        </div>
                     )}
                 </div>
             </div>

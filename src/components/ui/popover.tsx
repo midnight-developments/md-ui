@@ -4,6 +4,7 @@ import * as React from "react"
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
 
 import { cn } from "@/lib/utils"
+import { popupContentVariants } from "@/components/ui/popup.variants"
 
 const Popover = PopoverPrimitive.Root
 const PopoverTrigger = PopoverPrimitive.Trigger
@@ -34,8 +35,8 @@ function PopoverContent({
                     data-align={align}
                     data-side={side}
                     className={cn(
-                        "relative z-50 flex w-72 flex-col gap-2.5 rounded-md border border-border outline-hidden text-foreground p-2.5 text-sm",
-                        "shadow-xl animate-popup",
+                        popupContentVariants(),
+                        "flex w-72 flex-col gap-2.5 p-2.5 text-sm",
                         className
                     )}
                     {...props}
