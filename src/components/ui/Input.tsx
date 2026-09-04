@@ -4,9 +4,7 @@ import { Input as InputPrimitive } from "@base-ui/react/input"
 import { cn } from "@/lib/utils"
 import { inputVariants, inputShellVariants, inputControlVariants, type InputShellVariantProps } from "@/components/ui/input.variants"
 
-export interface InputProps
-  extends React.ComponentProps<"input">,
-  InputShellVariantProps {
+export interface InputProps extends React.ComponentProps<"input">, InputShellVariantProps {
   ref?: React.Ref<HTMLInputElement>
 }
 

@@ -47,15 +47,23 @@
 
     body {
         @apply font-sans bg-background text-foreground outline-none;
+        background-image: url('/src/assets/bg.png');
     }
 
-    body {
-        background-image: url('/src/assets/bg.png');
+    *:focus-visible,
+    :focus-visible {
+        outline: none !important;
     }
 
     input {
         transform: translate3d(0, 0, 0);
         will-change: box-shadow;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 
     input[type="number"] {
@@ -68,12 +76,16 @@
 .react-colorful {
     overflow: visible !important;
     border-radius: 4px !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .react-colorful__saturation {
-    border-radius: 4px 4px 0 0 !important;
+    border-radius: 4px 4px 0px 0px !important;
+    border-bottom: none !important;
 }
 
 .react-colorful__hue {
     border-radius: 0 0 4px 4px !important;
+    border-top: none !important;
 }

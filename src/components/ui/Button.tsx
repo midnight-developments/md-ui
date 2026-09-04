@@ -11,11 +11,11 @@ const buttonVariants = cva(
         default:
           "ring-[1.5px] ring-inset ring-white/20 hover:brightness-110 bg-accent-gradient text-foreground active:text-foreground/80",
         outline:
-          "ring-1 ring-inset ring-border hover:ring-border-hover focus-visible:ring-2 focus-visible:ring-border-active active:ring-2 active:ring-border-active bg-dark-gradient text-foreground active:text-foreground/80 ",
+          "ring-1 ring-inset ring-border hover:ring-border-hover bg-dark-gradient text-foreground active:text-foreground/80",
         link:
           "h-auto p-0 bg-transparent gap-1 active:scale-[1]",
         destructive:
-          "border-destructive/40 bg-destructive/20 text-destructive hover:bg-destructive/30 focus-visible:border-destructive/40",
+          "border-destructive/40 bg-destructive/20 text-destructive hover:bg-destructive/30",
         ghost:
           "bg-transparent hover:bg-white/10 text-foreground",
       },
