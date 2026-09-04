@@ -1,5 +1,9 @@
 import * as React from "react";
 import { HexColorPicker } from "react-colorful";
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { ChevronDownIcon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
 import {
     InputGroup,
     InputGroupAddon,
@@ -7,19 +11,25 @@ import {
     InputGroupText,
 } from "@/components/ui/input-group";
 import { FieldLabel } from "@/components/ui/field";
-import { cn } from "@/lib/utils";
+import { inputVariants } from "@/components/ui/input.variants";
 
 function hexToRgb(hex: string) {
-    const cleanHex = hex.replace("#", "");
-    const fullHex = cleanHex.length === 3 ? cleanHex.split("").map((c) => c + c).join("") : cleanHex;
-    const [r, g, b] = fullHex.match(/.{1,2}/g)?.map((x) => parseInt(x, 16)) || [0, 0, 0];
-    return { r: r || 0, g: g || 0, b: b || 0 };
+    const raw = hex.replace("#", "");
+    const full = raw.length === 3 ? raw.split("").map((c) => c + c).join("") : raw;
+    const num = parseInt(full, 16);
+    if (isNaN(num) || (full.length !== 6 && full.length !== 3)) {
+        return { r: 0, g: 0, b: 0 };
+    }
+    return {
+        r: (num >> 16) & 255,
+        g: (num >> 8) & 255,
+        b: num & 255,
+    };
 }
 
 function rgbToHex(r: number, g: number, b: number) {
-    const clamp = (n: number) => Math.max(0, Math.min(255, isNaN(n) ? 0 : n));
-    const toHex = (n: number) => clamp(n).toString(16).padStart(2, "0");
-    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    const clamp = (v: number) => Math.max(0, Math.min(255, Math.round(v) || 0));
+    return `#${((1 << 24) + (clamp(r) << 16) + (clamp(g) << 8) + clamp(b)).toString(16).slice(1)}`;
 }
 
 const DEFAULT_SWATCHES = [
@@ -50,23 +60,22 @@ function ColourPicker({
     className,
     ...props
 }: ColourPickerProps) {
-    const rgb = hexToRgb(color);
-    const [hexValue, setHexValue] = React.useState(() => color.replace("#", "").toUpperCase());
+    const rgb = React.useMemo(() => hexToRgb(color), [color]);
+    const [hexInput, setHexInput] = React.useState(() => color.replace("#", "").toUpperCase());
 
     React.useEffect(() => {
-        setHexValue(color.replace("#", "").toUpperCase());
+        setHexInput(color.replace("#", "").toUpperCase());
     }, [color]);
 
     const handleChannelChange = (channel: "r" | "g" | "b", valStr: string) => {
         const parsed = parseInt(valStr, 10);
-        const clamped = isNaN(parsed) ? 0 : Math.max(0, Math.min(255, parsed));
-        const nextRgb = { ...rgb, [channel]: clamped };
-        onChange(rgbToHex(nextRgb.r, nextRgb.g, nextRgb.b));
+        const next = { ...rgb, [channel]: isNaN(parsed) ? 0 : Math.max(0, Math.min(255, parsed)) };
+        onChange(rgbToHex(next.r, next.g, next.b));
     };
 
     const handleHexChange = (valStr: string) => {
         const cleaned = valStr.replace(/[^0-9A-Fa-f]/g, "").slice(0, 6).toUpperCase();
-        setHexValue(cleaned);
+        setHexInput(cleaned);
         if (cleaned.length === 3 || cleaned.length === 6) {
             onChange(`#${cleaned}`);
         }
@@ -78,12 +87,12 @@ function ColourPicker({
                 <HexColorPicker
                     color={color}
                     onChange={onChange}
-                    className="w-64! h-42! shrink-0 "
+                    className="w-64! h-42! shrink-0"
                 />
 
                 <div className="flex flex-col gap-2 flex-1 min-w-0">
                     {(["r", "g", "b"] as const).map((channel) => (
-                        <InputGroup key={channel} className="h-9 gap-0 flex items-center justify-between overflow-hidden ">
+                        <InputGroup key={channel} className="h-9 gap-0 flex items-center justify-between overflow-hidden">
                             <InputGroupAddon
                                 align="inline-start"
                                 className="order-0 p-0 shrink-0 flex items-center"
@@ -98,7 +107,7 @@ function ColourPicker({
                                 max={255}
                                 value={rgb[channel]}
                                 onChange={(e) => handleChannelChange(channel, e.target.value)}
-                                className="flex-1 h-full  text-right text-sm font-medium leading-none px-0 py-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-inner-spin-button]:m-0"
+                                className="flex-1 h-full text-right text-sm font-medium leading-none px-0 py-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-inner-spin-button]:m-0"
                             />
                         </InputGroup>
                     ))}
@@ -115,7 +124,7 @@ function ColourPicker({
                         <InputGroupInput
                             type="text"
                             maxLength={6}
-                            value={hexValue}
+                            value={hexInput}
                             onChange={(e) => handleHexChange(e.target.value)}
                             className="flex-1 h-full text-right text-sm font-medium uppercase leading-none px-0 py-0"
                         />
@@ -151,4 +160,58 @@ function ColourPicker({
     );
 }
 
-export { ColourPicker };
+export interface ColourPickerTriggerProps extends PopoverPrimitive.Trigger.Props {
+    color?: string;
+}
+
+function ColourPickerTrigger({
+    className,
+    children,
+    color,
+    ...props
+}: ColourPickerTriggerProps) {
+    return (
+        <PopoverPrimitive.Trigger
+            data-slot="colour-picker-trigger"
+            className={cn(
+                inputVariants(),
+                "group/trigger justify-between cursor-pointer",
+                className
+            )}
+            {...props}
+        >
+            {children ? (
+                <span className="flex items-center gap-2 min-w-0">
+                    {color && (
+                        <span
+                            className="size-4.5 rounded-xs ring-1 ring-border shrink-0"
+                            style={{ backgroundColor: color }}
+                        />
+                    )}
+                    <span className="truncate">{children}</span>
+                </span>
+            ) : color ? (
+                <span className="flex items-center gap-2 min-w-0">
+                    <span
+                        className="size-4.5 rounded-xs ring-1 ring-border shrink-0"
+                        style={{ backgroundColor: color }}
+                    />
+                    <span className=" text-xs uppercase text-foreground tracking-wide">
+                        {color}
+                    </span>
+                </span>
+            ) : (
+                <span className="text-muted text-sm">Select colour...</span>
+            )}
+            <ChevronDownIcon className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-transform duration-200 group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
+        </PopoverPrimitive.Trigger>
+    );
+}
+
+const ColourPickerPopoverTrigger = ColourPickerTrigger;
+
+export {
+    ColourPicker,
+    ColourPickerTrigger,
+    ColourPickerPopoverTrigger,
+};

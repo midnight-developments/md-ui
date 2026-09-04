@@ -56,7 +56,10 @@ import {
     ComboboxItem,
     ComboboxEmpty,
 } from '@/components/ui/combobox'
-import { ColourPicker } from '@/components/ui/colour-picker'
+import {
+    ColourPicker,
+    ColourPickerTrigger,
+} from '@/components/ui/colour-picker'
 
 const recipientsList = [
     { value: "jane-doe", label: "Jane Doe" },
@@ -246,7 +249,12 @@ export default function App() {
                                     <FieldGroup>
                                         <Field>
                                             <FieldLabel>Theme Colour</FieldLabel>
-                                            <ColourPicker color={color} onChange={setColor} />
+                                            <Popover>
+                                                <ColourPickerTrigger color={color} />
+                                                <PopoverContent align="center" sideOffset={6} className="w-(--anchor-width) p-3">
+                                                    <ColourPicker color={color} onChange={setColor} />
+                                                </PopoverContent>
+                                            </Popover>
                                         </Field>
                                     </FieldGroup>
                                     <FieldSeparator />

@@ -55,24 +55,28 @@ function ComboboxInput({
     showClear?: boolean
 }) {
     return (
-        <InputGroup className={cn("w-auto", className)}>
+        <ComboboxPrimitive.InputGroup
+            render={<InputGroup className={cn("w-auto", className)} />}
+        >
             <ComboboxPrimitive.Input
                 render={<InputGroupInput disabled={disabled} />}
                 {...props}
             />
-            <InputGroupAddon align="inline-end">
-                {showTrigger && (
-                    <InputGroupButton
-                        render={<ComboboxTrigger />}
-                        data-slot="input-group-button"
-                        className="group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent size-6 p-0"
-                        disabled={disabled}
-                    />
-                )}
-                {showClear && <ComboboxClear disabled={disabled} />}
-            </InputGroupAddon>
+            {(showTrigger || showClear) && (
+                <InputGroupAddon align="inline-end">
+                    {showTrigger && (
+                        <InputGroupButton
+                            render={<ComboboxTrigger />}
+                            data-slot="input-group-button"
+                            className="group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent size-6 p-0"
+                            disabled={disabled}
+                        />
+                    )}
+                    {showClear && <ComboboxClear disabled={disabled} />}
+                </InputGroupAddon>
+            )}
             {children}
-        </InputGroup>
+        </ComboboxPrimitive.InputGroup>
     )
 }
 
@@ -105,7 +109,7 @@ function ComboboxContent({
                     data-chips={!!anchor}
                     data-align={align}
                     data-side={side}
-                    className={cn(popupContentVariants(), className)}
+                    className={cn(popupContentVariants(), "w-(--anchor-width)", className)}
                     {...props}
                 >
                     {children}

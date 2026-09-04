@@ -45,14 +45,15 @@
 
 @layer base {
 
+    *,
+    *::before,
+    *::after {
+        outline: none !important;
+    }
+
     body {
         @apply font-sans bg-background text-foreground outline-none;
         background-image: url('/src/assets/bg.png');
-    }
-
-    *:focus-visible,
-    :focus-visible {
-        outline: none !important;
     }
 
     input {
