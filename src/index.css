@@ -73,7 +73,6 @@
     }
 }
 
-/* Custom react-colorful dark theme overrides - rounded corners without clipping the pointer handle */
 .react-colorful {
     overflow: visible !important;
     border-radius: 4px !important;
