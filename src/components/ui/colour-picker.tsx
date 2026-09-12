@@ -3,6 +3,8 @@ import { HexColorPicker } from "react-colorful";
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 import { ChevronDownIcon } from "lucide-react";
 
+import { PopoverTrigger } from "@/components/ui/popover";
+
 import { cn } from "@/lib/utils";
 import {
     InputGroup,
@@ -171,7 +173,7 @@ function ColourPickerTrigger({
     ...props
 }: ColourPickerTriggerProps) {
     return (
-        <PopoverPrimitive.Trigger
+        <PopoverTrigger
             data-slot="colour-picker-trigger"
             className={cn(
                 inputVariants(),
@@ -203,8 +205,8 @@ function ColourPickerTrigger({
             ) : (
                 <span className="text-muted text-sm">Select colour...</span>
             )}
-            <ChevronDownIcon className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-transform duration-200 group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
-        </PopoverPrimitive.Trigger>
+            <ChevronDownIcon className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
+        </PopoverTrigger>
     );
 }
 

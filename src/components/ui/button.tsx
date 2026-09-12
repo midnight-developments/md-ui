@@ -5,10 +5,10 @@ import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
   [
-    "group/button h-9 px-3.5 gap-1.5 inline-flex shrink-0 items-center justify-center rounded bg-clip-padding text-sm tracking-somewhat-tight font-medium cursor-pointer active:scale-[0.98] active:brightness-90 transition-all ease-in-out duration-200 whitespace-nowrap",
+    "group/button h-9 px-3.5 gap-1.5 inline-flex shrink-0 items-center justify-center rounded bg-clip-padding text-sm tracking-somewhat-tight font-medium cursor-pointer active:scale-[0.98] active:brightness-90 transition-snappy whitespace-nowrap",
     "disabled:pointer-events-none disabled:opacity-50 select-none will-change-transform outline-none",
-    "[&:is(:focus-visible,:active,[data-popup-open],[data-state=open],[data-active=true],[aria-expanded=true])]:ring-2",
-    "[&:is(:focus-visible,:active,[data-popup-open],[data-state=open],[data-active=true],[aria-expanded=true])]:ring-border-active",
+    "[&:is(:focus-visible,[data-popup-open],[data-state=open],[aria-expanded=true])]:ring-2",
+    "[&:is(:focus-visible,[data-popup-open],[data-state=open],[aria-expanded=true])]:ring-border-active",
   ].join(" "),
   {
     variants: {

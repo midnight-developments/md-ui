@@ -7,7 +7,51 @@ import { cn } from "@/lib/utils"
 import { popupContentVariants } from "@/components/ui/popup.variants"
 
 const Popover = PopoverPrimitive.Root
-const PopoverTrigger = PopoverPrimitive.Trigger
+
+function PopoverTrigger({
+    onMouseDown,
+    onClick,
+    ...props
+}: PopoverPrimitive.Trigger.Props) {
+    const triggeredOnMouseDownRef = React.useRef(false)
+
+    return (
+        <PopoverPrimitive.Trigger
+            //icl this is fully AI generated
+            onMouseDown={(event) => {
+                onMouseDown?.(event)
+                if (event.defaultPrevented) return
+
+                if (event.button === 0) {
+                    const isExpanded = event.currentTarget.getAttribute("aria-expanded") === "true"
+                    if (!isExpanded) {
+                        triggeredOnMouseDownRef.current = true
+
+                        const handleWindowMouseUp = () => {
+                            window.removeEventListener("mouseup", handleWindowMouseUp)
+                            setTimeout(() => {
+                                triggeredOnMouseDownRef.current = false
+                            }, 0)
+                        }
+                        window.addEventListener("mouseup", handleWindowMouseUp)
+
+                        event.currentTarget.click()
+                    }
+                }
+            }}
+            onClick={(event) => {
+                if (triggeredOnMouseDownRef.current && event.isTrusted) {
+                    triggeredOnMouseDownRef.current = false
+                        ; (event as any).preventBaseUIHandler?.()
+                    event.preventDefault()
+                    return
+                }
+                onClick?.(event)
+            }}
+            {...props}
+        />
+    )
+}
 
 function PopoverContent({
     className,

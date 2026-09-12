@@ -32,7 +32,7 @@ function ComboboxTrigger({
             {...props}
         >
             {children}
-            <ChevronDownIcon className="-mr-1 pointer-events-none size-4 text-muted-foreground transition-transform duration-200 group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
+            <ChevronDownIcon className="-mr-1 pointer-events-none size-4 text-muted-foreground transition-snappy group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
         </ComboboxPrimitive.Trigger>
     )
 }

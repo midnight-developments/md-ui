@@ -35,7 +35,26 @@
 
     --tracking-somewhat-tight: -0.0125em;
     --text-md: 0.9375rem;
+
+    --duration-snappy: 150ms;
+    --ease-snappy: cubic-bezier(0, 0, 0.2, 1);
+
+    --duration-popup: 250ms;
+    --ease-popup: cubic-bezier(0.25, 1, 0.35, 1);
 }
+
+@utility transition-snappy {
+    transition-property: all;
+    transition-duration: var(--duration-snappy, 150ms);
+    transition-timing-function: var(--ease-snappy, cubic-bezier(0, 0, 0.2, 1));
+}
+
+@utility transition-popup {
+    transition-property: all;
+    transition-duration: var(--duration-popup, 250ms);
+    transition-timing-function: var(--ease-popup, cubic-bezier(0.25, 1, 0.35, 1));
+}
+
 
 
 
@@ -54,11 +73,6 @@
     body {
         @apply font-sans bg-background text-foreground outline-none;
         background-image: url('/src/assets/bg.png');
-    }
-
-    input {
-        transform: translate3d(0, 0, 0);
-        will-change: box-shadow;
     }
 
     input[type="number"]::-webkit-outer-spin-button,

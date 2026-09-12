@@ -60,6 +60,10 @@ import {
     ColourPicker,
     ColourPickerTrigger,
 } from '@/components/ui/colour-picker'
+import {
+    RadioGroup,
+    RadioGroupItem,
+} from '@/components/ui/radio-group'
 
 const recipientsList = [
     { value: "jane-doe", label: "Jane Doe" },
@@ -232,11 +236,41 @@ export default function App() {
                                     </FieldGroup>
                                     <FieldSeparator />
                                     <FieldGroup>
+                                        <Field>
+                                            <FieldLabel>Link Expiration</FieldLabel>
+                                            <FieldDescription description="Set how long this shared link remains active" />
+
+                                            <RadioGroup defaultValue="never" className="gap-2.5 pt-1">
+                                                <Field orientation="horizontal" className="items-center gap-2">
+                                                    <RadioGroupItem value="never" id="expiry-never" />
+                                                    <FieldLabel htmlFor="expiry-never" className="font-normal text-sm cursor-pointer">
+                                                        Never
+                                                    </FieldLabel>
+                                                </Field>
+                                                <Field orientation="horizontal" className="items-center gap-2">
+                                                    <RadioGroupItem value="7d" id="expiry-7d" />
+                                                    <FieldLabel htmlFor="expiry-7d" className="font-normal text-sm cursor-pointer">
+                                                        7 days
+                                                    </FieldLabel>
+                                                </Field>
+                                                <Field orientation="horizontal" className="items-center gap-2">
+                                                    <RadioGroupItem value="30d" id="expiry-30d" />
+                                                    <FieldLabel htmlFor="expiry-30d" className="font-normal text-sm cursor-pointer">
+                                                        30 days
+                                                    </FieldLabel>
+                                                </Field>
+                                            </RadioGroup>
+
+                                        </Field>
+                                    </FieldGroup>
+                                    <FieldSeparator />
+                                    <FieldGroup>
                                         <Field data-invalid={!!errors.passcode}>
                                             <FieldLabel>Access Passcode</FieldLabel>
                                             <Input
                                                 type="password"
                                                 placeholder="Enter passcode"
+                                                aria-invalid={!!errors.passcode}
                                                 {...register('passcode')}
                                             />
                                             <FieldDescription

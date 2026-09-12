@@ -124,7 +124,7 @@ function FieldDescription({
     const content = isError ? error : description
 
     return (
-        <div className="overflow-hidden w-full relative -mt-1">
+        <div className="overflow-hidden w-full relative -mt-0.75">
             <AnimatePresence mode="popLayout" initial={false}>
                 {content && (
                     <motion.p
@@ -134,7 +134,7 @@ function FieldDescription({
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 20 }}
-                        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] as any }}
+                        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] as any }}
                         className={cn(
                             "text-sm w-full will-change-transform",
                             isError

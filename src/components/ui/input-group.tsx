@@ -16,7 +16,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
             className={cn(
                 inputShellVariants(),
                 "group/input-group relative gap-2.5 px-2.5",
-                "has-[[data-slot=input-group-control]:is([aria-invalid=true],[data-invalid=true])]:ring-2 has-[[data-slot=input-group-control]:is([aria-invalid=true],[data-invalid=true])]:ring-destructive",
+                "has-[[data-slot=input-group-control][data-invalid=true]]:!ring-2 has-[[data-slot=input-group-control][data-invalid=true]]:!ring-destructive",
                 "has-[>[data-align^=block]]:h-auto has-[>[data-align^=block]]:flex-col",
                 "has-[[data-slot=textarea]]:h-auto",
                 className
@@ -27,7 +27,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const inputGroupAddonVariants = cva(
-    "flex h-auto cursor-text items-center justify-center gap-2 text-sm font-medium text-muted-foreground select-none [&_svg:not([class*='size-'])]:size-4.5 [&_svg]:text-muted [&_svg]:transition-colors [&_svg]:duration-200 group-hover/input-group:[&_svg]:text-primary group-focus-within/input-group:[&_svg]:text-primary",
+    "flex h-auto cursor-text items-center justify-center gap-2 text-sm font-medium text-muted-foreground select-none [&_svg:not([class*='size-'])]:size-4.5 [&_svg]:text-muted [&_svg]:transition-snappy group-hover/input-group:[&_svg]:text-primary group-focus-within/input-group:[&_svg]:text-primary",
     {
         variants: {
             align: {
