@@ -39,7 +39,7 @@
     --duration-snappy: 150ms;
     --ease-snappy: cubic-bezier(0, 0, 0.2, 1);
 
-    --duration-popup: 250ms;
+    --duration-popup: 225ms;
     --ease-popup: cubic-bezier(0.25, 1, 0.35, 1);
 }
 
