@@ -41,6 +41,7 @@
 
     --duration-popup: 225ms;
     --ease-popup: cubic-bezier(0.25, 1, 0.35, 1);
+    --ease-popup-bouncy: cubic-bezier(0.16, 1, 0.3, 1.25);
 }
 
 @utility transition-snappy {
@@ -52,7 +53,7 @@
 @utility transition-popup {
     transition-property: all;
     transition-duration: var(--duration-popup, 250ms);
-    transition-timing-function: var(--ease-popup, cubic-bezier(0.25, 1, 0.35, 1));
+    transition-timing-function: var(--ease-popup-bouncy, cubic-bezier(0.25, 1, 0.35, 1));
 }
 
 

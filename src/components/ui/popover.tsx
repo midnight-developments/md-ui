@@ -14,10 +14,8 @@ function PopoverTrigger({
     ...props
 }: PopoverPrimitive.Trigger.Props) {
     const triggeredOnMouseDownRef = React.useRef(false)
-
     return (
         <PopoverPrimitive.Trigger
-            //icl this is fully AI generated
             onMouseDown={(event) => {
                 onMouseDown?.(event)
                 if (event.defaultPrevented) return
