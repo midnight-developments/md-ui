@@ -21,12 +21,15 @@
     --color-border: rgba(255, 255, 255, 0.075);
     --color-border-hover: rgba(255, 255, 255, 0.25);
     --color-border-active: rgba(255, 255, 255, 0.8);
-    --color-card: rgb(12, 12, 12);
     --color-popup: rgb(0, 0, 0, 0.4);
 
     --color-input: rgba(255, 255, 255, 0.05);
     --color-input-hover: rgba(255, 255, 255, 0.08);
     --color-input-active: rgba(255, 255, 255, 0.08);
+
+    --color-card: rgba(0, 0, 0);
+    --color-card-hover: rgba(255, 255, 255, 0.08);
+    --color-card-active: rgba(255, 255, 255, 0.08);
 
     --background-image-accent-gradient: linear-gradient(to bottom, rgba(120, 105, 230, 0.9), rgba(120, 105, 230, 0.9));
     --background-image-accent-gradient-x: linear-gradient(to right, rgba(120, 105, 230, 0.9), rgba(120, 105, 230, 0.9));

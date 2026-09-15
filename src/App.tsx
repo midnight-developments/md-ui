@@ -8,16 +8,13 @@ import {
     CreditCardIcon,
 } from '@heroicons/react/24/solid'
 import {
-    Card,
-    CardHeader,
-    CardTitle,
-    CardTitleIcon,
-    CardContent,
-    CardFooter,
-} from "@/components/ui/card"
-import {
     Dialog,
     DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTitleIcon,
+    DialogBody,
+    DialogFooter,
 } from "@/components/ui/dialog"
 import { Input } from '@/components/ui/input'
 import { Button } from "@/components/ui/button"
@@ -64,6 +61,12 @@ import {
     RadioGroup,
     RadioGroupItem,
 } from '@/components/ui/radio-group'
+import {
+    CardRadioGroup,
+    CardRadioGroupItem,
+    CardRadioTitle,
+    CardRadioDescription,
+} from '@/components/ui/card-radio-group'
 
 const recipientsList = [
     { value: "jane-doe", label: "Jane Doe" },
@@ -127,190 +130,202 @@ export default function App() {
                     setSelectedRecipient(null)
                 }
             }}>
-                <DialogContent>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <Card className="w-md">
-                            <CardHeader className="flex flex-row items-center gap-3">
-                                <CardTitleIcon icon={ShareIcon} />
-                                <CardTitle>Share Project</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <FieldSet>
-                                    <FieldSeparator className="my-0" />
-                                    <FieldGroup>
-                                        <Field>
-                                            <FieldLabel>Document Link</FieldLabel>
-                                            <InputGroup>
-                                                <InputGroupInput
-                                                    value='https://docs.google.com/document/d/1234567890/edit?usp=sharing'
-                                                    readOnly
-                                                />
-
-                                                <InputGroupAddon align="inline-end">
-                                                    <InputGroupButton
-                                                        aria-label="Copy"
-                                                        title="Copy"
-                                                        onClick={() => {
-                                                            copyToClipboard("https://x.com/shadcn")
-                                                        }}
-                                                    >
-                                                        <CopyIcon strokeWidth={2} />
-                                                    </InputGroupButton>
-                                                </InputGroupAddon>
-                                            </InputGroup>
-                                            <FieldDescription description="Share this link with others" />
-                                        </Field>
-                                        <Field>
-                                            <FieldLabel>Search Recipients</FieldLabel>
-                                            <div className="flex flex-row items-center gap-2 w-full">
-                                                <Combobox items={recipientsList} value={selectedRecipient} onValueChange={setSelectedRecipient}>
-                                                    <ComboboxInput placeholder="Select recipient..." showTrigger={false} className="w-full" />
-                                                    <ComboboxContent className="z-50">
-                                                        <ComboboxEmpty>No recipients found</ComboboxEmpty>
-                                                        <ComboboxList>
-                                                            {(recipient) => (
-                                                                <ComboboxItem key={recipient.value} value={recipient.value}>
-                                                                    {recipient.label}
-                                                                </ComboboxItem>
-                                                            )}
-                                                        </ComboboxList>
-                                                    </ComboboxContent>
-                                                </Combobox>
-                                                <Button type="button" variant='outline'>Invite</Button>
-                                            </div>
-                                            <FieldDescription description="Add collaborators by username" />
-                                        </Field>
-                                        <Field>
-                                            <div className="flex items-center justify-between">
-                                                <FieldLabel>Access Level</FieldLabel>
-                                                <Popover>
-                                                    <PopoverTrigger
-                                                        className="text-xs text-secondary hover:text-foreground cursor-pointer underline underline-offset-2 outline-hidden"
-                                                    >
-                                                        What is this?
-                                                    </PopoverTrigger>
-                                                    <PopoverContent className="w-80">
-                                                        <PopoverHeader>
-                                                            <PopoverTitle>Access Levels Info</PopoverTitle>
-                                                            <PopoverDescription>
-                                                                Define what billing and invoice details the recipients are allowed to view.
-                                                            </PopoverDescription>
-                                                        </PopoverHeader>
-                                                        <div className="text-xs text-secondary mt-2.5 space-y-1.5 leading-relaxed">
-                                                            <p><strong>All Invoices:</strong> Full access to all invoice data.</p>
-                                                            <p><strong>Outstanding Invoices:</strong> Only show invoices awaiting payment.</p>
-                                                            <p><strong>Overdue:</strong> Only show past due invoices.</p>
-                                                        </div>
-                                                    </PopoverContent>
-                                                </Popover>
-                                            </div>
-                                            <Select defaultValue="outstanding-invoices" items={statusItems}>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select invoice status" />
-                                                </SelectTrigger>
-                                                <SelectContent >
-                                                    <SelectItem value="all-invoices">
-                                                        <Square3Stack3DIcon className="size-4" />
-                                                        <span>All Invoices</span>
-                                                    </SelectItem>
-                                                    <SelectItem value="outstanding-invoices">
-                                                        <ExclamationTriangleIcon className="size-4" />
-                                                        <span>Outstanding invoices</span>
-                                                    </SelectItem>
-                                                    <SelectItem value="overdue">
-                                                        <ClockIcon className="size-4" />
-                                                        <span>Overdue</span>
-                                                    </SelectItem>
-                                                    <SelectItem value="scheduled">
-                                                        <CalendarIcon className="size-4" />
-                                                        <span>Scheduled</span>
-                                                    </SelectItem>
-                                                    <SelectItem value="paid">
-                                                        <CreditCardIcon className="size-4" />
-                                                        <span>Paid</span>
-                                                    </SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                            <FieldDescription description="Select the permissions for new collaborators" />
-                                        </Field>
-                                    </FieldGroup>
-                                    <FieldSeparator />
-                                    <FieldGroup>
-                                        <Field>
-                                            <FieldLabel>Link Expiration</FieldLabel>
-                                            <FieldDescription description="Set how long this shared link remains active" />
-
-                                            <RadioGroup defaultValue="never" className="gap-2.5 pt-1">
-                                                <Field orientation="horizontal" className="items-center gap-2">
-                                                    <RadioGroupItem value="never" id="expiry-never" />
-                                                    <FieldLabel htmlFor="expiry-never" className="font-normal text-sm cursor-pointer">
-                                                        Never
-                                                    </FieldLabel>
-                                                </Field>
-                                                <Field orientation="horizontal" className="items-center gap-2">
-                                                    <RadioGroupItem value="7d" id="expiry-7d" />
-                                                    <FieldLabel htmlFor="expiry-7d" className="font-normal text-sm cursor-pointer">
-                                                        7 days
-                                                    </FieldLabel>
-                                                </Field>
-                                                <Field orientation="horizontal" className="items-center gap-2">
-                                                    <RadioGroupItem value="30d" id="expiry-30d" />
-                                                    <FieldLabel htmlFor="expiry-30d" className="font-normal text-sm cursor-pointer">
-                                                        30 days
-                                                    </FieldLabel>
-                                                </Field>
-                                            </RadioGroup>
-
-                                        </Field>
-                                    </FieldGroup>
-                                    <FieldSeparator />
-                                    <FieldGroup>
-                                        <Field data-invalid={!!errors.passcode}>
-                                            <FieldLabel>Access Passcode</FieldLabel>
-                                            <Input
-                                                type="password"
-                                                placeholder="Enter passcode"
-                                                aria-invalid={!!errors.passcode}
-                                                {...register('passcode')}
+                <DialogContent className="w-md">
+                    <form onSubmit={handleSubmit(onSubmit)} className="contents">
+                        <DialogHeader className="flex flex-row items-center gap-3">
+                            <DialogTitleIcon icon={ShareIcon} />
+                            <DialogTitle>Share Project</DialogTitle>
+                        </DialogHeader>
+                        <DialogBody>
+                            <FieldSet>
+                                <FieldSeparator className="my-0" />
+                                <FieldGroup>
+                                    <Field>
+                                        <FieldLabel>Document Link</FieldLabel>
+                                        <InputGroup>
+                                            <InputGroupInput
+                                                value='https://docs.google.com/document/d/1234567890/edit?usp=sharing'
+                                                readOnly
                                             />
-                                            <FieldDescription
-                                                description="Require visitors to enter this passcode to view"
-                                                error={errors.passcode?.message}
-                                            />
-                                        </Field>
-                                    </FieldGroup>
-                                    <FieldSeparator />
-                                    <FieldGroup>
-                                        <Field>
-                                            <FieldLabel>Theme Colour</FieldLabel>
+
+                                            <InputGroupAddon align="inline-end">
+                                                <InputGroupButton
+                                                    aria-label="Copy"
+                                                    title="Copy"
+                                                    onClick={() => {
+                                                        copyToClipboard("https://x.com/shadcn")
+                                                    }}
+                                                >
+                                                    <CopyIcon strokeWidth={2} />
+                                                </InputGroupButton>
+                                            </InputGroupAddon>
+                                        </InputGroup>
+                                        <FieldDescription description="Share this link with others" />
+                                    </Field>
+                                    <Field>
+                                        <FieldLabel>Search Recipients</FieldLabel>
+                                        <div className="flex flex-row items-center gap-2 w-full">
+                                            <Combobox items={recipientsList} value={selectedRecipient} onValueChange={setSelectedRecipient}>
+                                                <ComboboxInput placeholder="Select recipient..." showTrigger={false} className="w-full" />
+                                                <ComboboxContent className="z-50">
+                                                    <ComboboxEmpty>No recipients found</ComboboxEmpty>
+                                                    <ComboboxList>
+                                                        {(recipient) => (
+                                                            <ComboboxItem key={recipient.value} value={recipient.value}>
+                                                                {recipient.label}
+                                                            </ComboboxItem>
+                                                        )}
+                                                    </ComboboxList>
+                                                </ComboboxContent>
+                                            </Combobox>
+                                            <Button type="button" variant='outline'>Invite</Button>
+                                        </div>
+                                        <FieldDescription description="Add collaborators by username" />
+                                    </Field>
+                                    <Field>
+                                        <div className="flex items-center justify-between">
+                                            <FieldLabel>Access Level</FieldLabel>
                                             <Popover>
-                                                <ColourPickerTrigger color={color} />
-                                                <PopoverContent align="center" sideOffset={6} className="w-(--anchor-width) p-3">
-                                                    <ColourPicker color={color} onChange={setColor} />
+                                                <PopoverTrigger
+                                                    className="text-xs text-secondary hover:text-foreground cursor-pointer underline underline-offset-2 outline-hidden"
+                                                >
+                                                    What is this?
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-80">
+                                                    <PopoverHeader>
+                                                        <PopoverTitle>Access Levels Info</PopoverTitle>
+                                                        <PopoverDescription>
+                                                            Define what billing and invoice details the recipients are allowed to view.
+                                                        </PopoverDescription>
+                                                    </PopoverHeader>
+                                                    <div className="text-xs text-secondary mt-2.5 space-y-1.5 leading-relaxed">
+                                                        <p><strong>All Invoices:</strong> Full access to all invoice data.</p>
+                                                        <p><strong>Outstanding Invoices:</strong> Only show invoices awaiting payment.</p>
+                                                        <p><strong>Overdue:</strong> Only show past due invoices.</p>
+                                                    </div>
                                                 </PopoverContent>
                                             </Popover>
-                                        </Field>
-                                    </FieldGroup>
-                                    <FieldSeparator />
-                                </FieldSet>
-                            </CardContent>
-                            <CardFooter className="justify-between">
-                                <div className="flex items-center gap-2" />
-                                <div className="flex items-center gap-2">
-                                    <Button
-                                        type="button"
-                                        variant='outline'
-                                        onClick={() => {
-                                            setIsOpen(false)
-                                            reset()
-                                        }}
-                                    >
-                                        Cancel
-                                    </Button>
-                                    <Button type="submit" variant='default'>Confirm Access</Button>
-                                </div>
-                            </CardFooter>
-                        </Card>
+                                        </div>
+                                        <Select defaultValue="outstanding-invoices" items={statusItems}>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Select invoice status" />
+                                            </SelectTrigger>
+                                            <SelectContent >
+                                                <SelectItem value="all-invoices">
+                                                    <Square3Stack3DIcon className="size-4" />
+                                                    <span>All Invoices</span>
+                                                </SelectItem>
+                                                <SelectItem value="outstanding-invoices">
+                                                    <ExclamationTriangleIcon className="size-4" />
+                                                    <span>Outstanding invoices</span>
+                                                </SelectItem>
+                                                <SelectItem value="overdue">
+                                                    <ClockIcon className="size-4" />
+                                                    <span>Overdue</span>
+                                                </SelectItem>
+                                                <SelectItem value="scheduled">
+                                                    <CalendarIcon className="size-4" />
+                                                    <span>Scheduled</span>
+                                                </SelectItem>
+                                                <SelectItem value="paid">
+                                                    <CreditCardIcon className="size-4" />
+                                                    <span>Paid</span>
+                                                </SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                        <FieldDescription description="Select the permissions for new collaborators" />
+                                    </Field>
+                                </FieldGroup>
+                                <FieldSeparator />
+                                <FieldGroup>
+                                    <Field>
+                                        <FieldLabel>Link Expiration</FieldLabel>
+                                        <FieldDescription description="Set how long this shared link remains active" />
+
+                                        <RadioGroup defaultValue="never" className="gap-2.5 pt-1">
+                                            <Field orientation="horizontal" className="items-center gap-2">
+                                                <RadioGroupItem value="never" id="expiry-never" />
+                                                <FieldLabel htmlFor="expiry-never" className="font-normal text-sm cursor-pointer">
+                                                    Never
+                                                </FieldLabel>
+                                            </Field>
+                                            <Field orientation="horizontal" className="items-center gap-2">
+                                                <RadioGroupItem value="7d" id="expiry-7d" />
+                                                <FieldLabel htmlFor="expiry-7d" className="font-normal text-sm cursor-pointer">
+                                                    7 days
+                                                </FieldLabel>
+                                            </Field>
+                                            <Field orientation="horizontal" className="items-center gap-2">
+                                                <RadioGroupItem value="30d" id="expiry-30d" />
+                                                <FieldLabel htmlFor="expiry-30d" className="font-normal text-sm cursor-pointer">
+                                                    30 days
+                                                </FieldLabel>
+                                            </Field>
+                                        </RadioGroup>
+                                    </Field>
+                                    <Field>
+                                        <FieldLabel>Storage Plan</FieldLabel>
+                                        <FieldDescription description="Select your storage tier for this project" />
+
+                                        <CardRadioGroup defaultValue="standard" className="grid-cols-2 pt-1">
+                                            <CardRadioGroupItem value="standard">
+                                                <CardRadioTitle>Standard Tier</CardRadioTitle>
+                                                <CardRadioDescription>10GB storage with standard delivery speed</CardRadioDescription>
+                                            </CardRadioGroupItem>
+                                            <CardRadioGroupItem value="pro">
+                                                <CardRadioTitle>Pro Tier</CardRadioTitle>
+                                                <CardRadioDescription>100GB storage with priority delivery speed</CardRadioDescription>
+                                            </CardRadioGroupItem>
+                                        </CardRadioGroup>
+                                    </Field>
+                                </FieldGroup>
+                                <FieldSeparator />
+                                <FieldGroup>
+                                    <Field data-invalid={!!errors.passcode}>
+                                        <FieldLabel>Access Passcode</FieldLabel>
+                                        <Input
+                                            type="password"
+                                            placeholder="Enter passcode"
+                                            aria-invalid={!!errors.passcode}
+                                            {...register('passcode')}
+                                        />
+                                        <FieldDescription
+                                            description="Require visitors to enter this passcode to view"
+                                            error={errors.passcode?.message}
+                                        />
+                                    </Field>
+                                </FieldGroup>
+                                <FieldSeparator />
+                                <FieldGroup>
+                                    <Field>
+                                        <FieldLabel>Theme Colour</FieldLabel>
+                                        <Popover>
+                                            <ColourPickerTrigger color={color} />
+                                            <PopoverContent align="center" sideOffset={6} className="w-(--anchor-width) p-3">
+                                                <ColourPicker color={color} onChange={setColor} />
+                                            </PopoverContent>
+                                        </Popover>
+                                    </Field>
+                                </FieldGroup>
+                                <FieldSeparator />
+                            </FieldSet>
+                        </DialogBody>
+                        <DialogFooter className="justify-between">
+                            <div className="flex items-center gap-2" />
+                            <div className="flex items-center gap-2">
+                                <Button
+                                    type="button"
+                                    variant='outline'
+                                    onClick={() => {
+                                        setIsOpen(false)
+                                        reset()
+                                    }}
+                                >
+                                    Cancel
+                                </Button>
+                                <Button type="submit" variant='default'>Confirm Access</Button>
+                            </div>
+                        </DialogFooter>
                     </form>
                 </DialogContent>
             </Dialog>
