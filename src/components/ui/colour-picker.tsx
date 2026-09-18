@@ -198,7 +198,7 @@ function ColourPickerTrigger({
                         className="size-4.5 rounded-xs ring-1 ring-border shrink-0"
                         style={{ backgroundColor: color }}
                     />
-                    <span className=" text-xs uppercase text-foreground tracking-wide">
+                    <span className="text-xs uppercase text-foreground tracking-wide">
                         {color}
                     </span>
                 </span>
@@ -210,10 +210,7 @@ function ColourPickerTrigger({
     );
 }
 
-const ColourPickerPopoverTrigger = ColourPickerTrigger;
-
 export {
     ColourPicker,
     ColourPickerTrigger,
-    ColourPickerPopoverTrigger,
 };

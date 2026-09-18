@@ -1,9 +1,24 @@
-@import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/outfit";
 @import "@fontsource-variable/inter";
+@import "tailwindcss";
 
+@font-face {
+    font-family: 'GitLab Sans';
+    src: url('@gitlab/fonts/gitlab-sans/GitLabSans.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GitLab Sans';
+    src: url('@gitlab/fonts/gitlab-sans/GitLabSans-Italic.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
 
 @theme inline {
     --font-sans: 'Inter Variable', sans-serif;
@@ -58,13 +73,6 @@
     transition-duration: var(--duration-popup, 250ms);
     transition-timing-function: var(--ease-popup-bouncy, cubic-bezier(0.25, 1, 0.35, 1));
 }
-
-
-
-
-
-
-
 
 @layer base {
 

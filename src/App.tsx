@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from '@/components/ui/input'
 import { Button } from "@/components/ui/button"
-import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSeparator, FieldSet } from '@/components/ui/field'
+import { Field, FieldLabel, FieldDescription, FieldContent, FieldGroup, FieldSeparator, FieldSet } from '@/components/ui/field'
 import {
     InputGroup,
     InputGroupAddon,
@@ -64,8 +64,6 @@ import {
 import {
     CardRadioGroup,
     CardRadioGroupItem,
-    CardRadioTitle,
-    CardRadioDescription,
 } from '@/components/ui/card-radio-group'
 
 const recipientsList = [
@@ -75,7 +73,6 @@ const recipientsList = [
     { value: "bob-johnson", label: "Bob Johnson" },
     { value: "charlie-brown", label: "Charlie Brown" },
 ]
-
 
 const shareFormSchema = z.object({
     passcode: z.string()
@@ -134,7 +131,7 @@ export default function App() {
                     <form onSubmit={handleSubmit(onSubmit)} className="contents">
                         <DialogHeader className="flex flex-row items-center gap-3">
                             <DialogTitleIcon icon={ShareIcon} />
-                            <DialogTitle>Share Project</DialogTitle>
+                            <DialogTitle>Share ProjeXxct</DialogTitle>
                         </DialogHeader>
                         <DialogBody>
                             <FieldSet>
@@ -210,7 +207,7 @@ export default function App() {
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Select invoice status" />
                                             </SelectTrigger>
-                                            <SelectContent >
+                                            <SelectContent>
                                                 <SelectItem value="all-invoices">
                                                     <Square3Stack3DIcon className="size-4" />
                                                     <span>All Invoices</span>
@@ -239,9 +236,10 @@ export default function App() {
                                 <FieldSeparator />
                                 <FieldGroup>
                                     <Field>
-                                        <FieldLabel>Link Expiration</FieldLabel>
-                                        <FieldDescription description="Set how long this shared link remains active" />
-
+                                        <FieldContent>
+                                            <FieldLabel>Link Expiration</FieldLabel>
+                                            <FieldDescription description="Set how long this shared link remains active" />
+                                        </FieldContent>
                                         <RadioGroup defaultValue="never" className="gap-2.5 pt-1">
                                             <Field orientation="horizontal" className="items-center gap-2">
                                                 <RadioGroupItem value="never" id="expiry-never" />
@@ -264,17 +262,22 @@ export default function App() {
                                         </RadioGroup>
                                     </Field>
                                     <Field>
-                                        <FieldLabel>Storage Plan</FieldLabel>
-                                        <FieldDescription description="Select your storage tier for this project" />
-
-                                        <CardRadioGroup defaultValue="standard" className="grid-cols-2 pt-1">
+                                        <FieldContent>
+                                            <FieldLabel>Storage Plan</FieldLabel>
+                                            <FieldDescription description="Select your storage tier for this project" />
+                                        </FieldContent>
+                                        <CardRadioGroup defaultValue="standard" columns={2} className="pt-1">
                                             <CardRadioGroupItem value="standard">
-                                                <CardRadioTitle>Standard Tier</CardRadioTitle>
-                                                <CardRadioDescription>10GB storage with standard delivery speed</CardRadioDescription>
+                                                <FieldContent>
+                                                    <FieldLabel>Standard Tier</FieldLabel>
+                                                    <FieldDescription description="10GB storage with standard delivery speed" />
+                                                </FieldContent>
                                             </CardRadioGroupItem>
                                             <CardRadioGroupItem value="pro">
-                                                <CardRadioTitle>Pro Tier</CardRadioTitle>
-                                                <CardRadioDescription>100GB storage with priority delivery speed</CardRadioDescription>
+                                                <FieldContent>
+                                                    <FieldLabel>Pro Tier</FieldLabel>
+                                                    <FieldDescription description="100GB storage with priority delivery speed" />
+                                                </FieldContent>
                                             </CardRadioGroupItem>
                                         </CardRadioGroup>
                                     </Field>

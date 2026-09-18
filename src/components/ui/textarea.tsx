@@ -1,5 +1,3 @@
-import * as React from "react"
-
 import { cn } from "@/lib/utils"
 import { inputVariants } from "@/components/ui/input.variants"
 

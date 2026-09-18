@@ -1,15 +1,20 @@
 "use client"
 
-import * as React from "react"
 import { Radio as RadioPrimitive } from "@base-ui/react/radio"
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group"
 import { cn } from "@/lib/utils"
 
-function CardRadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
+function CardRadioGroup({
+    className,
+    columns = 2,
+    ...props
+}: RadioGroupPrimitive.Props & {
+    columns?: number
+}) {
     return (
         <RadioGroupPrimitive
             data-slot="card-radio-group"
-            className={cn("grid w-full gap-2.5 grid-cols-1 sm:grid-cols-2", className)}
+            className={cn("grid w-full gap-2.5", `grid-cols-${columns}`, className)}
             {...props}
         />
     )
@@ -18,55 +23,46 @@ function CardRadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
 function CardRadioGroupItem({
     className,
     children,
+    showIndicator = true,
+    indicatorPosition = "top",
     ...props
-}: RadioPrimitive.Root.Props) {
+}: RadioPrimitive.Root.Props & {
+    showIndicator?: boolean
+    indicatorPosition?: "top" | "center"
+}) {
     return (
         <RadioPrimitive.Root
             data-slot="card-radio-group-item"
             className={cn(
-                "group/card-radio peer relative flex items-start justify-between gap-3 p-3.5 rounded-md bg-card hover:bg-card-hover ring-1 ring-inset ring-border outline-none transition-snappy cursor-pointer select-none text-left",
+                "group/card-radio peer relative flex justify-between gap-3 p-3.5 rounded-md bg-card hover:bg-card-hover ring-1 ring-inset ring-border outline-none transition-snappy cursor-pointer select-none text-left",
                 "focus-visible:ring-2 focus-visible:ring-border-active",
                 "data-checked:ring-2 data-checked:ring-accent data-checked:bg-card-active",
                 "disabled:cursor-not-allowed disabled:opacity-50",
+                indicatorPosition === "center" ? "items-center" : "items-start",
                 className
             )}
             {...props}
         >
             <div className="flex flex-col gap-1 w-full">{children}</div>
-            <RadioPrimitive.Indicator
-                keepMounted
-                data-slot="card-radio-group-indicator"
-                className="flex size-4 shrink-0 aspect-square items-center justify-center rounded-full border border-white/20 bg-input pointer-events-none transition-snappy data-checked:border-accent mt-0.5"
-            >
-                <span className="size-2 rounded-full bg-accent transition-snappy data-unchecked:opacity-0 data-unchecked:scale-50 data-checked:opacity-100 data-checked:scale-100" />
-            </RadioPrimitive.Indicator>
+            {showIndicator && (
+                <div
+                    data-slot="card-radio-group-indicator"
+                    className={cn(
+                        "relative flex aspect-square size-4 shrink-0 items-center justify-center rounded-full border border-white/20 bg-input pointer-events-none transition-snappy",
+                        "group-data-checked/card-radio:border-accent group-data-checked/card-radio:bg-transparent",
+                        indicatorPosition === "top" && "mt-0.5"
+                    )}
+                >
+                    <RadioPrimitive.Indicator
+                        keepMounted
+                        className="flex size-full items-center justify-center pointer-events-none transition-snappy data-unchecked:opacity-0 data-unchecked:scale-50 data-checked:opacity-100 data-checked:scale-100"
+                    >
+                        <span className="size-2.5 rounded-full bg-accent" />
+                    </RadioPrimitive.Indicator>
+                </div>
+            )}
         </RadioPrimitive.Root>
     )
 }
 
-function CardRadioTitle({ className, ...props }: React.ComponentProps<"span">) {
-    return (
-        <span
-            data-slot="card-radio-title"
-            className={cn("text-sm font-medium text-foreground leading-snug", className)}
-            {...props}
-        />
-    )
-}
-
-function CardRadioDescription({ className, ...props }: React.ComponentProps<"span">) {
-    return (
-        <span
-            data-slot="card-radio-description"
-            className={cn("text-xs text-muted leading-relaxed", className)}
-            {...props}
-        />
-    )
-}
-
-export {
-    CardRadioGroup,
-    CardRadioGroupItem,
-    CardRadioTitle,
-    CardRadioDescription,
-}
+export { CardRadioGroup, CardRadioGroupItem }

@@ -38,7 +38,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-title"
       className={cn(
-        "text-lg text-foreground font-medium tracking-somewhat-tight leading-normal ",
+        "text-lg text-foreground font-medium tracking-somewhat-tight leading-normal",
         className
       )}
       {...props}
@@ -72,7 +72,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-description"
       className={cn(
-        "text-sm text-muted ",
+        "text-sm text-muted",
         className
       )}
       {...props}
@@ -118,7 +118,6 @@ function CardContentSection({ className, ...props }: React.ComponentProps<"div">
     />
   )
 }
-
 
 function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (

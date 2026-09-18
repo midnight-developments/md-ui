@@ -33,7 +33,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const fieldVariants = cva(
-    "group/field flex w-full gap-2 data-[invalid=true]:text-destructive",
+    "group/field flex w-full gap-1.75 data-[invalid=true]:text-destructive",
     {
         variants: {
             orientation: {
@@ -71,7 +71,7 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-content"
             className={cn(
-                "group/field-content flex flex-1 flex-col gap-0.5 leading-snug",
+                "group/field-content flex flex-1 flex-col gap-1.25 leading-snug",
                 className
             )}
             {...props}
@@ -87,7 +87,7 @@ function FieldLabel({
         <label
             data-slot="field-label"
             className={cn(
-                "group/field-label peer/field-label text-md font-normal text-foreground tracking-somewhat-tight leading-none",
+                "group/field-label peer/field-label text-md font-normal text-foreground tracking-somewhat-tight leading-tight",
                 className
             )}
             {...props}
@@ -136,7 +136,7 @@ function FieldDescription({
                         exit={{ opacity: 0, y: 20 }}
                         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] as any }}
                         className={cn(
-                            "text-sm w-full will-change-transform",
+                            "text-sm w-full will-change-transform ",
                             isError
                                 ? "font-normal text-destructive"
                                 : "tracking-somewhat-tight text-secondary",
