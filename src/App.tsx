@@ -1,375 +1,173 @@
-import { useState } from 'react'
+import * as React from "react"
 import {
-    Square3Stack3DIcon,
-    ExclamationTriangleIcon,
-    ClockIcon,
-    CalendarIcon,
-    CreditCardIcon,
-} from '@heroicons/react/24/solid'
+    Card,
+    CardImage,
+    CardTitle,
+    CardDescription,
+    CardContent,
+} from '@/components/showcase/card'
 import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogDescription,
-    DialogBody,
-    DialogFooter,
-} from "@/components/ui/dialog"
-import { Input } from '@/components/ui/input'
-import { Button } from "@/components/ui/button"
-import { WarningIcon } from '@/components/ui/warning-icon'
-import { Field, FieldLabel, FieldDescription, FieldContent, FieldGroup, FieldSeparator, FieldSet } from '@/components/ui/field'
-import {
-    InputGroup,
-    InputGroupAddon,
-    InputGroupButton,
-    InputGroupInput,
-} from '@/components/ui/input-group'
-import { CopyIcon } from 'lucide-react'
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select'
-import {
-    Popover,
-    PopoverContent,
-    PopoverDescription,
-    PopoverHeader,
-    PopoverTitle,
-    PopoverTrigger,
-} from '@/components/ui/popover'
-import {
-    Combobox,
-    ComboboxInput,
-    ComboboxContent,
-    ComboboxList,
-    ComboboxItem,
-    ComboboxEmpty,
-} from '@/components/ui/combobox'
-import {
-    ColourPicker,
-    ColourPickerTrigger,
-} from '@/components/ui/colour-picker'
-import {
-    RadioGroup,
-    RadioGroupItem,
-} from '@/components/ui/radio-group'
-import {
-    CardRadioGroup,
-    CardRadioGroupItem,
-} from '@/components/ui/card-radio-group'
+    ButtonPopup,
+    InputPopup,
+    SelectPopup,
+    RadioPopup,
+    DialogPopup,
+    DatabaseCreationPopup,
+    CommandMenuPopup,
+    IntegrationDialogPopup,
+} from '@/components/showcase/popups'
 
-const recipientsList = [
-    { value: "jane-doe", label: "Jane Doe" },
-    { value: "john-smith", label: "John Smith" },
-    { value: "alice-williams", label: "Alice Williams" },
-    { value: "bob-johnson", label: "Bob Johnson" },
-    { value: "charlie-brown", label: "Charlie Brown" },
-]
-
-const shareFormSchema = z.object({
-    passcode: z.string()
-        .min(4, { message: "Passcode must be at least 4 characters." })
-        .or(z.literal(""))
-})
-
-type ShareFormValues = z.infer<typeof shareFormSchema>
-
-const statusItems = [
-    { value: "all-invoices", label: "All Invoices" },
-    { value: "outstanding-invoices", label: "Outstanding invoices" },
-    { value: "overdue", label: "Overdue" },
-    { value: "scheduled", label: "Scheduled" },
-    { value: "paid", label: "Paid" },
-]
+type PopupId =
+    | 'button'
+    | 'input'
+    | 'select'
+    | 'radio'
+    | 'dialog'
+    | 'database-creation'
+    | 'command-menu'
+    | 'integration-dialog'
+    | null
 
 export default function App() {
-    const [isOpen, setIsOpen] = useState(false)
-    const [isConfirmOpen, setIsConfirmOpen] = useState(false)
-    const [selectedRecipient, setSelectedRecipient] = useState<string | null>(null)
-    const [color, setColor] = useState("#7869e6")
-    const { copyToClipboard } = useCopyToClipboard()
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset,
-    } = useForm<ShareFormValues>({
-        resolver: zodResolver(shareFormSchema),
-        defaultValues: {
-            passcode: "",
-        },
-        mode: "onChange",
-    })
-
-    const onSubmit = (data: ShareFormValues) => {
-        console.log("Form Submitted:", { ...data, selectedRecipient })
-        setIsOpen(false)
-        reset()
-        setSelectedRecipient(null)
-    }
+    const [activePopup, setActivePopup] = React.useState<PopupId>(null)
 
     return (
-        <div className="min-h-screen flex items-center justify-center gap-3">
-            <Button onClick={() => setIsOpen(true)}>Open Share Panel</Button>
-            <Button variant="outline" onClick={() => setIsConfirmOpen(true)}>Open Confirm Dialog</Button>
+        <div className="min-h-screen font-sans selection:text-white py-16">
+            <div className="max-w-screen-2xl mx-auto flex flex-col gap-12">
 
-            <Dialog open={isOpen} onOpenChange={(open) => {
-                setIsOpen(open)
-                if (!open) {
-                    reset()
-                    setSelectedRecipient(null)
-                }
-            }}>
-                <DialogContent className="w-md">
-                    <form onSubmit={handleSubmit(onSubmit)} className="contents">
-                        <DialogHeader className="flex flex-row items-center gap-3">
-                            <DialogTitle>Share ProjeXxct</DialogTitle>
-                        </DialogHeader>
-                        <DialogBody>
-                            <FieldSet>
-                                <FieldSeparator className="my-0" />
-                                <FieldGroup>
-                                    <Field>
-                                        <FieldLabel>Document Link</FieldLabel>
-                                        <InputGroup>
-                                            <InputGroupInput
-                                                value='https://docs.google.com/document/d/1234567890/edit?usp=sharing'
-                                                readOnly
-                                            />
+                {/* Header */}
+                <header className="flex flex-col items-center text-center gap-3">
+                    <h1 className="font-sf-display text-4xl sm:text-5xl md:text-6xl font-semibold tracking-[-0.035em] text-foreground leading-[1.05]">
+                        UI/UX Showcase By Danyal Asghar
+                    </h1>
 
-                                            <InputGroupAddon align="inline-end">
-                                                <InputGroupButton
-                                                    aria-label="Copy"
-                                                    title="Copy"
-                                                    onClick={() => {
-                                                        copyToClipboard("https://x.com/shadcn")
-                                                    }}
-                                                >
-                                                    <CopyIcon strokeWidth={2} />
-                                                </InputGroupButton>
-                                            </InputGroupAddon>
-                                        </InputGroup>
-                                        <FieldDescription description="Share this link with others" />
-                                    </Field>
-                                    <Field>
-                                        <FieldLabel>Search Recipients</FieldLabel>
-                                        <div className="flex flex-row items-center gap-2 w-full">
-                                            <Combobox items={recipientsList} value={selectedRecipient} onValueChange={setSelectedRecipient}>
-                                                <ComboboxInput placeholder="Select recipient..." showTrigger={false} className="w-full" />
-                                                <ComboboxContent className="z-50">
-                                                    <ComboboxEmpty>No recipients found</ComboboxEmpty>
-                                                    <ComboboxList>
-                                                        {(recipient) => (
-                                                            <ComboboxItem key={recipient.value} value={recipient.value}>
-                                                                {recipient.label}
-                                                            </ComboboxItem>
-                                                        )}
-                                                    </ComboboxList>
-                                                </ComboboxContent>
-                                            </Combobox>
-                                            <Button type="button" variant='outline'>Invite</Button>
-                                        </div>
-                                        <FieldDescription description="Add collaborators by username" />
-                                    </Field>
-                                    <Field>
-                                        <div className="flex items-center justify-between">
-                                            <FieldLabel>Access Level</FieldLabel>
-                                            <Popover>
-                                                <PopoverTrigger
-                                                    className="text-sm text-secondary hover:text-foreground cursor-pointer underline underline-offset-2 outline-hidden"
-                                                >
-                                                    What is this?
-                                                </PopoverTrigger>
-                                                <PopoverContent className="w-80">
-                                                    <PopoverHeader>
-                                                        <PopoverTitle>Access Levels Info</PopoverTitle>
-                                                        <PopoverDescription>
-                                                            Define what billing and invoice details the recipients are allowed to view.
-                                                        </PopoverDescription>
-                                                    </PopoverHeader>
-                                                    <div className="text-sm text-secondary mt-2.5 space-y-1.5">
-                                                        <p>All Invoices: Full access to all invoice data.</p>
-                                                        <p>Outstanding Invoices: Only show invoices awaiting payment.</p>
-                                                        <p>Overdue: Only show past due invoices.</p>
-                                                    </div>
-                                                </PopoverContent>
-                                            </Popover>
-                                        </div>
-                                        <Select defaultValue="outstanding-invoices" items={statusItems}>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select invoice status" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="all-invoices">
-                                                    <Square3Stack3DIcon className="size-4" />
-                                                    <span>All Invoices</span>
-                                                </SelectItem>
-                                                <SelectItem value="outstanding-invoices">
-                                                    <ExclamationTriangleIcon className="size-4" />
-                                                    <span>Outstanding invoices</span>
-                                                </SelectItem>
-                                                <SelectItem value="overdue">
-                                                    <ClockIcon className="size-4" />
-                                                    <span>Overdue</span>
-                                                </SelectItem>
-                                                <SelectItem value="scheduled">
-                                                    <CalendarIcon className="size-4" />
-                                                    <span>Scheduled</span>
-                                                </SelectItem>
-                                                <SelectItem value="paid">
-                                                    <CreditCardIcon className="size-4" />
-                                                    <span>Paid</span>
-                                                </SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                        <FieldDescription description="Select the permissions for new collaborators" />
-                                    </Field>
-                                </FieldGroup>
-                                <FieldSeparator />
-                                <FieldGroup>
-                                    <Field>
-                                        <FieldContent>
-                                            <FieldLabel>Link Expiration</FieldLabel>
-                                            <FieldDescription description="Set how long this shared link remains active" />
-                                        </FieldContent>
-                                        <RadioGroup defaultValue="never" className="gap-2.5 pt-1">
-                                            <Field orientation="horizontal" className="items-center gap-2">
-                                                <RadioGroupItem value="never" id="expiry-never" />
-                                                <FieldLabel htmlFor="expiry-never" className="font-normal text-base cursor-pointer">
-                                                    Never
-                                                </FieldLabel>
-                                            </Field>
-                                            <Field orientation="horizontal" className="items-center gap-2">
-                                                <RadioGroupItem value="7d" id="expiry-7d" />
-                                                <FieldLabel htmlFor="expiry-7d" className="font-normal text-base cursor-pointer">
-                                                    7 days
-                                                </FieldLabel>
-                                            </Field>
-                                            <Field orientation="horizontal" className="items-center gap-2">
-                                                <RadioGroupItem value="30d" id="expiry-30d" />
-                                                <FieldLabel htmlFor="expiry-30d" className="font-normal text-base cursor-pointer">
-                                                    30 days
-                                                </FieldLabel>
-                                            </Field>
-                                        </RadioGroup>
-                                    </Field>
-                                    <Field>
-                                        <FieldContent>
-                                            <FieldLabel>Storage Plan</FieldLabel>
-                                            <FieldDescription description="Select your storage tier for this project" />
-                                        </FieldContent>
-                                        <CardRadioGroup defaultValue="standard" columns={2} className="pt-1">
-                                            <CardRadioGroupItem value="standard">
-                                                <FieldContent>
-                                                    <FieldLabel>Standard Tier</FieldLabel>
-                                                    <FieldDescription description="10GB storage with standard delivery speed" />
-                                                </FieldContent>
-                                            </CardRadioGroupItem>
-                                            <CardRadioGroupItem value="pro">
-                                                <FieldContent>
-                                                    <FieldLabel>Pro Tier</FieldLabel>
-                                                    <FieldDescription description="100GB storage with priority delivery speed" />
-                                                </FieldContent>
-                                            </CardRadioGroupItem>
-                                        </CardRadioGroup>
-                                    </Field>
-                                </FieldGroup>
-                                <FieldSeparator />
-                                <FieldGroup>
-                                    <Field data-invalid={!!errors.passcode}>
-                                        <FieldLabel>Access Passcode</FieldLabel>
-                                        <Input
-                                            type="password"
-                                            placeholder="Enter passcode"
-                                            aria-invalid={!!errors.passcode}
-                                            {...register('passcode')}
-                                        />
-                                        <FieldDescription
-                                            description="Require visitors to enter this passcode to view"
-                                            error={errors.passcode?.message}
-                                        />
-                                    </Field>
-                                </FieldGroup>
-                                <FieldSeparator />
-                                <FieldGroup>
-                                    <Field>
-                                        <FieldLabel>Theme Colour</FieldLabel>
-                                        <Popover>
-                                            <ColourPickerTrigger color={color} />
-                                            <PopoverContent align="center" sideOffset={6} className="w-(--anchor-width) p-3">
-                                                <ColourPicker color={color} onChange={setColor} />
-                                            </PopoverContent>
-                                        </Popover>
-                                    </Field>
-                                </FieldGroup>
-                                <FieldSeparator />
-                            </FieldSet>
-                        </DialogBody>
-                        <DialogFooter className="justify-between">
-                            <div className="flex items-center gap-2" />
-                            <div className="flex items-center gap-2">
-                                <Button
-                                    type="button"
-                                    variant='outline'
-                                    onClick={() => {
-                                        setIsOpen(false)
-                                        reset()
-                                    }}
-                                >
-                                    Cancel
-                                </Button>
-                                <Button type="submit" variant='default'>Confirm Access</Button>
-                            </div>
-                        </DialogFooter>
-                    </form>
-                </DialogContent>
-            </Dialog>
+                    <p className="font-sf-text text-base sm:text-lg text-muted font-normal tracking-tight max-w-2xl">
+                        A quick demonstration of some of my UI component designs with some mockups. Built on shadcn/ui components, particulary Base UI. Click onto any card for more details and interactions
+                    </p>
+                </header>
 
-            <Dialog open={isConfirmOpen} onOpenChange={setIsConfirmOpen}>
-                <DialogContent className="w-sm ">
+                <section className="flex flex-col gap-4">
+                    <div className="flex items-center justify-center text-center">
+                        <h2 className="font-sf-display text-lg font-medium text-foreground tracking-tight">Core Primitives</h2>
+                    </div>
 
-                    <DialogHeader className="">
-                        <WarningIcon className="size-15" />
-                        <DialogTitle>Disclaimer</DialogTitle>
-                    </DialogHeader>
-                    <DialogBody>
-                        <DialogDescription className="text-center">
-                            Midnight Dev is currently undergoing a complete codebase refactor.
-                            The storefront and all scripts will be redesigned from the ground up with significantally improved design and user experience.
-                            Until then, the website may not function as intended, and products may not appear as expected.
+                    <div className="grid grid-cols-5 gap-4">
+                        <Card onClick={() => setActivePopup('button')}>
+                            <CardImage />
+                            <CardContent>
+                                <CardTitle>Button</CardTitle>
+                                <CardDescription>Physical rim light & tactile click</CardDescription>
+                            </CardContent>
+                        </Card>
 
-                            <br /><br /> If you have any questions, feel free to join our discord server.
-                        </DialogDescription>
-                    </DialogBody>
-                    <DialogFooter className="flex-col w-full gap-2">
-                        <Button
-                            type="button"
-                            variant="default"
-                            className="w-full"
-                            onClick={() => setIsConfirmOpen(false)}
-                        >
-                            Confirm
-                        </Button>
-                        <Button
-                            type="button"
-                            variant="outline"
-                            className="w-full"
-                            onClick={() => setIsConfirmOpen(false)}
-                        >
-                            Join Discord
-                        </Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
+                        {/* 2. Input */}
+                        <Card onClick={() => setActivePopup('input')}>
+                            <CardImage />
+                            <CardContent>
+                                <CardTitle>Input</CardTitle>
+                                <CardDescription>Addons, icons & shortcuts</CardDescription>
+                            </CardContent>
+                        </Card>
+
+                        {/* 3. Select */}
+                        <Card onClick={() => setActivePopup('select')}>
+                            <CardImage />
+                            <CardContent>
+                                <CardTitle>Select</CardTitle>
+                                <CardDescription>Animated dropdown picker</CardDescription>
+                            </CardContent>
+                        </Card>
+
+                        {/* 4. Radio */}
+                        <Card onClick={() => setActivePopup('radio')}>
+                            <CardImage />
+                            <CardContent>
+                                <CardTitle>Radio</CardTitle>
+                                <CardDescription>Single-choice indicator</CardDescription>
+                            </CardContent>
+                        </Card>
+
+                        {/* 5. Dialog */}
+                        <Card onClick={() => setActivePopup('dialog')}>
+                            <CardImage />
+                            <CardContent>
+                                <CardTitle>Dialog</CardTitle>
+                                <CardDescription>Zero-shift rim light modal</CardDescription>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </section>
+
+                {/* Section 2: Full Mockups & Workflows (3 cards) */}
+                <section className="flex flex-col gap-4">
+                    <div className="flex items-center justify-center text-center">
+                        <h2 className="font-sf-display text-lg font-medium text-foreground tracking-tight">Full Mockups & Workflows</h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        {/* 1. Database Creation Form */}
+                        <Card onClick={() => setActivePopup('database-creation')}>
+                            <CardImage />
+                            <CardContent>
+                                <CardTitle>Database Creation</CardTitle>
+                                <CardDescription>Provision high-availability cloud database</CardDescription>
+                            </CardContent>
+                        </Card>
+
+                        {/* 2. Command K Menu */}
+                        <Card onClick={() => setActivePopup('command-menu')}>
+                            <CardImage />
+                            <CardContent>
+                                <CardTitle>Command K Menu</CardTitle>
+                                <CardDescription>Spotlight-style fast command palette</CardDescription>
+                            </CardContent>
+                        </Card>
+
+                        {/* 3. Integration Dialog */}
+                        <Card onClick={() => setActivePopup('integration-dialog')}>
+                            <CardImage />
+                            <CardContent>
+                                <CardTitle>Integration Dialog</CardTitle>
+                                <CardDescription>Connect external tools & cloud providers</CardDescription>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </section>
+
+            </div>
+
+            <ButtonPopup
+                open={activePopup === 'button'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <InputPopup
+                open={activePopup === 'input'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <SelectPopup
+                open={activePopup === 'select'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <RadioPopup
+                open={activePopup === 'radio'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <DialogPopup
+                open={activePopup === 'dialog'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <DatabaseCreationPopup
+                open={activePopup === 'database-creation'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <CommandMenuPopup
+                open={activePopup === 'command-menu'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <IntegrationDialogPopup
+                open={activePopup === 'integration-dialog'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
         </div>
     )
 }
