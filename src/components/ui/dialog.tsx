@@ -11,6 +11,7 @@ const DialogContext = React.createContext<{ open: boolean }>({ open: false })
 function Dialog({
     open = false,
     onOpenChange,
+    modal = "trap-focus",
     ...props
 }: DialogPrimitive.Root.Props) {
     return (
@@ -19,6 +20,7 @@ function Dialog({
                 data-slot="dialog"
                 open={open}
                 onOpenChange={onOpenChange}
+                modal={modal}
                 {...props}
             />
         </DialogContext.Provider>
@@ -35,7 +37,7 @@ const overlayVariants = {
         opacity: 1,
         backdropFilter: "blur(4px)",
         transition: {
-            duration: 0.35,
+            duration: 0.25,
             ease: [0.16, 1, 0.3, 1] as any
         }
     },
@@ -43,31 +45,27 @@ const overlayVariants = {
         opacity: 0,
         backdropFilter: "blur(0px)",
         transition: {
-            duration: 0.35,
+            duration: 0.2,
             ease: [0.16, 1, 0.3, 1] as any
         }
     }
 }
 
 const contentVariants = {
-    initial: { opacity: 0, scale: 0.97, x: "-50%", y: "-50%" },
+    initial: { opacity: 0, scale: 0.97 },
     animate: {
         opacity: 1,
         scale: 1,
-        x: "-50%",
-        y: "-50%",
         transition: {
-            duration: 0.35,
+            duration: 0.25,
             ease: [0.16, 1, 0.3, 1] as any
         }
     },
     exit: {
         opacity: 0,
         scale: 0.97,
-        x: "-50%",
-        y: "-50%",
         transition: {
-            duration: 0.35,
+            duration: 0.2,
             ease: [0.16, 1, 0.3, 1] as any
         }
     }
@@ -87,7 +85,7 @@ function DialogOverlay({
                     animate="animate"
                     exit="exit"
                     className={cn(
-                        "fixed inset-0 z-50 bg-black/60",
+                        "fixed inset-0 z-50 bg-black/60 pointer-events-auto",
                         className
                     )}
                 />
@@ -108,29 +106,29 @@ function DialogContent({
         <DialogPortal keepMounted>
             <AnimatePresence>
                 {open && (
-                    <DialogOverlay key="overlay" />
-                )}
-                {open && (
-                    <DialogPrimitive.Popup
-                        key="content"
-                        data-slot="dialog-content"
-                        render={
-                            <motion.div
-                                variants={contentVariants}
-                                initial="initial"
-                                animate="animate"
-                                exit="exit"
-                                className={cn(
-                                    "fixed top-1/2 left-1/2 z-50 outline-none",
-                                    "flex flex-col gap-4 p-4 rounded-md bg-card border border-border overflow-hidden",
-                                    className
-                                )}
-                            />
-                        }
-                        {...props}
-                    >
-                        {children}
-                    </DialogPrimitive.Popup>
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+                        <DialogOverlay key="overlay" />
+                        <DialogPrimitive.Popup
+                            key="content"
+                            data-slot="dialog-content"
+                            render={
+                                <motion.div
+                                    variants={contentVariants}
+                                    initial="initial"
+                                    animate="animate"
+                                    exit="exit"
+                                    className={cn(
+                                        "relative z-50 outline-none pointer-events-auto",
+                                        "flex flex-col gap-4 p-6 rounded-xl surface-grain bg-card rim-light overflow-hidden",
+                                        className
+                                    )}
+                                />
+                            }
+                            {...props}
+                        >
+                            {children}
+                        </DialogPrimitive.Popup>
+                    </div>
                 )}
             </AnimatePresence>
         </DialogPortal>
@@ -142,7 +140,7 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="dialog-header"
             className={cn(
-                "flex flex-col gap-0.5",
+                "flex flex-col  gap-2 text-center items-center",
                 className
             )}
             {...props}
@@ -155,7 +153,7 @@ function DialogTitle({ className, ...props }: React.ComponentProps<"div">) {
         <DialogPrimitive.Title
             data-slot="dialog-title"
             className={cn(
-                "text-lg text-foreground font-medium tracking-somewhat-tight leading-normal",
+                "text-2xl font-sf-display text-foreground leading-[1]",
                 className
             )}
             {...props}
@@ -163,33 +161,13 @@ function DialogTitle({ className, ...props }: React.ComponentProps<"div">) {
     )
 }
 
-function DialogTitleIcon({
-    className,
-    icon: Icon,
-    ...props
-}: React.ComponentProps<"div"> & {
-    icon: React.ComponentType<{ className?: string }>
-}) {
-    return (
-        <div
-            data-slot="dialog-title-icon"
-            className={cn(
-                "flex p-1.5 items-center justify-center rounded-md bg-white/10",
-                className
-            )}
-            {...props}
-        >
-            <Icon className="size-4" />
-        </div>
-    )
-}
 
 function DialogDescription({ className, ...props }: React.ComponentProps<"div">) {
     return (
         <DialogPrimitive.Description
             data-slot="dialog-description"
             className={cn(
-                "text-sm text-muted",
+                "text-base text-muted tracking-tight leading-[1.35]",
                 className
             )}
             {...props}
@@ -202,7 +180,7 @@ function DialogBody({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="dialog-body"
             className={cn(
-                "flex flex-col",
+                "flex flex-col flex-1",
                 className
             )}
             {...props}
@@ -215,7 +193,7 @@ function DialogFooter({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="dialog-footer"
             className={cn(
-                "flex items-center",
+                "flex items-center mt-1",
                 className
             )}
             {...props}
@@ -228,7 +206,6 @@ export {
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogTitleIcon,
     DialogDescription,
     DialogBody,
     DialogFooter,

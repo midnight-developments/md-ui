@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
   [
-    "group/button h-9 px-3.5 gap-1.5 inline-flex shrink-0 items-center justify-center rounded bg-clip-padding text-sm tracking-somewhat-tight font-medium cursor-pointer active:scale-[0.98] active:brightness-90 transition-snappy whitespace-nowrap",
+    "group/button h-9.5 px-3.5 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-md bg-clip-padding text-base tracking-tight cursor-pointer active:scale-[0.98] active:brightness-90 transition-snappy whitespace-nowrap",
     "disabled:pointer-events-none disabled:opacity-50 select-none will-change-transform outline-none",
     "[&:is(:focus-visible,[data-popup-open],[data-state=open],[aria-expanded=true])]:ring-2",
     "[&:is(:focus-visible,[data-popup-open],[data-state=open],[aria-expanded=true])]:ring-border-active",
@@ -14,9 +14,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "ring-[1.5px] ring-inset ring-white/20 hover:brightness-110 bg-accent-gradient text-foreground active:text-foreground/80",
+          "hover:brightness-110 bg-accent-gradient text-foreground active:text-foreground/80 rim-light-button",
         outline:
-          "ring-1 ring-inset ring-border hover:ring-border-hover text-foreground active:text-foreground/80",
+          "bg-[rgb(40,40,40)] ring-1 ring-inset ring-border text-foreground active:text-foreground/80 rim-light-button",
         link:
           "h-auto p-0 bg-transparent gap-1 active:scale-[1]",
         destructive:

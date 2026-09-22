@@ -62,16 +62,16 @@ function Slider({
     return (
         <div className={cn("flex flex-col gap-3 w-full", wrapperClassName)}>
             <div className="flex justify-between items-center w-full">
-                <label className="text-md font-normal text-foreground tracking-somewhat-tight leading-none">
+                <label className="text-lg font-normal text-foreground">
                     {label}
                 </label>
-                <span className="text-md font-normal text-foreground tracking-somewhat-tight leading-none">
+                <span className="text-lg font-normal text-foreground">
                     {displayValue}
                 </span>
             </div>
             {sliderElement}
             {description && (
-                <p className="text-sm tracking-somewhat-tight text-secondary leading-none -mt-0.5">
+                <p className="text-base text-secondary -mt-0.5">
                     {description}
                 </p>
             )}

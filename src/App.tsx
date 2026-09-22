@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import {
-    ShareIcon,
     Square3Stack3DIcon,
     ExclamationTriangleIcon,
     ClockIcon,
@@ -12,12 +11,13 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
-    DialogTitleIcon,
+    DialogDescription,
     DialogBody,
     DialogFooter,
 } from "@/components/ui/dialog"
 import { Input } from '@/components/ui/input'
 import { Button } from "@/components/ui/button"
+import { WarningIcon } from '@/components/ui/warning-icon'
 import { Field, FieldLabel, FieldDescription, FieldContent, FieldGroup, FieldSeparator, FieldSet } from '@/components/ui/field'
 import {
     InputGroup,
@@ -92,6 +92,7 @@ const statusItems = [
 
 export default function App() {
     const [isOpen, setIsOpen] = useState(false)
+    const [isConfirmOpen, setIsConfirmOpen] = useState(false)
     const [selectedRecipient, setSelectedRecipient] = useState<string | null>(null)
     const [color, setColor] = useState("#7869e6")
     const { copyToClipboard } = useCopyToClipboard()
@@ -117,8 +118,9 @@ export default function App() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className="min-h-screen flex items-center justify-center gap-3">
             <Button onClick={() => setIsOpen(true)}>Open Share Panel</Button>
+            <Button variant="outline" onClick={() => setIsConfirmOpen(true)}>Open Confirm Dialog</Button>
 
             <Dialog open={isOpen} onOpenChange={(open) => {
                 setIsOpen(open)
@@ -130,7 +132,6 @@ export default function App() {
                 <DialogContent className="w-md">
                     <form onSubmit={handleSubmit(onSubmit)} className="contents">
                         <DialogHeader className="flex flex-row items-center gap-3">
-                            <DialogTitleIcon icon={ShareIcon} />
                             <DialogTitle>Share ProjeXxct</DialogTitle>
                         </DialogHeader>
                         <DialogBody>
@@ -184,7 +185,7 @@ export default function App() {
                                             <FieldLabel>Access Level</FieldLabel>
                                             <Popover>
                                                 <PopoverTrigger
-                                                    className="text-xs text-secondary hover:text-foreground cursor-pointer underline underline-offset-2 outline-hidden"
+                                                    className="text-sm text-secondary hover:text-foreground cursor-pointer underline underline-offset-2 outline-hidden"
                                                 >
                                                     What is this?
                                                 </PopoverTrigger>
@@ -195,10 +196,10 @@ export default function App() {
                                                             Define what billing and invoice details the recipients are allowed to view.
                                                         </PopoverDescription>
                                                     </PopoverHeader>
-                                                    <div className="text-xs text-secondary mt-2.5 space-y-1.5 leading-relaxed">
-                                                        <p><strong>All Invoices:</strong> Full access to all invoice data.</p>
-                                                        <p><strong>Outstanding Invoices:</strong> Only show invoices awaiting payment.</p>
-                                                        <p><strong>Overdue:</strong> Only show past due invoices.</p>
+                                                    <div className="text-sm text-secondary mt-2.5 space-y-1.5">
+                                                        <p>All Invoices: Full access to all invoice data.</p>
+                                                        <p>Outstanding Invoices: Only show invoices awaiting payment.</p>
+                                                        <p>Overdue: Only show past due invoices.</p>
                                                     </div>
                                                 </PopoverContent>
                                             </Popover>
@@ -243,19 +244,19 @@ export default function App() {
                                         <RadioGroup defaultValue="never" className="gap-2.5 pt-1">
                                             <Field orientation="horizontal" className="items-center gap-2">
                                                 <RadioGroupItem value="never" id="expiry-never" />
-                                                <FieldLabel htmlFor="expiry-never" className="font-normal text-sm cursor-pointer">
+                                                <FieldLabel htmlFor="expiry-never" className="font-normal text-base cursor-pointer">
                                                     Never
                                                 </FieldLabel>
                                             </Field>
                                             <Field orientation="horizontal" className="items-center gap-2">
                                                 <RadioGroupItem value="7d" id="expiry-7d" />
-                                                <FieldLabel htmlFor="expiry-7d" className="font-normal text-sm cursor-pointer">
+                                                <FieldLabel htmlFor="expiry-7d" className="font-normal text-base cursor-pointer">
                                                     7 days
                                                 </FieldLabel>
                                             </Field>
                                             <Field orientation="horizontal" className="items-center gap-2">
                                                 <RadioGroupItem value="30d" id="expiry-30d" />
-                                                <FieldLabel htmlFor="expiry-30d" className="font-normal text-sm cursor-pointer">
+                                                <FieldLabel htmlFor="expiry-30d" className="font-normal text-base cursor-pointer">
                                                     30 days
                                                 </FieldLabel>
                                             </Field>
@@ -330,6 +331,43 @@ export default function App() {
                             </div>
                         </DialogFooter>
                     </form>
+                </DialogContent>
+            </Dialog>
+
+            <Dialog open={isConfirmOpen} onOpenChange={setIsConfirmOpen}>
+                <DialogContent className="w-sm ">
+
+                    <DialogHeader className="">
+                        <WarningIcon className="size-15" />
+                        <DialogTitle>Disclaimer</DialogTitle>
+                    </DialogHeader>
+                    <DialogBody>
+                        <DialogDescription className="text-center">
+                            Midnight Dev is currently undergoing a complete codebase refactor.
+                            The storefront and all scripts will be redesigned from the ground up with significantally improved design and user experience.
+                            Until then, the website may not function as intended, and products may not appear as expected.
+
+                            <br /><br /> If you have any questions, feel free to join our discord server.
+                        </DialogDescription>
+                    </DialogBody>
+                    <DialogFooter className="flex-col w-full gap-2">
+                        <Button
+                            type="button"
+                            variant="default"
+                            className="w-full"
+                            onClick={() => setIsConfirmOpen(false)}
+                        >
+                            Confirm
+                        </Button>
+                        <Button
+                            type="button"
+                            variant="outline"
+                            className="w-full"
+                            onClick={() => setIsConfirmOpen(false)}
+                        >
+                            Join Discord
+                        </Button>
+                    </DialogFooter>
                 </DialogContent>
             </Dialog>
         </div>

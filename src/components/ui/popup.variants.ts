@@ -18,7 +18,7 @@ export const popupContentVariants = cva(
 
 export const popupItemVariants = cva(
   [
-    "relative flex w-full cursor-pointer items-center gap-2 rounded-xs px-2 py-1.5 text-sm font-medium text-muted outline-hidden select-none transition-snappy",
+    "relative flex w-full cursor-pointer items-center gap-2 rounded-xs px-2 py-1.5 text-base text-muted outline-hidden select-none transition-snappy",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-muted",
     "data-[highlighted]:bg-white/5 data-[highlighted]:text-foreground",
     "data-[selected]:bg-accent/15 data-[selected]:text-accent-active data-[selected]:data-[highlighted]:bg-accent/20",

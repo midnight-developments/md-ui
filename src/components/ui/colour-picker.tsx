@@ -99,7 +99,7 @@ function ColourPicker({
                                 align="inline-start"
                                 className="order-0 p-0 shrink-0 flex items-center"
                             >
-                                <InputGroupText className="text-sm font-semibold uppercase text-muted leading-none">
+                                <InputGroupText className="text-base uppercase text-muted">
                                     {channel}
                                 </InputGroupText>
                             </InputGroupAddon>
@@ -109,7 +109,7 @@ function ColourPicker({
                                 max={255}
                                 value={rgb[channel]}
                                 onChange={(e) => handleChannelChange(channel, e.target.value)}
-                                className="flex-1 h-full text-right text-sm font-medium leading-none px-0 py-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-inner-spin-button]:m-0"
+                                className="flex-1 h-full text-right text-base px-0 py-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-inner-spin-button]:m-0"
                             />
                         </InputGroup>
                     ))}
@@ -119,7 +119,7 @@ function ColourPicker({
                             align="inline-start"
                             className="order-0 p-0 shrink-0 flex items-center"
                         >
-                            <InputGroupText className="text-sm font-semibold uppercase text-muted leading-none">
+                            <InputGroupText className="text-base uppercase text-muted">
                                 HEX
                             </InputGroupText>
                         </InputGroupAddon>
@@ -128,7 +128,7 @@ function ColourPicker({
                             maxLength={6}
                             value={hexInput}
                             onChange={(e) => handleHexChange(e.target.value)}
-                            className="flex-1 h-full text-right text-sm font-medium uppercase leading-none px-0 py-0"
+                            className="flex-1 h-full text-right text-base uppercase px-0 py-0"
                         />
                     </InputGroup>
                 </div>
@@ -198,12 +198,12 @@ function ColourPickerTrigger({
                         className="size-4.5 rounded-xs ring-1 ring-border shrink-0"
                         style={{ backgroundColor: color }}
                     />
-                    <span className="text-xs uppercase text-foreground tracking-wide">
+                    <span className="text-sm uppercase text-foreground">
                         {color}
                     </span>
                 </span>
             ) : (
-                <span className="text-muted text-sm">Select colour...</span>
+                <span className="text-muted text-base">Select colour...</span>
             )}
             <ChevronDownIcon className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
         </PopoverTrigger>

@@ -71,7 +71,7 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-content"
             className={cn(
-                "group/field-content flex flex-1 flex-col gap-1.25 leading-snug",
+                "group/field-content flex flex-1 flex-col gap-1.25",
                 className
             )}
             {...props}
@@ -87,7 +87,7 @@ function FieldLabel({
         <label
             data-slot="field-label"
             className={cn(
-                "group/field-label peer/field-label text-md font-normal text-foreground tracking-somewhat-tight leading-tight",
+                "group/field-label peer/field-label text-lg font-normal text-foreground",
                 className
             )}
             {...props}
@@ -100,7 +100,7 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-label"
             className={cn(
-                "flex w-fit items-center gap-2 text-sm font-medium group-data-[disabled=true]/field:opacity-50",
+                "flex w-fit items-center gap-2 text-base group-data-[disabled=true]/field:opacity-50",
                 className
             )}
             {...props}
@@ -136,10 +136,10 @@ function FieldDescription({
                         exit={{ opacity: 0, y: 20 }}
                         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] as any }}
                         className={cn(
-                            "text-sm w-full will-change-transform ",
+                            "text-base w-full will-change-transform ",
                             isError
                                 ? "font-normal text-destructive"
-                                : "tracking-somewhat-tight text-secondary",
+                                : " text-secondary",
                             className
                         )}
                         {...props as any}

@@ -75,7 +75,7 @@ function DropdownMenuLabel({
             data-slot="dropdown-menu-label"
             data-inset={inset}
             className={cn(
-                "px-2 py-1.5 text-xs text-muted-foreground data-inset:pl-7",
+                "px-2 py-1.5 text-sm text-muted-foreground data-inset:pl-7",
                 className
             )}
             {...props}
@@ -167,7 +167,7 @@ function DropdownMenuCheckboxItem({
             data-slot="dropdown-menu-checkbox-item"
             data-inset={inset}
             className={cn(
-                "relative flex w-full cursor-pointer items-center gap-2 rounded py-1.5 pr-8 pl-2 text-sm font-medium text-muted outline-hidden select-none transition-colors duration-150",
+                "relative flex w-full cursor-pointer items-center gap-2 rounded py-1.5 pr-8 pl-2 text-base text-muted outline-hidden select-none transition-colors duration-150",
                 "data-[highlighted]:bg-white/5 data-[highlighted]:text-foreground",
                 "data-disabled:pointer-events-none data-disabled:opacity-50",
                 "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
@@ -209,7 +209,7 @@ function DropdownMenuRadioItem({
             data-slot="dropdown-menu-radio-item"
             data-inset={inset}
             className={cn(
-                "relative flex w-full cursor-pointer items-center gap-2 rounded py-1.5 pr-8 pl-2 text-sm font-medium text-muted outline-hidden select-none transition-colors duration-150",
+                "relative flex w-full cursor-pointer items-center gap-2 rounded py-1.5 pr-8 pl-2 text-base text-muted outline-hidden select-none transition-colors duration-150",
                 "data-[highlighted]:bg-white/5 data-[highlighted]:text-foreground",
                 "data-[selected]:bg-accent/15 data-[selected]:text-accent-active data-[selected]:data-[highlighted]:bg-accent/20",
                 "data-disabled:pointer-events-none data-disabled:opacity-50",
@@ -250,7 +250,7 @@ function DropdownMenuShortcut({
         <span
             data-slot="dropdown-menu-shortcut"
             className={cn(
-                "ml-auto text-xs tracking-widest text-muted-foreground group-focus/dropdown-menu-item:text-accent-foreground",
+                "ml-auto text-sm text-muted-foreground group-focus/dropdown-menu-item:text-accent-foreground",
                 className
             )}
             {...props}
