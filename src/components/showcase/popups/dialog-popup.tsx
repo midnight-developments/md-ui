@@ -35,7 +35,7 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                         <div className="w-full flex flex-col gap-4 p-6 rounded-xl surface-grain bg-card rim-light-dialog border border-white/10 shadow-2xl">
                             <div className="flex flex-col items-center text-center gap-2">
                                 <WarningIcon className="size-12" />
-                                <h3 className="text-xl font-sf-display text-foreground">Action Confirmation</h3>
+                                <h3 className="text-2xl font-sf-display text-foreground">Action Confirmation</h3>
                                 <p className="text-[0.95rem] text-muted tracking-tight">
                                     Are you sure you want to deploy these changes to production? This operation will initiate zero-downtime rolling updates.
                                 </p>

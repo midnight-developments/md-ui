@@ -14,7 +14,7 @@ import { Field, FieldLabel } from '@/components/ui/field'
 import { Search, Globe } from 'lucide-react'
 import modalScreenshot from '@/assets/dialog-screenshot.png'
 import databaseCreationScreenshot from '@/assets/database-creation-screenshot.png'
-
+import tempoGmailScreenshot from '@/assets/gmail-tempo-screenshot.png'
 
 
 import {
@@ -180,10 +180,16 @@ export default function App() {
                         </Card>
 
                         <Card onClick={() => setActivePopup('integration-dialog')}>
-                            <CardPreview />
+                            <CardPreview>
+                                <img
+                                    src={tempoGmailScreenshot}
+                                    alt="Integration dialog preview"
+                                    className="h-full scale-80 -mb-10 object-contain rounded-lg"
+                                />
+                            </CardPreview>
                             <CardContent>
                                 <CardTitle>Integration Dialog</CardTitle>
-                                <CardDescription>Connect external tools & cloud providers</CardDescription>
+                                <CardDescription>Connect Gmail and Tempo via Google OAuth</CardDescription>
                             </CardContent>
                         </Card>
                     </div>

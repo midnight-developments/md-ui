@@ -99,7 +99,22 @@ function DialogContent({
     children,
     ...props
 }: DialogPrimitive.Popup.Props) {
-    const { open } = React.useContext(DialogContext)
+    const { open, inDialog } = React.useContext(DialogContext)
+
+    if (!inDialog) {
+        return (
+            <div
+                data-slot="dialog-content"
+                className={cn(
+                    "flex flex-col gap-4 p-6 rounded-xl surface-grain bg-card rim-light-dialog overflow-hidden",
+                    className
+                )}
+                {...(props as React.ComponentProps<"div">)}
+            >
+                {children}
+            </div>
+        )
+    }
 
     return (
         <DialogPrimitive.Portal keepMounted>

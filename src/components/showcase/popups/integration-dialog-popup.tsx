@@ -11,169 +11,140 @@ import {
     PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
+import {
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogFooter,
+    DialogContent,
+} from "@/components/ui/dialog/dialog"
 import { Button } from "@/components/ui/button/button"
-import { Switch } from "@/components/ui/switch"
-import { Cloud, Shield, RefreshCw } from "lucide-react"
+import { ChevronsRight, Check, Loader2 } from "lucide-react"
+import gmailLogo from "@/assets/gmail-logo.jpg"
+import tempoLogo from "@/assets/tempo-logo.png"
 
-function GithubIcon({ className }: { className?: string }) {
+function GoogleIcon({ className }: { className?: string }) {
     return (
-        <svg
-            className={className}
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg viewBox="0 0 24 24" className={className}>
             <path
-                fillRule="evenodd"
-                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                clipRule="evenodd"
+                fill="#4285F4"
+                d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"
+            />
+            <path
+                fill="#34A853"
+                d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.33 24 12 24z"
+            />
+            <path
+                fill="#FBBC05"
+                d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"
+            />
+            <path
+                fill="#EA4335"
+                d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"
             />
         </svg>
     )
 }
 
-interface IntegrationItem {
-    id: string
-    name: string
-    description: string
-    icon: React.ComponentType<{ className?: string }>
-    connected: boolean
-    account?: string
-}
-
 export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
-    const [integrations, setIntegrations] = React.useState<IntegrationItem[]>([
-        {
-            id: "github",
-            name: "GitHub Deployments",
-            description: "Automatically deploy branches and sync schema migrations",
-            icon: GithubIcon,
-            connected: true,
-            account: "midnight-dev/md-ui",
-        },
-        {
-            id: "aws",
-            name: "Amazon Web Services",
-            description: "Cross-account IAM role for automated database backups in S3",
-            icon: Cloud,
-            connected: false,
-        },
-        {
-            id: "discord",
-            name: "Discord Webhooks",
-            description: "Stream cluster health and failover alerts to team channels",
-            icon: Shield,
-            connected: true,
-            account: "#infra-alerts",
-        },
-    ])
+    const [status, setStatus] = React.useState<"idle" | "loading" | "success">("idle")
 
-    const toggleConnection = (id: string) => {
-        setIntegrations((prev) =>
-            prev.map((item) =>
-                item.id === id ? { ...item, connected: !item.connected } : item
-            )
-        )
+    const handleConnect = () => {
+        setStatus("loading")
+        setTimeout(() => {
+            setStatus("success")
+            setTimeout(() => {
+                setStatus("idle")
+            }, 3000)
+        }, 1200)
     }
 
     return (
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="w-full max-w-lg p-6 rounded-xl surface-grain bg-card rim-light border border-white/10 shadow-2xl flex flex-col gap-5">
-                        {/* Header */}
-                        <div className="flex items-center justify-between pb-3 border-b border-white/6">
-                            <div>
-                                <h3 className="font-sf-display text-lg font-medium text-foreground">
-                                    Connected Services & Integrations
-                                </h3>
-                                <p className="font-sf-text text-xs text-muted">
-                                    Manage third-party OAuth links, webhooks, and cloud sync
-                                </p>
+                    <DialogContent >
+                        <DialogHeader >
+                            <div className="flex items-center justify-center gap-3.5 mb-3">
+                                <div className="size-14 rounded-lg overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(255,255,255,0.3),0_4px_12px_rgba(255,255,255,0.08)] flex items-center justify-center bg-white rim-light">
+                                    <img src={gmailLogo} alt="Gmail" className="size-full object-contain p-1" />
+                                </div>
+                                <ChevronsRight className="size-4.5 text-muted/40 shrink-0" />
+                                <div className="size-14 rounded-lg overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(255,255,255,0.3),0_4px_12px_rgba(255,255,255,0.08)] flex items-center justify-center bg-white rim-light">
+                                    <img src={tempoLogo} alt="Tempo" className="size-full object-contain p-1.5" />
+                                </div>
                             </div>
-                            <Button variant="ghost" className="size-8 p-0">
-                                <RefreshCw className="size-3.5 text-muted hover:text-foreground" />
+                            <div className="flex flex-col gap-2 py-2">
+                                <DialogTitle >
+                                    Connect Gmail and Tempo
+                                </DialogTitle>
+                                <DialogDescription >
+                                    You will be directed to sign in with Google
+                                </DialogDescription>
+                            </div>
+
+                        </DialogHeader>
+
+                        <DialogFooter className="flex-col w-full gap-2.5 mt-0">
+                            <Button
+                                variant="default"
+                                className="w-full gap-2"
+                                onClick={handleConnect}
+                                disabled={status === "loading"}
+                            >
+                                {status === "loading" ? (
+                                    <>
+                                        <Loader2 className="size-4 animate-spin" />
+                                        Connecting to Google...
+                                    </>
+                                ) : status === "success" ? (
+                                    <>
+                                        <Check className="size-4 text-success" />
+                                        Connected to Gmail!
+                                    </>
+                                ) : (
+                                    <>
+                                        <GoogleIcon className="size-4 shrink-0" />
+                                        Sign in with Google
+                                    </>
+                                )}
                             </Button>
-                        </div>
 
-                        {/* List */}
-                        <div className="flex flex-col gap-3">
-                            {integrations.map((item) => {
-                                const Icon = item.icon
-                                return (
-                                    <div
-                                        key={item.id}
-                                        className="flex items-start justify-between p-3.5 rounded-lg bg-white/[0.02] border border-white/6 gap-3"
-                                    >
-                                        <div className="flex items-start gap-3">
-                                            <div className="p-2 rounded-lg bg-white/5 border border-white/10 shrink-0">
-                                                <Icon className="size-5 text-foreground" />
-                                            </div>
-                                            <div className="flex flex-col gap-0.5">
-                                                <div className="flex items-center gap-2">
-                                                    <span className="font-sf-display text-sm font-medium text-foreground">
-                                                        {item.name}
-                                                    </span>
-                                                    {item.connected ? (
-                                                        <span className="inline-flex items-center gap-1 text-[11px] font-sf-text text-success bg-success/15 px-2 py-0.5 rounded-full border border-success/30">
-                                                            Connected
-                                                        </span>
-                                                    ) : (
-                                                        <span className="inline-flex items-center gap-1 text-[11px] font-sf-text text-muted bg-white/5 px-2 py-0.5 rounded-full border border-white/10">
-                                                            Disconnected
-                                                        </span>
-                                                    )}
-                                                </div>
-                                                <p className="font-sf-text text-xs text-muted leading-snug">
-                                                    {item.description}
-                                                </p>
-                                                {item.account && (
-                                                    <span className="font-mono text-[11px] text-white/50 pt-0.5">
-                                                        Linked: {item.account}
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>
-
-                                        <Switch
-                                            checked={item.connected}
-                                            onCheckedChange={() => toggleConnection(item.id)}
-                                            className="shrink-0 mt-1"
-                                        />
-                                    </div>
-                                )
-                            })}
-                        </div>
-
-                        {/* Footer */}
-                        <div className="flex items-center justify-between pt-2 border-t border-white/6 text-xs text-muted">
-                            <span>OAuth tokens encrypted at rest (AES-256)</span>
-                            <Button variant="outline" className="text-xs h-8">
-                                Add Custom Webhook
+                            <Button
+                                variant="outline"
+                                className="w-full "
+                                onClick={() => onOpenChange?.(false)}
+                            >
+                                Cancel
                             </Button>
-                        </div>
-                    </div>
+                        </DialogFooter>
+                    </DialogContent>
                 </PopupPreview>
 
                 <PopupDetails>
-                    <PopupTitle>Integration Dialog</PopupTitle>
+                    <PopupTitle>Gmail & Tempo Integration Dialog</PopupTitle>
                     <PopupDescription>
-                        A provider connectivity hub for managing cloud authentication, automated webhooks, OAuth synchronization, and live connection status switches.
+                        A clean OAuth connection dialog designed for linking Gmail and Tempo with fluid visual flow, brand identity badges, and standard action controls.
                     </PopupDescription>
 
                     <PopupCharacteristics
+                        heading="Key Elements"
                         items={[
                             {
-                                title: "Real-time State Toggles",
-                                description: "Switch components trigger instant optimistic updates with visual badge changes.",
+                                title: "Brand Identity Squircle Badges",
+                                description: "Layered glassmorphic icon containers with directional chevron progression indicator.",
                             },
                             {
-                                title: "Badge System",
-                                description: "Status tags provide high-contrast green/muted visual indicators for connectivity health.",
+                                title: "Standard Dialog Hierarchy",
+                                description: "Composed with DialogHeader, DialogTitle, DialogDescription, and vertical DialogFooter.",
                             },
                             {
-                                title: "Secure Credential Architecture",
-                                description: "Clean presentation of linked identities and repository scopes.",
+                                title: "Integrated OAuth Action",
+                                description: "Dedicated single sign-on Google button with tactile interactive state handling.",
+                            },
+                            {
+                                title: "Accessible Action Dismissal",
+                                description: "Full-width secondary outline cancel button providing an escape hatch.",
                             },
                         ]}
                     />
