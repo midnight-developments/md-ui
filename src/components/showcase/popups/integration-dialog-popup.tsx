@@ -128,7 +128,6 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
                     </PopupDescription>
 
                     <PopupCharacteristics
-                        heading="Key Elements"
                         items={[
                             {
                                 title: "Brand Identity Squircle Badges",

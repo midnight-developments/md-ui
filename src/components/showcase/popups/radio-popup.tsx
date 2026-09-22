@@ -96,12 +96,12 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                                 description: "Transform standard radio groups into rich multi-column cards for plans, tiers, and settings.",
                             },
                             {
-                                title: "Spring Dot Indicator",
-                                description: "The inner accent dot scales in with smooth opacity transitions.",
+                                title: "Active Rim Light & Gradient",
+                                description: "Smoothly transitioned purple radial gradient and luminous 2px border on selected card states.",
                             },
                             {
                                 title: "Base UI Radio Primitive",
-                                description: "Keyboard arrow navigation (Up/Down/Left/Right) built-in out of the box.",
+                                description: "Full keyboard arrow navigation (Up/Down/Left/Right) and accessible ARIA radio roles built-in.",
                             },
                         ]}
                     />

@@ -255,7 +255,7 @@ export interface PopupCharacteristicsProps extends React.ComponentProps<"div"> {
 
 export function PopupCharacteristics({
     className,
-    heading = "Key Characteristics",
+    heading = "Key Highlights",
     items,
     children,
     ...props

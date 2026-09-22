@@ -93,7 +93,7 @@ export default function App() {
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Input & InputGroup</CardTitle>
-                                <CardDescription>Addons, icons & shortcuts</CardDescription>
+                                <CardDescription>Addons, icons & validation states</CardDescription>
                             </CardContent>
                         </Card>
 

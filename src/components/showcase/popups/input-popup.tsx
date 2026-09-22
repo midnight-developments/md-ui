@@ -95,22 +95,22 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                 <PopupDetails>
                     <PopupTitle>Input & InputGroup</PopupTitle>
                     <PopupDescription>
-                        Engineered with composable input groups, keyboard shortcut chips, interactive icons, and clean focus ring transitions.
+                        Engineered with composable input groups, interactive icon addons, password visibility toggles, and clean focus ring transitions.
                     </PopupDescription>
 
                     <PopupCharacteristics
                         items={[
                             {
                                 title: "Addon Architecture",
-                                description: "Easily place leading icons, trailing actions, or shortcut indicators inside the input shell.",
+                                description: "Easily place leading icons, trailing actions, or helper controls inside the input shell.",
                             },
                             {
-                                title: "Subtle Contrast",
-                                description: "Calibrated background opacities (rgba(255, 255, 255, 0.05)) that brighten smoothly on hover and focus.",
+                                title: "Elevated Surface & Rim Light",
+                                description: "Calibrated dark surface (rgba(35, 35, 35)) with subtle top rim lighting that brightens smoothly on hover and active focus.",
                             },
                             {
-                                title: "State Styling",
-                                description: "Distinct focus, active, disabled, and validation error ring representations.",
+                                title: "Validation States",
+                                description: "Distinct focus-visible rings, disabled states, and dynamic aria-invalid error boundaries via Field primitives.",
                             },
                         ]}
                     />

@@ -106,7 +106,7 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                             },
                             {
                                 title: "Snappy Feedback",
-                                description: "Spring-damped 150ms cubic-bezier transition for press, hover, and focus states.",
+                                description: "Spring-damped 200ms cubic-bezier(0, 0, 0.2, 1) transition for press, hover, and focus states.",
                             },
                             {
                                 title: "Accessible Base",

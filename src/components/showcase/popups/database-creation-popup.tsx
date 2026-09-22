@@ -35,7 +35,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
     const [organization, setOrganization] = React.useState("pixsellz")
     const [dbName, setDbName] = React.useState("")
     const [region, setRegion] = React.useState("ap-east-1")
-    const [planType, setPlanType] = React.useState("pro")
+    const [planType, setPlanType] = React.useState("business")
     const [isSubmitted, setIsSubmitted] = React.useState(false)
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -148,7 +148,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                                 <FieldContent className="gap-1">
                                                     <div className="flex items-center gap-2">
                                                         <FieldTitle>
-                                                            Pro
+                                                            Hobby
                                                         </FieldTitle>
                                                         <Badge variant="outline" className="gap-1 px-1.5 py-0.5 text-xs font-normal border-border bg-white/[0.04] text-muted">
                                                             <Globe className="size-3" />
@@ -209,18 +209,17 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                     </PopupDescription>
 
                     <PopupCharacteristics
-                        heading="Integrated Components"
                         items={[
                             {
                                 title: "Scoped Namespace Path",
                                 description: "Organization select dropdown coupled with slugified database identifier and helper guidance.",
                             },
                             {
-                                title: "Composite Region InputGroup",
-                                description: "Input group with dedicated addon prefix tab and native select menu.",
+                                title: "Cloud Region Selection",
+                                description: "Fast keyboard-driven Base UI select dropdown pairing cloud regions with physical location labels.",
                             },
                             {
-                                title: "Left-Aligned Card Radio Tiers",
+                                title: "Card Radio Plan Tiers",
                                 description: "Comparison radio cards displaying compute badges, dynamic pricing, and throughput allowances.",
                             },
                             {
