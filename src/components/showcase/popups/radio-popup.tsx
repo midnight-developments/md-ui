@@ -9,17 +9,13 @@ import {
     PopupTitle,
     PopupDescription,
     PopupCharacteristics,
+    type PopupProps,
 } from "@/components/showcase/popup"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group"
-import { ShieldCheck, Zap } from "lucide-react"
+import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group/card-radio-group"
+import { Field, FieldLabel, FieldTitle, FieldContent, FieldDescription } from "@/components/ui/field"
 
-export interface RadioPopupProps {
-    open: boolean
-    onOpenChange: (open: boolean) => void
-}
-
-export function RadioPopup({ open, onOpenChange }: RadioPopupProps) {
+export function RadioPopup({ open, onOpenChange }: PopupProps) {
     const [standardRadio, setStandardRadio] = React.useState("daily")
     const [plan, setPlan] = React.useState("pro")
 
@@ -27,59 +23,63 @@ export function RadioPopup({ open, onOpenChange }: RadioPopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="flex flex-col gap-8 max-w-md w-full">
-                        {/* 1. Card Radio Group */}
-                        <div className="flex flex-col gap-3">
-                            <label className="text-sm font-sf-display text-muted">
-                                Selectable Card Radio Group
-                            </label>
+                    <div className="flex flex-col gap-12 max-w-lg w-full">
+                        <Field>
+                            <FieldLabel>Selectable Card Radio Group</FieldLabel>
                             <CardRadioGroup
                                 value={plan}
                                 onValueChange={(val) => val && setPlan(val as string)}
                                 columns={2}
                             >
                                 <CardRadioGroupItem value="starter">
-                                    <div className="flex items-center gap-2">
-                                        <Zap className="size-4 text-accent" />
-                                        <span className="font-sf-display font-medium text-foreground">Starter</span>
-                                    </div>
-                                    <span className="text-xs text-muted">10 GB Storage · 1 Core</span>
+                                    <FieldLabel className="cursor-pointer">Starter</FieldLabel>
+                                    <FieldDescription>10 GB Storage · 1 Core</FieldDescription>
                                 </CardRadioGroupItem>
 
                                 <CardRadioGroupItem value="pro">
-                                    <div className="flex items-center gap-2">
-                                        <ShieldCheck className="size-4 text-accent" />
-                                        <span className="font-sf-display font-medium text-foreground">Pro Tier</span>
-                                    </div>
-                                    <span className="text-xs text-muted">100 GB Storage · 4 Cores</span>
+                                    <FieldLabel className="cursor-pointer">Pro Tier</FieldLabel>
+                                    <FieldDescription>50 GB Storage · 4 Cores</FieldDescription>
                                 </CardRadioGroupItem>
                             </CardRadioGroup>
-                        </div>
+                        </Field>
 
-                        {/* 2. Standard Radio Group */}
-                        <div className="flex flex-col gap-3">
-                            <label className="text-sm font-sf-display text-muted">
-                                Standard Radio List (Backup Frequency)
-                            </label>
+                        <Field>
+                            <FieldLabel>Standard Radio List (Backup Frequency)</FieldLabel>
                             <RadioGroup
                                 value={standardRadio}
                                 onValueChange={(val) => val && setStandardRadio(val as string)}
-                                className="gap-3 p-4 rounded-lg bg-white/[0.02] border border-white/6"
                             >
-                                <label className="flex items-center gap-3 cursor-pointer">
+                                <Field orientation="horizontal">
                                     <RadioGroupItem value="hourly" id="r-hourly" />
-                                    <span className="font-sf-text text-sm text-foreground">Every hour (Continuous point-in-time recovery)</span>
-                                </label>
-                                <label className="flex items-center gap-3 cursor-pointer">
+                                    <label htmlFor="r-hourly" className="cursor-pointer flex-1">
+                                        <FieldContent>
+                                            <FieldTitle>Every hour</FieldTitle>
+                                            <FieldDescription>Continuous point-in-time recovery</FieldDescription>
+                                        </FieldContent>
+                                    </label>
+                                </Field>
+
+                                <Field orientation="horizontal">
                                     <RadioGroupItem value="daily" id="r-daily" />
-                                    <span className="font-sf-text text-sm text-foreground">Daily snapshot at 00:00 UTC</span>
-                                </label>
-                                <label className="flex items-center gap-3 cursor-pointer">
+                                    <label htmlFor="r-daily" className="cursor-pointer flex-1">
+                                        <FieldContent>
+                                            <FieldTitle>Daily snapshot</FieldTitle>
+                                            <FieldDescription>Daily automated backup at 00:00 UTC</FieldDescription>
+                                        </FieldContent>
+                                    </label>
+                                </Field>
+
+                                <Field orientation="horizontal">
                                     <RadioGroupItem value="weekly" id="r-weekly" />
-                                    <span className="font-sf-text text-sm text-foreground">Weekly archival backup</span>
-                                </label>
+                                    <label htmlFor="r-weekly" className="cursor-pointer flex-1">
+                                        <FieldContent>
+                                            <FieldTitle>Weekly archival</FieldTitle>
+                                            <FieldDescription>Weekly archival backup</FieldDescription>
+                                        </FieldContent>
+                                    </label>
+                                </Field>
                             </RadioGroup>
-                        </div>
+                        </Field>
                     </div>
                 </PopupPreview>
 

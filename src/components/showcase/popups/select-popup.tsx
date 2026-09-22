@@ -9,6 +9,7 @@ import {
     PopupTitle,
     PopupDescription,
     PopupCharacteristics,
+    type PopupProps,
 } from "@/components/showcase/popup"
 import {
     Select,
@@ -19,14 +20,10 @@ import {
     SelectGroup,
     SelectLabel,
 } from "@/components/ui/select"
+import { Field, FieldLabel } from "@/components/ui/field"
 import { Globe, Database } from "lucide-react"
 
-export interface SelectPopupProps {
-    open: boolean
-    onOpenChange: (open: boolean) => void
-}
-
-export function SelectPopup({ open, onOpenChange }: SelectPopupProps) {
+export function SelectPopup({ open, onOpenChange }: PopupProps) {
     const [region, setRegion] = React.useState("us-east-1")
     const [engine, setEngine] = React.useState("postgres")
 
@@ -36,11 +33,11 @@ export function SelectPopup({ open, onOpenChange }: SelectPopupProps) {
                 <PopupPreview>
                     <div className="flex flex-col gap-6 max-w-sm w-full">
                         {/* 1. Cloud Region Select */}
-                        <div className="flex flex-col gap-2">
-                            <label className="text-sm font-sf-display text-muted flex items-center gap-2">
+                        <Field>
+                            <FieldLabel className="flex items-center gap-2">
                                 <Globe className="size-4 text-accent" />
                                 Primary Deployment Region
-                            </label>
+                            </FieldLabel>
                             <Select value={region} onValueChange={(val) => val && setRegion(val)}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select a region..." />
@@ -59,14 +56,14 @@ export function SelectPopup({ open, onOpenChange }: SelectPopupProps) {
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
-                        </div>
+                        </Field>
 
                         {/* 2. Database Engine Select */}
-                        <div className="flex flex-col gap-2">
-                            <label className="text-sm font-sf-display text-muted flex items-center gap-2">
+                        <Field>
+                            <FieldLabel className="flex items-center gap-2">
                                 <Database className="size-4 text-accent" />
                                 Database Engine & Version
-                            </label>
+                            </FieldLabel>
                             <Select value={engine} onValueChange={(val) => val && setEngine(val)}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select an engine..." />
@@ -78,9 +75,9 @@ export function SelectPopup({ open, onOpenChange }: SelectPopupProps) {
                                     <SelectItem value="clickhouse">ClickHouse Analytics</SelectItem>
                                 </SelectContent>
                             </Select>
-                        </div>
+                        </Field>
 
-                        <div className="p-4 rounded-lg bg-white/[0.02] border border-white/6 text-sm text-muted">
+                        <div className="p-3 rounded-md bg-white/[0.02] border border-white/6 text-[0.95rem] tracking-tight text-muted">
                             Active configuration: <span className="text-foreground font-medium">{engine}</span> in <span className="text-foreground font-medium">{region}</span>
                         </div>
                     </div>

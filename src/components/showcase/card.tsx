@@ -16,36 +16,17 @@ export function Card({ className, children, ...props }: React.ComponentProps<"di
     )
 }
 
-export interface CardImageProps extends React.ComponentProps<"div"> {
-    src?: string
-    alt?: string
-}
-
-export function CardImage({
-    className,
-    src,
-    alt,
-    children,
-    ...props
-}: CardImageProps) {
+export function CardPreview({ className, children, ...props }: React.ComponentProps<"div">) {
     return (
         <div
-            data-slot="showcase-card-image"
+            data-slot="showcase-card-preview"
             className={cn(
-                "w-full aspect-[16/10] flex items-center justify-center overflow-hidden relative",
+                "w-full aspect-[16/8] flex items-center justify-center overflow-hidden relative p-3 bg-white/[0.015] border-b border-white/6 pointer-events-none select-none",
                 className
             )}
             {...props}
         >
-            {src ? (
-                <img
-                    src={src}
-                    alt={alt ?? ""}
-                    className="w-full h-full object-cover object-center"
-                />
-            ) : (
-                children ?? null
-            )}
+            {children}
         </div>
     )
 }
@@ -55,7 +36,7 @@ export function CardTitle({ className, children, ...props }: React.ComponentProp
         <h3
             data-slot="showcase-card-title"
             className={cn(
-                "font-sf-display text-lg font-medium text-foreground ",
+                "font-sf-display text-lg font-medium text-foreground",
                 className
             )}
             {...props}
@@ -90,13 +71,4 @@ export function CardContent({ className, children, ...props }: React.ComponentPr
             {children}
         </div>
     )
-}
-
-// Aliases with Showcase prefix if preferred
-export {
-    Card as ShowcaseCard,
-    CardImage as ShowcaseCardImage,
-    CardTitle as ShowcaseCardTitle,
-    CardDescription as ShowcaseCardDescription,
-    CardContent as ShowcaseCardContent,
 }

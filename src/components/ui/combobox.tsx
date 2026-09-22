@@ -5,20 +5,18 @@ import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 import { ChevronDownIcon, XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
-import { Button } from "@/components/ui/button"
+import { popupContentVariants, popupItemVariants } from "@/components/ui/popup/popup.variants"
+import { Button } from "@/components/ui/button/button"
 import {
     InputGroup,
     InputGroupAddon,
     InputGroupButton,
     InputGroupInput,
-} from "@/components/ui/input-group"
+} from "@/components/ui/input/input-group"
 
 const Combobox = ComboboxPrimitive.Root
 
-function ComboboxValue({ ...props }: ComboboxPrimitive.Value.Props) {
-    return <ComboboxPrimitive.Value data-slot="combobox-value" {...props} />
-}
+
 
 function ComboboxTrigger({
     className,
@@ -171,11 +169,7 @@ function ComboboxLabel({
     )
 }
 
-function ComboboxCollection({ ...props }: ComboboxPrimitive.Collection.Props) {
-    return (
-        <ComboboxPrimitive.Collection data-slot="combobox-collection" {...props} />
-    )
-}
+
 
 function ComboboxEmpty({ className, ...props }: ComboboxPrimitive.Empty.Props) {
     return (
@@ -263,9 +257,7 @@ function ComboboxChipsInput({
     )
 }
 
-function useComboboxAnchor() {
-    return React.useRef<HTMLDivElement | null>(null)
-}
+
 
 export {
     Combobox,
@@ -275,13 +267,10 @@ export {
     ComboboxItem,
     ComboboxGroup,
     ComboboxLabel,
-    ComboboxCollection,
     ComboboxEmpty,
     ComboboxSeparator,
     ComboboxChips,
     ComboboxChip,
     ComboboxChipsInput,
     ComboboxTrigger,
-    ComboboxValue,
-    useComboboxAnchor,
 }

@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { inputVariants } from "@/components/ui/input.variants"
+import { inputVariants } from "@/components/ui/input/input.variants"
 
 function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
     return (

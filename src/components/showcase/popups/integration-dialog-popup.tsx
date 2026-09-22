@@ -9,8 +9,9 @@ import {
     PopupTitle,
     PopupDescription,
     PopupCharacteristics,
+    type PopupProps,
 } from "@/components/showcase/popup"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import { Switch } from "@/components/ui/switch"
 import { Cloud, Shield, RefreshCw } from "lucide-react"
 
@@ -18,9 +19,9 @@ function GithubIcon({ className }: { className?: string }) {
     return (
         <svg
             className={className}
-            fill="currentColor"
             viewBox="0 0 24 24"
-            aria-hidden="true"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
         >
             <path
                 fillRule="evenodd"
@@ -29,11 +30,6 @@ function GithubIcon({ className }: { className?: string }) {
             />
         </svg>
     )
-}
-
-export interface IntegrationDialogPopupProps {
-    open: boolean
-    onOpenChange: (open: boolean) => void
 }
 
 interface IntegrationItem {
@@ -45,7 +41,7 @@ interface IntegrationItem {
     account?: string
 }
 
-export function IntegrationDialogPopup({ open, onOpenChange }: IntegrationDialogPopupProps) {
+export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
     const [integrations, setIntegrations] = React.useState<IntegrationItem[]>([
         {
             id: "github",

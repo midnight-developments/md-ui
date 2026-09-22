@@ -1,6 +1,5 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/outfit";
 @import "./fonts.css";
 @import "tailwindcss";
 
@@ -34,17 +33,18 @@
     --color-card-hover: rgba(255, 255, 255, 0.08);
     --color-card-active: rgba(255, 255, 255, 0.08);
 
-    --background-image-accent-gradient: linear-gradient(to bottom, rgba(120, 105, 230, 0.9), rgba(120, 105, 230, 0.9));
-    --background-image-accent-gradient-x: linear-gradient(to right, rgba(120, 105, 230, 0.9), rgba(120, 105, 230, 0.9));
-    /* --background-image-accent-gradient: linear-gradient(to bottom, rgba(180, 80, 245, 0.9), rgba(165, 75, 235, 0.9)); */
+    --background-image-accent-gradient: linear-gradient(to bottom, rgba(130, 115, 238, 0.94), rgba(114, 98, 224, 0.92));
+    --background-image-accent-gradient-x: linear-gradient(to right, rgba(130, 115, 238, 0.94), rgba(114, 98, 224, 0.92));
+    --background-image-destructive-gradient: linear-gradient(to bottom, rgba(220, 48, 58, 0.92), rgba(198, 36, 46, 0.91));
+    --background-image-destructive-gradient-x: linear-gradient(to right, rgba(220, 48, 58, 0.92), rgba(198, 36, 46, 0.91));
     --background-image-dark-gradient: linear-gradient(to bottom, rgba(225, 255, 255, 0.075), rgba(255, 255, 255, 0.025));
 
     --text-md: 0.9375rem;
 
-    --duration-snappy: 150ms;
+    --duration-snappy: 200ms;
     --ease-snappy: cubic-bezier(0, 0, 0.2, 1);
 
-    --duration-popup: 225ms;
+    --duration-popup: 300ms;
     --ease-popup: cubic-bezier(0.25, 1, 0.35, 1);
     --ease-popup-bouncy: cubic-bezier(0.16, 1, 0.3, 1.25);
 }
@@ -114,80 +114,18 @@
 
 @layer utilities {
 
-    /* Shared grain background effect */
+    /* Surface base utility - grain is scoped exclusively to Card Radio options */
     .surface-grain,
     .bg-grain {
         position: relative;
         isolation: isolate;
 
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.015;
-            background: repeat url("./assets/grain.png") / 96px 96px;
+        &>*:not(.absolute):not([class*="absolute"]) {
+            position: relative;
         }
 
         &>* {
-            position: relative;
             z-index: 1;
-        }
-    }
-
-    .rim-light {
-        position: relative;
-        box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.85);
-
-        &::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            box-sizing: border-box;
-            border-radius: inherit;
-            padding: 1px;
-            pointer-events: none;
-            z-index: 2;
-            background:
-                radial-gradient(ellipse 50% 30% at 50% 0%,
-                    rgba(255, 255, 255, 0.4) 0%,
-                    rgba(255, 255, 255, 0.16) 45%,
-                    rgba(255, 255, 255, 0.04) 80%,
-                    transparent 100%),
-                linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.04));
-            -webkit-mask:
-                linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0) border-box;
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-        }
-    }
-
-    .rim-light-button {
-        position: relative;
-
-
-        &::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            box-sizing: border-box;
-            border-radius: inherit;
-            padding: 1px;
-            pointer-events: none;
-            z-index: 2;
-            background:
-                radial-gradient(ellipse 55% 80% at 50% 0%,
-                    rgba(255, 255, 255, 0.3) 0%,
-                    rgba(255, 255, 255, 0.12) 85%,
-                    transparent 110%),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.35));
-            -webkit-mask:
-                linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0) border-box;
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
         }
     }
 }

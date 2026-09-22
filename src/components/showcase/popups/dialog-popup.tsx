@@ -9,6 +9,7 @@ import {
     PopupTitle,
     PopupDescription,
     PopupCharacteristics,
+    type PopupProps,
 } from "@/components/showcase/popup"
 import {
     Dialog,
@@ -18,17 +19,12 @@ import {
     DialogDescription,
     DialogBody,
     DialogFooter,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/dialog/dialog"
+import { Button } from "@/components/ui/button/button"
 import { WarningIcon } from "@/components/ui/warning-icon"
 import { Sparkles } from "lucide-react"
 
-export interface DialogPopupProps {
-    open: boolean
-    onOpenChange: (open: boolean) => void
-}
-
-export function DialogPopup({ open, onOpenChange }: DialogPopupProps) {
+export function DialogPopup({ open, onOpenChange }: PopupProps) {
     const [isSubDialogOpen, setIsSubDialogOpen] = React.useState(false)
 
     return (
@@ -36,11 +32,11 @@ export function DialogPopup({ open, onOpenChange }: DialogPopupProps) {
             <PopupContent>
                 <PopupPreview>
                     <div className="flex flex-col items-center gap-6 max-w-sm w-full">
-                        <div className="w-full flex flex-col gap-4 p-6 rounded-xl surface-grain bg-card rim-light border border-white/10 shadow-2xl">
+                        <div className="w-full flex flex-col gap-4 p-6 rounded-xl surface-grain bg-card rim-light-dialog border border-white/10 shadow-2xl">
                             <div className="flex flex-col items-center text-center gap-2">
                                 <WarningIcon className="size-12" />
                                 <h3 className="text-xl font-sf-display text-foreground">Action Confirmation</h3>
-                                <p className="text-sm text-muted">
+                                <p className="text-[0.95rem] text-muted tracking-tight">
                                     Are you sure you want to deploy these changes to production? This operation will initiate zero-downtime rolling updates.
                                 </p>
                             </div>
@@ -52,14 +48,14 @@ export function DialogPopup({ open, onOpenChange }: DialogPopupProps) {
                                     onClick={() => setIsSubDialogOpen(true)}
                                 >
                                     <Sparkles className="size-4" />
-                                    Launch Zero-Shift Modal
+                                    Open Dialog
                                 </Button>
                                 <Button variant="outline" className="w-full">Cancel</Button>
                             </div>
                         </div>
 
-                        <p className="text-xs text-muted text-center max-w-xs">
-                            Click above to test modal opening/closing without any page content shifting or flickering scrollbars.
+                        <p className="text-sm text-muted text-center max-w-xs">
+                            Click above to test modal opening/closing
                         </p>
 
                         {/* Interactive live Dialog */}
@@ -71,7 +67,7 @@ export function DialogPopup({ open, onOpenChange }: DialogPopupProps) {
                                 </DialogHeader>
                                 <DialogBody>
                                     <DialogDescription className="text-center">
-                                        Notice how opening and closing this dialog produces zero layout jump, thanks to CSS <code className="text-white/80">scrollbar-gutter: stable</code> and clean backdrop animations.
+                                        Notice how opening and closing this dialog produces zero layout jump, thanks to CSS <code className="text-white/80">scrollbar-gutter: stable</code> .
                                     </DialogDescription>
                                 </DialogBody>
                                 <DialogFooter className="flex-col w-full gap-2">
@@ -97,16 +93,20 @@ export function DialogPopup({ open, onOpenChange }: DialogPopupProps) {
                     <PopupCharacteristics
                         items={[
                             {
+                                title: "Framer Motion Animations",
+                                description: "Silky smooth opening and closing physics, with calibrated spring scaling, fade-ins, and backdrop blur.",
+                            },
+                            {
+                                title: "Modular Architecture",
+                                description: "Cleanly separated compound structure (Dialog, DialogHeader, DialogBody, DialogFooter, and DialogClose) for composable layouts.",
+                            },
+                            {
                                 title: "Zero Layout Shift",
                                 description: "Configured with stable scrollbar gutters to eliminate annoying browser jumps when dialogs open and close.",
                             },
                             {
                                 title: "Rim Light & Film Grain",
                                 description: "Elevated card surface with simulated studio top-edge light and subtle analog film texture.",
-                            },
-                            {
-                                title: "Focus Trap & Keyboard",
-                                description: "Seamless Base UI dialog mechanics with Escape-to-close and focus retention.",
                             },
                         ]}
                     />

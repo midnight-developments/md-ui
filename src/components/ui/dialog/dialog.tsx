@@ -5,6 +5,7 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { motion, AnimatePresence } from "framer-motion"
 
 import { cn } from "@/lib/utils"
+import "./dialog.css"
 
 const DialogContext = React.createContext<{ open: boolean }>({ open: false })
 
@@ -27,9 +28,7 @@ function Dialog({
     )
 }
 
-function DialogPortal({ ...props }: DialogPrimitive.Portal.Props) {
-    return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />
-}
+
 
 const overlayVariants = {
     initial: { opacity: 0, backdropFilter: "blur(0px)" },
@@ -103,7 +102,7 @@ function DialogContent({
     const { open } = React.useContext(DialogContext)
 
     return (
-        <DialogPortal keepMounted>
+        <DialogPrimitive.Portal keepMounted>
             <AnimatePresence>
                 {open && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
@@ -119,7 +118,7 @@ function DialogContent({
                                     exit="exit"
                                     className={cn(
                                         "relative z-50 outline-none pointer-events-auto",
-                                        "flex flex-col gap-4 p-6 rounded-xl surface-grain bg-card rim-light overflow-hidden",
+                                        "flex flex-col gap-4 p-6 rounded-xl surface-grain bg-card rim-light-dialog overflow-hidden",
                                         className
                                     )}
                                 />
@@ -131,7 +130,7 @@ function DialogContent({
                     </div>
                 )}
             </AnimatePresence>
-        </DialogPortal>
+        </DialogPrimitive.Portal>
     )
 }
 

@@ -10,7 +10,7 @@ function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
         <fieldset
             data-slot="field-set"
             className={cn(
-                "flex flex-col gap-4 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
+                "flex flex-col gap-4 has-[>:is([data-slot=checkbox-group],[data-slot=radio-group],[data-slot=card-radio-group],[role=radiogroup])]:gap-3",
                 className
             )}
             {...props}
@@ -24,7 +24,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-group"
             className={cn(
-                "group/field-group @container/field-group flex w-full flex-col gap-8 data-[slot=checkbox-group]:gap-3 *:data-[slot=field-group]:gap-4",
+                "group/field-group @container/field-group flex w-full flex-col gap-8 data-[slot=checkbox-group]:gap-3 data-[slot=radio-group]:gap-3 has-[>:is([data-slot=checkbox-group],[data-slot=radio-group],[data-slot=card-radio-group],[role=radiogroup])]:gap-3 *:data-[slot=field-group]:gap-4",
                 className
             )}
             {...props}
@@ -33,15 +33,15 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const fieldVariants = cva(
-    "group/field flex w-full gap-1.75 data-[invalid=true]:text-destructive",
+    "group/field flex w-full gap-2.25 data-[invalid=true]:text-destructive has-[>:is([data-slot=checkbox-group],[data-slot=radio-group])]:gap-4",
     {
         variants: {
             orientation: {
                 vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
                 horizontal:
-                    "flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+                    "flex-row gap-3 items-center has-[[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
                 responsive:
-                    "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+                    "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
             },
         },
         defaultVariants: {
@@ -71,7 +71,7 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-content"
             className={cn(
-                "group/field-content flex flex-1 flex-col gap-1.25",
+                "group/field-content flex flex-1 flex-col gap-2",
                 className
             )}
             {...props}
@@ -87,7 +87,7 @@ function FieldLabel({
         <label
             data-slot="field-label"
             className={cn(
-                "group/field-label peer/field-label text-lg font-normal text-foreground",
+                "group/field-label peer/field-label text-base font-medium tracking-tight leading-[1] text-foreground",
                 className
             )}
             {...props}
@@ -100,7 +100,20 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-label"
             className={cn(
-                "flex w-fit items-center gap-2 text-base group-data-[disabled=true]/field:opacity-50",
+                "flex w-fit items-center gap-2 text-base font-medium tracking-tight leading-[1] text-foreground group-data-[disabled=true]/field:opacity-50",
+                className
+            )}
+            {...props}
+        />
+    )
+}
+
+function FieldLegend({ className, ...props }: React.ComponentProps<"legend">) {
+    return (
+        <legend
+            data-slot="field-legend"
+            className={cn(
+                "text-base font-medium tracking-tight leading-[1] text-foreground mb-4",
                 className
             )}
             {...props}
@@ -121,7 +134,7 @@ function FieldDescription({
     ...props
 }: FieldDescriptionProps) {
     const isError = !!error
-    const content = isError ? error : description
+    const content = isError ? error : (description ?? children)
 
     return (
         <div className="overflow-hidden w-full relative -mt-0.75">
@@ -136,7 +149,7 @@ function FieldDescription({
                         exit={{ opacity: 0, y: 20 }}
                         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] as any }}
                         className={cn(
-                            "text-base w-full will-change-transform ",
+                            "text-[0.95rem] tracking-tight leading-[1] mt-0.75 w-full will-change-transform ",
                             isError
                                 ? "font-normal text-destructive"
                                 : " text-secondary",
@@ -168,6 +181,7 @@ export {
     FieldDescription,
     FieldGroup,
     FieldSet,
+    FieldLegend,
     FieldContent,
     FieldTitle,
     FieldSeparator,

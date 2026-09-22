@@ -1,11 +1,18 @@
 import * as React from "react"
 import {
     Card,
-    CardImage,
+    CardPreview,
     CardTitle,
     CardDescription,
     CardContent,
 } from '@/components/showcase/card'
+import { Button } from '@/components/ui/button/button'
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input/input-group'
+import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Field, FieldLabel } from '@/components/ui/field'
+import { Search, Globe } from 'lucide-react'
+import modalScreenshot from '@/assets/modal-screenshot.png'
 import {
     ButtonPopup,
     InputPopup,
@@ -42,7 +49,10 @@ export default function App() {
                     </h1>
 
                     <p className="font-sf-text text-base sm:text-lg text-muted font-normal tracking-tight max-w-2xl">
-                        A quick demonstration of some of my UI component designs with some mockups. Built on shadcn/ui components, particulary Base UI. Click onto any card for more details and interactions
+                        Click any card to inspect interactive states and architecture :)
+                        <br></br>
+                        <br></br>
+                        A quick demonstration of some of my UI component designs with some mockups. Engineered with Base UI headless primitives and Tailwind CSS.
                     </p>
                 </header>
 
@@ -53,25 +63,54 @@ export default function App() {
 
                     <div className="grid grid-cols-5 gap-4">
                         <Card onClick={() => setActivePopup('button')}>
-                            <CardImage />
+                            <CardPreview>
+                                <div className="grid grid-cols-2 gap-2 pointer-events-none select-none">
+                                    <Button variant="default" className="h-8.5">Primary</Button>
+                                    <Button variant="outline" className="h-8.5">Outline</Button>
+                                    <Button variant="ghost" className="h-8.5">Ghost</Button>
+                                    <Button variant="destructive" className="h-8.5">Destructive</Button>
+                                </div>
+                            </CardPreview>
                             <CardContent>
                                 <CardTitle>Button</CardTitle>
                                 <CardDescription>Physical rim light & tactile click</CardDescription>
                             </CardContent>
                         </Card>
 
-                        {/* 2. Input */}
+                        {/* 2. Input & InputGroup */}
                         <Card onClick={() => setActivePopup('input')}>
-                            <CardImage />
+                            <CardPreview>
+                                <Field className="w-full max-w-[210px] pointer-events-none select-none">
+                                    <FieldLabel>Search with Icon</FieldLabel>
+                                    <InputGroup>
+                                        <InputGroupAddon align="inline-start">
+                                            <Search className="size-4 text-muted" />
+                                        </InputGroupAddon>
+                                        <InputGroupInput placeholder="Search documentation..." readOnly />
+                                    </InputGroup>
+                                </Field>
+                            </CardPreview>
                             <CardContent>
-                                <CardTitle>Input</CardTitle>
+                                <CardTitle>Input & InputGroup</CardTitle>
                                 <CardDescription>Addons, icons & shortcuts</CardDescription>
                             </CardContent>
                         </Card>
 
                         {/* 3. Select */}
                         <Card onClick={() => setActivePopup('select')}>
-                            <CardImage />
+                            <CardPreview>
+                                <Field className="w-full max-w-[210px] pointer-events-none select-none">
+                                    <FieldLabel className="flex items-center gap-2">
+                                        <Globe className="size-4 text-accent" />
+                                        Deployment Region
+                                    </FieldLabel>
+                                    <Select defaultValue="us-east-1">
+                                        <SelectTrigger className="h-9">
+                                            <SelectValue placeholder="Select a region..." />
+                                        </SelectTrigger>
+                                    </Select>
+                                </Field>
+                            </CardPreview>
                             <CardContent>
                                 <CardTitle>Select</CardTitle>
                                 <CardDescription>Animated dropdown picker</CardDescription>
@@ -80,19 +119,43 @@ export default function App() {
 
                         {/* 4. Radio */}
                         <Card onClick={() => setActivePopup('radio')}>
-                            <CardImage />
+                            <CardPreview>
+                                <Field className="w-full max-w-[190px] gap-2.5! pointer-events-none select-none">
+                                    <FieldLabel>Backup Frequency</FieldLabel>
+                                    <RadioGroup defaultValue="daily" className="gap-1.5">
+                                        <Field orientation="horizontal">
+                                            <RadioGroupItem value="hourly" id="prev-hourly" />
+                                            <FieldLabel htmlFor="prev-hourly" className="text-sm font-normal text-foreground">Hourly</FieldLabel>
+                                        </Field>
+                                        <Field orientation="horizontal">
+                                            <RadioGroupItem value="daily" id="prev-daily" />
+                                            <FieldLabel htmlFor="prev-daily" className="text-sm font-normal text-foreground">Daily</FieldLabel>
+                                        </Field>
+                                        <Field orientation="horizontal">
+                                            <RadioGroupItem value="weekly" id="prev-weekly" />
+                                            <FieldLabel htmlFor="prev-weekly" className="text-sm font-normal text-foreground">Weekly</FieldLabel>
+                                        </Field>
+                                    </RadioGroup>
+                                </Field>
+                            </CardPreview>
                             <CardContent>
                                 <CardTitle>Radio</CardTitle>
-                                <CardDescription>Single-choice indicator</CardDescription>
+                                <CardDescription>Card variants & keyboard navigation</CardDescription>
                             </CardContent>
                         </Card>
 
                         {/* 5. Dialog */}
                         <Card onClick={() => setActivePopup('dialog')}>
-                            <CardImage />
+                            <CardPreview>
+                                <img
+                                    src={modalScreenshot}
+                                    alt="Dialog preview"
+                                    className="h-full scale-135 -mb-10 object-contain rounded-lg"
+                                />
+                            </CardPreview>
                             <CardContent>
                                 <CardTitle>Dialog</CardTitle>
-                                <CardDescription>Zero-shift rim light modal</CardDescription>
+                                <CardDescription>Spring physics & modular layout</CardDescription>
                             </CardContent>
                         </Card>
                     </div>
@@ -107,7 +170,7 @@ export default function App() {
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {/* 1. Database Creation Form */}
                         <Card onClick={() => setActivePopup('database-creation')}>
-                            <CardImage />
+                            <CardPreview />
                             <CardContent>
                                 <CardTitle>Database Creation</CardTitle>
                                 <CardDescription>Provision high-availability cloud database</CardDescription>
@@ -116,7 +179,7 @@ export default function App() {
 
                         {/* 2. Command K Menu */}
                         <Card onClick={() => setActivePopup('command-menu')}>
-                            <CardImage />
+                            <CardPreview />
                             <CardContent>
                                 <CardTitle>Command K Menu</CardTitle>
                                 <CardDescription>Spotlight-style fast command palette</CardDescription>
@@ -125,7 +188,7 @@ export default function App() {
 
                         {/* 3. Integration Dialog */}
                         <Card onClick={() => setActivePopup('integration-dialog')}>
-                            <CardImage />
+                            <CardPreview />
                             <CardContent>
                                 <CardTitle>Integration Dialog</CardTitle>
                                 <CardDescription>Connect external tools & cloud providers</CardDescription>

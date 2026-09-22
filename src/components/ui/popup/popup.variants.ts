@@ -1,8 +1,9 @@
 import { cva } from "class-variance-authority"
+import "./popup.css"
 
 export const popupContentVariants = cva(
   [
-    "relative overflow-hidden overflow-y-auto rounded border border-border outline-hidden bg-popup/80 text-foreground backdrop-blur-xl p-1",
+    "relative overflow-hidden overflow-y-auto no-scrollbar rounded-md border border-border rim-light-popup outline-hidden bg-popup/80 text-foreground backdrop-blur-xl p-1",
     "max-h-(--available-height) min-w-(--anchor-width) max-w-(--available-width)",
     "shadow-xl transition-popup",
     "data-[align=start]:origin-top-left data-[align=end]:origin-top-right data-[align=center]:origin-top data-[side=top]:data-[align=start]:origin-bottom-left data-[side=top]:data-[align=end]:origin-bottom-right data-[side=top]:data-[align=center]:origin-bottom",
@@ -18,7 +19,7 @@ export const popupContentVariants = cva(
 
 export const popupItemVariants = cva(
   [
-    "relative flex w-full cursor-pointer items-center gap-2 rounded-xs px-2 py-1.5 text-base text-muted outline-hidden select-none transition-snappy",
+    "relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-[0.95rem] font-medium tracking-tighter text-muted outline-hidden select-none transition-snappy",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-muted",
     "data-[highlighted]:bg-white/5 data-[highlighted]:text-foreground",
     "data-[selected]:bg-accent/15 data-[selected]:text-accent-active data-[selected]:data-[highlighted]:bg-accent/20",

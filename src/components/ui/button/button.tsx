@@ -2,6 +2,7 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+import "./button.css"
 
 const buttonVariants = cva(
   [
@@ -14,13 +15,13 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "hover:brightness-110 bg-accent-gradient text-foreground active:text-foreground/80 rim-light-button",
+          "hover:brightness-110 bg-accent-gradient text-foreground active:text-foreground/80 rim-light-bright-button",
         outline:
-          "bg-[rgb(40,40,40)] ring-1 ring-inset ring-border text-foreground active:text-foreground/80 rim-light-button",
+          "bg-[rgb(40,40,40)] ring-1 ring-inset ring-border text-foreground active:text-foreground/80 rim-light-dark-button",
         link:
           "h-auto p-0 bg-transparent gap-1 active:scale-[1]",
         destructive:
-          "border-destructive/40 bg-destructive/20 text-destructive hover:bg-destructive/30",
+          "hover:brightness-110 bg-destructive-gradient text-foreground active:text-foreground/80 rim-light-bright-button",
         ghost:
           "bg-transparent hover:bg-white/10 text-foreground",
       },

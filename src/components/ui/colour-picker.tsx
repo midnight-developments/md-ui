@@ -11,9 +11,9 @@ import {
     InputGroupAddon,
     InputGroupInput,
     InputGroupText,
-} from "@/components/ui/input-group";
+} from "@/components/ui/input/input-group";
 import { FieldLabel } from "@/components/ui/field";
-import { inputVariants } from "@/components/ui/input.variants";
+import { inputVariants } from "@/components/ui/input/input.variants";
 
 function hexToRgb(hex: string) {
     const raw = hex.replace("#", "");
@@ -172,6 +172,19 @@ function ColourPickerTrigger({
     color,
     ...props
 }: ColourPickerTriggerProps) {
+    const swatch = color && (
+        <span
+            className="size-4.5 rounded-xs ring-1 ring-border shrink-0"
+            style={{ backgroundColor: color }}
+        />
+    );
+
+    const label = children
+        ? <span className="truncate">{children}</span>
+        : color
+            ? <span className="text-sm uppercase text-foreground">{color}</span>
+            : <span className="text-muted text-base">Select colour...</span>;
+
     return (
         <PopoverTrigger
             data-slot="colour-picker-trigger"
@@ -182,29 +195,10 @@ function ColourPickerTrigger({
             )}
             {...props}
         >
-            {children ? (
-                <span className="flex items-center gap-2 min-w-0">
-                    {color && (
-                        <span
-                            className="size-4.5 rounded-xs ring-1 ring-border shrink-0"
-                            style={{ backgroundColor: color }}
-                        />
-                    )}
-                    <span className="truncate">{children}</span>
-                </span>
-            ) : color ? (
-                <span className="flex items-center gap-2 min-w-0">
-                    <span
-                        className="size-4.5 rounded-xs ring-1 ring-border shrink-0"
-                        style={{ backgroundColor: color }}
-                    />
-                    <span className="text-sm uppercase text-foreground">
-                        {color}
-                    </span>
-                </span>
-            ) : (
-                <span className="text-muted text-base">Select colour...</span>
-            )}
+            <span className="flex items-center gap-2 min-w-0">
+                {swatch}
+                {label}
+            </span>
             <ChevronDownIcon className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
         </PopoverTrigger>
     );

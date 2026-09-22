@@ -4,7 +4,7 @@ import * as React from "react"
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
 
 import { cn } from "@/lib/utils"
-import { popupContentVariants } from "@/components/ui/popup.variants"
+import { popupContentVariants } from "@/components/ui/popup/popup.variants"
 
 const Popover = PopoverPrimitive.Root
 

@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react"
 import {
     Popup,
     PopupContent,
@@ -8,16 +9,15 @@ import {
     PopupTitle,
     PopupDescription,
     PopupCharacteristics,
+    type PopupProps,
 } from "@/components/showcase/popup"
-import { Button } from "@/components/ui/button"
-import { Sparkles, Trash2, Heart, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button/button"
+import { Download, Trash2, Heart, ArrowRight } from "lucide-react"
+import { cn } from "@/lib/utils"
 
-export interface ButtonPopupProps {
-    open: boolean
-    onOpenChange: (open: boolean) => void
-}
+export function ButtonPopup({ open, onOpenChange }: PopupProps) {
+    const [isFavorite, setIsFavorite] = React.useState(false)
 
-export function ButtonPopup({ open, onOpenChange }: ButtonPopupProps) {
     return (
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
@@ -30,7 +30,7 @@ export function ButtonPopup({ open, onOpenChange }: ButtonPopupProps) {
                             <div className="flex flex-wrap items-center gap-3">
                                 <Button variant="default">Primary Action</Button>
                                 <Button variant="default">
-                                    <Sparkles className="size-4" />
+                                    <Download className="size-4" />
                                     With Icon
                                 </Button>
                                 <Button variant="default" disabled>Disabled</Button>
@@ -43,9 +43,20 @@ export function ButtonPopup({ open, onOpenChange }: ButtonPopupProps) {
                             </span>
                             <div className="flex flex-wrap items-center gap-3">
                                 <Button variant="outline">Outline Action</Button>
-                                <Button variant="outline">
-                                    <Heart className="size-4 text-red-400" />
-                                    Favorite
+                                <Button
+                                    variant="outline"
+                                    onClick={() => setIsFavorite((prev) => !prev)}
+                                    className="transition-all"
+                                >
+                                    <Heart
+                                        className={cn(
+                                            "size-4 transition-all duration-200",
+                                            isFavorite
+                                                ? "fill-red-500 text-red-500 scale-110"
+                                                : "text-red-400"
+                                        )}
+                                    />
+                                    {isFavorite ? "Favorited" : "Favorite"}
                                 </Button>
                                 <Button variant="outline" disabled>Disabled</Button>
                             </div>
@@ -91,7 +102,7 @@ export function ButtonPopup({ open, onOpenChange }: ButtonPopupProps) {
                         items={[
                             {
                                 title: "Rim Light Styling",
-                                description: "Top and inner highlight gradient that simulates physical studio lighting.",
+                                description: "Top and inner highlight gradient that simulates modern, physical studio lighting.",
                             },
                             {
                                 title: "Snappy Feedback",

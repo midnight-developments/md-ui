@@ -4,8 +4,9 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input, inputShellVariants } from "@/components/ui/input"
+import { Button } from "@/components/ui/button/button"
+import { Input } from "./input"
+import { inputShellVariants } from "./input.variants"
 import { Textarea } from "@/components/ui/textarea"
 
 function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
@@ -16,7 +17,6 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
             className={cn(
                 inputShellVariants(),
                 "group/input-group relative gap-2.5 px-2.5",
-                "has-[[data-slot=input-group-control][data-invalid=true]]:!ring-2 has-[[data-slot=input-group-control][data-invalid=true]]:!ring-destructive",
                 "has-[>[data-align^=block]]:h-auto has-[>[data-align^=block]]:flex-col",
                 "has-[[data-slot=textarea]]:h-auto",
                 className

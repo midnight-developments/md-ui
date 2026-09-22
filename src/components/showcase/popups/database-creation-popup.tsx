@@ -9,10 +9,11 @@ import {
     PopupTitle,
     PopupDescription,
     PopupCharacteristics,
+    type PopupProps,
 } from "@/components/showcase/popup"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group"
+import { Input } from "@/components/ui/input/input"
+import { Button } from "@/components/ui/button/button"
+import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group/card-radio-group"
 import {
     Select,
     SelectTrigger,
@@ -23,12 +24,7 @@ import {
 import { Switch } from "@/components/ui/switch"
 import { Database, ShieldCheck, Zap, Check, Server } from "lucide-react"
 
-export interface DatabaseCreationPopupProps {
-    open: boolean
-    onOpenChange: (open: boolean) => void
-}
-
-export function DatabaseCreationPopup({ open, onOpenChange }: DatabaseCreationPopupProps) {
+export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
     const [tier, setTier] = React.useState("production")
     const [highAvailability, setHighAvailability] = React.useState(true)
     const [region, setRegion] = React.useState("us-east-1")

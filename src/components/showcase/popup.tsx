@@ -5,6 +5,7 @@ import { createPortal } from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Check } from "lucide-react"
 import { cn } from "@/lib/utils"
+import "@/components/ui/dialog/dialog.css" // Required: loads rim-light-dialog used by PopupContent
 
 const PopupContext = React.createContext<{
     open: boolean
@@ -49,19 +50,21 @@ const overlayVariants = {
     },
     exit: {
         opacity: 0,
-        transition: { duration: 0.38, ease: [0.7, 0, 0.84, 0] as any }
+        transition: { duration: 0.36, ease: [0.4, 0.15, 0.2, 1] as any }
     }
 }
 
 const contentVariants = {
-    initial: { y: "100vh" },
+    initial: { y: "100vh", filter: "blur(12px)" },
     animate: {
         y: 0,
+        filter: "blur(0px)",
         transition: { duration: 0.38, ease: [0.16, 1, 0.3, 1] as any }
     },
     exit: {
         y: "100vh",
-        transition: { duration: 0.38, ease: [0.7, 0, 0.84, 0] as any }
+        filter: "blur(12px)",
+        transition: { duration: 0.36, ease: [0.4, 0.15, 0.2, 1] as any }
     }
 }
 
@@ -127,16 +130,17 @@ export function PopupContent({
                         className={cn(
                             "relative z-50 pointer-events-auto outline-none cursor-default",
                             "w-full max-w-5xl xl:max-w-6xl h-[86vh] max-h-[820px]",
-                            "rounded-2xl surface-grain bg-card rim-light border border-white/10 shadow-2xl",
-                            "text-foreground flex flex-col overflow-hidden will-change-transform",
+                            "rounded-2xl surface-grain bg-card rim-light-dialog border border-white/10 shadow-2xl",
+                            "text-foreground flex flex-col overflow-hidden will-change-[transform,filter]",
                             className
                         )}
                         {...props}
                     >
                         {showCloseButton && (
-                            <div className="absolute top-4 right-4 z-50">
-                                <PopupClose />
-                            </div>
+                            <PopupClose
+                                style={{ position: "absolute" }}
+                                className="!absolute top-4 right-4 sm:top-5 sm:right-5 lg:top-6 lg:right-6 z-50"
+                            />
                         )}
                         <div className="flex-1 flex flex-col lg:flex-row h-full w-full overflow-hidden">
                             {children}
@@ -149,7 +153,7 @@ export function PopupContent({
     )
 }
 
-export function PopupClose({ className, children, onClick, ...props }: React.ComponentProps<"button">) {
+export function PopupClose({ className, children, onClick, style, ...props }: React.ComponentProps<"button">) {
     const { onOpenChange } = React.useContext(PopupContext)
     return (
         <button
@@ -159,10 +163,11 @@ export function PopupClose({ className, children, onClick, ...props }: React.Com
                 onClick?.(e)
                 onOpenChange?.(false)
             }}
+            style={style}
             className={cn(
                 "cursor-pointer inline-flex items-center justify-center size-9 rounded-full",
-                "bg-white/5 hover:bg-white/10 text-muted hover:text-foreground border border-white/8 hover:border-white/15",
-                "transition-all duration-150 focus:outline-none",
+                "bg-white/5 hover:bg-white/10 active:scale-95 text-muted hover:text-foreground border border-white/8 hover:border-white/15",
+                "transition-all duration-150 focus:outline-none backdrop-blur-sm",
                 className
             )}
             aria-label="Close"
@@ -173,7 +178,6 @@ export function PopupClose({ className, children, onClick, ...props }: React.Com
     )
 }
 
-/** Left side: Where the components and demonstrations are showcased */
 export function PopupPreview({ className, children, ...props }: React.ComponentProps<"div">) {
     return (
         <div
@@ -181,7 +185,7 @@ export function PopupPreview({ className, children, ...props }: React.ComponentP
             className={cn(
                 "flex-[1.8] flex items-center justify-center p-6 md:p-12 lg:p-16",
                 "border-b lg:border-b-0 lg:border-r border-white/8",
-                "bg-white/[0.01] relative overflow-auto min-h-[320px] lg:min-h-0",
+                "bg-white/[0.01] relative overflow-auto no-scrollbar min-h-[320px] lg:min-h-0",
                 className
             )}
             {...props}
@@ -196,7 +200,7 @@ export function PopupDetails({ className, children, ...props }: React.ComponentP
         <div
             data-slot="showcase-popup-details"
             className={cn(
-                "flex-1 flex flex-col justify-start p-6 md:p-10 lg:p-12 overflow-y-auto gap-4 bg-transparent",
+                "flex-1 flex flex-col justify-start p-6 md:p-10 lg:p-12 overflow-y-auto no-scrollbar gap-4 bg-transparent",
                 className
             )}
             {...props}
@@ -212,7 +216,7 @@ export function PopupTitle({ className, children, ...props }: React.ComponentPro
             id="showcase-popup-title"
             data-slot="showcase-popup-title"
             className={cn(
-                "font-sf-display text-3xl sm:text-4xl font-semibold text-foreground tracking-tight leading-tight",
+                "font-sf-display text-3xl sm:text-4xl font-semibold text-foreground tracking-tight leading-tight pr-8 sm:pr-10",
                 className
             )}
             {...props}
@@ -266,7 +270,7 @@ export function PopupCharacteristics({
                     {heading}
                 </h4>
             )}
-            <ul className="flex flex-col gap-2.5 font-sf-text text-sm text-muted/90">
+            <ul className="flex flex-col gap-4 font-sf-text text-sm text-muted/90">
                 {items
                     ? items.map((item, index) => (
                         <PopupCharacteristicItem key={index} title={item.title}>
@@ -297,7 +301,7 @@ export function PopupCharacteristicItem({
         >
             <Check className="size-6 text-accent shrink-0 mt-0.5" />
             <span className="text-base tracking-tight">
-                {title && <strong className="text-foreground font-medium mr-1.5">{title}</strong>}
+                {title && <strong className="text-foreground font-medium">{title}</strong>}
                 <br></br>
                 {children}
             </span>
@@ -305,16 +309,3 @@ export function PopupCharacteristicItem({
     )
 }
 
-export {
-    Popup as ShowcasePopup,
-    PopupContent as ShowcasePopupContent,
-    PopupPreview as ShowcasePopupPreview,
-    PopupPreview as PopupLeft,
-    PopupDetails as ShowcasePopupDetails,
-    PopupDetails as PopupRight,
-    PopupTitle as ShowcasePopupTitle,
-    PopupDescription as ShowcasePopupDescription,
-    PopupClose as ShowcasePopupClose,
-    PopupCharacteristics as KeyCharacteristics,
-    PopupCharacteristics as ShowcaseCharacteristics,
-}

@@ -4,10 +4,38 @@ import { Select as SelectPrimitive } from "@base-ui/react/select"
 import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { inputVariants } from "@/components/ui/input.variants"
-import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
+import { inputVariants } from "@/components/ui/input/input.variants"
+import { popupContentVariants, popupItemVariants } from "@/components/ui/popup/popup.variants"
 
-const Select = SelectPrimitive.Root
+function Select<Value, Multiple extends boolean | undefined = false>({
+    modal = false,
+    onOpenChange,
+    onOpenChangeComplete,
+    ...props
+}: SelectPrimitive.Root.Props<Value, Multiple>) {
+    return (
+        <SelectPrimitive.Root
+            modal={modal}
+            onOpenChange={(open, eventDetails) => {
+                onOpenChange?.(open, eventDetails)
+                if (!open && (eventDetails?.reason === "escape-key" || eventDetails?.reason === "outside-press")) {
+                    if (document.activeElement instanceof HTMLElement) {
+                        document.activeElement.blur()
+                    }
+                }
+            }}
+            onOpenChangeComplete={(open) => {
+                onOpenChangeComplete?.(open)
+                if (!open) {
+                    if (document.activeElement instanceof HTMLElement) {
+                        document.activeElement.blur()
+                    }
+                }
+            }}
+            {...props}
+        />
+    )
+}
 
 function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
     return (
@@ -32,14 +60,21 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
 function SelectTrigger({
     className,
     children,
+    onKeyDown,
     ...props
 }: SelectPrimitive.Trigger.Props) {
     return (
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
+            onKeyDown={(e) => {
+                onKeyDown?.(e)
+                if (e.key === "Escape") {
+                    e.currentTarget.blur()
+                }
+            }}
             className={cn(
                 inputVariants(),
-                "group/trigger justify-between cursor-pointer",
+                "group/trigger justify-between cursor-pointer focus:not-focus-visible:ring-1 focus:not-focus-visible:ring-border",
                 "*:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 *:data-[slot=select-value]:line-clamp-1",
                 className
             )}
@@ -61,6 +96,7 @@ function SelectContent({
     align = "center",
     alignOffset = 0,
     alignItemWithTrigger = false,
+    finalFocus = false,
     ...props
 }: SelectPrimitive.Popup.Props &
     Pick<
@@ -82,6 +118,7 @@ function SelectContent({
                     data-align-trigger={alignItemWithTrigger}
                     data-align={align}
                     data-side={side}
+                    finalFocus={finalFocus}
                     className={cn(popupContentVariants(), className)}
                     {...props}
                 >

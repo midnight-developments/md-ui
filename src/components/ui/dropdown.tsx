@@ -5,13 +5,11 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu"
 import { CheckIcon, ChevronRightIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
+import { popupContentVariants, popupItemVariants } from "@/components/ui/popup/popup.variants"
 
 const DropdownMenu = MenuPrimitive.Root
 
-function DropdownMenuPortal({ ...props }: MenuPrimitive.Portal.Props) {
-    return <MenuPrimitive.Portal data-slot="dropdown-menu-portal" {...props} />
-}
+
 
 function DropdownMenuTrigger({ ...props }: MenuPrimitive.Trigger.Props) {
     return <MenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />
@@ -166,13 +164,7 @@ function DropdownMenuCheckboxItem({
         <MenuPrimitive.CheckboxItem
             data-slot="dropdown-menu-checkbox-item"
             data-inset={inset}
-            className={cn(
-                "relative flex w-full cursor-pointer items-center gap-2 rounded py-1.5 pr-8 pl-2 text-base text-muted outline-hidden select-none transition-colors duration-150",
-                "data-[highlighted]:bg-white/5 data-[highlighted]:text-foreground",
-                "data-disabled:pointer-events-none data-disabled:opacity-50",
-                "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-                className
-            )}
+            className={cn(popupItemVariants(), "pr-8", className)}
             checked={checked}
             {...props}
         >
@@ -208,14 +200,7 @@ function DropdownMenuRadioItem({
         <MenuPrimitive.RadioItem
             data-slot="dropdown-menu-radio-item"
             data-inset={inset}
-            className={cn(
-                "relative flex w-full cursor-pointer items-center gap-2 rounded py-1.5 pr-8 pl-2 text-base text-muted outline-hidden select-none transition-colors duration-150",
-                "data-[highlighted]:bg-white/5 data-[highlighted]:text-foreground",
-                "data-[selected]:bg-accent/15 data-[selected]:text-accent-active data-[selected]:data-[highlighted]:bg-accent/20",
-                "data-disabled:pointer-events-none data-disabled:opacity-50",
-                "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-muted data-[selected]:[&_svg]:text-accent-active",
-                className
-            )}
+            className={cn(popupItemVariants(), "pr-8", className)}
             {...props}
         >
             <span
@@ -242,25 +227,10 @@ function DropdownMenuSeparator({
     )
 }
 
-function DropdownMenuShortcut({
-    className,
-    ...props
-}: React.ComponentProps<"span">) {
-    return (
-        <span
-            data-slot="dropdown-menu-shortcut"
-            className={cn(
-                "ml-auto text-sm text-muted-foreground group-focus/dropdown-menu-item:text-accent-foreground",
-                className
-            )}
-            {...props}
-        />
-    )
-}
+
 
 export {
     DropdownMenu,
-    DropdownMenuPortal,
     DropdownMenuTrigger,
     DropdownMenuContent,
     DropdownMenuGroup,
@@ -270,7 +240,6 @@ export {
     DropdownMenuRadioGroup,
     DropdownMenuRadioItem,
     DropdownMenuSeparator,
-    DropdownMenuShortcut,
     DropdownMenuSub,
     DropdownMenuSubTrigger,
     DropdownMenuSubContent,

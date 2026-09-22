@@ -3,6 +3,7 @@
 import { Radio as RadioPrimitive } from "@base-ui/react/radio"
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group"
 import { cn } from "@/lib/utils"
+import "./card-radio-group.css"
 
 function CardRadioGroup({
     className,
@@ -34,16 +35,18 @@ function CardRadioGroupItem({
         <RadioPrimitive.Root
             data-slot="card-radio-group-item"
             className={cn(
-                "group/card-radio peer relative flex justify-between gap-3 p-3.5 rounded-md bg-card hover:bg-card-hover ring-1 ring-inset ring-border outline-none transition-snappy cursor-pointer select-none text-left",
+                "group/card-radio peer relative flex justify-between gap-3 p-3.5 rounded-md ring-2 ring-inset ring-border outline-none transition-snappy cursor-pointer select-none text-left rim-light-card-radio",
                 "focus-visible:ring-2 focus-visible:ring-border-active",
-                "data-checked:ring-2 data-checked:ring-accent data-checked:bg-card-active",
+                "data-checked:ring-transparent",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 indicatorPosition === "center" ? "items-center" : "items-start",
                 className
             )}
             {...props}
         >
-            <div className="flex flex-col gap-1 w-full">{children}</div>
+            <span aria-hidden="true" className="card-radio-active-bg" />
+            <span aria-hidden="true" className="card-radio-active-rim" />
+            <div className="flex flex-col gap-1.75 w-full">{children}</div>
             {showIndicator && (
                 <div
                     data-slot="card-radio-group-indicator"

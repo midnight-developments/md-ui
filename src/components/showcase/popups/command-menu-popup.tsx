@@ -9,13 +9,10 @@ import {
     PopupTitle,
     PopupDescription,
     PopupCharacteristics,
+    type PopupProps,
 } from "@/components/showcase/popup"
 import { Search, Terminal, Plus, FileText, Settings, User, Sparkles } from "lucide-react"
-
-export interface CommandMenuPopupProps {
-    open: boolean
-    onOpenChange: (open: boolean) => void
-}
+import { cn } from "@/lib/utils"
 
 interface CommandItem {
     id: string
@@ -34,7 +31,7 @@ const COMMANDS: CommandItem[] = [
     { id: "settings", title: "Security & API keys", category: "Settings", shortcut: "⌘,", icon: Settings },
 ]
 
-export function CommandMenuPopup({ open, onOpenChange }: CommandMenuPopupProps) {
+export function CommandMenuPopup({ open, onOpenChange }: PopupProps) {
     const [search, setSearch] = React.useState("")
     const [selectedId, setSelectedId] = React.useState<string>("new-db")
     const [recentAction, setRecentAction] = React.useState<string | null>(null)
@@ -71,8 +68,7 @@ export function CommandMenuPopup({ open, onOpenChange }: CommandMenuPopupProps) 
                             </kbd>
                         </div>
 
-                        {/* Commands List */}
-                        <div className="max-h-[320px] overflow-y-auto p-2 flex flex-col gap-1">
+                        <div className="max-h-[320px] p-2 flex flex-col gap-1">
                             {filtered.length === 0 ? (
                                 <div className="p-8 text-center text-sm text-muted font-sf-text">
                                     No commands found matching "{search}"
@@ -86,11 +82,12 @@ export function CommandMenuPopup({ open, onOpenChange }: CommandMenuPopupProps) 
                                             key={cmd.id}
                                             type="button"
                                             onClick={() => handleSelect(cmd)}
-                                            className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-left transition-all text-sm font-sf-text cursor-pointer ${
+                                            className={cn(
+                                                "w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-left transition-all text-sm font-sf-text cursor-pointer border",
                                                 isSelected
-                                                    ? "bg-accent/15 text-foreground border border-accent/30"
-                                                    : "hover:bg-white/5 text-muted/90 hover:text-foreground border border-transparent"
-                                            }`}
+                                                    ? "bg-accent/15 text-foreground border-accent/30"
+                                                    : "hover:bg-white/5 text-muted/90 hover:text-foreground border-transparent"
+                                            )}
                                         >
                                             <div className="flex items-center gap-3">
                                                 <Icon className={`size-4 ${isSelected ? "text-accent" : "text-muted"}`} />
