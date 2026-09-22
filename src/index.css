@@ -25,8 +25,8 @@
     --color-border-active: rgba(255, 255, 255, 0.8);
     --color-popup: rgb(0, 0, 0, 0.4);
 
-    --color-input: rgba(255, 255, 255, 0.05);
-    --color-input-hover: rgba(255, 255, 255, 0.08);
+    --color-input: rgba(35, 35, 35);
+    --color-input-hover: rgba(42, 42, 42);
     --color-input-active: rgba(255, 255, 255, 0.08);
 
     --color-card: rgba(14, 14, 14);
@@ -61,6 +61,14 @@
     transition-timing-function: var(--ease-popup-bouncy, cubic-bezier(0.25, 1, 0.35, 1));
 }
 
+@utility text-glow {
+    text-shadow:
+        0 0 40px rgba(170, 155, 255, 0.35),
+        0 0 80px rgba(130, 115, 238, 0.25),
+        0 0 120px rgba(120, 105, 230, 0.2),
+        0 0 180px rgba(120, 105, 230, 0.15);
+}
+
 @layer base {
 
     *,
@@ -77,6 +85,22 @@
     body {
         @apply font-sans bg-background text-foreground outline-none;
         background-color: rgb(10, 10, 10);
+        position: relative;
+        min-height: 100vh;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.045;
+        background-image: url("./assets/grain.png");
+        background-repeat: repeat;
+        background-size: 96px 96px;
     }
 
     body:has([data-slot="dialog-overlay"]) {
@@ -114,7 +138,6 @@
 
 @layer utilities {
 
-    /* Surface base utility - grain is scoped exclusively to Card Radio options */
     .surface-grain,
     .bg-grain {
         position: relative;
@@ -125,7 +148,21 @@
         }
 
         &>* {
+            z-index: 2;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
             z-index: 1;
+            opacity: 0.04;
+            background-image: url("./assets/grain.png");
+            background-repeat: repeat;
+            background-size: 96px 96px;
         }
     }
+
 }

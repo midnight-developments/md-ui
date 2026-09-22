@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import "./dialog.css"
 
-const DialogContext = React.createContext<{ open: boolean; inDialog: boolean }>({ open: false, inDialog: false })
+const DialogContext = React.createContext<{ open: boolean }>({ open: false })
 
 function Dialog({
     open = false,
@@ -16,7 +16,7 @@ function Dialog({
     ...props
 }: DialogPrimitive.Root.Props) {
     return (
-        <DialogContext.Provider value={{ open, inDialog: true }}>
+        <DialogContext.Provider value={{ open }}>
             <DialogPrimitive.Root
                 data-slot="dialog"
                 open={open}
@@ -28,7 +28,9 @@ function Dialog({
     )
 }
 
-
+function DialogPortal({ ...props }: DialogPrimitive.Portal.Props) {
+    return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />
+}
 
 const overlayVariants = {
     initial: { opacity: 0, backdropFilter: "blur(0px)" },
@@ -102,7 +104,7 @@ function DialogContent({
     const { open } = React.useContext(DialogContext)
 
     return (
-        <DialogPrimitive.Portal keepMounted>
+        <DialogPortal keepMounted>
             <AnimatePresence>
                 {open && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
@@ -130,7 +132,7 @@ function DialogContent({
                     </div>
                 )}
             </AnimatePresence>
-        </DialogPrimitive.Portal>
+        </DialogPortal>
     )
 }
 
@@ -147,22 +149,9 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
     )
 }
 
-function DialogTitle({ className, ...props }: React.ComponentProps<"h2">) {
-    const { inDialog } = React.useContext(DialogContext)
-    if (inDialog) {
-        return (
-            <DialogPrimitive.Title
-                data-slot="dialog-title"
-                className={cn(
-                    "text-2xl font-sf-display text-foreground leading-[1]",
-                    className
-                )}
-                {...(props as DialogPrimitive.Title.Props)}
-            />
-        )
-    }
+function DialogTitle({ className, ...props }: React.ComponentProps<"div">) {
     return (
-        <h2
+        <DialogPrimitive.Title
             data-slot="dialog-title"
             className={cn(
                 "text-2xl font-sf-display text-foreground leading-[1]",
@@ -173,22 +162,10 @@ function DialogTitle({ className, ...props }: React.ComponentProps<"h2">) {
     )
 }
 
-function DialogDescription({ className, ...props }: React.ComponentProps<"p">) {
-    const { inDialog } = React.useContext(DialogContext)
-    if (inDialog) {
-        return (
-            <DialogPrimitive.Description
-                data-slot="dialog-description"
-                className={cn(
-                    "text-base text-muted tracking-tight leading-[1.35]",
-                    className
-                )}
-                {...(props as DialogPrimitive.Description.Props)}
-            />
-        )
-    }
+
+function DialogDescription({ className, ...props }: React.ComponentProps<"div">) {
     return (
-        <p
+        <DialogPrimitive.Description
             data-slot="dialog-description"
             className={cn(
                 "text-base text-muted tracking-tight leading-[1.35]",

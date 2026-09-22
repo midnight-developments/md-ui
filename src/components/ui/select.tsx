@@ -4,7 +4,7 @@ import { Select as SelectPrimitive } from "@base-ui/react/select"
 import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { inputVariants } from "@/components/ui/input/input.variants"
+import { inputVariants, type InputShellVariantProps } from "@/components/ui/input/input.variants"
 import { popupContentVariants, popupItemVariants } from "@/components/ui/popup/popup.variants"
 
 function Select<Value, Multiple extends boolean | undefined = false>({
@@ -59,10 +59,11 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
 
 function SelectTrigger({
     className,
+    variant = "default",
     children,
     onKeyDown,
     ...props
-}: SelectPrimitive.Trigger.Props) {
+}: SelectPrimitive.Trigger.Props & InputShellVariantProps) {
     return (
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
@@ -73,7 +74,7 @@ function SelectTrigger({
                 }
             }}
             className={cn(
-                inputVariants(),
+                inputVariants({ variant }),
                 "group/trigger justify-between cursor-pointer focus:not-focus-visible:ring-1 focus:not-focus-visible:ring-border",
                 "*:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 *:data-[slot=select-value]:line-clamp-1",
                 className

@@ -12,7 +12,11 @@ import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Field, FieldLabel } from '@/components/ui/field'
 import { Search, Globe } from 'lucide-react'
-import modalScreenshot from '@/assets/modal-screenshot.png'
+import modalScreenshot from '@/assets/dialog-screenshot.png'
+import databaseCreationScreenshot from '@/assets/database-creation-screenshot.png'
+
+
+
 import {
     ButtonPopup,
     InputPopup,
@@ -20,7 +24,6 @@ import {
     RadioPopup,
     DialogPopup,
     DatabaseCreationPopup,
-    CommandMenuPopup,
     IntegrationDialogPopup,
 } from '@/components/showcase/popups'
 
@@ -31,7 +34,6 @@ type PopupId =
     | 'radio'
     | 'dialog'
     | 'database-creation'
-    | 'command-menu'
     | 'integration-dialog'
     | null
 
@@ -39,12 +41,12 @@ export default function App() {
     const [activePopup, setActivePopup] = React.useState<PopupId>(null)
 
     return (
-        <div className="min-h-screen font-sans selection:text-white py-16">
-            <div className="max-w-screen-2xl mx-auto flex flex-col gap-12">
+        <div className="min-h-screen font-sans selection:text-white py-16 relative z-1">
+            <div className="max-w-screen-2xl mx-auto flex flex-col gap-16">
 
                 {/* Header */}
                 <header className="flex flex-col items-center text-center gap-3">
-                    <h1 className="font-sf-display text-4xl sm:text-5xl md:text-6xl font-semibold tracking-[-0.035em] text-foreground leading-[1.05]">
+                    <h1 className="font-sf-display text-4xl sm:text-5xl md:text-6xl font-semibold tracking-[-0.035em] text-foreground leading-[1.05] text-glow">
                         UI/UX Showcase By Danyal Asghar
                     </h1>
 
@@ -58,7 +60,7 @@ export default function App() {
 
                 <section className="flex flex-col gap-4">
                     <div className="flex items-center justify-center text-center">
-                        <h2 className="font-sf-display text-lg font-medium text-foreground tracking-tight">Core Primitives</h2>
+                        <h2 className="font-sf-display text-2xl font-medium text-foreground tracking-tight">Core Primitives</h2>
                     </div>
 
                     <div className="grid grid-cols-5 gap-4">
@@ -77,7 +79,6 @@ export default function App() {
                             </CardContent>
                         </Card>
 
-                        {/* 2. Input & InputGroup */}
                         <Card onClick={() => setActivePopup('input')}>
                             <CardPreview>
                                 <Field className="w-full max-w-[210px] pointer-events-none select-none">
@@ -96,7 +97,6 @@ export default function App() {
                             </CardContent>
                         </Card>
 
-                        {/* 3. Select */}
                         <Card onClick={() => setActivePopup('select')}>
                             <CardPreview>
                                 <Field className="w-full max-w-[210px] pointer-events-none select-none">
@@ -117,7 +117,6 @@ export default function App() {
                             </CardContent>
                         </Card>
 
-                        {/* 4. Radio */}
                         <Card onClick={() => setActivePopup('radio')}>
                             <CardPreview>
                                 <Field className="w-full max-w-[190px] gap-2.5! pointer-events-none select-none">
@@ -144,7 +143,6 @@ export default function App() {
                             </CardContent>
                         </Card>
 
-                        {/* 5. Dialog */}
                         <Card onClick={() => setActivePopup('dialog')}>
                             <CardPreview>
                                 <img
@@ -161,32 +159,26 @@ export default function App() {
                     </div>
                 </section>
 
-                {/* Section 2: Full Mockups & Workflows (3 cards) */}
                 <section className="flex flex-col gap-4">
                     <div className="flex items-center justify-center text-center">
-                        <h2 className="font-sf-display text-lg font-medium text-foreground tracking-tight">Full Mockups & Workflows</h2>
+                        <h2 className="font-sf-display text-2xl font-medium text-foreground tracking-tight">Mockups Using Primitives</h2>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        {/* 1. Database Creation Form */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <Card onClick={() => setActivePopup('database-creation')}>
-                            <CardPreview />
+                            <CardPreview>
+                                <img
+                                    src={databaseCreationScreenshot}
+                                    alt="Database creation preview"
+                                    className="h-full scale-135 -mb-40 object-contain rounded-lg"
+                                />
+                            </CardPreview>
                             <CardContent>
                                 <CardTitle>Database Creation</CardTitle>
                                 <CardDescription>Provision high-availability cloud database</CardDescription>
                             </CardContent>
                         </Card>
 
-                        {/* 2. Command K Menu */}
-                        <Card onClick={() => setActivePopup('command-menu')}>
-                            <CardPreview />
-                            <CardContent>
-                                <CardTitle>Command K Menu</CardTitle>
-                                <CardDescription>Spotlight-style fast command palette</CardDescription>
-                            </CardContent>
-                        </Card>
-
-                        {/* 3. Integration Dialog */}
                         <Card onClick={() => setActivePopup('integration-dialog')}>
                             <CardPreview />
                             <CardContent>
@@ -221,10 +213,6 @@ export default function App() {
             />
             <DatabaseCreationPopup
                 open={activePopup === 'database-creation'}
-                onOpenChange={(open) => !open && setActivePopup(null)}
-            />
-            <CommandMenuPopup
-                open={activePopup === 'command-menu'}
                 onOpenChange={(open) => !open && setActivePopup(null)}
             />
             <IntegrationDialogPopup

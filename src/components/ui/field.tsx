@@ -10,7 +10,7 @@ function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
         <fieldset
             data-slot="field-set"
             className={cn(
-                "flex flex-col gap-4 has-[>:is([data-slot=checkbox-group],[data-slot=radio-group],[data-slot=card-radio-group],[role=radiogroup])]:gap-3",
+                "flex flex-col gap-40 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3 has-[>[data-slot=card-radio-group]]:gap-3 has-[>[role=radiogroup]]:gap-3",
                 className
             )}
             {...props}
@@ -24,7 +24,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-group"
             className={cn(
-                "group/field-group @container/field-group flex w-full flex-col gap-8 data-[slot=checkbox-group]:gap-3 data-[slot=radio-group]:gap-3 has-[>:is([data-slot=checkbox-group],[data-slot=radio-group],[data-slot=card-radio-group],[role=radiogroup])]:gap-3 *:data-[slot=field-group]:gap-4",
+                "group/field-group @container/field-group flex w-full flex-col data-[slot=checkbox-group]:gap-3 data-[slot=radio-group]:gap-3 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3 has-[>[data-slot=card-radio-group]]:gap-3 has-[>[role=radiogroup]]:gap-3 *:data-[slot=field-group]:gap-4",
                 className
             )}
             {...props}
@@ -33,15 +33,15 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const fieldVariants = cva(
-    "group/field flex w-full gap-2.25 data-[invalid=true]:text-destructive has-[>:is([data-slot=checkbox-group],[data-slot=radio-group])]:gap-4",
+    "group/field flex w-full gap-2.25 data-[invalid=true]:text-destructive has-[>[data-slot=checkbox-group]]:gap-4 has-[>[data-slot=radio-group]]:gap-4",
     {
         variants: {
             orientation: {
                 vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
                 horizontal:
-                    "flex-row gap-3 items-center has-[[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+                    "flex-row gap- items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
                 responsive:
-                    "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+                    "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
             },
         },
         defaultVariants: {
@@ -100,7 +100,7 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-label"
             className={cn(
-                "flex w-fit items-center gap-2 text-base font-medium tracking-tight leading-[1] text-foreground group-data-[disabled=true]/field:opacity-50",
+                "flex w-fit items-center gap-2 text-base group-data-[disabled=true]/field:opacity-50",
                 className
             )}
             {...props}
@@ -149,7 +149,7 @@ function FieldDescription({
                         exit={{ opacity: 0, y: 20 }}
                         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] as any }}
                         className={cn(
-                            "text-[0.95rem] tracking-tight leading-[1] mt-0.75 w-full will-change-transform ",
+                            "text-[0.9rem] tracking-tight leading-[1] mt-0.75 w-full will-change-transform ",
                             isError
                                 ? "font-normal text-destructive"
                                 : " text-secondary",

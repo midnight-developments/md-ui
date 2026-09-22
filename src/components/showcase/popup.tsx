@@ -136,15 +136,15 @@ export function PopupContent({
                         )}
                         {...props}
                     >
-                        {showCloseButton && (
-                            <PopupClose
-                                style={{ position: "absolute" }}
-                                className="!absolute top-4 right-4 sm:top-5 sm:right-5 lg:top-6 lg:right-6 z-50"
-                            />
-                        )}
                         <div className="flex-1 flex flex-col lg:flex-row h-full w-full overflow-hidden">
                             {children}
                         </div>
+                        {showCloseButton && (
+                            <PopupClose
+                                style={{ position: "absolute", zIndex: 9999 }}
+                                className="!absolute top-4 right-4 sm:top-5 sm:right-5 lg:top-6 lg:right-6 !z-[9999]"
+                            />
+                        )}
                     </motion.div>
                 </div>
             )}
@@ -160,12 +160,13 @@ export function PopupClose({ className, children, onClick, style, ...props }: Re
             type="button"
             data-slot="showcase-popup-close"
             onClick={(e) => {
+                e.stopPropagation()
                 onClick?.(e)
                 onOpenChange?.(false)
             }}
             style={style}
             className={cn(
-                "cursor-pointer inline-flex items-center justify-center size-9 rounded-full",
+                "cursor-pointer inline-flex items-center justify-center size-9 rounded-full pointer-events-auto",
                 "bg-white/5 hover:bg-white/10 active:scale-95 text-muted hover:text-foreground border border-white/8 hover:border-white/15",
                 "transition-all duration-150 focus:outline-none backdrop-blur-sm",
                 className
