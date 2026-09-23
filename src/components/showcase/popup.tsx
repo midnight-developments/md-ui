@@ -184,14 +184,16 @@ export function PopupPreview({ className, children, ...props }: React.ComponentP
         <div
             data-slot="showcase-popup-preview"
             className={cn(
-                "flex-[1.8] flex items-center justify-center p-6 md:p-12 lg:p-16",
+                "flex-[1.8] flex flex-col overflow-y-auto overflow-x-hidden min-h-[320px] lg:min-h-0",
                 "border-b lg:border-b-0 lg:border-r border-white/8",
-                "bg-white/[0.01] relative overflow-auto no-scrollbar min-h-[320px] lg:min-h-0",
+                "bg-white/[0.01] relative [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.15)_transparent]",
                 className
             )}
             {...props}
         >
-            {children}
+            <div className="m-auto shrink-0 w-full flex flex-col items-center justify-center p-6 md:p-10 lg:p-12">
+                {children}
+            </div>
         </div>
     )
 }
