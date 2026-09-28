@@ -46,11 +46,11 @@ export default function App() {
 
                 {/* Header */}
                 <header className="flex flex-col items-center text-center gap-3">
-                    <h1 className="font-sf-display text-4xl sm:text-5xl md:text-6xl font-semibold tracking-[-0.035em] text-foreground leading-[1.05] text-glow">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-foreground leading-[1.05] text-glow">
                         UI/UX Showcase By Danyal Asghar
                     </h1>
 
-                    <p className="font-sf-text text-base sm:text-lg text-muted font-normal tracking-tight max-w-2xl">
+                    <p className="text-base sm:text-lg text-muted font-normal max-w-2xl">
                         Click any card to inspect interactive states and architecture :)
                         <br></br>
                         <br></br>
@@ -60,7 +60,7 @@ export default function App() {
 
                 <section className="flex flex-col gap-4">
                     <div className="flex items-center justify-center text-center">
-                        <h2 className="font-sf-display text-2xl font-medium text-foreground tracking-tight">Core Primitives</h2>
+                        <h2 className="text-2xl font-medium text-foreground">Core Primitives</h2>
                     </div>
 
                     <div className="grid grid-cols-5 gap-4">
@@ -161,7 +161,7 @@ export default function App() {
 
                 <section className="flex flex-col gap-4">
                     <div className="flex items-center justify-center text-center">
-                        <h2 className="font-sf-display text-2xl font-medium text-foreground tracking-tight">Mockups Using Primitives</h2>
+                        <h2 className="text-2xl font-medium text-foreground">Mockups Using Primitives</h2>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

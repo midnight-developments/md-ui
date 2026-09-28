@@ -169,7 +169,7 @@ function DialogTitle({ className, ...props }: React.ComponentProps<"h2">) {
             <DialogPrimitive.Title
                 data-slot="dialog-title"
                 className={cn(
-                    "text-2xl font-sf-display text-foreground leading-[1]",
+                    "text-2xl text-foreground leading-[1]",
                     className
                 )}
                 {...(props as DialogPrimitive.Title.Props)}
@@ -180,7 +180,7 @@ function DialogTitle({ className, ...props }: React.ComponentProps<"h2">) {
         <h2
             data-slot="dialog-title"
             className={cn(
-                "text-2xl font-sf-display text-foreground leading-[1]",
+                "text-2xl text-foreground leading-[1]",
                 className
             )}
             {...props}
@@ -195,7 +195,7 @@ function DialogDescription({ className, ...props }: React.ComponentProps<"p">) {
             <DialogPrimitive.Description
                 data-slot="dialog-description"
                 className={cn(
-                    "text-base text-muted tracking-tight leading-[1.35]",
+                    "text-base text-muted leading-[1.35]",
                     className
                 )}
                 {...(props as DialogPrimitive.Description.Props)}
@@ -206,7 +206,7 @@ function DialogDescription({ className, ...props }: React.ComponentProps<"p">) {
         <p
             data-slot="dialog-description"
             className={cn(
-                "text-base text-muted tracking-tight leading-[1.35]",
+                "text-base text-muted leading-[1.35]",
                 className
             )}
             {...props}

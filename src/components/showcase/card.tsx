@@ -36,7 +36,7 @@ export function CardTitle({ className, children, ...props }: React.ComponentProp
         <h3
             data-slot="showcase-card-title"
             className={cn(
-                "font-sf-display text-lg font-medium text-foreground",
+                "text-lg font-medium text-foreground",
                 className
             )}
             {...props}
@@ -51,7 +51,7 @@ export function CardDescription({ className, children, ...props }: React.Compone
         <p
             data-slot="showcase-card-description"
             className={cn(
-                "text-base text-muted tracking-tight leading-relaxed",
+                "text-base text-muted leading-relaxed",
                 className
             )}
             {...props}

@@ -138,7 +138,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                                         <span className="text-muted">row reads and writes</span>
                                                     </div>
                                                 </FieldContent>
-                                                <div className="absolute top-0 right-0 text-right tracking-tighter pointer-events-none">
+                                                <div className="absolute top-0 right-0 text-right pointer-events-none">
                                                     <span className="text-base font-semibold text-accent">from $28</span>
                                                     <span className="text-sm text-muted block -mt-0.5">/ month</span>
                                                 </div>

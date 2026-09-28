@@ -217,7 +217,7 @@ export function PopupTitle({ className, children, ...props }: React.ComponentPro
             id="showcase-popup-title"
             data-slot="showcase-popup-title"
             className={cn(
-                "font-sf-display text-3xl sm:text-4xl font-semibold text-foreground tracking-tight leading-tight pr-8 sm:pr-10",
+                "text-3xl sm:text-4xl font-semibold text-foreground leading-tight pr-8 sm:pr-10",
                 className
             )}
             {...props}
@@ -233,7 +233,7 @@ export function PopupDescription({ className, children, ...props }: React.Compon
             id="showcase-popup-description"
             data-slot="showcase-popup-description"
             className={cn(
-                "font-sf-text text-base sm:text-lg text-muted tracking-tight leading-normal",
+                "text-base sm:text-lg text-muted leading-normal",
                 className
             )}
             {...props}
@@ -267,11 +267,11 @@ export function PopupCharacteristics({
             {...props}
         >
             {heading && (
-                <h4 className="font-sf-display text-xl font-semibold text-muted">
+                <h3 className="text-xl font-semibold text-muted">
                     {heading}
-                </h4>
+                </h3>
             )}
-            <ul className="flex flex-col gap-4 font-sf-text text-sm text-muted/90">
+            <ul className="flex flex-col gap-4  text-sm text-muted/90">
                 {items
                     ? items.map((item, index) => (
                         <PopupCharacteristicItem key={index} title={item.title}>
@@ -301,7 +301,7 @@ export function PopupCharacteristicItem({
             {...props}
         >
             <Check className="size-6 text-accent shrink-0 mt-0.5" />
-            <span className="text-base tracking-tight">
+            <span className="text-base">
                 {title && <strong className="text-foreground font-medium">{title}</strong>}
                 <br></br>
                 {children}

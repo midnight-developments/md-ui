@@ -24,9 +24,9 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                 <PopupPreview>
                     <div className="flex flex-col gap-8 w-full max-w-lg py-2">
                         <div className="flex flex-col gap-3.5">
-                            <span className="font-sf-display text-lg text-muted leading-none">
+                            <h3 className="text-lg text-muted leading-none">
                                 Primary Variant
-                            </span>
+                            </h3>
                             <div className="flex flex-wrap items-center gap-3">
                                 <Button variant="default">Primary Action</Button>
                                 <Button variant="default">
@@ -38,9 +38,9 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                         </div>
 
                         <div className="flex flex-col gap-3.5">
-                            <span className="font-sf-display text-lg text-muted leading-none">
+                            <h3 className="text-lg text-muted leading-none">
                                 Outline Variant
-                            </span>
+                            </h3>
                             <div className="flex flex-wrap items-center gap-3">
                                 <Button variant="outline">Outline Action</Button>
                                 <Button
@@ -63,9 +63,9 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                         </div>
 
                         <div className="flex flex-col gap-3.5">
-                            <span className="font-sf-display text-lg text-muted leading-none">
+                            <h3 className="text-lg text-muted leading-none">
                                 Ghost Variant
-                            </span>
+                            </h3>
                             <div className="flex flex-wrap items-center gap-3">
                                 <Button variant="ghost">Ghost Action</Button>
                                 <Button variant="ghost">
@@ -77,9 +77,9 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                         </div>
 
                         <div className="flex flex-col gap-3.5">
-                            <span className="font-sf-display text-lg text-muted leading-none">
+                            <h3 className="text-lg text-muted leading-none">
                                 Destructive Variant
-                            </span>
+                            </h3>
                             <div className="flex flex-wrap items-center gap-3">
                                 <Button variant="destructive">Delete Project</Button>
                                 <Button variant="destructive">

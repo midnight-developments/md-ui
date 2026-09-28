@@ -77,7 +77,7 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                             </Select>
                         </Field>
 
-                        <div className="p-3 rounded-md bg-white/[0.02] border border-white/6 text-[0.95rem] tracking-tight text-muted">
+                        <div className="p-3 rounded-md bg-white/[0.02] border border-white/6 text-[0.95rem] text-muted">
                             Active configuration: <span className="text-foreground font-medium">{engine}</span> in <span className="text-foreground font-medium">{region}</span>
                         </div>
                     </div>

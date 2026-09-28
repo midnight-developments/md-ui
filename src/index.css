@@ -1,15 +1,27 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "./fonts.css";
 @import "tailwindcss";
 
+@font-face {
+    font-family: 'Inter Variable';
+    src: url('@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+    font-size-adjust: 97.5%;
+}
+
 @theme inline {
-    --font-sans: 'SF Pro', sans-serif;
-    --font-header: 'SF Pro Display', sans-serif;
-    --font-sf-pro: 'SF Pro', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-sf-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-sf-text: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-sf-rounded: 'SF Pro Rounded', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Inter Variable', sans-serif;
+    --font-weight-normal: 380;
+    --font-weight-medium: 480;
+    --font-weight-semibold: 580;
+    --font-weight-bold: 680;
+
+    --letter-spacing-h1: -2.5px;
+    --letter-spacing-h2: -0.7px;
+    --letter-spacing-h3: -0.4px;
+    --letter-spacing-text: -0.3px;
 
     --color-background: rgb(0, 0, 0);
     --color-foreground: rgb(225, 225, 225);
@@ -69,13 +81,16 @@
         0 0 180px rgba(120, 105, 230, 0.15);
 }
 
+
 :root {
     --grain-opacity: 0.045;
     --grain-surface-opacity: 0.04;
     --grain-size: 96px;
+
+    --font-feature-settings: "cv02" 1, "cv03" 1, "cv04" 1, "cv11" 1, "calt" 1, "liga" 1;
 }
 
-@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (color-gamut: p3) {
+@media (color-gamut: p3) {
     :root {
         --grain-size: 48px;
         --grain-opacity: 0.018;
@@ -83,13 +98,13 @@
     }
 }
 
+
 @layer base {
 
     *,
     *::before,
     *::after {
         outline: none !important;
-
     }
 
     html {
@@ -97,10 +112,15 @@
     }
 
     body {
-        @apply font-sans bg-background text-foreground outline-none;
+        @apply font-sans antialiased bg-background text-foreground outline-none;
+        font-weight: var(--font-weight-normal, 380);
+        letter-spacing: var(--letter-spacing-text, -0.15px);
         background-color: rgb(10, 10, 10);
         position: relative;
         min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings: var(--font-feature-settings);
     }
 
     body::before {
@@ -121,6 +141,22 @@
         overflow: hidden;
     }
 
+    h1 {
+        letter-spacing: var(--letter-spacing-h1);
+    }
+
+    h2 {
+        letter-spacing: var(--letter-spacing-h2);
+    }
+
+    h3 {
+        letter-spacing: var(--letter-spacing-h3);
+    }
+
+    p {
+        letter-spacing: var(--letter-spacing-text);
+    }
+
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -132,6 +168,7 @@
         appearance: textfield;
     }
 }
+
 
 .react-colorful {
     overflow: visible !important;
@@ -149,6 +186,7 @@
     border-radius: 0 0 4px 4px !important;
     border-top: none !important;
 }
+
 
 @layer utilities {
 
@@ -178,5 +216,4 @@
             background-size: var(--grain-size) var(--grain-size);
         }
     }
-
 }

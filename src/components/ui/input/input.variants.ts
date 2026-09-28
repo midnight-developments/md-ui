@@ -33,7 +33,7 @@ export const inputShellVariants = cva(
 
 export const inputControlVariants = cva(
   [
-    "w-full outline-none text-base text-foreground tracking-tight",
+    "w-full outline-none text-base text-foreground",
     "placeholder:text-muted data-placeholder:text-muted ",
     "disabled:cursor-not-allowed",
   ].join(" ")

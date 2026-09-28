@@ -87,7 +87,7 @@ function FieldLabel({
         <label
             data-slot="field-label"
             className={cn(
-                "group/field-label peer/field-label text-base font-medium tracking-tight leading-[1] text-foreground",
+                "group/field-label peer/field-label text-base font-medium leading-[1] text-foreground",
                 className
             )}
             {...props}
@@ -113,7 +113,7 @@ function FieldLegend({ className, ...props }: React.ComponentProps<"legend">) {
         <legend
             data-slot="field-legend"
             className={cn(
-                "text-base font-medium tracking-tight leading-[1] text-foreground mb-4",
+                "text-base font-medium leading-[1] text-foreground mb-4",
                 className
             )}
             {...props}
@@ -149,7 +149,7 @@ function FieldDescription({
                         exit={{ opacity: 0, y: 20 }}
                         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] as any }}
                         className={cn(
-                            "text-[0.9rem] tracking-tight leading-[1] mt-0.75 w-full will-change-transform ",
+                            "text-[0.9rem] leading-[1] mt-0.75 w-full will-change-transform ",
                             isError
                                 ? "font-normal text-destructive"
                                 : " text-secondary",
