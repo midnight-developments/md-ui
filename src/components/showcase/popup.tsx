@@ -130,7 +130,7 @@ export function PopupContent({
                         className={cn(
                             "relative z-50 pointer-events-auto outline-none cursor-default",
                             "w-full max-w-5xl xl:max-w-6xl h-[86vh] max-h-[820px]",
-                            "rounded-2xl surface-grain bg-card rim-light-dialog border border-white/10 shadow-2xl",
+                            "rounded-2xl bg-card rim-light-dialog border border-white/10 shadow-2xl",
                             "text-foreground flex flex-col overflow-hidden will-change-[transform,filter]",
                             className
                         )}

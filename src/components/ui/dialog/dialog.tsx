@@ -106,7 +106,7 @@ function DialogContent({
             <div
                 data-slot="dialog-content"
                 className={cn(
-                    "flex flex-col gap-4 p-6 rounded-xl surface-grain bg-card rim-light-dialog overflow-hidden",
+                    "flex flex-col gap-4 p-6 rounded-xl bg-card rim-light-dialog overflow-hidden",
                     className
                 )}
                 {...(props as React.ComponentProps<"div">)}
@@ -133,7 +133,7 @@ function DialogContent({
                                     exit="exit"
                                     className={cn(
                                         "relative z-50 outline-none pointer-events-auto",
-                                        "flex flex-col gap-4 p-6 rounded-xl surface-grain bg-card rim-light-dialog overflow-hidden",
+                                        "flex flex-col gap-4 p-6 rounded-xl bg-card rim-light-dialog overflow-hidden",
                                         className
                                     )}
                                 />

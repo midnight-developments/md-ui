@@ -48,7 +48,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="w-full max-w-xl p-6 sm:p-7 rounded-xl surface-grain bg-card rim-light-dialog border border-white/10 shadow-2xl">
+                    <div className="w-full max-w-xl p-6 sm:p-7 rounded-xl bg-card rim-light-dialog border border-white/10 shadow-2xl">
                         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                             <DialogHeader className="text-left items-start gap-1">
                                 <DialogTitle>
