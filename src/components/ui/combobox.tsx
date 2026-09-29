@@ -5,14 +5,14 @@ import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 import { ChevronDownIcon, XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { popupContentVariants, popupItemVariants } from "@/components/ui/popup/popup.variants"
-import { Button } from "@/components/ui/button/button"
+import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
+import { Button } from "@/components/ui/button"
 import {
     InputGroup,
     InputGroupAddon,
     InputGroupButton,
     InputGroupInput,
-} from "@/components/ui/input/input-group"
+} from "@/components/ui/input-group"
 
 const Combobox = ComboboxPrimitive.Root
 

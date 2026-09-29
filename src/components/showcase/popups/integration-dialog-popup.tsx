@@ -18,7 +18,7 @@ import {
     DialogFooter,
     DialogContent,
 } from "@/components/ui/dialog/dialog"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import { ChevronsRight, Check, Loader2 } from "lucide-react"
 import gmailLogo from "@/assets/gmail-logo.jpg"
 import tempoLogo from "@/assets/tempo-logo.png"
@@ -66,11 +66,11 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
                     <DialogContent >
                         <DialogHeader >
                             <div className="flex items-center justify-center gap-3.5 mb-3">
-                                <div className="size-14 rounded-lg overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(255,255,255,0.3),0_4px_12px_rgba(255,255,255,0.08)] flex items-center justify-center bg-white rim-light">
+                                <div className="size-14 rounded-lg overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(255,255,255,0.3),0_4px_12px_rgba(255,255,255,0.08)] flex items-center justify-center bg-white">
                                     <img src={gmailLogo} alt="Gmail" className="size-full object-contain p-1" />
                                 </div>
                                 <ChevronsRight className="size-4.5 text-muted/40 shrink-0" />
-                                <div className="size-14 rounded-lg overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(255,255,255,0.3),0_4px_12px_rgba(255,255,255,0.08)] flex items-center justify-center bg-white rim-light">
+                                <div className="size-14 rounded-lg overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(255,255,255,0.3),0_4px_12px_rgba(255,255,255,0.08)] flex items-center justify-center bg-white">
                                     <img src={tempoLogo} alt="Tempo" className="size-full object-contain p-1.5" />
                                 </div>
                             </div>

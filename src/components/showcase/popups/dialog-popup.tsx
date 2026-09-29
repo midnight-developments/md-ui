@@ -20,8 +20,8 @@ import {
     DialogBody,
     DialogFooter,
 } from "@/components/ui/dialog/dialog"
-import { Button } from "@/components/ui/button/button"
-import { WarningIcon } from "@/components/ui/warning-icon"
+import { Button } from "@/components/ui/button"
+import { WarningIcon } from "@/components/ui/dialog/header-icons/warning-icon"
 import { Sparkles } from "lucide-react"
 
 export function DialogPopup({ open, onOpenChange }: PopupProps) {
@@ -32,7 +32,7 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
             <PopupContent>
                 <PopupPreview>
                     <div className="flex flex-col items-center gap-6 max-w-sm w-full">
-                        <div className="w-full flex flex-col gap-4 p-6 rounded-xl bg-card rim-light-dialog border border-white/10 shadow-2xl">
+                        <div className="w-full flex flex-col gap-4 p-6 rounded-xl bg-card border border-white/10 shadow-2xl">
                             <div className="flex flex-col items-center text-center gap-2">
                                 <WarningIcon className="size-12" />
                                 <h2 className="text-2xl text-foreground">Action Confirmation</h2>

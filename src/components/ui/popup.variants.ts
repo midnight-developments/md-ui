@@ -1,9 +1,8 @@
 import { cva } from "class-variance-authority"
-import "./popup.css"
 
 export const popupContentVariants = cva(
   [
-    "relative overflow-hidden overflow-y-auto no-scrollbar rounded-md border border-border rim-light-popup outline-hidden bg-popup/80 text-foreground backdrop-blur-xl p-1",
+    "relative overflow-hidden overflow-y-auto no-scrollbar rounded-md border border-border outline-hidden bg-popup/80 text-foreground backdrop-blur-xl p-1",
     "max-h-(--available-height) min-w-(--anchor-width) max-w-(--available-width)",
     "shadow-xl transition-popup",
     "data-[align=start]:origin-top-left data-[align=end]:origin-top-right data-[align=center]:origin-top data-[side=top]:data-[align=start]:origin-bottom-left data-[side=top]:data-[align=end]:origin-bottom-right data-[side=top]:data-[align=center]:origin-bottom",

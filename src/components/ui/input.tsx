@@ -56,3 +56,5 @@ function Input({ className, variant = "default", type, id, ref, disabled, ...pro
 }
 
 export { Input }
+export * from "./input-group"
+export * from "./input.variants"

@@ -11,9 +11,9 @@ import {
     InputGroupAddon,
     InputGroupInput,
     InputGroupText,
-} from "@/components/ui/input/input-group";
+} from "@/components/ui/input-group";
 import { FieldLabel } from "@/components/ui/field";
-import { inputVariants } from "@/components/ui/input/input.variants";
+import { inputVariants } from "@/components/ui/input.variants";
 
 function hexToRgb(hex: string) {
     const raw = hex.replace("#", "");

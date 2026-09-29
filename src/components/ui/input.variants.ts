@@ -1,6 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import "./input.css"
 
 export const inputShellVariants = cva(
   [
@@ -13,7 +12,7 @@ export const inputShellVariants = cva(
     variants: {
       variant: {
         default: [
-          "bg-input ring-1 ring-inset ring-border rim-light-input",
+          "bg-input ring-1 ring-inset ring-border",
           "[&:is(:hover,:focus-within,:focus-visible,:active,[data-popup-open],[data-state=open],[data-active=true],[aria-expanded=true])]:bg-input-hover",
           "[&:is(:focus-within,:focus-visible,:active,[data-popup-open],[data-state=open],[data-active=true],[aria-expanded=true])]:ring-2",
           "[&:is(:focus-within,:focus-visible,:active,[data-popup-open],[data-state=open],[data-active=true],[aria-expanded=true])]:ring-border-active",

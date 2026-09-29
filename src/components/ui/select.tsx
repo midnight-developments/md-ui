@@ -4,8 +4,8 @@ import { Select as SelectPrimitive } from "@base-ui/react/select"
 import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { inputVariants, type InputShellVariantProps } from "@/components/ui/input/input.variants"
-import { popupContentVariants, popupItemVariants } from "@/components/ui/popup/popup.variants"
+import { inputVariants, type InputShellVariantProps } from "@/components/ui/input.variants"
+import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
 
 function Select<Value, Multiple extends boolean | undefined = false>({
     modal = false,

@@ -5,7 +5,6 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { motion, AnimatePresence } from "framer-motion"
 
 import { cn } from "@/lib/utils"
-import "./dialog.css"
 
 const DialogContext = React.createContext<{ open: boolean; inDialog: boolean }>({ open: false, inDialog: false })
 
@@ -106,7 +105,7 @@ function DialogContent({
             <div
                 data-slot="dialog-content"
                 className={cn(
-                    "flex flex-col gap-4 p-6 rounded-xl bg-card rim-light-dialog overflow-hidden",
+                    "flex flex-col gap-4 p-6 rounded-xl bg-card shadow-2xl overflow-hidden",
                     className
                 )}
                 {...(props as React.ComponentProps<"div">)}
@@ -133,7 +132,7 @@ function DialogContent({
                                     exit="exit"
                                     className={cn(
                                         "relative z-50 outline-none pointer-events-auto",
-                                        "flex flex-col gap-4 p-6 rounded-xl bg-card rim-light-dialog overflow-hidden",
+                                        "flex flex-col gap-4 p-6 rounded-xl bg-card border border-border shadow-2xl overflow-hidden",
                                         className
                                     )}
                                 />

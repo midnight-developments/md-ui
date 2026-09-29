@@ -11,8 +11,8 @@ import {
     PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { Input } from "@/components/ui/input/input"
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input/input-group"
+import { Input } from "@/components/ui/input"
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
 import { Search, Lock, Eye, EyeOff } from "lucide-react"
 

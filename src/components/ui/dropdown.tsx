@@ -5,7 +5,7 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu"
 import { CheckIcon, ChevronRightIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { popupContentVariants, popupItemVariants } from "@/components/ui/popup/popup.variants"
+import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
 
 const DropdownMenu = MenuPrimitive.Root
 

@@ -11,9 +11,9 @@ import {
     PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { Input } from "@/components/ui/input/input"
-import { Button } from "@/components/ui/button/button"
-import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge/badge"
 import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSet, FieldContent, FieldTitle } from "@/components/ui/field"
 import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group/card-radio-group"
 import {
@@ -48,7 +48,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="w-full max-w-xl p-6 sm:p-7 rounded-xl bg-card rim-light-dialog border border-white/10 shadow-2xl">
+                    <div className="w-full max-w-xl p-6 sm:p-7 rounded-xl bg-card border border-white/10 shadow-2xl">
                         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                             <DialogHeader className="text-left items-start gap-1">
                                 <DialogTitle>

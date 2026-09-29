@@ -6,8 +6,8 @@ import {
     CardDescription,
     CardContent,
 } from '@/components/showcase/card'
-import { Button } from '@/components/ui/button/button'
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input/input-group'
+import { Button } from '@/components/ui/button'
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input'
 import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Field, FieldLabel } from '@/components/ui/field'
@@ -17,15 +17,13 @@ import databaseCreationScreenshot from '@/assets/database-creation-screenshot.pn
 import tempoGmailScreenshot from '@/assets/gmail-tempo-screenshot.png'
 
 
-import {
-    ButtonPopup,
-    InputPopup,
-    SelectPopup,
-    RadioPopup,
-    DialogPopup,
-    DatabaseCreationPopup,
-    IntegrationDialogPopup,
-} from '@/components/showcase/popups'
+import { ButtonPopup } from '@/components/showcase/popups/button-popup'
+import { InputPopup } from '@/components/showcase/popups/input-popup'
+import { SelectPopup } from '@/components/showcase/popups/select-popup'
+import { RadioPopup } from '@/components/showcase/popups/radio-popup'
+import { DialogPopup } from '@/components/showcase/popups/dialog-popup'
+import { DatabaseCreationPopup } from '@/components/showcase/popups/database-creation-popup'
+import { IntegrationDialogPopup } from '@/components/showcase/popups/integration-dialog-popup'
 
 type PopupId =
     | 'button'

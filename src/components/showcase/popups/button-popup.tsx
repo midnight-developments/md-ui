@@ -11,7 +11,7 @@ import {
     PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import { Download, Trash2, Heart, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
