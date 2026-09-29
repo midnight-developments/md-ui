@@ -96,12 +96,10 @@ function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
 
 function InputGroupInput({
     className,
-    ref,
     ...props
-}: React.ComponentProps<"input"> & { ref?: React.Ref<HTMLInputElement> }) {
+}: React.ComponentProps<"input">) {
     return (
         <input
-            ref={ref}
             data-slot="input-group-control"
             className={cn(
                 "h-full w-full flex-1 rounded-none px-0 bg-transparent border-none outline-none ring-0 shadow-none text-base text-foreground placeholder:text-muted disabled:cursor-not-allowed",
@@ -114,12 +112,10 @@ function InputGroupInput({
 
 function InputGroupTextarea({
     className,
-    ref,
     ...props
-}: React.ComponentProps<"textarea"> & { ref?: React.Ref<HTMLTextAreaElement> }) {
+}: React.ComponentProps<"textarea">) {
     return (
         <textarea
-            ref={ref}
             data-slot="input-group-control"
             className={cn(
                 "w-full flex-1 resize-none bg-transparent border-none outline-none ring-0 shadow-none py-2 text-base text-foreground placeholder:text-muted disabled:cursor-not-allowed field-sizing-content min-h-16",

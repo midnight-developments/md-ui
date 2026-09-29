@@ -4,9 +4,7 @@ import { Input as InputPrimitive } from "@base-ui/react/input"
 import { cn } from "@/lib/utils"
 import { InputShell } from "./input-shell"
 
-export interface InputProps extends React.ComponentProps<"input"> {
-  ref?: React.Ref<HTMLInputElement>
-}
+export interface InputProps extends React.ComponentProps<"input"> {}
 
 function Input({ className, type, id, ref, disabled, ...props }: InputProps) {
   const inputId = id || React.useId()
