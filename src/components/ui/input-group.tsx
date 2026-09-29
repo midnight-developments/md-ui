@@ -5,20 +5,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Input } from "./input"
-import { inputShellVariants } from "./input.variants"
-import { Textarea } from "@/components/ui/textarea"
+import { InputShell } from "./input-shell"
 
 function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
     return (
-        <div
+        <InputShell
             data-slot="input-group"
             role="group"
             className={cn(
-                inputShellVariants(),
                 "group/input-group relative gap-2.5 px-2.5",
                 "has-[>[data-align^=block]]:h-auto has-[>[data-align^=block]]:flex-col",
-                "has-[[data-slot=textarea]]:h-auto",
+                "has-[textarea]:h-auto has-[[data-slot=textarea]]:h-auto",
                 className
             )}
             {...props}
@@ -101,13 +98,15 @@ function InputGroupInput({
     className,
     ref,
     ...props
-}: React.ComponentProps<typeof Input> & { ref?: React.Ref<HTMLInputElement> }) {
+}: React.ComponentProps<"input"> & { ref?: React.Ref<HTMLInputElement> }) {
     return (
-        <Input
+        <input
             ref={ref}
-            variant="ghost"
             data-slot="input-group-control"
-            className={cn("h-full flex-1 rounded-none px-0", className)}
+            className={cn(
+                "h-full w-full flex-1 rounded-none px-0 bg-transparent border-none outline-none ring-0 shadow-none text-base text-foreground placeholder:text-muted disabled:cursor-not-allowed",
+                className
+            )}
             {...props}
         />
     )
@@ -117,12 +116,15 @@ function InputGroupTextarea({
     className,
     ref,
     ...props
-}: React.ComponentProps<typeof Textarea> & { ref?: React.Ref<HTMLTextAreaElement> }) {
+}: React.ComponentProps<"textarea"> & { ref?: React.Ref<HTMLTextAreaElement> }) {
     return (
-        <Textarea
+        <textarea
             ref={ref}
             data-slot="input-group-control"
-            className={cn("flex-1 resize-none rounded-none py-2", className)}
+            className={cn(
+                "w-full flex-1 resize-none bg-transparent border-none outline-none ring-0 shadow-none py-2 text-base text-foreground placeholder:text-muted disabled:cursor-not-allowed field-sizing-content min-h-16",
+                className
+            )}
             {...props}
         />
     )

@@ -5,11 +5,9 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu"
 import { CheckIcon, ChevronRightIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
+import { PopupShell, PopupItem } from "@/components/ui/popup-shell"
 
 const DropdownMenu = MenuPrimitive.Root
-
-
 
 function DropdownMenuTrigger({ ...props }: MenuPrimitive.Trigger.Props) {
     return <MenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />
@@ -41,7 +39,7 @@ function DropdownMenuContent({
                     data-slot="dropdown-menu-content"
                     data-align={align}
                     data-side={side}
-                    className={cn(popupContentVariants(), className)}
+                    render={<PopupShell className={className} />}
                     {...props}
                 >
                     {children}
@@ -95,7 +93,7 @@ function DropdownMenuItem({
             data-slot="dropdown-menu-item"
             data-inset={inset}
             data-variant={variant}
-            className={cn(popupItemVariants(), className)}
+            render={<PopupItem variant={variant} className={cn(inset && "pl-7", className)} />}
             {...props}
         />
     )
@@ -117,11 +115,15 @@ function DropdownMenuSubTrigger({
         <MenuPrimitive.SubmenuTrigger
             data-slot="dropdown-menu-sub-trigger"
             data-inset={inset}
-            className={cn(
-                popupItemVariants(),
-                "justify-between data-[popup-open]:bg-white/5 data-[popup-open]:text-foreground",
-                className
-            )}
+            render={
+                <PopupItem
+                    className={cn(
+                        "justify-between data-[popup-open]:bg-white/5 data-[popup-open]:text-foreground",
+                        inset && "pl-7",
+                        className
+                    )}
+                />
+            }
             {...props}
         >
             {children}
@@ -164,7 +166,7 @@ function DropdownMenuCheckboxItem({
         <MenuPrimitive.CheckboxItem
             data-slot="dropdown-menu-checkbox-item"
             data-inset={inset}
-            className={cn(popupItemVariants(), "pr-8", className)}
+            render={<PopupItem className={cn("pr-8", inset && "pl-7", className)} />}
             checked={checked}
             {...props}
         >
@@ -200,7 +202,7 @@ function DropdownMenuRadioItem({
         <MenuPrimitive.RadioItem
             data-slot="dropdown-menu-radio-item"
             data-inset={inset}
-            className={cn(popupItemVariants(), "pr-8", className)}
+            render={<PopupItem className={cn("pr-8", inset && "pl-7", className)} />}
             {...props}
         >
             <span
@@ -226,8 +228,6 @@ function DropdownMenuSeparator({
         />
     )
 }
-
-
 
 export {
     DropdownMenu,

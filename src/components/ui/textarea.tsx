@@ -1,16 +1,20 @@
+import * as React from "react"
 import { cn } from "@/lib/utils"
-import { inputVariants } from "@/components/ui/input.variants"
+import { InputShell } from "@/components/ui/input-shell"
 
 function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
     return (
-        <textarea
-            data-slot="textarea"
-            className={cn(
-                inputVariants(),
-                "field-sizing-content min-h-16 py-2 h-auto",
-                className
-            )}
-            {...props}
+        <InputShell
+            render={
+                <textarea
+                    data-slot="textarea"
+                    className={cn(
+                        "field-sizing-content min-h-16 py-2 h-auto cursor-text",
+                        className
+                    )}
+                    {...props}
+                />
+            }
         />
     )
 }

@@ -7,7 +7,7 @@ import {
     CardContent,
 } from '@/components/showcase/card'
 import { Button } from '@/components/ui/button'
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input'
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Field, FieldLabel } from '@/components/ui/field'
@@ -90,8 +90,8 @@ export default function App() {
                                 </Field>
                             </CardPreview>
                             <CardContent>
-                                <CardTitle>Input & InputGroup</CardTitle>
-                                <CardDescription>Addons, icons & validation states</CardDescription>
+                                <CardTitle>Input & Textarea</CardTitle>
+                                <CardDescription>InputGroup, textareas & addons</CardDescription>
                             </CardContent>
                         </Card>
 

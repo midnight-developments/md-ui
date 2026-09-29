@@ -4,7 +4,7 @@ import * as React from "react"
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
 
 import { cn } from "@/lib/utils"
-import { popupContentVariants } from "@/components/ui/popup.variants"
+import { PopupShell } from "@/components/ui/popup-shell"
 
 const Popover = PopoverPrimitive.Root
 
@@ -76,11 +76,14 @@ function PopoverContent({
                     data-slot="popover-content"
                     data-align={align}
                     data-side={side}
-                    className={cn(
-                        popupContentVariants(),
-                        "flex w-72 flex-col gap-2.5 p-2.5 text-base",
-                        className
-                    )}
+                    render={
+                        <PopupShell
+                            className={cn(
+                                "flex w-72 flex-col gap-2.5 p-2.5 text-base",
+                                className
+                            )}
+                        />
+                    }
                     {...props}
                 />
             </PopoverPrimitive.Positioner>

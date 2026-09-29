@@ -5,7 +5,7 @@ import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 import { ChevronDownIcon, XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
+import { PopupShell, PopupItem } from "@/components/ui/popup-shell"
 import { Button } from "@/components/ui/button"
 import {
     InputGroup,
@@ -107,7 +107,7 @@ function ComboboxContent({
                     data-chips={!!anchor}
                     data-align={align}
                     data-side={side}
-                    className={cn(popupContentVariants(), "w-(--anchor-width)", className)}
+                    render={<PopupShell className={cn("w-(--anchor-width)", className)} />}
                     {...props}
                 >
                     {children}
@@ -138,7 +138,7 @@ function ComboboxItem({
     return (
         <ComboboxPrimitive.Item
             data-slot="combobox-item"
-            className={cn(popupItemVariants(), className)}
+            render={<PopupItem className={className} />}
             {...props}
         >
             {children}

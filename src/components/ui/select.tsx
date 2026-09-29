@@ -4,8 +4,8 @@ import { Select as SelectPrimitive } from "@base-ui/react/select"
 import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { inputVariants, type InputShellVariantProps } from "@/components/ui/input.variants"
-import { popupContentVariants, popupItemVariants } from "@/components/ui/popup.variants"
+import { InputShell } from "@/components/ui/input-shell"
+import { PopupShell, PopupItem } from "@/components/ui/popup-shell"
 
 function Select<Value, Multiple extends boolean | undefined = false>({
     modal = false,
@@ -59,11 +59,10 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
 
 function SelectTrigger({
     className,
-    variant = "default",
     children,
     onKeyDown,
     ...props
-}: SelectPrimitive.Trigger.Props & InputShellVariantProps) {
+}: SelectPrimitive.Trigger.Props) {
     return (
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
@@ -73,12 +72,15 @@ function SelectTrigger({
                     e.currentTarget.blur()
                 }
             }}
-            className={cn(
-                inputVariants({ variant }),
-                "group/trigger justify-between cursor-pointer focus:not-focus-visible:ring-1 focus:not-focus-visible:ring-border",
-                "*:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 *:data-[slot=select-value]:line-clamp-1",
-                className
-            )}
+            render={
+                <InputShell
+                    className={cn(
+                        "group/trigger justify-between cursor-pointer focus:not-focus-visible:ring-1 focus:not-focus-visible:ring-border",
+                        "*:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 *:data-[slot=select-value]:line-clamp-1",
+                        className
+                    )}
+                />
+            }
             {...props}
         >
             {children}
@@ -120,7 +122,7 @@ function SelectContent({
                     data-align={align}
                     data-side={side}
                     finalFocus={finalFocus}
-                    className={cn(popupContentVariants(), className)}
+                    render={<PopupShell className={className} />}
                     {...props}
                 >
                     <SelectPrimitive.List data-slot="select-list">
@@ -150,7 +152,7 @@ function SelectItem({
     return (
         <SelectPrimitive.Item
             data-slot="select-item"
-            className={cn(popupItemVariants(), className)}
+            render={<PopupItem className={className} />}
             {...props}
         >
             <SelectPrimitive.ItemText className="flex flex-1 shrink-0 items-center gap-2 whitespace-nowrap">

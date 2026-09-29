@@ -13,6 +13,7 @@ import {
 } from "@/components/showcase/popup"
 import { Input } from "@/components/ui/input"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
+import { Textarea } from "@/components/ui/textarea"
 import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
 import { Search, Lock, Eye, EyeOff } from "lucide-react"
 
@@ -28,7 +29,7 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="flex flex-col gap-8 max-w-md w-full">
+                    <div className="flex flex-col gap-6 max-w-md w-full py-4">
                         <Field>
                             <FieldLabel>Standard Input</FieldLabel>
                             <Input placeholder="Enter username or email" defaultValue="danyalasghar@midnight.dev" />
@@ -42,7 +43,7 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                                 </InputGroupAddon>
                                 <InputGroupInput
                                     value={query}
-                                    onChange={(e) => setQuery(e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
                                     placeholder="Search documentation or files..."
                                 />
                             </InputGroup>
@@ -69,6 +70,16 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                             </InputGroup>
                         </Field>
 
+                        {/* Plain Textarea */}
+                        <Field>
+                            <FieldLabel>Textarea</FieldLabel>
+                            <Textarea
+                                placeholder="Write project notes or a description..."
+                                defaultValue="Engineered with automatic field-sizing and unified InputShell styling."
+                                rows={3}
+                            />
+                        </Field>
+
                         {/* Interactive validation state with dynamic description / error */}
                         <Field data-invalid={isInvalid}>
                             <FieldLabel>Validation State</FieldLabel>
@@ -93,9 +104,9 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                 </PopupPreview>
 
                 <PopupDetails>
-                    <PopupTitle>Input & InputGroup</PopupTitle>
+                    <PopupTitle>Input, Textarea & InputGroup</PopupTitle>
                     <PopupDescription>
-                        Engineered with composable input groups, interactive icon addons, password visibility toggles, and clean focus ring transitions.
+                        Engineered with composable input groups, polymorphic textareas, interactive icon addons, password visibility toggles, and clean focus ring transitions.
                     </PopupDescription>
 
                     <PopupCharacteristics
@@ -103,6 +114,10 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                             {
                                 title: "Addon Architecture",
                                 description: "Easily place leading icons, trailing actions, or helper controls inside the input shell.",
+                            },
+                            {
+                                title: "Polymorphic Textarea Support",
+                                description: "Textareas seamlessly adopt the exact same InputShell tokens, focus glow, and elevation without redundant wrapper DOM nodes.",
                             },
                             {
                                 title: "Elevated Surface & Rim Light",

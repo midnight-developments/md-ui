@@ -1,7 +1,9 @@
-import { cva } from "class-variance-authority"
+"use client"
 
-export const popupContentVariants = cva(
-  [
+import * as React from "react"
+import { cn } from "@/lib/utils"
+
+const popupShellClasses = [
     "relative overflow-hidden overflow-y-auto no-scrollbar rounded-md border border-border outline-hidden bg-popup/80 text-foreground backdrop-blur-xl p-1",
     "max-h-(--available-height) min-w-(--anchor-width) max-w-(--available-width)",
     "shadow-xl transition-popup",
@@ -13,11 +15,9 @@ export const popupContentVariants = cva(
     "[&:is([data-starting-style],[data-ending-style])[data-side=top]]:translate-y-2",
     "[&:is([data-starting-style],[data-ending-style])[data-side=left]]:translate-x-2",
     "[&:is([data-starting-style],[data-ending-style])[data-side=right]]:-translate-x-2",
-  ].join(" ")
-)
+].join(" ")
 
-export const popupItemVariants = cva(
-  [
+const popupItemClasses = [
     "relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-base font-medium text-muted outline-hidden select-none transition-snappy",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-muted",
     "data-[highlighted]:bg-white/5 data-[highlighted]:text-foreground",
@@ -26,5 +26,47 @@ export const popupItemVariants = cva(
     "data-[variant=destructive]:text-destructive data-[variant=destructive]:data-[highlighted]:bg-destructive/10 data-[variant=destructive]:data-[highlighted]:text-destructive",
     "data-[variant=destructive]:[&_svg]:text-destructive",
     "data-disabled:pointer-events-none data-disabled:opacity-50",
-  ].join(" ")
-)
+].join(" ")
+
+export interface PopupShellProps extends Omit<React.ComponentProps<"div">, "className"> {
+    className?: any
+}
+
+export function PopupShell({ className, children, ...props }: PopupShellProps) {
+    return (
+        <div
+            data-slot="popup-shell"
+            className={cn(popupShellClasses, className)}
+            {...props}
+        >
+            {children}
+        </div>
+    )
+}
+
+export interface PopupItemProps extends Omit<React.ComponentProps<"div">, "className"> {
+    className?: any
+    variant?: "default" | "destructive"
+}
+
+export function PopupItem({
+    className,
+    variant = "default",
+    children,
+    ...props
+}: PopupItemProps) {
+    return (
+        <div
+            data-slot="popup-item"
+            data-variant={variant !== "default" ? variant : undefined}
+            className={cn(
+                popupItemClasses,
+                variant === "destructive" && "text-destructive data-[highlighted]:bg-destructive/10 data-[highlighted]:text-destructive [&_svg]:text-destructive",
+                className
+            )}
+            {...props}
+        >
+            {children}
+        </div>
+    )
+}

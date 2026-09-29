@@ -13,7 +13,7 @@ import {
     InputGroupText,
 } from "@/components/ui/input-group";
 import { FieldLabel } from "@/components/ui/field";
-import { inputVariants } from "@/components/ui/input.variants";
+import { InputShell } from "@/components/ui/input-shell";
 
 function hexToRgb(hex: string) {
     const raw = hex.replace("#", "");
@@ -108,7 +108,7 @@ function ColourPicker({
                                 min={0}
                                 max={255}
                                 value={rgb[channel]}
-                                onChange={(e) => handleChannelChange(channel, e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChannelChange(channel, e.target.value)}
                                 className="flex-1 h-full text-right text-base px-0 py-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-inner-spin-button]:m-0"
                             />
                         </InputGroup>
@@ -127,7 +127,7 @@ function ColourPicker({
                             type="text"
                             maxLength={6}
                             value={hexInput}
-                            onChange={(e) => handleHexChange(e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleHexChange(e.target.value)}
                             className="flex-1 h-full text-right text-base uppercase px-0 py-0"
                         />
                     </InputGroup>
@@ -188,11 +188,14 @@ function ColourPickerTrigger({
     return (
         <PopoverTrigger
             data-slot="colour-picker-trigger"
-            className={cn(
-                inputVariants(),
-                "group/trigger justify-between cursor-pointer",
-                className
-            )}
+            render={
+                <InputShell
+                    className={cn(
+                        "group/trigger justify-between cursor-pointer",
+                        className
+                    )}
+                />
+            }
             {...props}
         >
             <span className="flex items-center gap-2 min-w-0">

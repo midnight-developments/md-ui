@@ -2,38 +2,19 @@ import * as React from "react"
 import { Input as InputPrimitive } from "@base-ui/react/input"
 
 import { cn } from "@/lib/utils"
-import { inputShellVariants, inputControlVariants, type InputShellVariantProps } from "./input.variants"
+import { InputShell } from "./input-shell"
 
-export interface InputProps extends React.ComponentProps<"input">, InputShellVariantProps {
+export interface InputProps extends React.ComponentProps<"input"> {
   ref?: React.Ref<HTMLInputElement>
 }
 
-function Input({ className, variant = "default", type, id, ref, disabled, ...props }: InputProps) {
+function Input({ className, type, id, ref, disabled, ...props }: InputProps) {
   const inputId = id || React.useId()
 
-  if (variant === "ghost") {
-    return (
-      <InputPrimitive
-        ref={ref}
-        id={inputId}
-        type={type}
-        disabled={disabled}
-        data-slot="input"
-        className={cn(inputControlVariants(), className)}
-        {...props}
-      />
-    )
-  }
-
   return (
-    <div
-      data-slot="input-shell"
+    <InputShell
       data-disabled={disabled ? "" : undefined}
-      className={cn(
-        inputShellVariants({ variant }),
-        "relative cursor-text",
-        className
-      )}
+      className={cn("relative cursor-text", className)}
       onClick={(e) => {
         const target = e.target as HTMLElement
         if (target.tagName !== "INPUT") {
@@ -48,13 +29,11 @@ function Input({ className, variant = "default", type, id, ref, disabled, ...pro
         type={type}
         disabled={disabled}
         data-slot="input"
-        className={cn(inputControlVariants(), "h-full bg-transparent border-none outline-none ring-0 shadow-none")}
+        className="h-full w-full bg-transparent border-none outline-none ring-0 shadow-none text-base text-foreground placeholder:text-muted disabled:cursor-not-allowed"
         {...props}
       />
-    </div>
+    </InputShell>
   )
 }
 
 export { Input }
-export * from "./input-group"
-export * from "./input.variants"
