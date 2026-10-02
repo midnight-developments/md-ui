@@ -123,7 +123,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                                         <FieldTitle >
                                                             Business
                                                         </FieldTitle>
-                                                        <Badge variant="outline" className="gap-1 px-1.5 py-0.5 text-xs font-normal border-border bg-white/[0.04] text-muted">
+                                                        <Badge variant="flat" className="gap-1 px-1.5 py-0.5 text-xs font-normal border-border bg-white/[0.04] text-muted">
                                                             <Globe className="size-3" />
                                                             AWS ap-east-1
                                                         </Badge>
@@ -150,7 +150,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                                         <FieldTitle>
                                                             Hobby
                                                         </FieldTitle>
-                                                        <Badge variant="outline" className="gap-1 px-1.5 py-0.5 text-xs font-normal border-border bg-white/[0.04] text-muted">
+                                                        <Badge variant="flat" className="gap-1 px-1.5 py-0.5 text-xs font-normal border-border bg-white/[0.04] text-muted">
                                                             <Globe className="size-3" />
                                                             AWS ap-east-1
                                                         </Badge>

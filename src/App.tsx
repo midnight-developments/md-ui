@@ -11,6 +11,7 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/in
 import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Field, FieldLabel } from '@/components/ui/field'
+import { Badge } from '@/components/ui/badge/badge'
 import { Search, Globe } from 'lucide-react'
 import modalScreenshot from '@/assets/dialog-screenshot.png'
 import databaseCreationScreenshot from '@/assets/database-creation-screenshot.png'
@@ -21,6 +22,7 @@ import { ButtonPopup } from '@/components/showcase/popups/button-popup'
 import { InputPopup } from '@/components/showcase/popups/input-popup'
 import { SelectPopup } from '@/components/showcase/popups/select-popup'
 import { RadioPopup } from '@/components/showcase/popups/radio-popup'
+import { BadgePopup } from '@/components/showcase/popups/badge-popup'
 import { DialogPopup } from '@/components/showcase/popups/dialog-popup'
 import { DatabaseCreationPopup } from '@/components/showcase/popups/database-creation-popup'
 import { IntegrationDialogPopup } from '@/components/showcase/popups/integration-dialog-popup'
@@ -30,6 +32,7 @@ type PopupId =
     | 'input'
     | 'select'
     | 'radio'
+    | 'badge'
     | 'dialog'
     | 'database-creation'
     | 'integration-dialog'
@@ -61,7 +64,7 @@ export default function App() {
                         <h2 className="text-2xl font-medium text-foreground">Core Primitives</h2>
                     </div>
 
-                    <div className="grid grid-cols-5 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                         <Card onClick={() => setActivePopup('button')}>
                             <CardPreview>
                                 <div className="grid grid-cols-2 gap-2 pointer-events-none select-none">
@@ -141,6 +144,25 @@ export default function App() {
                             </CardContent>
                         </Card>
 
+                        <Card onClick={() => setActivePopup('badge')}>
+                            <CardPreview>
+                                <div className="flex flex-col items-center justify-center gap-2 pointer-events-none select-none">
+                                    <div className="flex items-center gap-1.5">
+                                        <Badge variant="default">Default</Badge>
+                                        <Badge variant="success">Success</Badge>
+                                    </div>
+                                    <div className="flex items-center gap-1.5">
+                                        <Badge variant="secondary">Secondary</Badge>
+                                        <Badge variant="destructive">Destructive</Badge>
+                                    </div>
+                                </div>
+                            </CardPreview>
+                            <CardContent>
+                                <CardTitle>Badge</CardTitle>
+                                <CardDescription>Status indicators & metadata tags</CardDescription>
+                            </CardContent>
+                        </Card>
+
                         <Card onClick={() => setActivePopup('dialog')}>
                             <CardPreview>
                                 <img
@@ -209,6 +231,10 @@ export default function App() {
             />
             <RadioPopup
                 open={activePopup === 'radio'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <BadgePopup
+                open={activePopup === 'badge'}
                 onOpenChange={(open) => !open && setActivePopup(null)}
             />
             <DialogPopup
