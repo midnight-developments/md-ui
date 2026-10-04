@@ -2,7 +2,7 @@
     --dialog-bg: var(--color-card, rgb(14, 14, 14));
     --dialog-color: var(--color-foreground, rgb(225, 225, 225));
     --dialog-border: rgba(255, 255, 255, 0.08);
-    --dialog-shine: rgba(255, 255, 255, 0.28);
+    --dialog-border-shine: rgba(255, 255, 255, 0.28);
 
     position: relative;
     border-width: 0;
@@ -24,7 +24,7 @@
     border: 1px solid transparent;
 
     background: radial-gradient(ellipse 65% 55% at 50% 0%,
-            var(--dialog-shine) 10%,
+            var(--dialog-border-shine) 10%,
             transparent 60%) border-box;
 
     -webkit-mask:

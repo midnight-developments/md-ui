@@ -7,13 +7,13 @@
     border-width: 0;
     color: var(--badge-text-color);
     background:
-        radial-gradient(ellipse at 0% 100%, rgba(255, 255, 255, var(--badge-glow, 0.09)) 0%, transparent 65%),
-        radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, var(--badge-glow, 0.09)) 0%, transparent 65%),
+        radial-gradient(ellipse at 0% 100%, rgba(255, 255, 255, 0.09) 0%, transparent 65%),
+        radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0.09) 0%, transparent 65%),
         var(--badge-bg);
     background-repeat: no-repeat;
     background-size: 100% 100%;
     box-shadow:
-        0 0 18px 2px var(--badge-shadow),
+        0 0 18px 2px var(--badge-glow),
         inset 0 0 0 1px var(--badge-border);
 }
 
@@ -32,7 +32,7 @@
     border: 1px solid transparent;
 
     background: radial-gradient(ellipse 65% 55% at 50% 0%,
-            var(--badge-shine) 0%,
+            var(--badge-border-shine) 0%,
             transparent 100%) border-box;
 
     -webkit-mask:
@@ -49,39 +49,38 @@
     --badge-bg: rgba(40, 40, 40);
     --badge-text-color: var(--color-accent-active);
     --badge-border: rgba(175, 162, 245, 0.22);
-    --badge-shadow: rgba(150, 130, 240, 0.1);
-    --badge-shine: rgba(215, 205, 255, 0.35);
+    --badge-border-shine: rgba(215, 205, 255, 0.35);
+    --badge-glow: rgba(150, 130, 240, 0.1);
 }
 
 .secondary {
     --badge-bg: rgba(38, 44, 54);
     --badge-text-color: rgb(186, 199, 218);
     --badge-border: rgba(182, 195, 214, 0.2);
-    --badge-shadow: rgba(140, 165, 195, 0.1);
-    --badge-shine: rgba(230, 240, 255, 0.3);
+    --badge-border-shine: rgba(230, 240, 255, 0.3);
+    --badge-glow: rgba(140, 165, 195, 0.1);
 }
 
 .success {
     --badge-bg: rgba(38, 61, 52);
     --badge-text-color: var(--color-success);
     --badge-border: rgba(190, 220, 210, 0.2);
-    --badge-shadow: rgba(110, 190, 160, 0.1);
-    --badge-shine: rgba(200, 255, 235, 0.35);
+    --badge-border-shine: rgba(200, 255, 235, 0.35);
+    --badge-glow: rgba(110, 190, 160, 0.1);
 }
 
 .warning {
     --badge-bg: rgba(65, 48, 24);
     --badge-text-color: var(--color-warning);
     --badge-border: rgba(240, 215, 150, 0.22);
-    --badge-shadow: rgba(230, 175, 75, 0.1);
-    --badge-shine: rgba(255, 235, 185, 0.35);
+    --badge-border-shine: rgba(255, 235, 185, 0.35);
+    --badge-glow: rgba(230, 175, 75, 0.1);
 }
 
 .destructive {
     --badge-bg: rgba(66, 34, 37);
     --badge-text-color: var(--color-destructive);
     --badge-border: rgba(242, 145, 148, 0.1);
-    --badge-shadow: rgba(235, 95, 105, 0.1);
-    --badge-glow: 0.05;
-    --badge-shine: rgba(255, 180, 185, 0.3);
+    --badge-border-shine: rgba(255, 180, 185, 0.3);
+    --badge-glow: rgba(235, 95, 105, 0.1);
 }
