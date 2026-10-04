@@ -1,18 +1,18 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import styles from "./badge.module.css"
+import advancedBadgeStyles from "./badge.module.css"
 
 const badgeVariants = cva(
-  "group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2.5 py-0.75 text-[0.9rem]   whitespace-nowrap transition-all has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive [&>svg]:pointer-events-none [&>svg]:size-3!",
+  "group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full px-2.5 py-0.75 text-[0.9rem] whitespace-nowrap transition-all has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
       variant: {
-        default: styles.default,
-        secondary: styles.secondary,
-        destructive: styles.destructive,
-        success: styles.success,
-        warning: styles.warning,
+        default: advancedBadgeStyles.default,
+        secondary: advancedBadgeStyles.secondary,
+        destructive: advancedBadgeStyles.destructive,
+        success: advancedBadgeStyles.success,
+        warning: advancedBadgeStyles.warning,
         flat:
           "border-transparent bg-white/10 text-foreground [a]:hover:bg-white/15 shadow-none",
         ghost:

@@ -18,7 +18,7 @@ import {
     DialogFooter,
     DialogContent,
 } from "@/components/ui/dialog/dialog"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import { ChevronsRight, Check, Loader2 } from "lucide-react"
 import gmailLogo from "@/assets/gmail-logo.jpg"
 import tempoLogo from "@/assets/tempo-logo.png"
@@ -111,7 +111,7 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
                             </Button>
 
                             <Button
-                                variant="outline"
+                                variant="secondary"
                                 className="w-full "
                                 onClick={() => onOpenChange?.(false)}
                             >

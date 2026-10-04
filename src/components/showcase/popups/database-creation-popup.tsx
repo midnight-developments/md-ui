@@ -12,7 +12,7 @@ import {
     type PopupProps,
 } from "@/components/showcase/popup"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import { Badge } from "@/components/ui/badge/badge"
 import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSet, FieldContent, FieldTitle } from "@/components/ui/field"
 import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group/card-radio-group"
@@ -174,7 +174,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                             <DialogFooter className="justify-between pt-1">
                                 <Button
                                     type="button"
-                                    variant="outline"
+                                    variant="secondary"
                                     onClick={() => onOpenChange?.(false)}
                                     className="px-5"
                                 >

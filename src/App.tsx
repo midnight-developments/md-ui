@@ -6,7 +6,7 @@ import {
     CardDescription,
     CardContent,
 } from '@/components/showcase/card'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/ui/button/button'
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
@@ -64,19 +64,18 @@ export default function App() {
                         <h2 className="text-2xl font-medium text-foreground">Core Primitives</h2>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                         <Card onClick={() => setActivePopup('button')}>
                             <CardPreview>
                                 <div className="grid grid-cols-2 gap-2 pointer-events-none select-none">
                                     <Button variant="default" className="h-8.5">Primary</Button>
-                                    <Button variant="outline" className="h-8.5">Outline</Button>
+                                    <Button variant="secondary" className="h-8.5">Secondary</Button>
                                     <Button variant="ghost" className="h-8.5">Ghost</Button>
                                     <Button variant="destructive" className="h-8.5">Destructive</Button>
                                 </div>
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Button</CardTitle>
-                                <CardDescription>Physical rim light & tactile click</CardDescription>
                             </CardContent>
                         </Card>
 
@@ -94,7 +93,6 @@ export default function App() {
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Input & Textarea</CardTitle>
-                                <CardDescription>InputGroup, textareas & addons</CardDescription>
                             </CardContent>
                         </Card>
 
@@ -114,7 +112,6 @@ export default function App() {
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Select</CardTitle>
-                                <CardDescription>Animated dropdown picker</CardDescription>
                             </CardContent>
                         </Card>
 
@@ -140,7 +137,6 @@ export default function App() {
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Radio</CardTitle>
-                                <CardDescription>Card variants & keyboard navigation</CardDescription>
                             </CardContent>
                         </Card>
 
@@ -159,7 +155,6 @@ export default function App() {
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Badge</CardTitle>
-                                <CardDescription>Status indicators & metadata tags</CardDescription>
                             </CardContent>
                         </Card>
 
@@ -173,7 +168,6 @@ export default function App() {
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Dialog</CardTitle>
-                                <CardDescription>Spring physics & modular layout</CardDescription>
                             </CardContent>
                         </Card>
                     </div>

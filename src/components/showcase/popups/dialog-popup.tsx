@@ -20,7 +20,7 @@ import {
     DialogBody,
     DialogFooter,
 } from "@/components/ui/dialog/dialog"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import { WarningIcon } from "@/components/ui/dialog/header-icons/warning-icon"
 import { Sparkles } from "lucide-react"
 
@@ -32,7 +32,7 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
             <PopupContent>
                 <PopupPreview>
                     <div className="flex flex-col items-center gap-6 max-w-sm w-full">
-                        <div className="w-full flex flex-col gap-4 p-6 rounded-xl bg-card border border-white/10 shadow-2xl">
+                        <DialogContent className="w-full">
                             <div className="flex flex-col items-center text-center gap-2">
                                 <WarningIcon className="size-12" />
                                 <h2 className="text-2xl text-foreground">Action Confirmation</h2>
@@ -50,9 +50,9 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                                     <Sparkles className="size-4" />
                                     Open Dialog
                                 </Button>
-                                <Button variant="outline" className="w-full">Cancel</Button>
+                                <Button variant="secondary" className="w-full">Cancel</Button>
                             </div>
-                        </div>
+                        </DialogContent>
 
                         <p className="text-sm text-muted text-center max-w-xs">
                             Click above to test modal opening/closing

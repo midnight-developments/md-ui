@@ -6,7 +6,7 @@ import { ChevronDownIcon, XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { PopupShell, PopupItem } from "@/components/ui/popup-shell"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import {
     InputGroup,
     InputGroupAddon,

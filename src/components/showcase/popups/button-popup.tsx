@@ -11,7 +11,7 @@ import {
     PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import { Download, Trash2, Heart, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -39,12 +39,12 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
 
                         <div className="flex flex-col gap-3.5">
                             <h3 className="text-lg text-muted leading-none">
-                                Outline Variant
+                                Secondary Variant
                             </h3>
                             <div className="flex flex-wrap items-center gap-3">
-                                <Button variant="outline">Outline Action</Button>
+                                <Button variant="secondary">Secondary Action</Button>
                                 <Button
-                                    variant="outline"
+                                    variant="secondary"
                                     onClick={() => setIsFavorite((prev) => !prev)}
                                     className="transition-all"
                                 >
@@ -58,7 +58,7 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                                     />
                                     {isFavorite ? "Favorited" : "Favorite"}
                                 </Button>
-                                <Button variant="outline" disabled>Disabled</Button>
+                                <Button variant="secondary" disabled>Disabled</Button>
                             </div>
                         </div>
 
