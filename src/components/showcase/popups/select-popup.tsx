@@ -21,7 +21,7 @@ import {
     SelectLabel,
 } from "@/components/ui/select"
 import { Field, FieldLabel } from "@/components/ui/field"
-import { Globe, Database } from "lucide-react"
+
 
 export function SelectPopup({ open, onOpenChange }: PopupProps) {
     const [region, setRegion] = React.useState("us-east-1")
@@ -34,10 +34,7 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                     <div className="flex flex-col gap-6 max-w-sm w-full">
                         {/* 1. Cloud Region Select */}
                         <Field>
-                            <FieldLabel className="flex items-center gap-2">
-                                <Globe className="size-4 text-accent" />
-                                Primary Deployment Region
-                            </FieldLabel>
+                            <FieldLabel>Primary Deployment Region</FieldLabel>
                             <Select value={region} onValueChange={(val) => val && setRegion(val)}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select a region..." />
@@ -60,10 +57,7 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
 
                         {/* 2. Database Engine Select */}
                         <Field>
-                            <FieldLabel className="flex items-center gap-2">
-                                <Database className="size-4 text-accent" />
-                                Database Engine & Version
-                            </FieldLabel>
+                            <FieldLabel>Database Engine & Version</FieldLabel>
                             <Select value={engine} onValueChange={(val) => val && setEngine(val)}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select an engine..." />

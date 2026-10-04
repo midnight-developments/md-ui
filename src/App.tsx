@@ -12,7 +12,7 @@ import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Field, FieldLabel } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge/badge'
-import { Search, Globe } from 'lucide-react'
+import { Search } from 'lucide-react'
 import modalScreenshot from '@/assets/dialog-screenshot.png'
 import databaseCreationScreenshot from '@/assets/database-creation-screenshot.png'
 import tempoGmailScreenshot from '@/assets/gmail-tempo-screenshot.png'
@@ -99,10 +99,7 @@ export default function App() {
                         <Card onClick={() => setActivePopup('select')}>
                             <CardPreview>
                                 <Field className="w-full max-w-[210px] pointer-events-none select-none">
-                                    <FieldLabel className="flex items-center gap-2">
-                                        <Globe className="size-4 text-accent" />
-                                        Deployment Region
-                                    </FieldLabel>
+                                    <FieldLabel>Deployment Region</FieldLabel>
                                     <Select defaultValue="us-east-1">
                                         <SelectTrigger className="h-9">
                                             <SelectValue placeholder="Select a region..." />
