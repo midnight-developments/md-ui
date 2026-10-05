@@ -1,4 +1,4 @@
-.default,
+.primary,
 .secondary,
 .success,
 .warning,
@@ -15,10 +15,13 @@
     box-shadow:
         0 0 18px 2px var(--badge-glow),
         inset 0 0 0 1px var(--badge-border);
+
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 
-.default::after,
+.primary::after,
 .secondary::after,
 .success::after,
 .warning::after,
@@ -43,14 +46,17 @@
         linear-gradient(#fff 0 0) padding-box,
         linear-gradient(#fff 0 0);
     mask-composite: exclude;
+
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
-.default {
-    --badge-bg: rgba(40, 40, 40);
-    --badge-text-color: var(--color-accent-active);
-    --badge-border: rgba(175, 162, 245, 0.22);
-    --badge-border-shine: rgba(215, 205, 255, 0.35);
-    --badge-glow: rgba(150, 130, 240, 0.1);
+.primary {
+    --badge-bg: rgba(48, 42, 82);
+    --badge-text-color: rgb(188, 176, 255);
+    --badge-border: rgba(180, 168, 255, 0.28);
+    --badge-border-shine: rgba(225, 215, 255, 0.45);
+    --badge-glow: rgba(140, 120, 245, 0.18);
 }
 
 .secondary {

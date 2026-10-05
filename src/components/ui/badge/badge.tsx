@@ -8,7 +8,7 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: advancedBadgeStyles.default,
+        primary: advancedBadgeStyles.primary,
         secondary: advancedBadgeStyles.secondary,
         destructive: advancedBadgeStyles.destructive,
         success: advancedBadgeStyles.success,
@@ -21,7 +21,7 @@ const badgeVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
     },
   }
 )
@@ -32,7 +32,7 @@ export interface BadgeProps
 
 function Badge({
   className,
-  variant = "default",
+  variant = "primary",
   ...props
 }: BadgeProps) {
   return (

@@ -141,7 +141,7 @@ export default function App() {
                             <CardPreview>
                                 <div className="flex flex-col items-center justify-center gap-2 pointer-events-none select-none">
                                     <div className="flex items-center gap-1.5">
-                                        <Badge variant="default">Default</Badge>
+                                        <Badge variant="primary">Primary</Badge>
                                         <Badge variant="success">Success</Badge>
                                     </div>
                                     <div className="flex items-center gap-1.5">

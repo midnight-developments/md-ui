@@ -20,11 +20,11 @@ export function BadgePopup({ open, onOpenChange }: PopupProps) {
                     <div className="flex flex-col gap-6 w-full max-w-md py-2">
                         <div className="flex flex-col gap-3">
                             <h3 className="text-lg text-muted leading-none">
-                                Default Variant
+                                Primary Variant
                             </h3>
                             <div className="flex items-center gap-3">
-                                <Badge variant="default">Default</Badge>
-                                <Badge variant="default">Badge</Badge>
+                                <Badge variant="primary">Primary</Badge>
+                                <Badge variant="primary">Badge</Badge>
                             </div>
                         </div>
 

@@ -3,6 +3,14 @@
 @import "tailwindcss";
 
 @font-face {
+    font-family: 'Plus Jakarta Sans Variable';
+    src: url('@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2');
+    font-weight: 200 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'Inter Variable';
     src: url('@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2');
     font-weight: 100 900;
@@ -12,7 +20,7 @@
 }
 
 @theme inline {
-    --font-sans: 'Inter Variable', sans-serif;
+    --font-sans: 'Plus Jakarta Sans Variable', 'Inter Variable', sans-serif;
     --font-weight-normal: 380;
     --font-weight-medium: 480;
     --font-weight-semibold: 580;

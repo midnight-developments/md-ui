@@ -5,12 +5,17 @@
     border-width: 0;
     color: var(--button-text-color, var(--color-foreground));
     background:
-        radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 75%),
+        linear-gradient(105deg, transparent 28%, rgba(255, 255, 255, 0.02) 50%, transparent 72%),
         var(--button-bg);
+    background-size: 90px 90px, auto, auto, auto;
     box-shadow:
         0 0 14px 1px var(--button-glow, transparent),
         inset 0 0 0 1px var(--button-border),
         inset 0 -1px 0 0 rgba(255, 255, 255, 0.02);
+
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: filter 0.15s ease;
 }
 
 .default::after,
@@ -26,7 +31,7 @@
 
     background: radial-gradient(ellipse 65% 55% at 50% 0%,
             var(--button-border-shine) 20%,
-            transparent 70%) border-box;
+            transparent 120%) border-box;
 
     -webkit-mask:
         linear-gradient(#fff 0 0) padding-box,
@@ -37,6 +42,8 @@
         linear-gradient(#fff 0 0);
     mask-composite: exclude;
 
+    transform: translateZ(0);
+    backface-visibility: hidden;
     transition: opacity 0.15s ease;
 }
 
@@ -54,23 +61,23 @@
 }
 
 .default {
-    --button-bg: var(--background-image-accent-gradient);
+    --button-bg: linear-gradient(20deg, rgb(138, 122, 242) 0%, rgb(123, 107, 231) 55%, rgb(114, 99, 214) 100%);
     --button-text-color: var(--color-foreground);
     --button-border: rgba(255, 255, 255, 0.12);
     --button-glow: rgba(120, 105, 230, 0.25);
-    --button-border-shine: rgba(225, 215, 255, 0.45);
+    --button-border-shine: rgba(225, 215, 255, 0.55);
 }
 
 .secondary {
-    --button-bg: linear-gradient(to bottom, rgb(40, 40, 40), rgb(36, 36, 36));
+    --button-bg: linear-gradient(180deg, rgb(48, 48, 52) 0%, rgb(36, 36, 39) 55%, rgb(26, 26, 28) 100%);
     --button-text-color: var(--color-foreground);
-    --button-border: rgba(255, 255, 255, 0.1);
+    --button-border: rgba(255, 255, 255, 0.05);
     --button-border-shine: rgba(255, 255, 255, 0.15);
     --button-glow: rgba(0, 0, 0, 0.2);
 }
 
 .destructive {
-    --button-bg: linear-gradient(to bottom, rgb(192, 70, 80), rgb(168, 52, 62));
+    --button-bg: linear-gradient(20deg, rgb(182, 63, 71) 0%, rgb(133, 46, 52) 55%, rgb(155, 34, 44) 100%);
     --button-text-color: var(--color-foreground);
     --button-border: rgba(242, 145, 148, 0.2);
     --button-border-shine: rgba(255, 205, 210, 0.45);
