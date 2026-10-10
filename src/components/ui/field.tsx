@@ -10,7 +10,9 @@ function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
         <fieldset
             data-slot="field-set"
             className={cn(
-                "flex flex-col gap-4 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3 has-[>[data-slot=card-radio-group]]:gap-3 has-[>[role=radiogroup]]:gap-3",
+                "flex flex-col",
+                "[&>[data-slot=card-radio-group]]:mt-3",
+                "[&>[data-slot=radio-group]]:mt-5",
                 className
             )}
             {...props}
@@ -24,7 +26,7 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-group"
             className={cn(
-                "group/field-group @container/field-group flex w-full flex-col data-[slot=checkbox-group]:gap-3 data-[slot=radio-group]:gap-3 has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3 has-[>[data-slot=card-radio-group]]:gap-3 has-[>[role=radiogroup]]:gap-3 *:data-[slot=field-group]:gap-4",
+                "group/field-group @container/field-group flex w-full flex-col gap-8",
                 className
             )}
             {...props}
@@ -33,13 +35,13 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const fieldVariants = cva(
-    "group/field flex w-full gap-2.25 data-[invalid=true]:text-destructive has-[>[data-slot=checkbox-group]]:gap-4 has-[>[data-slot=radio-group]]:gap-4",
+    "group/field flex w-full gap-2 data-[invalid=true]:text-destructive",
     {
         variants: {
             orientation: {
                 vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
                 horizontal:
-                    "flex-row gap-4 items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+                    "flex-row gap-3.5 items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
                 responsive:
                     "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
             },
@@ -71,7 +73,7 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-content"
             className={cn(
-                "group/field-content flex flex-1 flex-col gap-2",
+                "group/field-content flex flex-1 flex-col gap-2.25",
                 className
             )}
             {...props}
@@ -113,7 +115,7 @@ function FieldLegend({ className, ...props }: React.ComponentProps<"legend">) {
         <legend
             data-slot="field-legend"
             className={cn(
-                "text-base font-medium leading-[1] text-foreground mb-4",
+                "text-base font-medium leading-[1] text-foreground",
                 className
             )}
             {...props}
@@ -137,7 +139,7 @@ function FieldDescription({
     const content = isError ? error : (description ?? children)
 
     return (
-        <div className="overflow-hidden w-full relative -mt-0.75">
+        <div className="w-full relative -mt-0.75">
             <AnimatePresence mode="popLayout" initial={false}>
                 {content && (
                     <motion.p
@@ -149,7 +151,7 @@ function FieldDescription({
                         exit={{ opacity: 0, y: 20 }}
                         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] as any }}
                         className={cn(
-                            "text-[0.9rem] leading-[1] mt-0.75 w-full will-change-transform ",
+                            "text-[0.9rem] leading-tight w-full will-change-transform ",
                             isError
                                 ? "font-normal text-destructive"
                                 : " text-secondary",

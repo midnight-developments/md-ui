@@ -13,7 +13,8 @@ import {
 } from "@/components/showcase/popup"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group/card-radio-group"
-import { Field, FieldLabel, FieldTitle, FieldContent, FieldDescription } from "@/components/ui/field"
+import { Field, FieldGroup, FieldLabel, FieldContent, FieldLegend, FieldDescription, FieldSet } from "@/components/ui/field"
+import { Badge } from "@/components/ui/badge/badge"
 
 export function RadioPopup({ open, onOpenChange }: PopupProps) {
     const [standardRadio, setStandardRadio] = React.useState("daily")
@@ -23,64 +24,66 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="flex flex-col gap-12 max-w-lg w-full">
-                        <Field>
-                            <FieldLabel>Selectable Card Radio Group</FieldLabel>
+                    <FieldGroup className="max-w-lg">
+                        <FieldSet>
+                            <FieldLegend>Selectable Card Radio Group</FieldLegend>
                             <CardRadioGroup
                                 value={plan}
                                 onValueChange={(val) => val && setPlan(val as string)}
                                 columns={2}
                             >
-                                <CardRadioGroupItem value="starter">
-                                    <FieldLabel className="cursor-pointer">Starter</FieldLabel>
-                                    <FieldDescription>10 GB Storage · 1 Core</FieldDescription>
-                                </CardRadioGroupItem>
+                                <Field>
+                                    <CardRadioGroupItem value="starter">
+                                        <FieldContent>
+                                            <FieldLabel className="cursor-pointer">Starter</FieldLabel>
+                                            <FieldDescription>10 GB Storage · 1 Core</FieldDescription>
+                                        </FieldContent>
+                                    </CardRadioGroupItem>
+                                </Field>
 
-                                <CardRadioGroupItem value="pro">
-                                    <FieldLabel className="cursor-pointer">Pro Tier</FieldLabel>
-                                    <FieldDescription>50 GB Storage · 4 Cores</FieldDescription>
-                                </CardRadioGroupItem>
+                                <Field>
+                                    <CardRadioGroupItem value="pro">
+                                        <FieldContent>
+                                            <FieldLabel className="cursor-pointer">Pro Tier</FieldLabel>
+                                            <FieldDescription>50 GB Storage · 4 Cores</FieldDescription>
+                                        </FieldContent>
+                                    </CardRadioGroupItem>
+                                </Field>
                             </CardRadioGroup>
-                        </Field>
+                        </FieldSet>
 
-                        <Field>
-                            <FieldLabel>Standard Radio List (Backup Frequency)</FieldLabel>
+                        <FieldSet>
+                            <FieldLegend>Standard Radio List (Backup Frequency)</FieldLegend>
                             <RadioGroup
                                 value={standardRadio}
                                 onValueChange={(val) => val && setStandardRadio(val as string)}
                             >
                                 <Field orientation="horizontal">
                                     <RadioGroupItem value="hourly" id="r-hourly" />
-                                    <label htmlFor="r-hourly" className="cursor-pointer flex-1">
-                                        <FieldContent>
-                                            <FieldTitle>Every hour</FieldTitle>
-                                            <FieldDescription>Continuous point-in-time recovery</FieldDescription>
-                                        </FieldContent>
-                                    </label>
+                                    <FieldContent>
+                                        <FieldLabel htmlFor="r-hourly">Every hour</FieldLabel>
+                                        <FieldDescription>Continuous point-in-time recovery</FieldDescription>
+                                    </FieldContent>
                                 </Field>
 
                                 <Field orientation="horizontal">
                                     <RadioGroupItem value="daily" id="r-daily" />
-                                    <label htmlFor="r-daily" className="cursor-pointer flex-1">
-                                        <FieldContent>
-                                            <FieldTitle>Daily snapshot</FieldTitle>
-                                            <FieldDescription>Daily automated backup at 00:00 UTC</FieldDescription>
-                                        </FieldContent>
-                                    </label>
+                                    <FieldContent>
+                                        <FieldLabel htmlFor="r-daily">Daily snapshot</FieldLabel>
+                                        <FieldDescription>Daily automated backup at 00:00 UTC</FieldDescription>
+                                    </FieldContent>
                                 </Field>
 
                                 <Field orientation="horizontal">
                                     <RadioGroupItem value="weekly" id="r-weekly" />
-                                    <label htmlFor="r-weekly" className="cursor-pointer flex-1">
-                                        <FieldContent>
-                                            <FieldTitle>Weekly archival</FieldTitle>
-                                            <FieldDescription>Weekly archival backup</FieldDescription>
-                                        </FieldContent>
-                                    </label>
+                                    <FieldContent>
+                                        <FieldLabel htmlFor="r-weekly">Weekly archival</FieldLabel>
+                                        <FieldDescription>Weekly archival backup</FieldDescription>
+                                    </FieldContent>
                                 </Field>
                             </RadioGroup>
-                        </Field>
-                    </div>
+                        </FieldSet>
+                    </FieldGroup>
                 </PopupPreview>
 
                 <PopupDetails>

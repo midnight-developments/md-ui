@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import { Textarea } from "@/components/ui/textarea"
-import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
+import { Field, FieldLabel, FieldGroup, FieldDescription } from "@/components/ui/field"
 import { Search, Lock, Eye, EyeOff } from "lucide-react"
 
 export function InputPopup({ open, onOpenChange }: PopupProps) {
@@ -29,7 +29,7 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="flex flex-col gap-6 max-w-md w-full py-4">
+                    <FieldGroup className="max-w-md">
                         <Field>
                             <FieldLabel>Standard Input</FieldLabel>
                             <Input placeholder="Enter username or email" defaultValue="danyalasghar@midnight.dev" />
@@ -100,7 +100,7 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                                 }
                             />
                         </Field>
-                    </div>
+                    </FieldGroup>
                 </PopupPreview>
 
                 <PopupDetails>

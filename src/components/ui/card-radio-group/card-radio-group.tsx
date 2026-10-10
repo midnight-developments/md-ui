@@ -43,7 +43,7 @@ function CardRadioGroupItem({
             )}
             {...props}
         >
-            <div className="flex flex-col gap-1.75 w-full">{children}</div>
+            <div className="flex flex-col w-full">{children}</div>
             {showIndicator && (
                 <div
                     data-slot="card-radio-group-indicator"
