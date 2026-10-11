@@ -89,7 +89,7 @@ function FieldLabel({
         <label
             data-slot="field-label"
             className={cn(
-                "group/field-label peer/field-label text-base font-medium leading-[1] text-foreground",
+                "group/field-label peer/field-label text-base font-medium leading-[1] text-foreground cursor-pointer",
                 className
             )}
             {...props}

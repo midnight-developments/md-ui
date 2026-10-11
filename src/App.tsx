@@ -68,7 +68,7 @@ export default function App() {
                         <Card onClick={() => setActivePopup('button')}>
                             <CardPreview>
                                 <div className="grid grid-cols-2 gap-2 pointer-events-none select-none">
-                                    <Button variant="default" className="h-8.5">Primary</Button>
+                                    <Button variant="primary" className="h-8.5">Primary</Button>
                                     <Button variant="secondary" className="h-8.5">Secondary</Button>
                                     <Button variant="ghost" className="h-8.5">Ghost</Button>
                                     <Button variant="destructive" className="h-8.5">Destructive</Button>

@@ -43,7 +43,7 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
 
                             <div className="flex flex-col gap-2 mt-2">
                                 <Button
-                                    variant="default"
+                                    variant="primary"
                                     className="w-full"
                                     onClick={() => setIsSubDialogOpen(true)}
                                 >
@@ -72,7 +72,7 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                                 </DialogBody>
                                 <DialogFooter className="flex-col w-full gap-2">
                                     <Button
-                                        variant="default"
+                                        variant="primary"
                                         className="w-full"
                                         onClick={() => setIsSubDialogOpen(false)}
                                     >

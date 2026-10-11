@@ -14,7 +14,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: advancedButtonStyles.default,
+        primary: advancedButtonStyles.primary,
         secondary: advancedButtonStyles.secondary,
         outline: advancedButtonStyles.secondary,
         destructive: advancedButtonStyles.destructive,
@@ -25,14 +25,14 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
     },
   }
 )
 
 function Button({
   className,
-  variant = "default",
+  variant = "primary",
   ...props
 }: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
   return (

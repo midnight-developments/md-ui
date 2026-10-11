@@ -1,4 +1,4 @@
-.default,
+.primary,
 .secondary,
 .destructive {
     position: relative;
@@ -7,7 +7,6 @@
     background:
         linear-gradient(105deg, transparent 28%, rgba(255, 255, 255, 0.02) 50%, transparent 72%),
         var(--button-bg);
-    background-size: 90px 90px, auto, auto, auto;
     box-shadow:
         0 0 14px 1px var(--button-glow, transparent),
         inset 0 0 0 1px var(--button-border),
@@ -15,10 +14,9 @@
 
     transform: translateZ(0);
     backface-visibility: hidden;
-    transition: filter 0.15s ease;
 }
 
-.default::after,
+.primary::after,
 .secondary::after,
 .destructive::after {
     content: "";
@@ -47,20 +45,20 @@
     transition: opacity 0.15s ease;
 }
 
-.default:hover:not(:disabled),
+.primary:hover:not(:disabled),
 .secondary:hover:not(:disabled),
 .destructive:hover:not(:disabled) {
     filter: brightness(1.1);
 }
 
-.default:active:not(:disabled),
+.primary:active:not(:disabled),
 .secondary:active:not(:disabled),
 .destructive:active:not(:disabled) {
     color: rgba(225, 225, 225, 0.8);
     filter: brightness(0.92);
 }
 
-.default {
+.primary {
     --button-bg: linear-gradient(20deg, rgb(138, 122, 242) 0%, rgb(123, 107, 231) 55%, rgb(114, 99, 214) 100%);
     --button-text-color: var(--color-foreground);
     --button-border: rgba(255, 255, 255, 0.12);
@@ -69,7 +67,7 @@
 }
 
 .secondary {
-    --button-bg: linear-gradient(180deg, rgb(48, 48, 52) 0%, rgb(36, 36, 39) 55%, rgb(26, 26, 28) 100%);
+    --button-bg: linear-gradient(20deg, rgb(36, 36, 36) 0%, rgb(42, 42, 42) 55%, rgb(36, 36, 36) 100%);
     --button-text-color: var(--color-foreground);
     --button-border: rgba(255, 255, 255, 0.05);
     --button-border-shine: rgba(255, 255, 255, 0.15);

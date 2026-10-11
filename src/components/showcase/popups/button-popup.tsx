@@ -28,12 +28,12 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                                 Primary Variant
                             </h3>
                             <div className="flex flex-wrap items-center gap-3">
-                                <Button variant="default">Primary Action</Button>
-                                <Button variant="default">
+                                <Button variant="primary">Primary Action</Button>
+                                <Button variant="primary">
                                     <Download className="size-4" />
                                     With Icon
                                 </Button>
-                                <Button variant="default" disabled>Disabled</Button>
+                                <Button variant="primary" disabled>Disabled</Button>
                             </div>
                         </div>
 

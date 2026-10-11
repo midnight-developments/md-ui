@@ -182,7 +182,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                 </Button>
                                 <Button
                                     type="submit"
-                                    variant="default"
+                                    variant="primary"
                                     className="px-5 gap-1.5"
                                 >
                                     {isSubmitted ? (

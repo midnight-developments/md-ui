@@ -14,7 +14,6 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group/card-radio-group"
 import { Field, FieldGroup, FieldLabel, FieldContent, FieldLegend, FieldDescription, FieldSet } from "@/components/ui/field"
-import { Badge } from "@/components/ui/badge/badge"
 
 export function RadioPopup({ open, onOpenChange }: PopupProps) {
     const [standardRadio, setStandardRadio] = React.useState("daily")

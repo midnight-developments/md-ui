@@ -87,7 +87,7 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
 
                         <DialogFooter className="flex-col w-full gap-2.5 mt-0">
                             <Button
-                                variant="default"
+                                variant="primary"
                                 className="w-full gap-2"
                                 onClick={handleConnect}
                                 disabled={status === "loading"}
