@@ -25,7 +25,7 @@ function CardRadioGroupItem({
     className,
     children,
     showIndicator = true,
-    indicatorPosition = "left-center",
+    indicatorPosition = "right-center",
     ...props
 }: RadioPrimitive.Root.Props & {
     showIndicator?: boolean
@@ -43,9 +43,22 @@ function CardRadioGroupItem({
                 keepMounted
                 className={cn(
                     advancedCardRadioGroupStyles.activeIndicator,
-                    "transition-snappy data-unchecked:opacity-0 data-unchecked:scale-75 data-checked:opacity-100 data-checked:scale-100"
+                    "transition-snappy data-unchecked:opacity-0 data-checked:opacity-100"
                 )}
-            />
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="size-3.5 text-white"
+                >
+                    <path d="M5 13l4.5 4.5L19 7" />
+                </svg>
+            </RadioPrimitive.Indicator>
         </div>
     )
 

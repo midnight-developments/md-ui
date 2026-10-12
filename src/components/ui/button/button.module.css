@@ -59,11 +59,14 @@
 }
 
 .primary {
-    --button-bg: linear-gradient(20deg, rgb(138, 122, 242) 0%, rgb(123, 107, 231) 55%, rgb(114, 99, 214) 100%);
+    --button-bg: linear-gradient(20deg,
+            color-mix(in srgb, var(--color-accent) 90%, white) 0%,
+            var(--color-accent) 55%,
+            color-mix(in srgb, var(--color-accent) 90%, black) 100%);
     --button-text-color: var(--color-foreground);
     --button-border: rgba(255, 255, 255, 0.12);
-    --button-glow: rgba(120, 105, 230, 0.25);
-    --button-border-shine: rgba(225, 215, 255, 0.55);
+    --button-glow: color-mix(in srgb, var(--color-accent) 25%, transparent);
+    --button-border-shine: color-mix(in srgb, color-mix(in srgb, var(--color-accent) 23%, white) 55%, transparent);
 }
 
 .secondary {

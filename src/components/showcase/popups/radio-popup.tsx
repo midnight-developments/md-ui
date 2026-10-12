@@ -11,7 +11,7 @@ import {
     PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group/radio-group"
 import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group/card-radio-group"
 import { Field, FieldGroup, FieldLabel, FieldContent, FieldLegend, FieldDescription, FieldSet } from "@/components/ui/field"
 
@@ -52,7 +52,7 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                         </FieldSet>
 
                         <FieldSet>
-                            <FieldLegend>Standard Radio List (Backup Frequency)</FieldLegend>
+                            <FieldLegend>Standard Radio List</FieldLegend>
                             <RadioGroup
                                 value={standardRadio}
                                 onValueChange={(val) => val && setStandardRadio(val as string)}
@@ -60,24 +60,24 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                                 <Field orientation="horizontal">
                                     <RadioGroupItem value="hourly" id="r-hourly" />
                                     <FieldContent>
-                                        <FieldLabel htmlFor="r-hourly">Every hour</FieldLabel>
-                                        <FieldDescription>Continuous point-in-time recovery</FieldDescription>
+                                        <FieldLabel htmlFor="r-hourly">Option 1</FieldLabel>
+                                        <FieldDescription>This is a longer description of option 1.</FieldDescription>
                                     </FieldContent>
                                 </Field>
 
                                 <Field orientation="horizontal">
                                     <RadioGroupItem value="daily" id="r-daily" />
                                     <FieldContent>
-                                        <FieldLabel htmlFor="r-daily">Daily snapshot</FieldLabel>
-                                        <FieldDescription>Daily automated backup at 00:00 UTC</FieldDescription>
+                                        <FieldLabel htmlFor="r-daily">Option 2</FieldLabel>
+                                        <FieldDescription>This is a longer description of option 2.</FieldDescription>
                                     </FieldContent>
                                 </Field>
 
                                 <Field orientation="horizontal">
                                     <RadioGroupItem value="weekly" id="r-weekly" />
                                     <FieldContent>
-                                        <FieldLabel htmlFor="r-weekly">Weekly archival</FieldLabel>
-                                        <FieldDescription>Weekly archival backup</FieldDescription>
+                                        <FieldLabel htmlFor="r-weekly">Option 3</FieldLabel>
+                                        <FieldDescription>This is a longer description of option 3.</FieldDescription>
                                     </FieldContent>
                                 </Field>
                             </RadioGroup>

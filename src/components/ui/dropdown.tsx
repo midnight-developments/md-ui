@@ -174,7 +174,7 @@ function DropdownMenuCheckboxItem({
                 className="pointer-events-none absolute right-2 flex items-center justify-center size-4"
                 data-slot="dropdown-menu-checkbox-item-indicator"
             >
-                <MenuPrimitive.CheckboxItemIndicator render={<CheckIcon className="size-4 text-accent-active" />} />
+                <MenuPrimitive.CheckboxItemIndicator render={<CheckIcon className="size-4 text-accent-text" />} />
             </span>
             {children}
         </MenuPrimitive.CheckboxItem>
@@ -209,7 +209,7 @@ function DropdownMenuRadioItem({
                 className="pointer-events-none absolute right-2 flex items-center justify-center size-4"
                 data-slot="dropdown-menu-radio-item-indicator"
             >
-                <MenuPrimitive.RadioItemIndicator render={<CheckIcon className="size-4 text-accent-active" />} />
+                <MenuPrimitive.RadioItemIndicator render={<CheckIcon className="size-4 text-accent-text" />} />
             </span>
             {children}
         </MenuPrimitive.RadioItem>
