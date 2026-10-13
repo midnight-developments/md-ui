@@ -11,8 +11,8 @@ function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
             data-slot="field-set"
             className={cn(
                 "flex flex-col",
-                "[&>[data-slot=card-radio-group]]:mt-3",
-                "[&>[data-slot=radio-group]]:mt-5",
+                "[&>[data-slot=radio-group]]:mt-5 [&>[data-slot=card-radio-group]]:mt-3",
+                "[&>[data-slot=checkbox-group]]:mt-5 [&>[data-slot=card-checkbox-group]]:mt-3",
                 className
             )}
             {...props}

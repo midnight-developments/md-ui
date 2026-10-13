@@ -22,16 +22,19 @@ import { ButtonPopup } from '@/components/showcase/popups/button-popup'
 import { InputPopup } from '@/components/showcase/popups/input-popup'
 import { SelectPopup } from '@/components/showcase/popups/select-popup'
 import { RadioPopup } from '@/components/showcase/popups/radio-popup'
+import { CheckboxPopup } from '@/components/showcase/popups/checkbox-popup'
 import { BadgePopup } from '@/components/showcase/popups/badge-popup'
 import { DialogPopup } from '@/components/showcase/popups/dialog-popup'
 import { DatabaseCreationPopup } from '@/components/showcase/popups/database-creation-popup'
 import { IntegrationDialogPopup } from '@/components/showcase/popups/integration-dialog-popup'
+import { CheckboxGroup, Checkbox } from '@/components/ui/checkbox-group/checkbox-group'
 
 type PopupId =
     | 'button'
     | 'input'
     | 'select'
     | 'radio'
+    | 'checkbox'
     | 'badge'
     | 'dialog'
     | 'database-creation'
@@ -137,6 +140,31 @@ export default function App() {
                             </CardContent>
                         </Card>
 
+                        <Card onClick={() => setActivePopup('checkbox')}>
+                            <CardPreview>
+                                <Field className="w-full max-w-[190px] gap-2.5! pointer-events-none select-none">
+                                    <FieldLabel>Notifications</FieldLabel>
+                                    <CheckboxGroup defaultValue={['email', 'push']} className="gap-1.5">
+                                        <Field orientation="horizontal">
+                                            <Checkbox value="email" id="prev-email" />
+                                            <FieldLabel htmlFor="prev-email" className="text-sm font-normal text-foreground">Email</FieldLabel>
+                                        </Field>
+                                        <Field orientation="horizontal">
+                                            <Checkbox value="push" id="prev-push" />
+                                            <FieldLabel htmlFor="prev-push" className="text-sm font-normal text-foreground">Push</FieldLabel>
+                                        </Field>
+                                        <Field orientation="horizontal">
+                                            <Checkbox value="sms" id="prev-sms" />
+                                            <FieldLabel htmlFor="prev-sms" className="text-sm font-normal text-foreground">SMS</FieldLabel>
+                                        </Field>
+                                    </CheckboxGroup>
+                                </Field>
+                            </CardPreview>
+                            <CardContent>
+                                <CardTitle>Checkbox</CardTitle>
+                            </CardContent>
+                        </Card>
+
                         <Card onClick={() => setActivePopup('badge')}>
                             <CardPreview>
                                 <div className="flex flex-col items-center justify-center gap-2 pointer-events-none select-none">
@@ -222,6 +250,10 @@ export default function App() {
             />
             <RadioPopup
                 open={activePopup === 'radio'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <CheckboxPopup
+                open={activePopup === 'checkbox'}
                 onOpenChange={(open) => !open && setActivePopup(null)}
             />
             <BadgePopup
