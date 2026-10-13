@@ -41,7 +41,7 @@ function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
     return (
         <SelectPrimitive.Group
             data-slot="select-group"
-            className={cn("scroll-my-1 p-1", className)}
+            className={cn("scroll-my-1", className)}
             {...props}
         />
     )
@@ -125,7 +125,7 @@ function SelectContent({
                     render={<PopupShell className={className} />}
                     {...props}
                 >
-                    <SelectPrimitive.List data-slot="select-list">
+                    <SelectPrimitive.List data-slot="select-list" className="flex-1 flex flex-col has-[>[data-slot=select-group]]:gap-2">
                         {children}
                     </SelectPrimitive.List>
                 </SelectPrimitive.Popup>
@@ -144,6 +144,35 @@ function SelectLabel({ className, ...props }: SelectPrimitive.GroupLabel.Props) 
     )
 }
 
+function SelectItemIndicator({
+    className,
+    children,
+    ...props
+}: SelectPrimitive.ItemIndicator.Props) {
+    return (
+        <SelectPrimitive.ItemIndicator
+            data-slot="select-item-indicator"
+            className={cn("ml-auto flex items-center justify-center shrink-0 text-current", className)}
+            {...props}
+        >
+            {children ?? (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="size-4.5 text-current"
+                >
+                    <path d="M5 13l4.5 4.5L19 7" />
+                </svg>
+            )}
+        </SelectPrimitive.ItemIndicator>
+    )
+}
+
 function SelectItem({
     className,
     children,
@@ -158,6 +187,7 @@ function SelectItem({
             <SelectPrimitive.ItemText className="flex flex-1 shrink-0 items-center gap-2 whitespace-nowrap">
                 {children}
             </SelectPrimitive.ItemText>
+            <SelectItemIndicator />
         </SelectPrimitive.Item>
     )
 }
@@ -177,6 +207,7 @@ export {
     SelectContent,
     SelectGroup,
     SelectItem,
+    SelectItemIndicator,
     SelectLabel,
     SelectSeparator,
     SelectTrigger,

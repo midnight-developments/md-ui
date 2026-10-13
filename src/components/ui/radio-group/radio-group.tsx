@@ -33,7 +33,7 @@ function RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {
                 data-slot="radio-group-indicator"
                 className={cn(
                     advancedRadioStyles.activeIndicator,
-                    "transition-snappy data-unchecked:opacity-0 data-checked:opacity-100"
+                    "transition-snappy data-unchecked:opacity-0 data-unchecked:scale-75 data-checked:opacity-100 data-checked:scale-100"
                 )}
             />
         </RadioPrimitive.Root>

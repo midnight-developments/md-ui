@@ -80,14 +80,14 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                 <PopupDetails>
                     <PopupTitle>Select</PopupTitle>
                     <PopupDescription>
-                        An animated dropdown picker built on top of Base UI Select, featuring popover spring physics, keyboard selection, and smooth chevron state rotation.
+                        An animated dropdown picker built on top of Base UI Select, featuring smooth popover physics, keyboard selection, and smooth chevron state rotation.
                     </PopupDescription>
 
                     <PopupCharacteristics
                         items={[
                             {
-                                title: "Bouncy Popover Physics",
-                                description: "Spring-curved ease (cubic-bezier(0.16, 1, 0.3, 1.25)) ensures snappy opening transitions.",
+                                title: "Smooth Popover Physics",
+                                description: "Calibrated ease curve (cubic-bezier(0.16, 1, 0.3, 1)) ensures clean, non-bouncy opening transitions.",
                             },
                             {
                                 title: "Chevron Indicator Animation",

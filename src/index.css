@@ -51,8 +51,8 @@
     --ease-snappy: cubic-bezier(0, 0, 0.2, 1);
 
     --duration-popup: 300ms;
-    --ease-popup: cubic-bezier(0.25, 1, 0.35, 1);
-    --ease-popup-bouncy: cubic-bezier(0.16, 1, 0.3, 1.25);
+    --ease-popup: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-popup-bouncy: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @utility transition-snappy {
@@ -63,8 +63,8 @@
 
 @utility transition-popup {
     transition-property: all;
-    transition-duration: var(--duration-popup, 250ms);
-    transition-timing-function: var(--ease-popup-bouncy, cubic-bezier(0.25, 1, 0.35, 1));
+    transition-duration: var(--duration-popup, 200ms);
+    transition-timing-function: var(--ease-popup, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
 @utility text-glow {

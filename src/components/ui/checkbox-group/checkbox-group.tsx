@@ -33,7 +33,7 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
                 data-slot="checkbox-indicator"
                 className={cn(
                     advancedCheckboxStyles.activeIndicator,
-                    "transition-snappy data-unchecked:opacity-0 data-checked:opacity-100"
+                    "transition-snappy data-unchecked:opacity-0 data-unchecked:scale-75 data-checked:opacity-100 data-checked:scale-100"
                 )}
             >
                 <svg

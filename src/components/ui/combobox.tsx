@@ -83,7 +83,7 @@ function ComboboxContent({
     children,
     side = "bottom",
     sideOffset = 6,
-    align = "center",
+    align = "start",
     alignOffset = 0,
     anchor,
     ...props

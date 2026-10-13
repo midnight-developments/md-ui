@@ -43,7 +43,7 @@ function CardRadioGroupItem({
                 keepMounted
                 className={cn(
                     advancedCardRadioGroupStyles.activeIndicator,
-                    "transition-snappy data-unchecked:opacity-0 data-checked:opacity-100"
+                    "transition-snappy data-unchecked:opacity-0 data-unchecked:scale-75 data-checked:opacity-100 data-checked:scale-100"
                 )}
             >
                 <svg
@@ -66,10 +66,10 @@ function CardRadioGroupItem({
         <RadioPrimitive.Root
             data-slot="card-radio-group-item"
             className={cn(
-                "group/card-radio peer relative flex gap-3 p-3.5 rounded-md bg-card hover:bg-card-hover ring-1 ring-inset ring-border outline-none transition-snappy cursor-pointer select-none text-left",
+                "group/card-radio peer relative flex gap-3 p-3.5 rounded-md outline-none transition-snappy cursor-pointer select-none text-left",
                 "focus-visible:ring-2 focus-visible:ring-border-active",
-                "data-checked:ring-2 data-checked:ring-accent data-checked:bg-card-active",
                 "disabled:cursor-not-allowed disabled:opacity-50",
+                advancedCardRadioGroupStyles.card,
                 isLeftCenter
                     ? "items-center justify-start"
                     : indicatorPosition === "right-center"

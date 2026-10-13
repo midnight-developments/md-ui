@@ -65,7 +65,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                                 <SelectTrigger className="w-full">
                                                     <SelectValue placeholder="Organization" />
                                                 </SelectTrigger>
-                                                <SelectContent>
+                                                <SelectContent align="start">
                                                     <SelectItem value="pixsellz">pixsellz</SelectItem>
                                                     <SelectItem value="midnight-dev">midnight-dev</SelectItem>
                                                     <SelectItem value="personal">personal</SelectItem>
