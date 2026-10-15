@@ -20,12 +20,31 @@ import {
     SelectGroup,
     SelectLabel,
 } from "@/components/ui/select"
+import {
+    Combobox,
+    ComboboxInput,
+    ComboboxContent,
+    ComboboxList,
+    ComboboxItem,
+    ComboboxEmpty,
+} from "@/components/ui/combobox"
 import { Field, FieldLabel } from "@/components/ui/field"
 
+const frameworks = [
+    "Next.js",
+    "SvelteKit",
+    "Remix",
+    "Astro",
+    "Nuxt",
+    "Vite",
+    "FastAPI",
+    "Hono",
+]
 
 export function SelectPopup({ open, onOpenChange }: PopupProps) {
     const [region, setRegion] = React.useState("us-east-1")
     const [engine, setEngine] = React.useState("postgres")
+    const [framework, setFramework] = React.useState<string | null>("Next.js")
 
     return (
         <Popup open={open} onOpenChange={onOpenChange}>
@@ -71,16 +90,40 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                             </Select>
                         </Field>
 
+                        {/* 3. Searchable Combobox */}
+                        <Field>
+                            <FieldLabel>Framework Preset</FieldLabel>
+                            <Combobox
+                                items={frameworks}
+                                value={framework}
+                                onValueChange={(val) => setFramework(val)}
+                            >
+                                <ComboboxInput
+                                    placeholder="Search framework..."
+                                />
+                                <ComboboxContent>
+                                    <ComboboxList>
+                                        {(item: string) => (
+                                            <ComboboxItem key={item} value={item}>
+                                                {item}
+                                            </ComboboxItem>
+                                        )}
+                                    </ComboboxList>
+                                    <ComboboxEmpty>No frameworks found</ComboboxEmpty>
+                                </ComboboxContent>
+                            </Combobox>
+                        </Field>
+
                         <div className="p-3 rounded-md bg-white/[0.02] border border-white/6 text-[0.95rem] text-muted">
-                            Active configuration: <span className="text-foreground font-medium">{engine}</span> in <span className="text-foreground font-medium">{region}</span>
+                            Active configuration: <span className="text-foreground font-medium">{engine}</span> in <span className="text-foreground font-medium">{region}</span> • <span className="text-foreground font-medium">{framework || "None"}</span>
                         </div>
                     </div>
                 </PopupPreview>
 
                 <PopupDetails>
-                    <PopupTitle>Select</PopupTitle>
+                    <PopupTitle>Select & Combobox</PopupTitle>
                     <PopupDescription>
-                        An animated dropdown picker built on top of Base UI Select, featuring smooth popover physics, keyboard selection, and smooth chevron state rotation.
+                        Animated dropdown and searchable combobox primitives built on Base UI, featuring floating pill hover physics, instant keyboard navigation, and edge-lit glass shells.
                     </PopupDescription>
 
                     <PopupCharacteristics
@@ -92,6 +135,10 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                             {
                                 title: "Chevron Indicator Animation",
                                 description: "Icon smoothly rotates 180° upon trigger activation.",
+                            },
+                            {
+                                title: "Searchable Combobox Filtering",
+                                description: "Built-in instant query filtering with empty state detection, keyboard navigation, and synchronized pill transitions.",
                             },
                             {
                                 title: "Grouped Items & Labels",

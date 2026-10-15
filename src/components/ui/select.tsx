@@ -5,37 +5,10 @@ import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { InputShell } from "@/components/ui/input-shell"
-import { PopupShell, PopupItem } from "@/components/ui/popup-shell"
+import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/popup-shell"
 
-function Select<Value, Multiple extends boolean | undefined = false>({
-    modal = false,
-    onOpenChange,
-    onOpenChangeComplete,
-    ...props
-}: SelectPrimitive.Root.Props<Value, Multiple>) {
-    return (
-        <SelectPrimitive.Root
-            modal={modal}
-            onOpenChange={(open, eventDetails) => {
-                onOpenChange?.(open, eventDetails)
-                if (!open && (eventDetails?.reason === "escape-key" || eventDetails?.reason === "outside-press")) {
-                    if (document.activeElement instanceof HTMLElement) {
-                        document.activeElement.blur()
-                    }
-                }
-            }}
-            onOpenChangeComplete={(open) => {
-                onOpenChangeComplete?.(open)
-                if (!open) {
-                    if (document.activeElement instanceof HTMLElement) {
-                        document.activeElement.blur()
-                    }
-                }
-            }}
-            {...props}
-        />
-    )
-}
+const Select = SelectPrimitive.Root
+
 
 function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
     return (
@@ -60,22 +33,15 @@ function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
 function SelectTrigger({
     className,
     children,
-    onKeyDown,
     ...props
 }: SelectPrimitive.Trigger.Props) {
     return (
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
-            onKeyDown={(e) => {
-                onKeyDown?.(e)
-                if (e.key === "Escape") {
-                    e.currentTarget.blur()
-                }
-            }}
             render={
                 <InputShell
                     className={cn(
-                        "group/trigger justify-between cursor-pointer focus:not-focus-visible:ring-1 focus:not-focus-visible:ring-border",
+                        "group/trigger justify-between cursor-pointer",
                         "*:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 *:data-[slot=select-value]:line-clamp-1",
                         className
                     )}
@@ -85,7 +51,7 @@ function SelectTrigger({
         >
             {children}
             <SelectPrimitive.Icon
-                render={<ChevronDownIcon className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />}
+                render={<ChevronDownIcon className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-hover/trigger:opacity-100 group-data-[popup-open]/trigger:rotate-180" />}
             />
         </SelectPrimitive.Trigger>
     )
@@ -95,11 +61,10 @@ function SelectContent({
     className,
     children,
     side = "bottom",
-    sideOffset = 8,
-    align = "center",
+    sideOffset = 6,
+    align = "start",
     alignOffset = 0,
     alignItemWithTrigger = false,
-    finalFocus = false,
     ...props
 }: SelectPrimitive.Popup.Props &
     Pick<
@@ -118,11 +83,8 @@ function SelectContent({
             >
                 <SelectPrimitive.Popup
                     data-slot="select-content"
-                    data-align-trigger={alignItemWithTrigger}
-                    data-align={align}
-                    data-side={side}
-                    finalFocus={finalFocus}
-                    render={<PopupShell className={className} />}
+                    className={cn("w-(--anchor-width)", className)}
+                    render={<PopupShell />}
                     {...props}
                 >
                     <SelectPrimitive.List data-slot="select-list" className="flex-1 flex flex-col has-[>[data-slot=select-group]]:gap-2">
@@ -138,7 +100,7 @@ function SelectLabel({ className, ...props }: SelectPrimitive.GroupLabel.Props) 
     return (
         <SelectPrimitive.GroupLabel
             data-slot="select-label"
-            className={cn("px-1.5 py-1 text-sm text-muted-foreground", className)}
+            className={cn("px-2 py-1.5 text-sm text-muted-foreground", className)}
             {...props}
         />
     )
@@ -155,20 +117,7 @@ function SelectItemIndicator({
             className={cn("ml-auto flex items-center justify-center shrink-0 text-current", className)}
             {...props}
         >
-            {children ?? (
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="size-4.5 text-current"
-                >
-                    <path d="M5 13l4.5 4.5L19 7" />
-                </svg>
-            )}
+            {children ?? <PopupCheckIcon />}
         </SelectPrimitive.ItemIndicator>
     )
 }
@@ -181,7 +130,8 @@ function SelectItem({
     return (
         <SelectPrimitive.Item
             data-slot="select-item"
-            render={<PopupItem className={className} />}
+            className={className}
+            render={<PopupItem />}
             {...props}
         >
             <SelectPrimitive.ItemText className="flex flex-1 shrink-0 items-center gap-2 whitespace-nowrap">

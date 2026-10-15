@@ -111,7 +111,7 @@ export default function App() {
                                 </Field>
                             </CardPreview>
                             <CardContent>
-                                <CardTitle>Select</CardTitle>
+                                <CardTitle>Select & Combobox</CardTitle>
                             </CardContent>
                         </Card>
 
