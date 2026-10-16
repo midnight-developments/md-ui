@@ -167,16 +167,25 @@ function ComboboxLabel({
     )
 }
 
-function ComboboxEmpty({ className, ...props }: ComboboxPrimitive.Empty.Props) {
+function ComboboxEmpty({
+    className,
+    children,
+    ...props
+}: ComboboxPrimitive.Empty.Props) {
     return (
         <ComboboxPrimitive.Empty
             data-slot="combobox-empty"
-            className={cn(
-                "hidden w-full justify-center py-2 text-center text-base text-muted-foreground group-data-empty/combobox-content:flex",
-                className
-            )}
             {...props}
-        />
+        >
+            <div
+                className={cn(
+                    "flex items-center justify-center py-4 text-center text-base text-secondary select-none",
+                    className
+                )}
+            >
+                {children ?? "No results found."}
+            </div>
+        </ComboboxPrimitive.Empty>
     )
 }
 

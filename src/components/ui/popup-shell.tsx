@@ -19,7 +19,7 @@ const popupShellClasses = cn(
 )
 
 const popupItemClasses = cn(
-    "relative z-10 flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-base font-medium text-muted outline-hidden select-none transition-snappy",
+    "relative z-10 flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-base font-medium text-secondary/80 outline-hidden select-none transition-snappy",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-muted [&_svg]:transition-snappy",
     "data-[selected]:text-accent-text data-[checked]:text-accent-text data-[highlighted]:text-accent-text hover:text-accent-text",
     "data-[selected]:[&_svg]:text-current data-[checked]:[&_svg]:text-current data-[highlighted]:[&_svg]:text-current hover:[&_svg]:text-current",
@@ -33,24 +33,36 @@ export const PopupShell = React.forwardRef<HTMLDivElement, PopupShellProps>(
     function PopupShell({ className, children, onMouseMove, onMouseLeave, ...props }, forwardedRef) {
         const internalRef = React.useRef<HTMLDivElement>(null)
 
-        const setPosition = (item: HTMLElement | null) => {
-            const el = internalRef.current
-            if (!el) return
+        const setPosition = (item: HTMLElement | null, immediate = false) => {
+            const element = internalRef.current
+            if (!element) return
             if (item) {
-                el.style.setProperty("--pill-y", `${item.offsetTop}px`)
-                el.style.setProperty("--pill-h", `${item.offsetHeight}px`)
-                el.style.setProperty("--pill-opacity", "1")
+                const wasHidden =
+                    !element.style.getPropertyValue("--pill-opacity") ||
+                    element.style.getPropertyValue("--pill-opacity") === "0"
+
+                if (immediate || wasHidden) {
+                    element.style.setProperty("--pill-transition", "none")
+                    element.style.setProperty("--pill-y", `${item.offsetTop}px`)
+                    element.style.setProperty("--pill-h", `${item.offsetHeight}px`)
+                    void element.offsetHeight
+                    element.style.removeProperty("--pill-transition")
+                } else {
+                    element.style.setProperty("--pill-y", `${item.offsetTop}px`)
+                    element.style.setProperty("--pill-h", `${item.offsetHeight}px`)
+                }
+                element.style.setProperty("--pill-opacity", "1")
             } else {
-                el.style.setProperty("--pill-opacity", "0")
+                element.style.setProperty("--pill-opacity", "0")
             }
         }
 
         const getActiveItem = () => {
-            const el = internalRef.current
-            if (!el) return null
+            const element = internalRef.current
+            if (!element) return null
             return (
-                el.querySelector<HTMLElement>("[data-highlighted]") ??
-                el.querySelector<HTMLElement>("[data-selected], [data-checked]")
+                element.querySelector<HTMLElement>("[data-highlighted]") ??
+                element.querySelector<HTMLElement>("[data-selected], [data-checked]")
             )
         }
 
@@ -60,21 +72,14 @@ export const PopupShell = React.forwardRef<HTMLDivElement, PopupShellProps>(
 
             const updatePill = (immediate = false) => {
                 const target = getActiveItem()
-                if (immediate) {
-                    shell.style.setProperty("--pill-transition", "none")
-                    setPosition(target)
-                    requestAnimationFrame(() => {
-                        shell.style.removeProperty("--pill-transition")
-                    })
-                } else {
-                    setPosition(target)
-                }
+                setPosition(target, immediate)
             }
 
             updatePill(true)
 
             const observer = new MutationObserver(() => updatePill(false))
             observer.observe(shell, {
+                childList: true,
                 subtree: true,
                 attributes: true,
                 attributeFilter: ["data-highlighted", "data-selected", "data-checked"],
