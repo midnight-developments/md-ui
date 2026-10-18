@@ -5,6 +5,13 @@ import { CheckboxGroup as CheckboxGroupPrimitive } from "@base-ui/react/checkbox
 import { cn } from "@/lib/utils"
 import advancedCardCheckboxStyles from "./card-checkbox-group.module.css"
 
+const columnClasses: Record<number, string> = {
+    1: "grid-cols-1",
+    2: "grid-cols-2",
+    3: "grid-cols-3",
+    4: "grid-cols-4",
+}
+
 function CardCheckboxGroup({
     className,
     columns = 2,
@@ -15,7 +22,7 @@ function CardCheckboxGroup({
     return (
         <CheckboxGroupPrimitive
             data-slot="card-checkbox-group"
-            className={cn("grid w-full gap-2.5", `grid-cols-${columns}`, className)}
+            className={cn("grid w-full gap-2.5", columnClasses[columns] ?? "grid-cols-2", className)}
             {...props}
         />
     )
@@ -54,6 +61,7 @@ function CardCheckboxGroupItem({
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    aria-hidden="true"
                     className="size-3.5 text-white"
                 >
                     <path d="M5 13l4.5 4.5L19 7" />

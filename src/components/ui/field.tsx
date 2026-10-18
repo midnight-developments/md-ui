@@ -1,5 +1,4 @@
-"use client"
-
+import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
@@ -11,15 +10,14 @@ function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
             data-slot="field-set"
             className={cn(
                 "flex flex-col",
-                "[&>[data-slot=radio-group]]:mt-5 [&>[data-slot=card-radio-group]]:mt-3",
-                "[&>[data-slot=checkbox-group]]:mt-5 [&>[data-slot=card-checkbox-group]]:mt-3",
+                "[&>[data-slot=radio-group]]:mt-4 [&>[data-slot=card-radio-group]]:mt-3",
+                "[&>[data-slot=checkbox-group]]:mt-4 [&>[data-slot=card-checkbox-group]]:mt-3",
                 className
             )}
             {...props}
         />
     )
 }
-
 
 function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
     return (
@@ -35,13 +33,13 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const fieldVariants = cva(
-    "group/field flex w-full gap-2 data-[invalid=true]:text-destructive",
+    "group/field flex w-full gap-2",
     {
         variants: {
             orientation: {
                 vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
                 horizontal:
-                    "flex-row gap-3.5 items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+                    "flex-row gap-2.5 items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
                 responsive:
                     "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
             },
@@ -59,7 +57,6 @@ function Field({
 }: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
     return (
         <div
-            role="group"
             data-slot="field"
             data-orientation={orientation}
             className={cn(fieldVariants({ orientation }), className)}
@@ -73,7 +70,8 @@ function FieldContent({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-content"
             className={cn(
-                "group/field-content flex flex-1 flex-col gap-2.25",
+                "group/field-content flex flex-1 flex-col gap-2.5",
+                "group-[]/card-radio:gap-1.25 group-[]/card-checkbox:gap-1.25",
                 className
             )}
             {...props}
@@ -89,7 +87,8 @@ function FieldLabel({
         <label
             data-slot="field-label"
             className={cn(
-                "group/field-label peer/field-label text-base font-medium leading-[1] text-foreground cursor-pointer",
+                "group/field-label peer/field-label text-base font-normal leading-[1] text-foreground cursor-pointer transition-snappy",
+                "peer-data-[unchecked]:text-muted peer-data-[checked]:text-foreground",
                 className
             )}
             {...props}
@@ -115,7 +114,7 @@ function FieldLegend({ className, ...props }: React.ComponentProps<"legend">) {
         <legend
             data-slot="field-legend"
             className={cn(
-                "text-base font-medium leading-[1] text-foreground",
+                "text-base font-normal leading-[1] text-foreground",
                 className
             )}
             {...props}

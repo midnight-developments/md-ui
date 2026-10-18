@@ -38,6 +38,7 @@ function SelectTrigger({
     return (
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
+            nativeButton={false}
             render={
                 <InputShell
                     className={cn(
@@ -65,6 +66,7 @@ function SelectContent({
     align = "start",
     alignOffset = 0,
     alignItemWithTrigger = false,
+    finalFocus = false,
     ...props
 }: SelectPrimitive.Popup.Props &
     Pick<
@@ -83,6 +85,7 @@ function SelectContent({
             >
                 <SelectPrimitive.Popup
                     data-slot="select-content"
+                    finalFocus={finalFocus}
                     className={cn("w-(--anchor-width)", className)}
                     render={<PopupShell />}
                     {...props}
@@ -125,6 +128,8 @@ function SelectItemIndicator({
 function SelectItem({
     className,
     children,
+    onClick,
+    onKeyDown,
     ...props
 }: SelectPrimitive.Item.Props) {
     return (
@@ -132,6 +137,20 @@ function SelectItem({
             data-slot="select-item"
             className={className}
             render={<PopupItem />}
+            onClick={(e) => {
+                onClick?.(e)
+                requestAnimationFrame(() => {
+                    (document.activeElement as HTMLElement)?.blur()
+                })
+            }}
+            onKeyDown={(e) => {
+                onKeyDown?.(e)
+                if (e.key === "Enter" || e.key === " ") {
+                    requestAnimationFrame(() => {
+                        (document.activeElement as HTMLElement)?.blur()
+                    })
+                }
+            }}
             {...props}
         >
             <SelectPrimitive.ItemText className="flex flex-1 shrink-0 items-center gap-2 whitespace-nowrap">

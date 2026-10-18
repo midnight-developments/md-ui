@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button/button"
 import { Badge } from "@/components/ui/badge/badge"
-import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSet, FieldContent, FieldTitle } from "@/components/ui/field"
+import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSet, FieldContent } from "@/components/ui/field"
 import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group/card-radio-group"
 import {
     Select,
@@ -120,9 +120,9 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                             <CardRadioGroupItem value="business" showIndicator={false} className="p-3.5 sm:p-4">
                                                 <FieldContent className="gap-1 ">
                                                     <div className="flex items-center gap-2">
-                                                        <FieldTitle >
+                                                        <FieldLabel >
                                                             Business
-                                                        </FieldTitle>
+                                                        </FieldLabel>
                                                         <Badge variant="flat" className="gap-1 px-1.5 py-0.5 text-xs font-normal border-border bg-white/[0.04] text-muted">
                                                             <Globe className="size-3" />
                                                             AWS ap-east-1
@@ -147,9 +147,9 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                             <CardRadioGroupItem value="free" showIndicator={false} className="p-3.5 sm:p-4">
                                                 <FieldContent className="gap-1">
                                                     <div className="flex items-center gap-2">
-                                                        <FieldTitle>
+                                                        <FieldLabel>
                                                             Hobby
-                                                        </FieldTitle>
+                                                        </FieldLabel>
                                                         <Badge variant="flat" className="gap-1 px-1.5 py-0.5 text-xs font-normal border-border bg-white/[0.04] text-muted">
                                                             <Globe className="size-3" />
                                                             AWS ap-east-1

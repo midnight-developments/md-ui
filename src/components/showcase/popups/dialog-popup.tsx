@@ -13,6 +13,8 @@ import {
 } from "@/components/showcase/popup"
 import {
     Dialog,
+    DialogTrigger,
+    DialogClose,
     DialogContent,
     DialogHeader,
     DialogTitle,
@@ -42,14 +44,36 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                             </div>
 
                             <div className="flex flex-col gap-2 mt-2">
-                                <Button
-                                    variant="primary"
-                                    className="w-full"
-                                    onClick={() => setIsSubDialogOpen(true)}
-                                >
-                                    <Sparkles className="size-4" />
-                                    Open Dialog
-                                </Button>
+                                <Dialog open={isSubDialogOpen} onOpenChange={setIsSubDialogOpen}>
+                                    <DialogTrigger
+                                        render={
+                                            <Button variant="primary" className="w-full">
+                                                <Sparkles className="size-4" />
+                                                Open Dialog
+                                            </Button>
+                                        }
+                                    />
+                                    <DialogContent className="w-sm">
+                                        <DialogHeader>
+                                            <WarningIcon className="size-14" />
+                                            <DialogTitle>Zero-Shift Modal</DialogTitle>
+                                        </DialogHeader>
+                                        <DialogBody>
+                                            <DialogDescription className="text-center">
+                                                Notice how opening and closing this dialog produces zero layout jump, thanks to CSS <code className="text-white/80">scrollbar-gutter: stable</code> .
+                                            </DialogDescription>
+                                        </DialogBody>
+                                        <DialogFooter className="flex-col w-full gap-2">
+                                            <DialogClose
+                                                render={
+                                                    <Button variant="primary" className="w-full">
+                                                        Got it
+                                                    </Button>
+                                                }
+                                            />
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
                                 <Button variant="secondary" className="w-full">Cancel</Button>
                             </div>
                         </DialogContent>
@@ -57,30 +81,6 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                         <p className="text-sm text-muted text-center max-w-xs">
                             Click above to test modal opening/closing
                         </p>
-
-                        {/* Interactive live Dialog */}
-                        <Dialog open={isSubDialogOpen} onOpenChange={setIsSubDialogOpen}>
-                            <DialogContent className="w-sm">
-                                <DialogHeader>
-                                    <WarningIcon className="size-14" />
-                                    <DialogTitle>Zero-Shift Modal</DialogTitle>
-                                </DialogHeader>
-                                <DialogBody>
-                                    <DialogDescription className="text-center">
-                                        Notice how opening and closing this dialog produces zero layout jump, thanks to CSS <code className="text-white/80">scrollbar-gutter: stable</code> .
-                                    </DialogDescription>
-                                </DialogBody>
-                                <DialogFooter className="flex-col w-full gap-2">
-                                    <Button
-                                        variant="primary"
-                                        className="w-full"
-                                        onClick={() => setIsSubDialogOpen(false)}
-                                    >
-                                        Got it
-                                    </Button>
-                                </DialogFooter>
-                            </DialogContent>
-                        </Dialog>
                     </div>
                 </PopupPreview>
 

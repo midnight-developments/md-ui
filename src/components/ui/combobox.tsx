@@ -29,7 +29,7 @@ function ComboboxTrigger({
             )}
             {...props}
         >
-            {children ?? <ChevronDownIcon className="pointer-events-none size-4" />}
+            {children ?? <ChevronDownIcon aria-hidden="true" className="pointer-events-none size-4" />}
         </ComboboxPrimitive.Trigger>
     )
 }
@@ -213,9 +213,9 @@ function ComboboxChips({
             className={cn(
                 "flex min-h-8 flex-wrap items-center gap-1 rounded-md border border-input bg-transparent bg-clip-padding px-2.5 py-1 text-base transition-colors",
                 "focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50",
-                "has-aria-invalid:border-destructive has-aria-invalid:ring-3 has-aria-invalid:ring-destructive/20",
+                "has-data-[invalid]:border-destructive has-data-[invalid]:ring-3 has-data-[invalid]:ring-destructive/20",
                 "has-data-[slot=combobox-chip]:px-1 dark:bg-input/30",
-                "dark:has-aria-invalid:border-destructive/50 dark:has-aria-invalid:ring-destructive/40",
+                "dark:has-data-[invalid]:border-destructive/50 dark:has-data-[invalid]:ring-destructive/40",
                 className
             )}
             {...props}
@@ -243,7 +243,7 @@ function ComboboxChip({
         >
             {children}
             {showRemove && (
-                <ComboboxPrimitive.ChipRemove className="-ml-1 opacity-50 hover:opacity-100" data-slot="combobox-chip-remove" render={<Button variant="ghost" className="size-4 p-0 rounded-full"><XIcon className="pointer-events-none size-3" /></Button>} />
+                <ComboboxPrimitive.ChipRemove className="-ml-1 opacity-50 hover:opacity-100" data-slot="combobox-chip-remove" render={<Button variant="ghost" aria-label="Remove item" className="size-4 p-0 rounded-full"><XIcon aria-hidden="true" className="pointer-events-none size-3" /></Button>} />
             )}
         </ComboboxPrimitive.Chip>
     )

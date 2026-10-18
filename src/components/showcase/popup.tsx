@@ -128,7 +128,7 @@ export function PopupContent({
                         onClick={(e) => e.stopPropagation()}
                         className={cn(
                             "relative z-50 pointer-events-auto outline-none cursor-default",
-                            "w-full max-w-5xl xl:max-w-6xl h-[86vh] max-h-[820px]",
+                            "w-full max-w-5xl xl:max-w-6xl h-[90vh] max-h-[920px]",
                             "rounded-2xl bg-card border border-white/10 shadow-2xl",
                             "text-foreground flex flex-col overflow-hidden will-change-[transform,filter]",
                             className
@@ -183,14 +183,16 @@ export function PopupPreview({ className, children, ...props }: React.ComponentP
         <div
             data-slot="showcase-popup-preview"
             className={cn(
-                "flex-[1.8] flex items-center justify-center p-6 md:p-12 lg:p-16",
+                "flex-[1.8] flex flex-col items-center justify-start p-6 md:p-8 lg:p-10",
                 "border-b lg:border-b-0 lg:border-r border-white/8",
-                "bg-white/[0.01] relative overflow-auto no-scrollbar min-h-[320px] lg:min-h-0",
+                "bg-white/[0.01] relative overflow-y-auto min-h-[320px] lg:min-h-0",
                 className
             )}
             {...props}
         >
-            {children}
+            <div className="w-full flex justify-center my-auto">
+                {children}
+            </div>
         </div>
     )
 }

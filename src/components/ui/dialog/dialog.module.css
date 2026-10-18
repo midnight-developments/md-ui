@@ -1,6 +1,6 @@
 .content {
-    --dialog-bg: var(--color-card, rgb(14, 14, 14));
-    --dialog-color: var(--color-foreground, rgb(225, 225, 225));
+    --dialog-bg: var(--color-card);
+    --dialog-color: var(--color-foreground);
     --dialog-border: rgba(255, 255, 255, 0.06);
     --dialog-border-shine: rgba(255, 255, 255, 0.4);
 

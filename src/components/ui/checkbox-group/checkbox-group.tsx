@@ -9,7 +9,7 @@ function CheckboxGroup({ className, ...props }: CheckboxGroupPrimitive.Props) {
     return (
         <CheckboxGroupPrimitive
             data-slot="checkbox-group"
-            className={cn("grid w-full gap-4.5", className)}
+            className={cn("grid w-full gap-3.5", className)}
             {...props}
         />
     )
@@ -44,6 +44,7 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
+                    aria-hidden="true"
                     className="size-3.5 text-white"
                 >
                     <path d="M5 13l4.5 4.5L19 7" />

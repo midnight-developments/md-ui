@@ -6,7 +6,7 @@ import advancedButtonStyles from "./button.module.css"
 
 const buttonVariants = cva(
   [
-    "group/button h-9.5 px-3.5 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-md bg-clip-padding text-base cursor-pointer active:scale-[0.98] transition-snappy whitespace-nowrap",
+    "group/button h-9  px-4 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-md bg-clip-padding text-base cursor-pointer active:scale-[0.98] transition-snappy whitespace-nowrap",
     "disabled:pointer-events-none disabled:opacity-50 select-none outline-none",
     "[&:is(:focus-visible,[data-popup-open],[data-state=open],[aria-expanded=true])]:ring-2",
     "[&:is(:focus-visible,[data-popup-open],[data-state=open],[aria-expanded=true])]:ring-border-active",

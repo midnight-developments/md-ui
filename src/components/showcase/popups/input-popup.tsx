@@ -15,10 +15,9 @@ import { Input } from "@/components/ui/input"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import { Textarea } from "@/components/ui/textarea"
 import { Field, FieldLabel, FieldGroup, FieldDescription } from "@/components/ui/field"
-import { Search, Lock, Eye, EyeOff } from "lucide-react"
+import { Search } from "lucide-react"
 
 export function InputPopup({ open, onOpenChange }: PopupProps) {
-    const [showPassword, setShowPassword] = React.useState(false)
     const [query, setQuery] = React.useState("")
     const [email, setEmail] = React.useState("invalid-email-format")
 
@@ -52,22 +51,10 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                         {/* Password input with toggle button */}
                         <Field>
                             <FieldLabel>Secure Password Field</FieldLabel>
-                            <InputGroup>
-                                <InputGroupAddon align="inline-start">
-                                    <Lock className="size-4 text-muted" />
-                                </InputGroupAddon>
-                                <InputGroupInput
-                                    type={showPassword ? "text" : "password"}
-                                    defaultValue="super-secret-password-123"
-                                />
-                                <InputGroupAddon
-                                    align="inline-end"
-                                    className="cursor-pointer hover:text-white"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                >
-                                    {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
-                                </InputGroupAddon>
-                            </InputGroup>
+                            <Input
+                                type="password"
+                                defaultValue="super-secret-password-123"
+                            />
                         </Field>
 
                         {/* Plain Textarea */}
@@ -80,13 +67,13 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                             />
                         </Field>
 
-                        {/* Interactive validation state with dynamic description / error */}
-                        <Field data-invalid={isInvalid}>
+                        <Field data-invalid={isInvalid ? "" : undefined}>
                             <FieldLabel>Validation State</FieldLabel>
                             <Input
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="name@domain.com"
+                                data-invalid={isInvalid ? "" : undefined}
                                 aria-invalid={isInvalid}
                             />
                             <FieldDescription
@@ -125,7 +112,7 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                             },
                             {
                                 title: "Validation States",
-                                description: "Distinct focus-visible rings, disabled states, and dynamic aria-invalid error boundaries via Field primitives.",
+                                description: "Distinct focus-visible rings, disabled states, and dynamic data-invalid error boundaries via Field primitives.",
                             },
                         ]}
                     />

@@ -19,7 +19,7 @@ const popupShellClasses = cn(
 )
 
 const popupItemClasses = cn(
-    "relative z-10 flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-base font-medium text-secondary/80 outline-hidden select-none transition-snappy",
+    "relative z-10 flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-base font-medium text-muted outline-hidden select-none transition-snappy",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-muted [&_svg]:transition-snappy",
     "data-[selected]:text-accent-text data-[checked]:text-accent-text data-[highlighted]:text-accent-text hover:text-accent-text",
     "data-[selected]:[&_svg]:text-current data-[checked]:[&_svg]:text-current data-[highlighted]:[&_svg]:text-current hover:[&_svg]:text-current",
@@ -164,6 +164,7 @@ export function PopupCheckIcon({ className, ...props }: React.ComponentProps<"sv
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
+            aria-hidden="true"
             className={cn("size-4.5 shrink-0 text-current", className)}
             {...props}
         >

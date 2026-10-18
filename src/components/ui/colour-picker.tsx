@@ -107,6 +107,7 @@ function ColourPicker({
                                 type="number"
                                 min={0}
                                 max={255}
+                                aria-label={channel === "r" ? "Red channel (0-255)" : channel === "g" ? "Green channel (0-255)" : "Blue channel (0-255)"}
                                 value={rgb[channel]}
                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChannelChange(channel, e.target.value)}
                                 className="flex-1 h-full text-right text-base px-0 py-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-inner-spin-button]:m-0"
@@ -126,6 +127,7 @@ function ColourPicker({
                         <InputGroupInput
                             type="text"
                             maxLength={6}
+                            aria-label="Hex color code"
                             value={hexInput}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleHexChange(e.target.value)}
                             className="flex-1 h-full text-right text-base uppercase px-0 py-0"
@@ -137,7 +139,7 @@ function ColourPicker({
             {swatches.length > 0 && (
                 <div className="flex flex-col gap-2.5 w-full pt-1">
                     <FieldLabel>Colour Presets</FieldLabel>
-                    <div className="flex w-full items-center gap-1.5">
+                    <div className="flex w-full items-center gap-1.5" role="toolbar" aria-label="Colour Presets">
                         {swatches.map((s) => {
                             const isSelected = color.toLowerCase() === s.toLowerCase();
                             return (
@@ -146,12 +148,13 @@ function ColourPicker({
                                     type="button"
                                     onClick={() => onChange(s)}
                                     className={cn(
-                                        "flex-1 h-7 rounded-xs ring-1 ring-border cursor-pointer transition-all duration-150 hover:-translate-y-0.75",
-                                        isSelected && "shadow-sm"
+                                        "flex-1 h-7 rounded-xs ring-1 ring-border cursor-pointer transition-all duration-150 hover:-translate-y-0.75 outline-none focus-visible:ring-2 focus-visible:ring-border-active",
+                                        isSelected ? "ring-2 ring-white shadow-sm -translate-y-0.5" : ""
                                     )}
                                     style={{ backgroundColor: s }}
                                     title={s}
                                     aria-label={`Select swatch ${s}`}
+                                    aria-pressed={isSelected}
                                 />
                             );
                         })}
@@ -174,6 +177,7 @@ function ColourPickerTrigger({
 }: ColourPickerTriggerProps) {
     const swatch = color && (
         <span
+            aria-hidden="true"
             className="size-4.5 rounded-xs ring-1 ring-border shrink-0"
             style={{ backgroundColor: color }}
         />
@@ -202,7 +206,7 @@ function ColourPickerTrigger({
                 {swatch}
                 {label}
             </span>
-            <ChevronDownIcon className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
+            <ChevronDownIcon aria-hidden="true" className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
         </PopoverTrigger>
     );
 }
