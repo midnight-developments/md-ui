@@ -69,13 +69,6 @@
     transition-timing-function: var(--ease-popup, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
-@utility text-glow {
-    text-shadow:
-        0 0 40px color-mix(in srgb, color-mix(in srgb, var(--color-accent) 63%, white) 35%, transparent),
-        0 0 80px color-mix(in srgb, color-mix(in srgb, var(--color-accent) 92%, white) 25%, transparent),
-        0 0 120px color-mix(in srgb, var(--color-accent) 20%, transparent),
-        0 0 180px color-mix(in srgb, var(--color-accent) 15%, transparent);
-}
 
 
 :root {

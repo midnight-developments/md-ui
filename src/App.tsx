@@ -52,7 +52,7 @@ export default function App() {
 
                 {/* Header */}
                 <header className="flex flex-col items-center text-center gap-3">
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-foreground leading-[1.05] text-glow">
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-foreground leading-[1.05]">
                         UI/UX Showcase By Danyal Asghar
                     </h1>
 
