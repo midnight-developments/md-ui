@@ -12,7 +12,7 @@ export function WarningIcon({ className, ...props }: WarningIconProps) {
             viewBox="0 0 24 24"
             fill="none"
             className={cn(
-                "size-14 shrink-0 overflow-visible drop-shadow-[0_4px_40px_rgba(255,215,10)]",
+                "size-14 shrink-0 overflow-visible",
                 className
             )}
             {...props}

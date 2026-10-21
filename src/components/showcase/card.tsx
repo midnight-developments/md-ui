@@ -6,7 +6,7 @@ export function Card({ className, children, ...props }: React.ComponentProps<"di
         <div
             data-slot="showcase-card"
             className={cn(
-                "group/showcase-card cursor-pointer flex flex-col rounded-xl overflow-hidden bg-card border-2 border-white/5 hover:scale-101 hover:-translate-y-1 transition-all duration-200",
+                "group/showcase-card cursor-pointer flex flex-col rounded-xl overflow-hidden bg-card border-2 border-white/5 hover:-translate-y-1.5 transition-all duration-200",
                 className
             )}
             {...props}

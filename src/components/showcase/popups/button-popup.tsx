@@ -28,23 +28,23 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                                 Primary Variant
                             </h3>
                             <div className="flex flex-wrap items-center gap-3">
-                                <Button variant="default">Primary Action</Button>
-                                <Button variant="default">
+                                <Button variant="primary">Primary Action</Button>
+                                <Button variant="primary">
                                     <Download className="size-4" />
                                     With Icon
                                 </Button>
-                                <Button variant="default" disabled>Disabled</Button>
+                                <Button variant="primary" disabled>Disabled</Button>
                             </div>
                         </div>
 
                         <div className="flex flex-col gap-3.5">
                             <h3 className="text-lg text-muted leading-none">
-                                Outline Variant
+                                Secondary Variant
                             </h3>
                             <div className="flex flex-wrap items-center gap-3">
-                                <Button variant="outline">Outline Action</Button>
+                                <Button variant="secondary">Secondary Action</Button>
                                 <Button
-                                    variant="outline"
+                                    variant="secondary"
                                     onClick={() => setIsFavorite((prev) => !prev)}
                                     className="transition-all"
                                 >
@@ -58,7 +58,7 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                                     />
                                     {isFavorite ? "Favorited" : "Favorite"}
                                 </Button>
-                                <Button variant="outline" disabled>Disabled</Button>
+                                <Button variant="secondary" disabled>Disabled</Button>
                             </div>
                         </div>
 

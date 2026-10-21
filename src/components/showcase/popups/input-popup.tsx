@@ -11,13 +11,13 @@ import {
     PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { Input } from "@/components/ui/input/input"
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input/input-group"
-import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
-import { Search, Lock, Eye, EyeOff } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
+import { Textarea } from "@/components/ui/textarea"
+import { Field, FieldLabel, FieldGroup, FieldDescription } from "@/components/ui/field"
+import { Search } from "lucide-react"
 
 export function InputPopup({ open, onOpenChange }: PopupProps) {
-    const [showPassword, setShowPassword] = React.useState(false)
     const [query, setQuery] = React.useState("")
     const [email, setEmail] = React.useState("invalid-email-format")
 
@@ -28,7 +28,7 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="flex flex-col gap-8 max-w-md w-full">
+                    <FieldGroup className="max-w-md">
                         <Field>
                             <FieldLabel>Standard Input</FieldLabel>
                             <Input placeholder="Enter username or email" defaultValue="danyalasghar@midnight.dev" />
@@ -42,7 +42,7 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                                 </InputGroupAddon>
                                 <InputGroupInput
                                     value={query}
-                                    onChange={(e) => setQuery(e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
                                     placeholder="Search documentation or files..."
                                 />
                             </InputGroup>
@@ -51,31 +51,29 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                         {/* Password input with toggle button */}
                         <Field>
                             <FieldLabel>Secure Password Field</FieldLabel>
-                            <InputGroup>
-                                <InputGroupAddon align="inline-start">
-                                    <Lock className="size-4 text-muted" />
-                                </InputGroupAddon>
-                                <InputGroupInput
-                                    type={showPassword ? "text" : "password"}
-                                    defaultValue="super-secret-password-123"
-                                />
-                                <InputGroupAddon
-                                    align="inline-end"
-                                    className="cursor-pointer hover:text-white"
-                                    onClick={() => setShowPassword(!showPassword)}
-                                >
-                                    {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
-                                </InputGroupAddon>
-                            </InputGroup>
+                            <Input
+                                type="password"
+                                defaultValue="super-secret-password-123"
+                            />
                         </Field>
 
-                        {/* Interactive validation state with dynamic description / error */}
-                        <Field data-invalid={isInvalid}>
+                        {/* Plain Textarea */}
+                        <Field>
+                            <FieldLabel>Textarea</FieldLabel>
+                            <Textarea
+                                placeholder="Write project notes or a description..."
+                                defaultValue="Engineered with automatic field-sizing and unified InputShell styling."
+                                rows={3}
+                            />
+                        </Field>
+
+                        <Field data-invalid={isInvalid ? "" : undefined}>
                             <FieldLabel>Validation State</FieldLabel>
                             <Input
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="name@domain.com"
+                                data-invalid={isInvalid ? "" : undefined}
                                 aria-invalid={isInvalid}
                             />
                             <FieldDescription
@@ -89,13 +87,13 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                                 }
                             />
                         </Field>
-                    </div>
+                    </FieldGroup>
                 </PopupPreview>
 
                 <PopupDetails>
-                    <PopupTitle>Input & InputGroup</PopupTitle>
+                    <PopupTitle>Input, Textarea & InputGroup</PopupTitle>
                     <PopupDescription>
-                        Engineered with composable input groups, interactive icon addons, password visibility toggles, and clean focus ring transitions.
+                        Engineered with composable input groups, polymorphic textareas, interactive icon addons, password visibility toggles, and clean focus ring transitions.
                     </PopupDescription>
 
                     <PopupCharacteristics
@@ -105,12 +103,16 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                                 description: "Easily place leading icons, trailing actions, or helper controls inside the input shell.",
                             },
                             {
+                                title: "Polymorphic Textarea Support",
+                                description: "Textareas seamlessly adopt the exact same InputShell tokens, focus glow, and elevation without redundant wrapper DOM nodes.",
+                            },
+                            {
                                 title: "Elevated Surface & Rim Light",
                                 description: "Calibrated dark surface (rgba(35, 35, 35)) with subtle top rim lighting that brightens smoothly on hover and active focus.",
                             },
                             {
                                 title: "Validation States",
-                                description: "Distinct focus-visible rings, disabled states, and dynamic aria-invalid error boundaries via Field primitives.",
+                                description: "Distinct focus-visible rings, disabled states, and dynamic data-invalid error boundaries via Field primitives.",
                             },
                         ]}
                     />

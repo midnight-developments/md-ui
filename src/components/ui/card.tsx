@@ -33,9 +33,9 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
   return (
-    <div
+    <h3
       data-slot="card-title"
       className={cn(
         "text-xl text-foreground",
@@ -56,6 +56,7 @@ function CardTitleIcon({
   return (
     <div
       data-slot="card-title-icon"
+      aria-hidden="true"
       className={cn(
         "flex p-1.5 items-center justify-center rounded-md bg-white/10",
         className
@@ -67,9 +68,9 @@ function CardTitleIcon({
   )
 }
 
-function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
+function CardDescription({ className, ...props }: React.ComponentProps<"p">) {
   return (
-    <div
+    <p
       data-slot="card-description"
       className={cn(
         "text-base text-muted",

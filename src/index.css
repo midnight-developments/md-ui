@@ -3,20 +3,16 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: 'Inter Variable';
-    src: url('@fontsource-variable/inter/files/inter-latin-wght-normal.woff2') format('woff2');
-    font-weight: 100 900;
+    font-family: 'Plus Jakarta Sans Variable';
+    src: url('@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2');
+    font-weight: 200 800;
     font-style: normal;
     font-display: swap;
-    font-size-adjust: 97.5%;
 }
 
+
 @theme inline {
-    --font-sans: 'Inter Variable', sans-serif;
-    --font-weight-normal: 380;
-    --font-weight-medium: 480;
-    --font-weight-semibold: 580;
-    --font-weight-bold: 680;
+    --font-sans: 'Plus Jakarta Sans Variable', 'Inter Variable', sans-serif;
 
     --letter-spacing-h1: -2.5px;
     --letter-spacing-h2: -0.7px;
@@ -28,9 +24,10 @@
     --color-secondary: rgb(165, 165, 165);
     --color-muted: rgb(130, 130, 130);
     --color-accent: rgb(120, 105, 230);
-    --color-accent-active: rgb(170, 155, 255);
-    --color-destructive: rgb(255, 100, 103);
-    --color-success: rgb(95, 176, 107);
+    --color-accent-text: rgba(188, 177, 247);
+    --color-destructive: rgb(242, 138, 140);
+    --color-success: rgb(165, 230, 205);
+    --color-warning: rgba(240, 215, 150);
 
     --color-border: rgba(28, 28, 28);
     --color-border-hover: rgba(255, 255, 255, 0.25);
@@ -45,11 +42,10 @@
     --color-card-hover: rgba(255, 255, 255, 0.08);
     --color-card-active: rgba(255, 255, 255, 0.08);
 
-    --background-image-accent-gradient: linear-gradient(to bottom, rgba(130, 115, 238, 0.94), rgba(114, 98, 224, 0.92));
-    --background-image-accent-gradient-x: linear-gradient(to right, rgba(130, 115, 238, 0.94), rgba(114, 98, 224, 0.92));
-    --background-image-destructive-gradient: linear-gradient(to bottom, rgba(220, 48, 58, 0.92), rgba(198, 36, 46, 0.91));
-    --background-image-destructive-gradient-x: linear-gradient(to right, rgba(220, 48, 58, 0.92), rgba(198, 36, 46, 0.91));
-    --background-image-dark-gradient: linear-gradient(to bottom, rgba(225, 255, 255, 0.075), rgba(255, 255, 255, 0.025));
+
+
+
+    --radius-md: 5px;
 
     --text-md: 0.9375rem;
 
@@ -57,8 +53,8 @@
     --ease-snappy: cubic-bezier(0, 0, 0.2, 1);
 
     --duration-popup: 300ms;
-    --ease-popup: cubic-bezier(0.25, 1, 0.35, 1);
-    --ease-popup-bouncy: cubic-bezier(0.16, 1, 0.3, 1.25);
+    --ease-popup: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-popup-bouncy: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @utility transition-snappy {
@@ -69,34 +65,16 @@
 
 @utility transition-popup {
     transition-property: all;
-    transition-duration: var(--duration-popup, 250ms);
-    transition-timing-function: var(--ease-popup-bouncy, cubic-bezier(0.25, 1, 0.35, 1));
+    transition-duration: var(--duration-popup, 200ms);
+    transition-timing-function: var(--ease-popup, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
-@utility text-glow {
-    text-shadow:
-        0 0 40px rgba(170, 155, 255, 0.35),
-        0 0 80px rgba(130, 115, 238, 0.25),
-        0 0 120px rgba(120, 105, 230, 0.2),
-        0 0 180px rgba(120, 105, 230, 0.15);
-}
 
 
 :root {
-    --grain-opacity: 0.045;
-    --grain-surface-opacity: 0.04;
-    --grain-size: 96px;
-
     --font-feature-settings: "cv02" 1, "cv03" 1, "cv04" 1, "cv11" 1, "calt" 1, "liga" 1;
 }
 
-@media (color-gamut: p3) {
-    :root {
-        --grain-size: 48px;
-        --grain-opacity: 0.018;
-        --grain-surface-opacity: 0.016;
-    }
-}
 
 
 @layer base {
@@ -109,6 +87,31 @@
 
     html {
         scrollbar-gutter: stable;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+    }
+
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+    }
+
+    *::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.16);
+        border-radius: 9999px;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.28);
     }
 
     body {
@@ -121,20 +124,6 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-feature-settings: var(--font-feature-settings);
-    }
-
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 0;
-        opacity: var(--grain-opacity);
-        background-image: url("./assets/grain.png");
-        background-repeat: repeat;
-        background-size: var(--grain-size) var(--grain-size);
     }
 
     body:has([data-slot="dialog-overlay"]) {
@@ -185,35 +174,4 @@
 .react-colorful__hue {
     border-radius: 0 0 4px 4px !important;
     border-top: none !important;
-}
-
-
-@layer utilities {
-
-    .surface-grain,
-    .bg-grain {
-        position: relative;
-        isolation: isolate;
-
-        &>*:not(.absolute):not([class*="absolute"]) {
-            position: relative;
-        }
-
-        &>* {
-            z-index: 2;
-        }
-
-        &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            pointer-events: none;
-            z-index: 1;
-            opacity: var(--grain-surface-opacity);
-            background-image: url("./assets/grain.png");
-            background-repeat: repeat;
-            background-size: var(--grain-size) var(--grain-size);
-        }
-    }
 }

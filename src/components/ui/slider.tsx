@@ -1,3 +1,4 @@
+import * as React from "react"
 import { Slider as SliderPrimitive } from "@base-ui/react/slider"
 
 import { cn } from "@/lib/utils"
@@ -19,6 +20,10 @@ function Slider({
     wrapperClassName,
     ...props
 }: SliderProps) {
+    const id = React.useId()
+    const labelId = `${id}-label`
+    const descriptionId = description ? `${id}-desc` : undefined
+
     const _values = value !== undefined
         ? (Array.isArray(value) ? value : [value])
         : defaultValue !== undefined
@@ -35,6 +40,8 @@ function Slider({
             value={value}
             min={min}
             max={max}
+            aria-labelledby={labelId}
+            aria-describedby={descriptionId}
             thumbAlignment="edge"
             {...props}
         >
@@ -52,7 +59,8 @@ function Slider({
                     <SliderPrimitive.Thumb
                         data-slot="slider-thumb"
                         key={index}
-                        className="relative block size-4 shrink-0 rounded-full bg-white cursor-pointer active:scale-90 active:brightness-90 transition-[scale,filter] ease-in-out duration-200 select-none disabled:pointer-events-none disabled:opacity-50"
+                        aria-label={_values.length > 1 ? (index === 0 ? `${label} minimum` : `${label} maximum`) : label}
+                        className="relative block size-4 shrink-0 rounded-full bg-white cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-border-active active:scale-90 active:brightness-90 transition-[scale,filter] ease-in-out duration-200 select-none disabled:pointer-events-none disabled:opacity-50"
                     />
                 ))}
             </SliderPrimitive.Control>
@@ -62,7 +70,7 @@ function Slider({
     return (
         <div className={cn("flex flex-col gap-3 w-full", wrapperClassName)}>
             <div className="flex justify-between items-center w-full">
-                <label className="text-lg font-normal text-foreground">
+                <label id={labelId} className="text-lg font-normal text-foreground">
                     {label}
                 </label>
                 <span className="text-lg font-normal text-foreground">
@@ -71,7 +79,7 @@ function Slider({
             </div>
             {sliderElement}
             {description && (
-                <p className="text-base text-secondary -mt-0.5">
+                <p id={descriptionId} className="text-base text-secondary -mt-0.5">
                     {description}
                 </p>
             )}
@@ -80,3 +88,4 @@ function Slider({
 }
 
 export { Slider }
+

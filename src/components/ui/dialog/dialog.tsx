@@ -5,14 +5,12 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { motion, AnimatePresence } from "framer-motion"
 
 import { cn } from "@/lib/utils"
-import "./dialog.css"
+import advancedDialogStyles from "./dialog.module.css"
 
 const DialogContext = React.createContext<{ open: boolean; inDialog: boolean }>({ open: false, inDialog: false })
 
 function Dialog({
     open = false,
-    onOpenChange,
-    modal = "trap-focus",
     ...props
 }: DialogPrimitive.Root.Props) {
     return (
@@ -20,15 +18,15 @@ function Dialog({
             <DialogPrimitive.Root
                 data-slot="dialog"
                 open={open}
-                onOpenChange={onOpenChange}
-                modal={modal}
                 {...props}
             />
         </DialogContext.Provider>
     )
 }
 
-
+function DialogTrigger({ ...props }: DialogPrimitive.Trigger.Props) {
+    return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />
+}
 
 const overlayVariants = {
     initial: { opacity: 0, backdropFilter: "blur(0px)" },
@@ -106,7 +104,8 @@ function DialogContent({
             <div
                 data-slot="dialog-content"
                 className={cn(
-                    "flex flex-col gap-4 p-6 rounded-xl surface-grain bg-card rim-light-dialog overflow-hidden",
+                    "flex flex-col gap-9 p-6 rounded-xl overflow-hidden",
+                    advancedDialogStyles.content,
                     className
                 )}
                 {...(props as React.ComponentProps<"div">)}
@@ -133,7 +132,8 @@ function DialogContent({
                                     exit="exit"
                                     className={cn(
                                         "relative z-50 outline-none pointer-events-auto",
-                                        "flex flex-col gap-4 p-6 rounded-xl surface-grain bg-card rim-light-dialog overflow-hidden",
+                                        "flex flex-col gap-9 p-6 rounded-xl max-h-[calc(100vh-4rem)] overflow-y-auto",
+                                        advancedDialogStyles.content,
                                         className
                                     )}
                                 />
@@ -169,7 +169,7 @@ function DialogTitle({ className, ...props }: React.ComponentProps<"h2">) {
             <DialogPrimitive.Title
                 data-slot="dialog-title"
                 className={cn(
-                    "text-2xl text-foreground leading-[1]",
+                    "text-2xl font-medium text-foreground leading-[1]",
                     className
                 )}
                 {...(props as DialogPrimitive.Title.Props)}
@@ -180,7 +180,7 @@ function DialogTitle({ className, ...props }: React.ComponentProps<"h2">) {
         <h2
             data-slot="dialog-title"
             className={cn(
-                "text-2xl text-foreground leading-[1]",
+                "text-2xl font-medium text-foreground leading-[1]",
                 className
             )}
             {...props}
@@ -232,7 +232,7 @@ function DialogFooter({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="dialog-footer"
             className={cn(
-                "flex items-center mt-1",
+                "flex gap-2 items-center",
                 className
             )}
             {...props}
@@ -240,8 +240,20 @@ function DialogFooter({ className, ...props }: React.ComponentProps<"div">) {
     )
 }
 
+function DialogClose({ className, ...props }: DialogPrimitive.Close.Props) {
+    return (
+        <DialogPrimitive.Close
+            data-slot="dialog-close"
+            className={className}
+            {...props}
+        />
+    )
+}
+
 export {
     Dialog,
+    DialogTrigger,
+    DialogClose,
     DialogContent,
     DialogHeader,
     DialogTitle,

@@ -2,39 +2,37 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import "./button.css"
+import advancedButtonStyles from "./button.module.css"
 
 const buttonVariants = cva(
   [
-    "group/button h-9.5 px-3.5 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-md bg-clip-padding text-base cursor-pointer active:scale-[0.98] active:brightness-90 transition-snappy whitespace-nowrap",
-    "disabled:pointer-events-none disabled:opacity-50 select-none will-change-transform outline-none",
+    "group/button h-9  px-4 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-md bg-clip-padding text-base cursor-pointer active:scale-[0.98] transition-snappy whitespace-nowrap",
+    "disabled:pointer-events-none disabled:opacity-50 select-none outline-none",
     "[&:is(:focus-visible,[data-popup-open],[data-state=open],[aria-expanded=true])]:ring-2",
     "[&:is(:focus-visible,[data-popup-open],[data-state=open],[aria-expanded=true])]:ring-border-active",
   ].join(" "),
   {
     variants: {
       variant: {
-        default:
-          "hover:brightness-110 bg-accent-gradient text-foreground active:text-foreground/80 rim-light-bright-button",
-        outline:
-          "bg-[rgb(40,40,40)] ring-1 ring-inset ring-border text-foreground active:text-foreground/80 rim-light-dark-button",
-        link:
-          "h-auto p-0 bg-transparent gap-1 active:scale-[1]",
-        destructive:
-          "hover:brightness-110 bg-destructive-gradient text-foreground active:text-foreground/80 rim-light-bright-button",
+        primary: advancedButtonStyles.primary,
+        secondary: advancedButtonStyles.secondary,
+        outline: advancedButtonStyles.secondary,
+        destructive: advancedButtonStyles.destructive,
         ghost:
           "bg-transparent hover:bg-white/10 text-foreground",
+        link:
+          "h-auto p-0 bg-transparent gap-1 active:scale-[1] text-foreground underline-offset-4 hover:underline",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "primary",
     },
   }
 )
 
 function Button({
   className,
-  variant = "default",
+  variant = "primary",
   ...props
 }: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
   return (
