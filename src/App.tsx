@@ -9,7 +9,7 @@ import {
 import { Button } from '@/components/ui/button/button'
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group/radio-group'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio/radio-group'
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge/badge'
 import { Search } from 'lucide-react'
@@ -113,7 +113,7 @@ export default function App() {
                                 </Field>
                             </CardPreview>
                             <CardContent>
-                                <CardTitle>Select & Combobox</CardTitle>
+                                <CardTitle>Select, Dropdown & Combobox</CardTitle>
                             </CardContent>
                         </Card>
 

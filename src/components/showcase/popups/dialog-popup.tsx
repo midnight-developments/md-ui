@@ -19,8 +19,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogDescription,
-    DialogBody,
-    DialogFooter,
+    DialogSurface,
 } from "@/components/ui/dialog/dialog"
 import { Button } from "@/components/ui/button/button"
 import { WarningIcon } from "@/components/ui/dialog/header-icons/warning-icon"
@@ -34,7 +33,7 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
             <PopupContent>
                 <PopupPreview>
                     <div className="flex flex-col items-center gap-6 max-w-sm w-full">
-                        <DialogContent className="w-full">
+                        <DialogSurface className="w-full">
                             <div className="flex flex-col items-center text-center gap-2">
                                 <WarningIcon className="size-12" />
                                 <h2 className="text-2xl text-foreground">Action Confirmation</h2>
@@ -43,7 +42,7 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                                 </p>
                             </div>
 
-                            <div className="flex flex-col gap-2 mt-2">
+                            <div className="flex flex-col gap-2 ">
                                 <Dialog open={isSubDialogOpen} onOpenChange={setIsSubDialogOpen}>
                                     <DialogTrigger
                                         render={
@@ -53,30 +52,36 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                                             </Button>
                                         }
                                     />
-                                    <DialogContent className="w-sm">
-                                        <DialogHeader>
-                                            <WarningIcon className="size-14" />
-                                            <DialogTitle>Zero-Shift Modal</DialogTitle>
-                                        </DialogHeader>
-                                        <DialogBody>
-                                            <DialogDescription className="text-center">
-                                                Notice how opening and closing this dialog produces zero layout jump, thanks to CSS <code className="text-white/80">scrollbar-gutter: stable</code> .
+                                    <DialogContent className="w-full max-w-sm">
+                                        <DialogHeader className="items-center text-center">
+                                            <WarningIcon className="size-12" />
+                                            <DialogTitle>Action Confirmation</DialogTitle>
+                                            <DialogDescription>
+                                                Are you sure you want to deploy these changes to production? This operation will initiate zero-downtime rolling updates.
                                             </DialogDescription>
-                                        </DialogBody>
-                                        <DialogFooter className="flex-col w-full gap-2">
+                                        </DialogHeader>
+
+                                        <div className="flex flex-col gap-2">
                                             <DialogClose
                                                 render={
                                                     <Button variant="primary" className="w-full">
-                                                        Got it
+                                                        Confirm
                                                     </Button>
                                                 }
                                             />
-                                        </DialogFooter>
+                                            <DialogClose
+                                                render={
+                                                    <Button variant="secondary" className="w-full">
+                                                        Cancel
+                                                    </Button>
+                                                }
+                                            />
+                                        </div>
                                     </DialogContent>
                                 </Dialog>
                                 <Button variant="secondary" className="w-full">Cancel</Button>
                             </div>
-                        </DialogContent>
+                        </DialogSurface>
 
                         <p className="text-sm text-muted text-center max-w-xs">
                             Click above to test modal opening/closing
@@ -111,7 +116,7 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                         ]}
                     />
                 </PopupDetails>
-            </PopupContent>
-        </Popup>
+            </PopupContent >
+        </Popup >
     )
 }

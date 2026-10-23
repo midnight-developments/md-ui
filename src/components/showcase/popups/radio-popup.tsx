@@ -11,8 +11,8 @@ import {
     PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group/radio-group"
-import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group/card-radio-group"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio/radio-group"
+import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/radio/card-radio-group"
 import { Field, FieldGroup, FieldLabel, FieldContent, FieldLegend, FieldDescription, FieldSet } from "@/components/ui/field"
 
 export function RadioPopup({ open, onOpenChange }: PopupProps) {

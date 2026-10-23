@@ -20,6 +20,7 @@ import {
     DialogDescription,
     DialogBody,
     DialogFooter,
+    DialogSurface,
 } from "@/components/ui/dialog/dialog"
 import { Button } from "@/components/ui/button/button"
 import { Input } from "@/components/ui/input"
@@ -30,7 +31,7 @@ import {
     FieldSet,
     FieldLegend,
 } from "@/components/ui/field"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group/radio-group"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio/radio-group"
 import { CheckboxGroup, Checkbox } from "@/components/ui/checkbox-group/checkbox-group"
 import {
     Select,
@@ -180,18 +181,12 @@ export function BillingDialogPopup({ open, onOpenChange }: PopupProps) {
             <PopupContent>
                 <PopupPreview>
                     <div className="flex flex-col items-center gap-6 max-w-md w-full">
-                        <DialogContent className="w-full">
+                        <DialogSurface className="w-full">
                             {formContent}
-                        </DialogContent>
+                        </DialogSurface>
 
                         <Dialog open={isLiveOpen} onOpenChange={setIsLiveOpen}>
-                            <DialogTrigger
-                                render={
-                                    <Button variant="secondary" className="w-full">
-                                        Open Dialog
-                                    </Button>
-                                }
-                            />
+                            <DialogTrigger render={<Button variant="secondary" className="w-full">Open Dialog</Button>} />
                             <DialogContent className="w-full max-w-md">
                                 {formContent}
                             </DialogContent>
@@ -223,6 +218,6 @@ export function BillingDialogPopup({ open, onOpenChange }: PopupProps) {
                     />
                 </PopupDetails>
             </PopupContent>
-        </Popup>
+        </Popup >
     )
 }

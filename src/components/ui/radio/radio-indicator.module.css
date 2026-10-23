@@ -8,6 +8,7 @@
     justify-content: center;
     border-radius: 9999px;
     border-width: 0;
+    pointer-events: none;
     user-select: none;
 
     background:
@@ -43,22 +44,27 @@
     transition: opacity 0.2s ease;
 }
 
-.indicator:hover:not([data-checked]):not(:disabled) {
+.indicator:hover:not([data-checked]):not(:disabled),
+:global([data-slot="radio-group-item"]:hover:not([data-checked]):not(:disabled)) .indicator,
+:global([data-slot="card-radio-group-item"]:hover:not([data-checked]):not(:disabled)) .indicator {
     box-shadow:
         inset 0 0 0 1px rgba(255, 255, 255, 0.22),
         inset 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .indicator[data-checked],
-:global([data-slot="radio-group-item"][data-checked]) {
+:global([data-slot="radio-group-item"][data-checked]) .indicator {
     box-shadow:
         inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 70%, white);
 }
 
+:global([data-slot="card-radio-group-item"][data-checked]) .indicator {
+    box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 60%, white);
+}
+
 .activeIndicator {
     position: relative;
-    width: calc(100% - 6px);
-    height: calc(100% - 6px);
     aspect-ratio: 1 / 1;
     margin: auto;
     flex-shrink: 0;
@@ -70,7 +76,6 @@
     border-width: 0;
 
     background:
-        linear-gradient(105deg, transparent 28%, rgba(255, 255, 255, 0.14) 50%, transparent 72%),
         linear-gradient(20deg,
             color-mix(in srgb, var(--color-accent) 90%, black) 0%,
             var(--color-accent) 55%,
@@ -100,4 +105,14 @@
         linear-gradient(#fff 0 0) padding-box,
         linear-gradient(#fff 0 0);
     mask-composite: exclude;
+}
+
+.dot {
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+}
+
+.check {
+    width: 100%;
+    height: 100%;
 }

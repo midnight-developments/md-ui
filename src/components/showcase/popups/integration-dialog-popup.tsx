@@ -16,7 +16,7 @@ import {
     DialogTitle,
     DialogDescription,
     DialogFooter,
-    DialogContent,
+    DialogSurface,
 } from "@/components/ui/dialog/dialog"
 import { Button } from "@/components/ui/button/button"
 import { ChevronsRight, Check, Loader2 } from "lucide-react"
@@ -63,7 +63,7 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <DialogContent >
+                    <DialogSurface >
                         <DialogHeader >
                             <div className="flex items-center justify-center gap-3.5 mb-3">
                                 <div className="size-14 rounded-lg overflow-hidden border border-white/10 flex items-center justify-center bg-white">
@@ -118,7 +118,7 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
                                 Cancel
                             </Button>
                         </DialogFooter>
-                    </DialogContent>
+                    </DialogSurface>
                 </PopupPreview>
 
                 <PopupDetails>

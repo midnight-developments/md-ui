@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button/button"
 import { Badge } from "@/components/ui/badge/badge"
 import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSet, FieldContent } from "@/components/ui/field"
-import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group/card-radio-group"
+import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/radio/card-radio-group"
 import {
     Select,
     SelectTrigger,

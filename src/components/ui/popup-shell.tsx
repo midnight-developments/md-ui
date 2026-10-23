@@ -29,9 +29,8 @@ const popupItemClasses = cn(
 
 export interface PopupShellProps extends React.ComponentProps<"div"> { }
 
-export const PopupShell = React.forwardRef<HTMLDivElement, PopupShellProps>(
-    function PopupShell({ className, children, onMouseMove, onMouseLeave, ...props }, forwardedRef) {
-        const internalRef = React.useRef<HTMLDivElement>(null)
+export function PopupShell({ className, children, onMouseMove, onMouseLeave, ref, ...props }: PopupShellProps) {
+    const internalRef = React.useRef<HTMLDivElement>(null)
 
         const setPosition = (item: HTMLElement | null, immediate = false) => {
             const element = internalRef.current
@@ -106,8 +105,11 @@ export const PopupShell = React.forwardRef<HTMLDivElement, PopupShellProps>(
                 data-slot="popup-shell"
                 ref={(node) => {
                     internalRef.current = node
-                    if (typeof forwardedRef === "function") forwardedRef(node)
-                    else if (forwardedRef) forwardedRef.current = node
+                    if (typeof ref === "function") {
+                        ref(node)
+                    } else if (ref) {
+                        ref.current = node
+                    }
                 }}
                 className={cn(popupShellClasses, className)}
                 onMouseMove={handleMouseMove}
@@ -129,8 +131,7 @@ export const PopupShell = React.forwardRef<HTMLDivElement, PopupShellProps>(
                 {children}
             </div>
         )
-    }
-)
+}
 
 export interface PopupItemProps extends React.ComponentProps<"div"> {
     variant?: "default" | "destructive"
