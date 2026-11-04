@@ -33,14 +33,13 @@ import {
     DropdownMenuTrigger,
     DropdownMenuContent,
     DropdownMenuGroup,
-    DropdownMenuLabel,
     DropdownMenuItem,
     DropdownMenuSeparator,
     DropdownMenuSub,
     DropdownMenuSubTrigger,
     DropdownMenuSubContent,
 } from "@/components/ui/dropdown"
-import { Field, FieldLabel } from "@/components/ui/field"
+import { Field, FieldLabel, FieldGroup } from "@/components/ui/field"
 import { Copy, Terminal, Share2, Download, Trash2 } from "lucide-react"
 
 const frameworks = [
@@ -64,8 +63,7 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="flex flex-col gap-5 max-w-sm w-full py-4">
-                        {/* 1. Cloud Region Select */}
+                    <FieldGroup className="max-w-md">
                         <Field>
                             <FieldLabel>Primary Deployment Region</FieldLabel>
                             <Select value={region} onValueChange={(val) => val && setRegion(val)}>
@@ -88,7 +86,6 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                             </Select>
                         </Field>
 
-                        {/* 2. Database Engine Select */}
                         <Field>
                             <FieldLabel>Database Engine & Version</FieldLabel>
                             <Select value={engine} onValueChange={(val) => val && setEngine(val)}>
@@ -104,7 +101,6 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                             </Select>
                         </Field>
 
-                        {/* 3. Searchable Combobox */}
                         <Field>
                             <FieldLabel>Framework Preset</FieldLabel>
                             <Combobox
@@ -128,7 +124,6 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                             </Combobox>
                         </Field>
 
-                        {/* 4. Dropdown Menu */}
                         <Field>
                             <FieldLabel>Environment Operations</FieldLabel>
                             <DropdownMenu>
@@ -178,7 +173,7 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                                 </div>
                             )}
                         </div>
-                    </div>
+                    </FieldGroup>
                 </PopupPreview>
 
                 <PopupDetails>

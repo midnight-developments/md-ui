@@ -12,6 +12,12 @@ const columnClasses: Record<number, string> = {
     4: "grid-cols-4",
 }
 
+const positionClasses: Record<"top-right" | "right-center" | "left-center", string> = {
+    "left-center": "items-center justify-start",
+    "right-center": "items-center justify-between",
+    "top-right": "items-start justify-between",
+}
+
 function CardCheckboxGroup({
     className,
     columns = 2,
@@ -50,7 +56,7 @@ function CardCheckboxGroupItem({
                 keepMounted
                 className={cn(
                     advancedCardCheckboxStyles.activeIndicator,
-                    "transition-snappy data-unchecked:opacity-0 data-unchecked:scale-75 data-checked:opacity-100 data-checked:scale-100"
+                    "transition-interactive data-unchecked:opacity-0 data-unchecked:scale-75 data-checked:opacity-100 data-checked:scale-100"
                 )}
             >
                 <svg
@@ -74,15 +80,11 @@ function CardCheckboxGroupItem({
         <CheckboxPrimitive.Root
             data-slot="card-checkbox-group-item"
             className={cn(
-                "group/card-checkbox peer relative flex gap-3 p-3.5 rounded-md outline-none transition-snappy cursor-pointer select-none text-left",
+                "relative flex gap-3 p-3.5 rounded-md outline-none cursor-pointer select-none text-left transition-interactive ",
                 "focus-visible:ring-2 focus-visible:ring-border-active",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 advancedCardCheckboxStyles.card,
-                isLeftCenter
-                    ? "items-center justify-start"
-                    : indicatorPosition === "right-center"
-                        ? "items-center justify-between"
-                        : "items-start justify-between",
+                positionClasses[indicatorPosition],
                 className
             )}
             {...props}
@@ -90,11 +92,11 @@ function CardCheckboxGroupItem({
             {isLeftCenter ? (
                 <>
                     {indicatorElement}
-                    <div className="flex flex-col w-full">{children}</div>
+                    {children}
                 </>
             ) : (
                 <>
-                    <div className="flex flex-col w-full">{children}</div>
+                    {children}
                     {indicatorElement}
                 </>
             )}

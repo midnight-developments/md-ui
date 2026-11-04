@@ -105,10 +105,6 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                                 description: "Top and inner highlight gradient that simulates modern, physical studio lighting.",
                             },
                             {
-                                title: "Snappy Feedback",
-                                description: "Spring-damped 200ms cubic-bezier(0, 0, 0.2, 1) transition for press, hover, and focus states.",
-                            },
-                            {
                                 title: "Accessible Base",
                                 description: "Full keyboard navigation, focus rings, and screen-reader compliance via Base UI.",
                             },

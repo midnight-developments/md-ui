@@ -23,7 +23,7 @@ function ComboboxTrigger({
         <ComboboxPrimitive.Trigger
             data-slot="combobox-trigger"
             className={cn(
-                "flex items-center justify-center -mr-1 size-4 shrink-0 bg-transparent text-muted-foreground opacity-50 cursor-pointer outline-none transition-snappy group-hover/input-group:opacity-100 hover:opacity-100",
+                "flex items-center justify-center -mr-1 size-4 shrink-0 bg-transparent text-muted-foreground opacity-50 cursor-pointer outline-none group-hover/input-group:opacity-100 hover:opacity-100",
                 "group-data-[popup-open]/input-group:rotate-180 data-[popup-open]:rotate-180",
                 className
             )}
@@ -211,7 +211,7 @@ function ComboboxChips({
         <ComboboxPrimitive.Chips
             data-slot="combobox-chips"
             className={cn(
-                "flex min-h-8 flex-wrap items-center gap-1 rounded-md border border-input bg-transparent bg-clip-padding px-2.5 py-1 text-base transition-colors",
+                "flex min-h-8 flex-wrap items-center gap-1 rounded-md border border-input bg-transparent bg-clip-padding px-2.5 py-1 text-base transition-interactive",
                 "focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50",
                 "has-data-[invalid]:border-destructive has-data-[invalid]:ring-3 has-data-[invalid]:ring-destructive/20",
                 "has-data-[slot=combobox-chip]:px-1 dark:bg-input/30",

@@ -31,7 +31,7 @@ export function RadioIndicator({
                 className={cn(
                     radioIndicatorStyles.activeIndicator,
                     isCheck ? radioIndicatorStyles.check : radioIndicatorStyles.dot,
-                    "transition-snappy data-unchecked:opacity-0 data-unchecked:scale-75 data-checked:opacity-100 data-checked:scale-100",
+                    "transition-interactive data-unchecked:opacity-0 data-unchecked:scale-75 data-checked:opacity-100 data-checked:scale-100",
                     indicatorClassName
                 )}
             >

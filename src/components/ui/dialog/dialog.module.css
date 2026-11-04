@@ -41,5 +41,5 @@
 
     transform: translateZ(0);
     backface-visibility: hidden;
-    transition: opacity 0.15s ease;
+    transition: opacity var(--transition-interactive);
 }

@@ -48,30 +48,49 @@
 
     --text-md: 0.9375rem;
 
-    --duration-snappy: 200ms;
-    --ease-snappy: cubic-bezier(0, 0, 0.2, 1);
 
-    --duration-popup: 300ms;
+    --duration-interactive: 200ms;
+    --ease-interactive: cubic-bezier(0.2, 0, 0, 1);
+    --transition-interactive: var(--duration-interactive) var(--ease-interactive);
+
+    --duration-popup: 250ms;
     --ease-popup: cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-popup-bouncy: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-popup: var(--duration-popup) var(--ease-popup);
 }
 
-@utility transition-snappy {
-    transition-property: all;
-    transition-duration: var(--duration-snappy, 150ms);
-    transition-timing-function: var(--ease-snappy, cubic-bezier(0, 0, 0.2, 1));
+
+@utility transition-interactive {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter;
+    transition-duration: var(--duration-interactive, 200ms);
+    transition-timing-function: var(--ease-interactive, cubic-bezier(0.2, 0, 0, 1));
 }
 
 @utility transition-popup {
-    transition-property: all;
-    transition-duration: var(--duration-popup, 200ms);
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter;
+    transition-duration: var(--duration-popup, 250ms);
     transition-timing-function: var(--ease-popup, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
 
 
 :root {
+    --duration-interactive: 200ms;
+    --ease-interactive: cubic-bezier(0.2, 0, 0, 1);
+    --transition-interactive: var(--duration-interactive) var(--ease-interactive);
+
+    --duration-popup: 250ms;
+    --ease-popup: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-popup-bouncy: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-popup: var(--duration-popup) var(--ease-popup);
+
     --font-feature-settings: "cv02" 1, "cv03" 1, "cv04" 1, "cv11" 1, "calt" 1, "liga" 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --duration-interactive: 0ms;
+        --duration-popup: 0ms;
+    }
 }
 
 

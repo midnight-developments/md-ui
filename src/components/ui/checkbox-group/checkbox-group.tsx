@@ -20,7 +20,7 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
         <CheckboxPrimitive.Root
             data-slot="checkbox"
             className={cn(
-                "group/checkbox peer outline-none transition-snappy cursor-pointer select-none",
+                "outline-none cursor-pointer select-none mt-0.5 transition-interactive active:scale-95",
                 "focus-visible:ring-2 focus-visible:ring-border-active",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 advancedCheckboxStyles.indicator,
@@ -33,7 +33,7 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
                 data-slot="checkbox-indicator"
                 className={cn(
                     advancedCheckboxStyles.activeIndicator,
-                    "transition-snappy data-unchecked:opacity-0 data-unchecked:scale-75 data-checked:opacity-100 data-checked:scale-100"
+                    "transition-interactive data-unchecked:opacity-0 data-unchecked:scale-75 data-checked:opacity-100 data-checked:scale-100"
                 )}
             >
                 <svg

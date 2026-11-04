@@ -11,8 +11,22 @@
         inset 0 0 0 1px var(--button-border),
         inset 0 -1px 0 0 rgba(255, 255, 255, 0.02);
 
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    isolation: isolate;
+    will-change: transform;
+}
+
+.primary:active,
+.secondary:active,
+.destructive:active {
+    opacity: .8;
+    color: color-mix(in srgb, var(--color-foreground) 90%, transparent);
+}
+
+
+.primary:hover,
+.secondary:hover,
+.destructive:hover {
+    filter: brightness(1.1);
 }
 
 .primary::after,
@@ -32,29 +46,15 @@
 
     -webkit-mask:
         linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
+        linear-gradient(#fff 0 0) border-box;
     -webkit-mask-composite: xor;
     mask:
         linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
+        linear-gradient(#fff 0 0) border-box;
     mask-composite: exclude;
 
-    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    transition: opacity 0.15s ease;
-}
-
-.primary:hover:not(:disabled),
-.secondary:hover:not(:disabled),
-.destructive:hover:not(:disabled) {
-    filter: brightness(1.1);
-}
-
-.primary:active:not(:disabled),
-.secondary:active:not(:disabled),
-.destructive:active:not(:disabled) {
-    color: rgba(225, 225, 225, 0.8);
-    filter: brightness(0.92);
 }
 
 .primary {

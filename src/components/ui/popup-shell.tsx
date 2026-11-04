@@ -19,8 +19,8 @@ const popupShellClasses = cn(
 )
 
 const popupItemClasses = cn(
-    "relative z-10 flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-base font-medium text-muted outline-hidden select-none transition-snappy",
-    "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-muted [&_svg]:transition-snappy",
+    "relative z-10 flex w-full cursor-pointer items-center gap-2 rounded-sm px-2 py-1.5 text-base font-medium text-muted outline-hidden select-none",
+    "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg]:text-muted",
     "data-[selected]:text-accent-text data-[checked]:text-accent-text data-[highlighted]:text-accent-text hover:text-accent-text",
     "data-[selected]:[&_svg]:text-current data-[checked]:[&_svg]:text-current data-[highlighted]:[&_svg]:text-current hover:[&_svg]:text-current",
     "data-[variant=destructive]:text-destructive data-[variant=destructive]:[&_svg]:text-destructive",
@@ -125,7 +125,7 @@ export function PopupShell({ className, children, onMouseMove, onMouseLeave, ref
                         height: "var(--pill-h, 0px)",
                         opacity: "var(--pill-opacity, 0)",
                         transition:
-                            "var(--pill-transition, transform var(--duration-snappy) var(--ease-snappy), height var(--duration-snappy) var(--ease-snappy), opacity var(--duration-snappy) var(--ease-snappy))",
+                            "var(--pill-transition)",
                     }}
                 />
                 {children}

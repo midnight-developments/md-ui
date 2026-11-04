@@ -148,7 +148,7 @@ function ColourPicker({
                                     type="button"
                                     onClick={() => onChange(s)}
                                     className={cn(
-                                        "flex-1 h-7 rounded-xs ring-1 ring-border cursor-pointer transition-all duration-150 hover:-translate-y-0.75 outline-none focus-visible:ring-2 focus-visible:ring-border-active",
+                                        "flex-1 h-7 rounded-xs ring-1 ring-border cursor-pointer transition-interactive hover:-translate-y-0.75 outline-none focus-visible:ring-2 focus-visible:ring-border-active",
                                         isSelected ? "ring-2 ring-white -translate-y-0.5" : ""
                                     )}
                                     style={{ backgroundColor: s }}
@@ -206,7 +206,7 @@ function ColourPickerTrigger({
                 {swatch}
                 {label}
             </span>
-            <ChevronDownIcon aria-hidden="true" className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
+            <ChevronDownIcon aria-hidden="true" className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
         </PopoverTrigger>
     );
 }

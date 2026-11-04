@@ -264,7 +264,7 @@ export function PopupCharacteristics({
     return (
         <div
             data-slot="showcase-popup-characteristics"
-            className={cn("flex flex-col gap-4 mt-4 pt-8 border-t border-white/6", className)}
+            className={cn("flex flex-col gap-6 mt-4 pt-8 border-t border-white/6", className)}
             {...props}
         >
             {heading && (
@@ -272,7 +272,7 @@ export function PopupCharacteristics({
                     {heading}
                 </h3>
             )}
-            <ul className="flex flex-col gap-4  text-sm text-muted/90">
+            <ul className="flex flex-col gap-6 text-sm text-muted">
                 {items
                     ? items.map((item, index) => (
                         <PopupCharacteristicItem key={index} title={item.title}>
@@ -298,15 +298,16 @@ export function PopupCharacteristicItem({
     return (
         <li
             data-slot="showcase-popup-characteristic-item"
-            className={cn("flex items-start gap-2.5 leading-relaxed", className)}
+            className={cn("flex items-start gap-4 leading-relaxed", className)}
             {...props}
         >
             <Check className="size-6 text-accent shrink-0 mt-0.5" />
-            <span className="text-base">
+            <div className="text-lg flex flex-col gap-0.5">
                 {title && <strong className="text-foreground font-medium">{title}</strong>}
-                <br></br>
-                {children}
-            </span>
+                <span className="leading-normal">{children}</span>
+
+
+            </div>
         </li>
     )
 }

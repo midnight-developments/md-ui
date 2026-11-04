@@ -13,6 +13,12 @@ const columnClasses: Record<number, string> = {
     4: "grid-cols-4",
 }
 
+const positionClasses = {
+    "left-center": "items-center justify-start",
+    "right-center": "items-center justify-between",
+    "top-right": "items-start justify-between",
+}
+
 function CardRadioGroup({
     className,
     columns = 2,
@@ -53,15 +59,11 @@ function CardRadioGroupItem({
         <RadioPrimitive.Root
             data-slot="card-radio-group-item"
             className={cn(
-                "group/card-radio peer relative flex gap-3 p-3.5 rounded-md outline-none transition-snappy cursor-pointer select-none text-left",
+                "relative flex gap-3 p-3.5 rounded-md outline-none cursor-pointer select-none text-left transition-interactive ",
                 "focus-visible:ring-2 focus-visible:ring-border-active",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 advancedCardRadioGroupStyles.card,
-                isLeftCenter
-                    ? "items-center justify-start"
-                    : indicatorPosition === "right-center"
-                        ? "items-center justify-between"
-                        : "items-start justify-between",
+                positionClasses[indicatorPosition],
                 className
             )}
             {...props}
@@ -69,11 +71,11 @@ function CardRadioGroupItem({
             {isLeftCenter ? (
                 <>
                     {indicatorElement}
-                    <div className="flex flex-col w-full">{children}</div>
+                    {children}
                 </>
             ) : (
                 <>
-                    <div className="flex flex-col w-full">{children}</div>
+                    {children}
                     {indicatorElement}
                 </>
             )}

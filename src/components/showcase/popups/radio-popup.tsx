@@ -26,6 +26,8 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                     <FieldGroup className="max-w-lg">
                         <FieldSet>
                             <FieldLegend>Selectable Card Radio Group</FieldLegend>
+                            <FieldDescription>Use these standard radio buttons for simple, single-option selections.</FieldDescription>
+
                             <CardRadioGroup
                                 value={plan}
                                 onValueChange={(val) => val && setPlan(val as string)}
@@ -53,6 +55,7 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
 
                         <FieldSet>
                             <FieldLegend>Standard Radio List</FieldLegend>
+                            <FieldDescription>Use these standard radio buttons for simple, single-option selections.</FieldDescription>
                             <RadioGroup
                                 value={standardRadio}
                                 onValueChange={(val) => val && setStandardRadio(val as string)}
