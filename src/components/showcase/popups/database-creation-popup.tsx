@@ -11,11 +11,11 @@ import {
     PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { Input } from "@/components/ui/input/input"
+import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button/button"
-import { Badge } from "@/components/ui/badge"
-import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSet, FieldContent, FieldTitle } from "@/components/ui/field"
-import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/card-radio-group/card-radio-group"
+import { Badge } from "@/components/ui/badge/badge"
+import { Field, FieldLabel, FieldDescription, FieldGroup, FieldSet, FieldContent } from "@/components/ui/field"
+import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/radio/card-radio-group"
 import {
     Select,
     SelectTrigger,
@@ -35,7 +35,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
     const [organization, setOrganization] = React.useState("pixsellz")
     const [dbName, setDbName] = React.useState("")
     const [region, setRegion] = React.useState("ap-east-1")
-    const [planType, setPlanType] = React.useState("pro")
+    const [planType, setPlanType] = React.useState("business")
     const [isSubmitted, setIsSubmitted] = React.useState(false)
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -48,7 +48,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="w-full max-w-xl p-6 sm:p-7 rounded-xl surface-grain bg-card rim-light-dialog border border-white/10 shadow-2xl">
+                    <div className="w-full max-w-xl p-6 sm:p-7 rounded-xl bg-card border border-white/10">
                         <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                             <DialogHeader className="text-left items-start gap-1">
                                 <DialogTitle>
@@ -65,7 +65,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                                 <SelectTrigger className="w-full">
                                                     <SelectValue placeholder="Organization" />
                                                 </SelectTrigger>
-                                                <SelectContent>
+                                                <SelectContent align="start">
                                                     <SelectItem value="pixsellz">pixsellz</SelectItem>
                                                     <SelectItem value="midnight-dev">midnight-dev</SelectItem>
                                                     <SelectItem value="personal">personal</SelectItem>
@@ -120,10 +120,10 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                             <CardRadioGroupItem value="business" showIndicator={false} className="p-3.5 sm:p-4">
                                                 <FieldContent className="gap-1 ">
                                                     <div className="flex items-center gap-2">
-                                                        <FieldTitle >
+                                                        <FieldLabel >
                                                             Business
-                                                        </FieldTitle>
-                                                        <Badge variant="outline" className="gap-1 px-1.5 py-0.5 text-xs font-normal border-border bg-white/[0.04] text-muted">
+                                                        </FieldLabel>
+                                                        <Badge variant="flat" className="gap-1 px-1.5 py-0.5 text-xs font-normal border-border bg-white/[0.04] text-muted">
                                                             <Globe className="size-3" />
                                                             AWS ap-east-1
                                                         </Badge>
@@ -138,7 +138,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                                         <span className="text-muted">row reads and writes</span>
                                                     </div>
                                                 </FieldContent>
-                                                <div className="absolute top-0 right-0 text-right tracking-tighter pointer-events-none">
+                                                <div className="absolute top-0 right-0 text-right pointer-events-none">
                                                     <span className="text-base font-semibold text-accent">from $28</span>
                                                     <span className="text-sm text-muted block -mt-0.5">/ month</span>
                                                 </div>
@@ -147,10 +147,10 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                             <CardRadioGroupItem value="free" showIndicator={false} className="p-3.5 sm:p-4">
                                                 <FieldContent className="gap-1">
                                                     <div className="flex items-center gap-2">
-                                                        <FieldTitle>
-                                                            Pro
-                                                        </FieldTitle>
-                                                        <Badge variant="outline" className="gap-1 px-1.5 py-0.5 text-xs font-normal border-border bg-white/[0.04] text-muted">
+                                                        <FieldLabel>
+                                                            Hobby
+                                                        </FieldLabel>
+                                                        <Badge variant="flat" className="gap-1 px-1.5 py-0.5 text-xs font-normal border-border bg-white/[0.04] text-muted">
                                                             <Globe className="size-3" />
                                                             AWS ap-east-1
                                                         </Badge>
@@ -174,7 +174,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                             <DialogFooter className="justify-between pt-1">
                                 <Button
                                     type="button"
-                                    variant="outline"
+                                    variant="secondary"
                                     onClick={() => onOpenChange?.(false)}
                                     className="px-5"
                                 >
@@ -182,7 +182,7 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                                 </Button>
                                 <Button
                                     type="submit"
-                                    variant="default"
+                                    variant="primary"
                                     className="px-5 gap-1.5"
                                 >
                                     {isSubmitted ? (
@@ -209,18 +209,17 @@ export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
                     </PopupDescription>
 
                     <PopupCharacteristics
-                        heading="Integrated Components"
                         items={[
                             {
                                 title: "Scoped Namespace Path",
                                 description: "Organization select dropdown coupled with slugified database identifier and helper guidance.",
                             },
                             {
-                                title: "Composite Region InputGroup",
-                                description: "Input group with dedicated addon prefix tab and native select menu.",
+                                title: "Cloud Region Selection",
+                                description: "Fast keyboard-driven Base UI select dropdown pairing cloud regions with physical location labels.",
                             },
                             {
-                                title: "Left-Aligned Card Radio Tiers",
+                                title: "Card Radio Plan Tiers",
                                 description: "Comparison radio cards displaying compute badges, dynamic pricing, and throughput allowances.",
                             },
                             {

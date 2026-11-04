@@ -20,24 +20,52 @@ import {
     SelectGroup,
     SelectLabel,
 } from "@/components/ui/select"
-import { Field, FieldLabel } from "@/components/ui/field"
-import { Globe, Database } from "lucide-react"
+import {
+    Combobox,
+    ComboboxInput,
+    ComboboxContent,
+    ComboboxList,
+    ComboboxItem,
+    ComboboxEmpty,
+} from "@/components/ui/combobox"
+import {
+    DropdownMenu,
+    DropdownMenuTrigger,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuSeparator,
+    DropdownMenuSub,
+    DropdownMenuSubTrigger,
+    DropdownMenuSubContent,
+} from "@/components/ui/dropdown"
+import { Field, FieldLabel, FieldGroup } from "@/components/ui/field"
+import { Copy, Terminal, Share2, Download, Trash2 } from "lucide-react"
+
+const frameworks = [
+    "Next.js",
+    "SvelteKit",
+    "Remix",
+    "Astro",
+    "Nuxt",
+    "Vite",
+    "FastAPI",
+    "Hono",
+]
 
 export function SelectPopup({ open, onOpenChange }: PopupProps) {
     const [region, setRegion] = React.useState("us-east-1")
     const [engine, setEngine] = React.useState("postgres")
+    const [framework, setFramework] = React.useState<string | null>("Next.js")
+    const [actionFeedback, setActionFeedback] = React.useState<string | null>(null)
 
     return (
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="flex flex-col gap-6 max-w-sm w-full">
-                        {/* 1. Cloud Region Select */}
+                    <FieldGroup className="max-w-md">
                         <Field>
-                            <FieldLabel className="flex items-center gap-2">
-                                <Globe className="size-4 text-accent" />
-                                Primary Deployment Region
-                            </FieldLabel>
+                            <FieldLabel>Primary Deployment Region</FieldLabel>
                             <Select value={region} onValueChange={(val) => val && setRegion(val)}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select a region..." />
@@ -58,12 +86,8 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                             </Select>
                         </Field>
 
-                        {/* 2. Database Engine Select */}
                         <Field>
-                            <FieldLabel className="flex items-center gap-2">
-                                <Database className="size-4 text-accent" />
-                                Database Engine & Version
-                            </FieldLabel>
+                            <FieldLabel>Database Engine & Version</FieldLabel>
                             <Select value={engine} onValueChange={(val) => val && setEngine(val)}>
                                 <SelectTrigger>
                                     <SelectValue placeholder="Select an engine..." />
@@ -77,31 +101,104 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                             </Select>
                         </Field>
 
-                        <div className="p-3 rounded-md bg-white/[0.02] border border-white/6 text-[0.95rem] tracking-tight text-muted">
-                            Active configuration: <span className="text-foreground font-medium">{engine}</span> in <span className="text-foreground font-medium">{region}</span>
+                        <Field>
+                            <FieldLabel>Framework Preset</FieldLabel>
+                            <Combobox
+                                items={frameworks}
+                                value={framework}
+                                onValueChange={(val) => setFramework(val)}
+                            >
+                                <ComboboxInput
+                                    placeholder="Search framework..."
+                                />
+                                <ComboboxContent>
+                                    <ComboboxList>
+                                        {(item: string) => (
+                                            <ComboboxItem key={item} value={item}>
+                                                {item}
+                                            </ComboboxItem>
+                                        )}
+                                    </ComboboxList>
+                                    <ComboboxEmpty>No frameworks found</ComboboxEmpty>
+                                </ComboboxContent>
+                            </Combobox>
+                        </Field>
+
+                        <Field>
+                            <FieldLabel>Environment Operations</FieldLabel>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger>
+                                    <span>Select an action...</span>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="start" className="min-w-[220px]">
+                                    <DropdownMenuGroup>
+                                        <DropdownMenuItem onClick={() => setActionFeedback("Copied Connection String")}>
+                                            <Copy className="size-4" />
+                                            <span>Copy Connection String</span>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem onClick={() => setActionFeedback("Opened Web Terminal")}>
+                                            <Terminal className="size-4" />
+                                            <span>Open Web Terminal</span>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuSub>
+                                            <DropdownMenuSubTrigger>
+                                                <Share2 className="size-4" />
+                                                <span>Share Environment</span>
+                                            </DropdownMenuSubTrigger>
+                                            <DropdownMenuSubContent>
+                                                <DropdownMenuItem onClick={() => setActionFeedback("Invited Collaborator")}>Invite Collaborator</DropdownMenuItem>
+                                                <DropdownMenuItem onClick={() => setActionFeedback("Generated Read-Only Link")}>Generate Read-Only Link</DropdownMenuItem>
+                                                <DropdownMenuItem onClick={() => setActionFeedback("Exported Audit Log")}>Export Audit Log</DropdownMenuItem>
+                                            </DropdownMenuSubContent>
+                                        </DropdownMenuSub>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem onClick={() => setActionFeedback("Created Manual Backup")}>
+                                            <Download className="size-4" />
+                                            <span>Create Manual Backup</span>
+                                        </DropdownMenuItem>
+                                        <DropdownMenuItem variant="destructive" onClick={() => setActionFeedback("Instance Terminated")}>
+                                            <Trash2 className="size-4" />
+                                            <span>Terminate Instance</span>
+                                        </DropdownMenuItem>
+                                    </DropdownMenuGroup>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </Field>
+
+                        <div className="p-3 rounded-md bg-white/[0.02] border border-white/6 text-[0.95rem] text-muted">
+                            Active configuration: <span className="text-foreground font-medium">{engine}</span> in <span className="text-foreground font-medium">{region}</span> • <span className="text-foreground font-medium">{framework || "None"}</span>
+                            {actionFeedback && (
+                                <div className="mt-1 text-accent-text font-medium text-xs">
+                                    Last action: {actionFeedback}
+                                </div>
+                            )}
                         </div>
-                    </div>
+                    </FieldGroup>
                 </PopupPreview>
 
                 <PopupDetails>
-                    <PopupTitle>Select</PopupTitle>
+                    <PopupTitle>Select, Dropdown & Combobox</PopupTitle>
                     <PopupDescription>
-                        An animated dropdown picker built on top of Base UI Select, featuring popover spring physics, keyboard selection, and smooth chevron state rotation.
+                        Animated select, dropdown menu, and searchable combobox primitives built on Base UI, featuring floating pill hover physics, instant keyboard navigation, and edge-lit glass shells.
                     </PopupDescription>
 
                     <PopupCharacteristics
                         items={[
                             {
-                                title: "Bouncy Popover Physics",
-                                description: "Spring-curved ease (cubic-bezier(0.16, 1, 0.3, 1.25)) ensures snappy opening transitions.",
+                                title: "Smooth Popover Physics",
+                                description: "Calibrated ease curve (cubic-bezier(0.16, 1, 0.3, 1)) ensures clean, non-bouncy opening transitions.",
                             },
                             {
-                                title: "Chevron Indicator Animation",
-                                description: "Icon smoothly rotates 180° upon trigger activation.",
+                                title: "Unified InputShell Trigger",
+                                description: "Dropdown and select triggers seamlessly inherit the exact same InputShell tokens, focus glow, and animated chevron.",
                             },
                             {
-                                title: "Grouped Items & Labels",
-                                description: "Organize lists into sections with subtle headers and auto-aligned selection checkmarks.",
+                                title: "Searchable Combobox Filtering",
+                                description: "Built-in instant query filtering with empty state detection, keyboard navigation, and synchronized pill transitions.",
+                            },
+                            {
+                                title: "Nested Submenus & Actions",
+                                description: "Submenu flyouts with automated positioning, keyboard traversal, and destructive action styling.",
                             },
                         ]}
                     />

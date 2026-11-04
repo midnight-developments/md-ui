@@ -5,7 +5,6 @@ import { createPortal } from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Check } from "lucide-react"
 import { cn } from "@/lib/utils"
-import "@/components/ui/dialog/dialog.css" // Required: loads rim-light-dialog used by PopupContent
 
 const PopupContext = React.createContext<{
     open: boolean
@@ -129,8 +128,8 @@ export function PopupContent({
                         onClick={(e) => e.stopPropagation()}
                         className={cn(
                             "relative z-50 pointer-events-auto outline-none cursor-default",
-                            "w-full max-w-5xl xl:max-w-6xl h-[86vh] max-h-[820px]",
-                            "rounded-2xl surface-grain bg-card rim-light-dialog border border-white/10 shadow-2xl",
+                            "w-full max-w-5xl xl:max-w-6xl h-[90vh] max-h-[920px]",
+                            "rounded-2xl bg-card border border-white/10",
                             "text-foreground flex flex-col overflow-hidden will-change-[transform,filter]",
                             className
                         )}
@@ -184,14 +183,14 @@ export function PopupPreview({ className, children, ...props }: React.ComponentP
         <div
             data-slot="showcase-popup-preview"
             className={cn(
-                "flex-[1.8] flex flex-col overflow-y-auto overflow-x-hidden min-h-[320px] lg:min-h-0",
+                "flex-[1.8] flex flex-col items-center justify-start p-6 md:p-8 lg:p-10",
                 "border-b lg:border-b-0 lg:border-r border-white/8",
-                "bg-white/[0.01] relative [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.15)_transparent]",
+                "bg-white/[0.01] relative overflow-y-auto min-h-[320px] lg:min-h-0",
                 className
             )}
             {...props}
         >
-            <div className="m-auto shrink-0 w-full flex flex-col items-center justify-center p-6 md:p-10 lg:p-12">
+            <div className="w-full flex justify-center my-auto">
                 {children}
             </div>
         </div>
@@ -219,7 +218,7 @@ export function PopupTitle({ className, children, ...props }: React.ComponentPro
             id="showcase-popup-title"
             data-slot="showcase-popup-title"
             className={cn(
-                "font-sf-display text-3xl sm:text-4xl font-semibold text-foreground tracking-tight leading-tight pr-8 sm:pr-10",
+                "text-3xl sm:text-4xl font-semibold text-foreground leading-tight pr-8 sm:pr-10",
                 className
             )}
             {...props}
@@ -235,7 +234,7 @@ export function PopupDescription({ className, children, ...props }: React.Compon
             id="showcase-popup-description"
             data-slot="showcase-popup-description"
             className={cn(
-                "font-sf-text text-base sm:text-lg text-muted tracking-tight leading-normal",
+                "text-base sm:text-lg text-muted leading-normal",
                 className
             )}
             {...props}
@@ -257,7 +256,7 @@ export interface PopupCharacteristicsProps extends React.ComponentProps<"div"> {
 
 export function PopupCharacteristics({
     className,
-    heading = "Key Characteristics",
+    heading = "Key Highlights",
     items,
     children,
     ...props
@@ -265,15 +264,15 @@ export function PopupCharacteristics({
     return (
         <div
             data-slot="showcase-popup-characteristics"
-            className={cn("flex flex-col gap-4 mt-4 pt-8 border-t border-white/6", className)}
+            className={cn("flex flex-col gap-6 mt-4 pt-8 border-t border-white/6", className)}
             {...props}
         >
             {heading && (
-                <h4 className="font-sf-display text-xl font-semibold text-muted">
+                <h3 className="text-xl font-semibold text-muted">
                     {heading}
-                </h4>
+                </h3>
             )}
-            <ul className="flex flex-col gap-4 font-sf-text text-sm text-muted/90">
+            <ul className="flex flex-col gap-6 text-sm text-muted">
                 {items
                     ? items.map((item, index) => (
                         <PopupCharacteristicItem key={index} title={item.title}>
@@ -299,15 +298,16 @@ export function PopupCharacteristicItem({
     return (
         <li
             data-slot="showcase-popup-characteristic-item"
-            className={cn("flex items-start gap-2.5 leading-relaxed", className)}
+            className={cn("flex items-start gap-4 leading-relaxed", className)}
             {...props}
         >
             <Check className="size-6 text-accent shrink-0 mt-0.5" />
-            <span className="text-base tracking-tight">
+            <div className="text-lg flex flex-col gap-0.5">
                 {title && <strong className="text-foreground font-medium">{title}</strong>}
-                <br></br>
-                {children}
-            </span>
+                <span className="leading-normal">{children}</span>
+
+
+            </div>
         </li>
     )
 }
