@@ -1,12 +1,10 @@
 "use client"
 
-import * as React from "react"
 import { Combobox as ComboboxPrimitive } from "@base-ui/react"
-import { ChevronDownIcon, XIcon } from "lucide-react"
+import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/popup-shell"
-import { Button } from "@/components/ui/button/button"
 import {
     InputGroup,
     InputGroupInput,
@@ -83,7 +81,6 @@ function ComboboxContent({
             >
                 <ComboboxPrimitive.Popup
                     data-slot="combobox-content"
-                    data-chips={!!anchor}
                     className={cn("w-(--anchor-width)", className)}
                     render={<PopupShell />}
                     {...props}
@@ -202,65 +199,6 @@ function ComboboxSeparator({
     )
 }
 
-function ComboboxChips({
-    className,
-    ...props
-}: React.ComponentPropsWithRef<typeof ComboboxPrimitive.Chips> &
-    ComboboxPrimitive.Chips.Props) {
-    return (
-        <ComboboxPrimitive.Chips
-            data-slot="combobox-chips"
-            className={cn(
-                "flex min-h-8 flex-wrap items-center gap-1 rounded-md border border-input bg-transparent bg-clip-padding px-2.5 py-1 text-base transition-interactive",
-                "focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50",
-                "has-data-[invalid]:border-destructive has-data-[invalid]:ring-3 has-data-[invalid]:ring-destructive/20",
-                "has-data-[slot=combobox-chip]:px-1 dark:bg-input/30",
-                "dark:has-data-[invalid]:border-destructive/50 dark:has-data-[invalid]:ring-destructive/40",
-                className
-            )}
-            {...props}
-        />
-    )
-}
-
-function ComboboxChip({
-    className,
-    children,
-    showRemove = true,
-    ...props
-}: ComboboxPrimitive.Chip.Props & {
-    showRemove?: boolean
-}) {
-    return (
-        <ComboboxPrimitive.Chip
-            data-slot="combobox-chip"
-            className={cn(
-                "flex h-[calc(--spacing(5.25))] w-fit items-center justify-center gap-1 rounded-md bg-muted px-1.5 text-sm whitespace-nowrap text-foreground",
-                "has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50 has-data-[slot=combobox-chip-remove]:pr-0",
-                className
-            )}
-            {...props}
-        >
-            {children}
-            {showRemove && (
-                <ComboboxPrimitive.ChipRemove className="-ml-1 opacity-50 hover:opacity-100" data-slot="combobox-chip-remove" render={<Button variant="ghost" aria-label="Remove item" className="size-4 p-0 rounded-full"><XIcon aria-hidden="true" className="pointer-events-none size-3" /></Button>} />
-            )}
-        </ComboboxPrimitive.Chip>
-    )
-}
-
-function ComboboxChipsInput({
-    className,
-    ...props
-}: ComboboxPrimitive.Input.Props) {
-    return (
-        <ComboboxPrimitive.Input
-            data-slot="combobox-chip-input"
-            className={cn("min-w-16 flex-1 outline-none", className)}
-            {...props}
-        />
-    )
-}
 
 
 
@@ -274,9 +212,6 @@ export {
     ComboboxLabel,
     ComboboxEmpty,
     ComboboxSeparator,
-    ComboboxChips,
-    ComboboxChip,
-    ComboboxChipsInput,
     ComboboxTrigger,
     ComboboxItemIndicator,
 }
