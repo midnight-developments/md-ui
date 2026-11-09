@@ -11,8 +11,8 @@ import {
     PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { CheckboxGroup, Checkbox } from "@/components/ui/checkbox-group/checkbox-group"
-import { CardCheckboxGroup, CardCheckboxGroupItem } from "@/components/ui/card-checkbox-group/card-checkbox-group"
+import { CheckboxGroup, Checkbox } from "@/components/ui/checkbox/checkbox"
+import { CardCheckboxGroup, CardCheckboxGroupItem } from "@/components/ui/checkbox/card-checkbox"
 import { Field, FieldGroup, FieldLabel, FieldContent, FieldLegend, FieldDescription, FieldSet } from "@/components/ui/field"
 
 export function CheckboxPopup({ open, onOpenChange }: PopupProps) {

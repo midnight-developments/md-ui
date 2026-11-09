@@ -32,7 +32,7 @@ import {
     FieldLegend,
 } from "@/components/ui/field"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio/radio-group"
-import { CheckboxGroup, Checkbox } from "@/components/ui/checkbox-group/checkbox-group"
+import { CheckboxGroup, Checkbox } from "@/components/ui/checkbox/checkbox"
 import {
     Select,
     SelectTrigger,

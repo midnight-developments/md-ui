@@ -3,7 +3,7 @@ import { Input as InputPrimitive } from "@base-ui/react/input"
 import { Lock, Eye, EyeOff } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { InputShell } from "./input-shell"
+import { InputShell } from "./input-shell/input-shell"
 import { InputGroup, InputGroupAddon } from "./input-group"
 
 export interface InputProps extends React.ComponentProps<"input"> {

@@ -4,7 +4,7 @@ import * as React from "react"
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
 
 import { cn } from "@/lib/utils"
-import { PopupShell } from "@/components/ui/popup-shell"
+import { PopupShell } from "@/components/ui/popup-shell/popup-shell"
 
 const Popover = PopoverPrimitive.Root
 

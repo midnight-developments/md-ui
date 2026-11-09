@@ -3,7 +3,8 @@
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox"
 import { CheckboxGroup as CheckboxGroupPrimitive } from "@base-ui/react/checkbox-group"
 import { cn } from "@/lib/utils"
-import advancedCardCheckboxStyles from "./card-checkbox-group.module.css"
+import { Indicator, IndicatorActive } from "@/components/ui/indicator/indicator"
+import styles from "./card-checkbox.module.css"
 
 const columnClasses: Record<number, string> = {
     1: "grid-cols-1",
@@ -42,32 +43,12 @@ function CardCheckboxGroupItem({
     const isTopRight = indicatorPosition === "top-right"
 
     const indicatorElement = showIndicator && (
-        <div
-            data-slot="card-checkbox-group-indicator"
-            className={cn(advancedCardCheckboxStyles.indicator, isTopRight && "mt-0.5")}
+        <Indicator
+            shape="square"
+            className={isTopRight ? "mt-0.5" : undefined}
         >
-            <CheckboxPrimitive.Indicator
-                keepMounted
-                className={cn(
-                    advancedCardCheckboxStyles.activeIndicator,
-                    "transition-snappy data-unchecked:opacity-0 data-unchecked:scale-75 data-checked:opacity-100 data-checked:scale-100"
-                )}
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                    className="size-3.5 text-white"
-                >
-                    <path d="M5 13l4.5 4.5L19 7" />
-                </svg>
-            </CheckboxPrimitive.Indicator>
-        </div>
+            <CheckboxPrimitive.Indicator render={<IndicatorActive shape="square" variant="check" />} />
+        </Indicator>
     )
 
     return (
@@ -77,7 +58,7 @@ function CardCheckboxGroupItem({
                 "group/card-checkbox peer relative flex gap-3 p-3.5 rounded-md outline-none transition-snappy cursor-pointer select-none text-left",
                 "focus-visible:ring-2 focus-visible:ring-border-active",
                 "disabled:cursor-not-allowed disabled:opacity-50",
-                advancedCardCheckboxStyles.card,
+                styles.card,
                 isLeftCenter
                     ? "items-center justify-start"
                     : indicatorPosition === "right-center"
@@ -103,3 +84,4 @@ function CardCheckboxGroupItem({
 }
 
 export { CardCheckboxGroup, CardCheckboxGroupItem }
+export default CardCheckboxGroup

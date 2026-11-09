@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button/button"
-import { InputShell } from "./input-shell"
+import { InputShell } from "./input-shell/input-shell"
 
 function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
     return (
@@ -24,7 +24,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const inputGroupAddonVariants = cva(
-    "flex h-auto cursor-text items-center justify-center gap-2 text-base text-muted-foreground select-none [&_svg:not([class*='size-'])]:size-4.5 [&_svg]:text-muted [&_svg]:transition-snappy group-hover/input-group:[&_svg]:text-primary group-focus-within/input-group:[&_svg]:text-primary",
+    "flex h-auto cursor-text items-center justify-center gap-2 text-base text-muted-foreground select-none transition-snappy [&_svg:not([class*='size-'])]:size-4.5 [&_svg]:text-muted [&_svg]:transition-snappy group-hover/input-group:[&_svg]:text-primary group-focus-within/input-group:[&_svg]:text-primary",
     {
         variants: {
             align: {

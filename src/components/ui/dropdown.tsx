@@ -5,8 +5,8 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu"
 import { ChevronDownIcon, ChevronRightIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { InputShell } from "@/components/ui/input-shell"
-import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/popup-shell"
+import { InputShell } from "@/components/ui/input-shell/input-shell"
+import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/popup-shell/popup-shell"
 
 const DropdownMenu = MenuPrimitive.Root
 

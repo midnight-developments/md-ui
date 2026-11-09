@@ -1,6 +1,17 @@
+@reference "@/index.css";
+
 .primary,
 .secondary,
 .destructive {
+    @apply border-shine;
+    --shine-border-width: 1px;
+    --shine-size: 65% 55%;
+    --shine-origin: 50% 0%;
+    --shine-color: var(--button-border-shine);
+    --shine-start: 25%;
+    --shine-end: 120%;
+    --shine-opacity: 1;
+
     position: relative;
     border-width: 0;
     color: var(--button-text-color, var(--color-foreground));
@@ -13,35 +24,6 @@
 
     transform: translateZ(0);
     backface-visibility: hidden;
-}
-
-.primary::after,
-.secondary::after,
-.destructive::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-
-    border: 1px solid transparent;
-
-    background: radial-gradient(ellipse 65% 55% at 50% 0%,
-            var(--button-border-shine) 20%,
-            transparent 120%) border-box;
-
-    -webkit-mask:
-        linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask:
-        linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    transition: opacity 0.15s ease;
 }
 
 .primary:hover:not(:disabled),
@@ -65,7 +47,7 @@
     --button-text-color: var(--color-foreground);
     --button-border: rgba(255, 255, 255, 0.12);
     --button-glow: color-mix(in srgb, var(--color-accent) 25%, transparent);
-    --button-border-shine: color-mix(in srgb, color-mix(in srgb, var(--color-accent) 23%, white) 55%, transparent);
+    --button-border-shine: color-mix(in srgb, color-mix(in srgb, var(--color-accent) 50%, white) 55%, transparent);
 }
 
 .secondary {
@@ -80,6 +62,6 @@
     --button-bg: linear-gradient(20deg, rgb(182, 63, 71) 0%, rgb(133, 46, 52) 55%, rgb(155, 34, 44) 100%);
     --button-text-color: var(--color-foreground);
     --button-border: rgba(242, 145, 148, 0.2);
-    --button-border-shine: rgba(255, 205, 210, 0.45);
+    --button-border-shine: color-mix(in srgb, color-mix(in srgb, var(--color-destructive) 80%, white) 55%, transparent);
     --button-glow: rgba(235, 95, 105, 0.2);
 }

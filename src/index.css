@@ -68,6 +68,53 @@
     transition-timing-function: var(--ease-popup, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
+@property --shine-color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: transparent;
+}
+
+@property --shine-border-width {
+    syntax: "<length>";
+    inherits: true;
+    initial-value: 1px;
+}
+
+@utility border-shine {
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        border: var(--shine-border-width) solid transparent;
+        background: radial-gradient(
+            ellipse var(--shine-size) at var(--shine-origin),
+            var(--shine-color) var(--shine-start),
+            transparent var(--shine-end)
+        ) border-box;
+        -webkit-mask:
+            linear-gradient(#fff 0 0) padding-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask:
+            linear-gradient(#fff 0 0) padding-box,
+            linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        opacity: var(--shine-opacity);
+        transition:
+            opacity var(--duration-snappy) var(--ease-snappy),
+            border-width var(--duration-snappy) var(--ease-snappy),
+            --shine-color var(--duration-snappy) var(--ease-snappy),
+            --shine-border-width var(--duration-snappy) var(--ease-snappy);
+    }
+}
+
+
 
 
 :root {

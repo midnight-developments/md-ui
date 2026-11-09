@@ -129,7 +129,8 @@ export function PopupContent({
                         className={cn(
                             "relative z-50 pointer-events-auto outline-none cursor-default",
                             "w-full max-w-5xl xl:max-w-6xl h-[90vh] max-h-[920px]",
-                            "rounded-2xl bg-card border border-white/10",
+                            "rounded-2xl bg-card border border-white/10 border-shine",
+                            "[--shine-border-width:1px] [--shine-size:65%_55%] [--shine-origin:50%_0%] [--shine-color:rgba(255,255,255,0.3)] [--shine-start:-20%] [--shine-end:60%] [--shine-opacity:1]",
                             "text-foreground flex flex-col overflow-hidden will-change-[transform,filter]",
                             className
                         )}
@@ -167,7 +168,7 @@ export function PopupClose({ className, children, onClick, style, ...props }: Re
             className={cn(
                 "cursor-pointer inline-flex items-center justify-center size-9 rounded-full pointer-events-auto",
                 "bg-white/5 hover:bg-white/10 active:scale-95 text-muted hover:text-foreground border border-white/8 hover:border-white/15",
-                "transition-all duration-150 focus:outline-none backdrop-blur-sm",
+                "transition-snappy focus:outline-none backdrop-blur-sm",
                 className
             )}
             aria-label="Close"

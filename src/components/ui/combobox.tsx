@@ -5,7 +5,7 @@ import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 import { ChevronDownIcon, XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/popup-shell"
+import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/popup-shell/popup-shell"
 import { Button } from "@/components/ui/button/button"
 import {
     InputGroup,
@@ -211,7 +211,7 @@ function ComboboxChips({
         <ComboboxPrimitive.Chips
             data-slot="combobox-chips"
             className={cn(
-                "flex min-h-8 flex-wrap items-center gap-1 rounded-md border border-input bg-transparent bg-clip-padding px-2.5 py-1 text-base transition-colors",
+                "flex min-h-8 flex-wrap items-center gap-1 rounded-md border border-input bg-transparent bg-clip-padding px-2.5 py-1 text-base transition-snappy",
                 "focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50",
                 "has-data-[invalid]:border-destructive has-data-[invalid]:ring-3 has-data-[invalid]:ring-destructive/20",
                 "has-data-[slot=combobox-chip]:px-1 dark:bg-input/30",

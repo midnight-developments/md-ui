@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import advancedBadgeStyles from "./badge.module.css"
 
 const badgeVariants = cva(
-  "group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full px-2.5 py-0.75 text-[0.9rem] whitespace-nowrap transition-all has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 data-[invalid]:border-destructive [&>svg]:pointer-events-none [&>svg]:size-3!",
+  "group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-full px-2.5 h-6 leading-none text-[0.9rem] whitespace-nowrap transition-snappy has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 data-[invalid]:border-destructive [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
       variant: {
@@ -45,3 +45,5 @@ function Badge({
 }
 
 export { Badge, badgeVariants }
+
+

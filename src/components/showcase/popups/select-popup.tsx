@@ -33,7 +33,6 @@ import {
     DropdownMenuTrigger,
     DropdownMenuContent,
     DropdownMenuGroup,
-    DropdownMenuLabel,
     DropdownMenuItem,
     DropdownMenuSeparator,
     DropdownMenuSub,

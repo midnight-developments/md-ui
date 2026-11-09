@@ -28,7 +28,7 @@ import { DialogPopup } from '@/components/showcase/popups/dialog-popup'
 import { DatabaseCreationPopup } from '@/components/showcase/popups/database-creation-popup'
 import { IntegrationDialogPopup } from '@/components/showcase/popups/integration-dialog-popup'
 import { BillingDialogPopup } from '@/components/showcase/popups/billing-dialog-popup'
-import { CheckboxGroup, Checkbox } from '@/components/ui/checkbox-group/checkbox-group'
+import { CheckboxGroup, Checkbox } from '@/components/ui/checkbox/checkbox'
 
 type PopupId =
     | 'button'

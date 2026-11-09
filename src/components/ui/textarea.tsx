@@ -1,6 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { InputShell } from "@/components/ui/input-shell"
+import { InputShell } from "@/components/ui/input-shell/input-shell"
 
 function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
     return (

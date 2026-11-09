@@ -1,8 +1,19 @@
+@reference "@/index.css";
+
 .shell {
+    @apply border-shine;
+    --shine-border-width: 1px;
+    --shine-size: 85% 100%;
+    --shine-origin: 20% 0%;
+    --shine-color: var(--input-border-shine);
+    --shine-start: 10%;
+    --shine-end: 100%;
+    --shine-opacity: 1;
+
     --input-bg: linear-gradient(20deg, rgb(36, 36, 36, 0.8) 0%, rgb(32, 32, 32, 0.8) 55%, rgb(36, 36, 36, 0.8) 100%);
     --input-text-color: var(--color-foreground);
     --input-border: rgba(255, 255, 255, 0.0125);
-    --input-border-shine: rgba(255, 255, 255, 0.2);
+    --input-border-shine: rgba(255, 255, 255, 0.18);
 
     position: relative;
     border-width: 0;
@@ -18,41 +29,17 @@
     backface-visibility: hidden;
 }
 
-.shell::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
 
-    border: 1px solid transparent;
-
-    background: radial-gradient(ellipse 85% 25% at 0% 0%,
-            var(--input-border-shine) -25%,
-            transparent 120%) border-box;
-
-    -webkit-mask:
-        linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask:
-        linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    transition: opacity 0.15s ease;
-}
-
-
-.shell:is(:focus, :focus-within, :focus-visible, :active, [data-active], [data-state="open"], [data-popup-open], [aria-expanded="true"]) {
+.shell:is(:focus, :focus-within, :focus-visible, :active, [data-active], [data-state="open"], [data-popup-open]) {
     box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--color-accent) 85%, white);
+    --shine-color: color-mix(in srgb, var(--color-accent) 85%, white);
+    --shine-border-width: 2px;
 }
 
-/* Errored / Invalid State */
 .shell[data-invalid],
 .shell:has([data-invalid]),
 :global([data-slot="field"][data-invalid]) .shell {
     box-shadow: inset 0 0 0 2px var(--color-destructive) !important;
+    --shine-color: color-mix(in srgb, var(--color-destructive) 85%, white);
+    --shine-border-width: 2px;
 }
