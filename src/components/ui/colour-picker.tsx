@@ -13,7 +13,7 @@ import {
     InputGroupText,
 } from "@/components/ui/input-group";
 import { FieldLabel } from "@/components/ui/field";
-import { InputShell } from "@/components/ui/input-shell/input-shell";
+import { InputShell } from "@/components/ui/shells/input-shell/input-shell";
 
 function hexToRgb(hex: string) {
     const raw = hex.replace("#", "");

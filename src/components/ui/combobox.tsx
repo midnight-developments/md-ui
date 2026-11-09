@@ -5,7 +5,7 @@ import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 import { ChevronDownIcon, XIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/popup-shell/popup-shell"
+import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/shells/popup-shell/popup-shell"
 import { Button } from "@/components/ui/button/button"
 import {
     InputGroup,

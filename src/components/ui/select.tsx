@@ -4,8 +4,8 @@ import { Select as SelectPrimitive } from "@base-ui/react/select"
 import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { InputShell } from "@/components/ui/input-shell/input-shell"
-import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/popup-shell/popup-shell"
+import { InputShell } from "@/components/ui/shells/input-shell/input-shell"
+import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/shells/popup-shell/popup-shell"
 
 const Select = SelectPrimitive.Root
 

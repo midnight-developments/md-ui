@@ -31,8 +31,8 @@
 
 
 .shell:is(:focus, :focus-within, :focus-visible, :active, [data-active], [data-state="open"], [data-popup-open]) {
-    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--color-accent) 85%, white);
-    --shine-color: color-mix(in srgb, var(--color-accent) 85%, white);
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--color-accent) 75%, white);
+    --shine-color: color-mix(in srgb, var(--color-accent) 65%, white);
     --shine-border-width: 2px;
 }
 
