@@ -10,28 +10,13 @@ import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/shells/po
 
 const DropdownMenu = MenuPrimitive.Root
 
-interface DropdownMenuTriggerProps extends MenuPrimitive.Trigger.Props {
-    asChild?: boolean
-}
-
 function DropdownMenuTrigger({
     className,
     children,
     render,
     nativeButton,
-    asChild,
     ...props
-}: DropdownMenuTriggerProps) {
-    if (asChild && React.isValidElement(children)) {
-        return (
-            <MenuPrimitive.Trigger
-                data-slot="dropdown-menu-trigger"
-                render={children as React.ReactElement}
-                {...props}
-            />
-        )
-    }
-
+}: MenuPrimitive.Trigger.Props) {
     return (
         <MenuPrimitive.Trigger
             data-slot="dropdown-menu-trigger"
@@ -64,8 +49,9 @@ function DropdownMenuContent({
     children,
     side = "bottom",
     sideOffset = 6,
-    align = "center",
+    align = "start",
     alignOffset = 0,
+    finalFocus = false,
     ...props
 }: MenuPrimitive.Popup.Props &
     Pick<
@@ -83,7 +69,8 @@ function DropdownMenuContent({
             >
                 <MenuPrimitive.Popup
                     data-slot="dropdown-menu-content"
-                    className={className}
+                    finalFocus={finalFocus}
+                    className={cn("flex flex-col has-[>[data-slot=dropdown-menu-group]]:gap-2", className)}
                     render={<PopupShell />}
                     {...props}
                 >
@@ -115,10 +102,7 @@ function DropdownMenuLabel({
         <MenuPrimitive.GroupLabel
             data-slot="dropdown-menu-label"
             data-inset={inset}
-            className={cn(
-                "p-1 text-sm text-muted-foreground data-inset:pl-7",
-                className
-            )}
+            className={cn("px-2 py-1.5 text-sm text-muted-foreground data-inset:pl-7", className)}
             {...props}
         />
     )
@@ -165,7 +149,7 @@ function DropdownMenuSubTrigger({
             render={
                 <PopupItem
                     className={cn(
-                        "pl-1 justify-between data-[popup-open]:bg-white/5 data-[popup-open]:text-foreground",
+                        "justify-between data-[popup-open]:bg-white/5 data-[popup-open]:text-foreground",
                         inset && "pl-7"
                     )}
                 />
@@ -213,17 +197,19 @@ function DropdownMenuCheckboxItem({
             data-slot="dropdown-menu-checkbox-item"
             data-inset={inset}
             className={className}
-            render={<PopupItem className={cn("pr-8", inset && "pl-7")} />}
+            render={<PopupItem className={cn(inset && "pl-7")} />}
             checked={checked}
             {...props}
         >
+            <span className="flex flex-1 items-center gap-2 whitespace-nowrap">
+                {children}
+            </span>
             <span
-                className="pointer-events-none absolute right-2 flex items-center justify-center size-4.5 text-current"
+                className="ml-auto flex items-center justify-center shrink-0 text-current"
                 data-slot="dropdown-menu-checkbox-item-indicator"
             >
                 <MenuPrimitive.CheckboxItemIndicator render={<PopupCheckIcon />} />
             </span>
-            {children}
         </MenuPrimitive.CheckboxItem>
     )
 }
@@ -250,16 +236,18 @@ function DropdownMenuRadioItem({
             data-slot="dropdown-menu-radio-item"
             data-inset={inset}
             className={className}
-            render={<PopupItem className={cn("pr-8", inset && "pl-7")} />}
+            render={<PopupItem className={cn(inset && "pl-7")} />}
             {...props}
         >
+            <span className="flex flex-1 items-center gap-2 whitespace-nowrap">
+                {children}
+            </span>
             <span
-                className="pointer-events-none absolute right-2 flex items-center justify-center size-4.5 text-current"
+                className="ml-auto flex items-center justify-center shrink-0 text-current"
                 data-slot="dropdown-menu-radio-item-indicator"
             >
                 <MenuPrimitive.RadioItemIndicator render={<PopupCheckIcon />} />
             </span>
-            {children}
         </MenuPrimitive.RadioItem>
     )
 }
@@ -287,8 +275,8 @@ export {
     DropdownMenuCheckboxItem,
     DropdownMenuRadioGroup,
     DropdownMenuRadioItem,
-    DropdownMenuSeparator,
     DropdownMenuSub,
     DropdownMenuSubTrigger,
     DropdownMenuSubContent,
+    DropdownMenuSeparator,
 }

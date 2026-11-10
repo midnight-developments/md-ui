@@ -9,7 +9,7 @@ export function DialogSurface({ className, ...props }: DialogSurfaceProps) {
         <div
             data-slot="dialog-surface"
             className={cn(
-                "relative w-md flex flex-col gap-10 p-6 rounded-xl outline-none",
+                "relative w-md flex flex-col gap-10 p-6 rounded-2xl outline-none",
                 advancedDialogStyles.content,
                 className
             )}

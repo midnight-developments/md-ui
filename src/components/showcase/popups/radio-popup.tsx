@@ -15,9 +15,20 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio/radio-group"
 import { CardRadioGroup, CardRadioGroupItem } from "@/components/ui/radio/card-radio-group"
 import { Field, FieldGroup, FieldLabel, FieldContent, FieldLegend, FieldDescription, FieldSet } from "@/components/ui/field"
 
+const cardRadioOptions = [
+    { value: "card-1", label: "Option 1", description: "Description for option 1" },
+    { value: "card-2", label: "Option 2", description: "Description for option 2" },
+]
+
+const standardRadioOptions = [
+    { value: "opt-1", label: "Option 1", description: "This is a longer description of option 1." },
+    { value: "opt-2", label: "Option 2", description: "This is a longer description of option 2." },
+    { value: "opt-3", label: "Option 3", description: "This is a longer description of option 3." },
+]
+
 export function RadioPopup({ open, onOpenChange }: PopupProps) {
-    const [standardRadio, setStandardRadio] = React.useState("daily")
-    const [plan, setPlan] = React.useState("pro")
+    const [standardRadio, setStandardRadio] = React.useState("opt-2")
+    const [cardRadio, setCardRadio] = React.useState("card-2")
 
     return (
         <Popup open={open} onOpenChange={onOpenChange}>
@@ -27,27 +38,20 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                         <FieldSet>
                             <FieldLegend>Selectable Card Radio Group</FieldLegend>
                             <CardRadioGroup
-                                value={plan}
-                                onValueChange={(val) => val && setPlan(val as string)}
+                                value={cardRadio}
+                                onValueChange={(val) => val && setCardRadio(val as string)}
                                 columns={2}
                             >
-                                <Field>
-                                    <CardRadioGroupItem value="starter">
-                                        <FieldContent>
-                                            <FieldLabel className="cursor-pointer">Starter</FieldLabel>
-                                            <FieldDescription>10 GB Storage · 1 Core</FieldDescription>
-                                        </FieldContent>
-                                    </CardRadioGroupItem>
-                                </Field>
-
-                                <Field>
-                                    <CardRadioGroupItem value="pro">
-                                        <FieldContent>
-                                            <FieldLabel className="cursor-pointer">Pro Tier</FieldLabel>
-                                            <FieldDescription>50 GB Storage · 4 Cores</FieldDescription>
-                                        </FieldContent>
-                                    </CardRadioGroupItem>
-                                </Field>
+                                {cardRadioOptions.map((opt) => (
+                                    <Field key={opt.value}>
+                                        <CardRadioGroupItem value={opt.value}>
+                                            <FieldContent>
+                                                <FieldLabel className="cursor-pointer">{opt.label}</FieldLabel>
+                                                <FieldDescription>{opt.description}</FieldDescription>
+                                            </FieldContent>
+                                        </CardRadioGroupItem>
+                                    </Field>
+                                ))}
                             </CardRadioGroup>
                         </FieldSet>
 
@@ -57,29 +61,15 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                                 value={standardRadio}
                                 onValueChange={(val) => val && setStandardRadio(val as string)}
                             >
-                                <Field orientation="horizontal">
-                                    <RadioGroupItem value="hourly" id="r-hourly" />
-                                    <FieldContent>
-                                        <FieldLabel htmlFor="r-hourly">Option 1</FieldLabel>
-                                        <FieldDescription>This is a longer description of option 1.</FieldDescription>
-                                    </FieldContent>
-                                </Field>
-
-                                <Field orientation="horizontal">
-                                    <RadioGroupItem value="daily" id="r-daily" />
-                                    <FieldContent>
-                                        <FieldLabel htmlFor="r-daily">Option 2</FieldLabel>
-                                        <FieldDescription>This is a longer description of option 2.</FieldDescription>
-                                    </FieldContent>
-                                </Field>
-
-                                <Field orientation="horizontal">
-                                    <RadioGroupItem value="weekly" id="r-weekly" />
-                                    <FieldContent>
-                                        <FieldLabel htmlFor="r-weekly">Option 3</FieldLabel>
-                                        <FieldDescription>This is a longer description of option 3.</FieldDescription>
-                                    </FieldContent>
-                                </Field>
+                                {standardRadioOptions.map((opt) => (
+                                    <Field orientation="horizontal" key={opt.value}>
+                                        <RadioGroupItem value={opt.value} id={`r-${opt.value}`} />
+                                        <FieldContent>
+                                            <FieldLabel htmlFor={`r-${opt.value}`}>{opt.label}</FieldLabel>
+                                            <FieldDescription>{opt.description}</FieldDescription>
+                                        </FieldContent>
+                                    </Field>
+                                ))}
                             </RadioGroup>
                         </FieldSet>
                     </FieldGroup>
@@ -95,7 +85,7 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                         items={[
                             {
                                 title: "Card Radio System",
-                                description: "Transform standard radio groups into rich multi-column cards for plans, tiers, and settings.",
+                                description: "Transform standard radio groups into rich multi-column cards with custom descriptions.",
                             },
                             {
                                 title: "Active Rim Light & Gradient",

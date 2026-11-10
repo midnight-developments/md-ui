@@ -15,9 +15,20 @@ import { CheckboxGroup, Checkbox } from "@/components/ui/checkbox/checkbox"
 import { CardCheckboxGroup, CardCheckboxGroupItem } from "@/components/ui/checkbox/card-checkbox"
 import { Field, FieldGroup, FieldLabel, FieldContent, FieldLegend, FieldDescription, FieldSet } from "@/components/ui/field"
 
+const cardCheckboxOptions = [
+    { value: "card-1", label: "Option 1", description: "Description for option 1" },
+    { value: "card-2", label: "Option 2", description: "Description for option 2" },
+]
+
+const standardCheckboxOptions = [
+    { value: "opt-1", label: "Option A", description: "This is a description for Option A." },
+    { value: "opt-2", label: "Option B", description: "This is a description for Option B." },
+    { value: "opt-3", label: "Option C", description: "This is a description for Option C." },
+]
+
 export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
-    const [standardCheckboxes, setStandardCheckboxes] = React.useState<string[]>(["daily", "weekly"])
-    const [addons, setAddons] = React.useState<string[]>(["pro", "analytics"])
+    const [standardCheckboxes, setStandardCheckboxes] = React.useState<string[]>([])
+    const [cardCheckboxes, setCardCheckboxes] = React.useState<string[]>([])
 
     return (
         <Popup open={open} onOpenChange={onOpenChange}>
@@ -27,27 +38,20 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
                         <FieldSet>
                             <FieldLegend>Selectable Card Checkbox Group</FieldLegend>
                             <CardCheckboxGroup
-                                value={addons}
-                                onValueChange={(val) => setAddons(val)}
+                                value={cardCheckboxes}
+                                onValueChange={(val) => setCardCheckboxes(val)}
                                 columns={1}
                             >
-                                <Field>
-                                    <CardCheckboxGroupItem value="analytics">
-                                        <FieldContent>
-                                            <FieldLabel className="cursor-pointer">Analytics</FieldLabel>
-                                            <FieldDescription>Real-time telemetry & insights</FieldDescription>
-                                        </FieldContent>
-                                    </CardCheckboxGroupItem>
-                                </Field>
-
-                                <Field>
-                                    <CardCheckboxGroupItem value="pro">
-                                        <FieldContent>
-                                            <FieldLabel className="cursor-pointer">Audit Logs</FieldLabel>
-                                            <FieldDescription>Immutable compliance history</FieldDescription>
-                                        </FieldContent>
-                                    </CardCheckboxGroupItem>
-                                </Field>
+                                {cardCheckboxOptions.map((opt) => (
+                                    <Field key={opt.value}>
+                                        <CardCheckboxGroupItem value={opt.value}>
+                                            <FieldContent>
+                                                <FieldLabel className="cursor-pointer">{opt.label}</FieldLabel>
+                                                <FieldDescription>{opt.description}</FieldDescription>
+                                            </FieldContent>
+                                        </CardCheckboxGroupItem>
+                                    </Field>
+                                ))}
                             </CardCheckboxGroup>
                         </FieldSet>
 
@@ -57,29 +61,15 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
                                 value={standardCheckboxes}
                                 onValueChange={(val) => setStandardCheckboxes(val)}
                             >
-                                <Field orientation="horizontal">
-                                    <Checkbox value="hourly" id="cb-hourly" />
-                                    <FieldContent>
-                                        <FieldLabel htmlFor="cb-hourly">Option 1</FieldLabel>
-                                        <FieldDescription>This is a longer description of option 1.</FieldDescription>
-                                    </FieldContent>
-                                </Field>
-
-                                <Field orientation="horizontal">
-                                    <Checkbox value="daily" id="cb-daily" />
-                                    <FieldContent>
-                                        <FieldLabel htmlFor="cb-daily">Option 2</FieldLabel>
-                                        <FieldDescription>This is a longer description of option 2.</FieldDescription>
-                                    </FieldContent>
-                                </Field>
-
-                                <Field orientation="horizontal">
-                                    <Checkbox value="weekly" id="cb-weekly" />
-                                    <FieldContent>
-                                        <FieldLabel htmlFor="cb-weekly">Option 3</FieldLabel>
-                                        <FieldDescription>This is a longer description of option 3.</FieldDescription>
-                                    </FieldContent>
-                                </Field>
+                                {standardCheckboxOptions.map((opt) => (
+                                    <Field key={opt.value} orientation="horizontal">
+                                        <Checkbox value={opt.value} id={`cb-${opt.value}`} />
+                                        <FieldContent>
+                                            <FieldLabel htmlFor={`cb-${opt.value}`}>{opt.label}</FieldLabel>
+                                            <FieldDescription>{opt.description}</FieldDescription>
+                                        </FieldContent>
+                                    </Field>
+                                ))}
                             </CheckboxGroup>
                         </FieldSet>
                     </FieldGroup>
@@ -95,7 +85,7 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
                         items={[
                             {
                                 title: "Card Checkbox System",
-                                description: "Multi-select card layouts for feature add-ons, permission matrices, and interactive configurations.",
+                                description: "Multi-select card layouts with distinct descriptions and configurable grid columns.",
                             },
                             {
                                 title: "Tactile Accent Rim",

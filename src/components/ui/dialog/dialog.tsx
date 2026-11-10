@@ -109,7 +109,7 @@ function DialogContent({
                                     animate="animate"
                                     exit="exit"
                                     className={cn(
-                                        "relative z-50 w-md flex flex-col gap-6 p-6 rounded-lg pointer-events-auto outline-none",
+                                        "relative z-50 w-md flex flex-col gap-6 p-6 rounded-2xl pointer-events-auto outline-none",
                                         advancedDialogStyles.content,
                                         className
                                     )}

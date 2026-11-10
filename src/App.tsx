@@ -12,7 +12,7 @@ import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio/radio-group'
 import { Field, FieldDescription, FieldLabel } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge/badge'
-import { Search } from 'lucide-react'
+import { Search, SlidersHorizontal, ChevronDown } from 'lucide-react'
 import modalScreenshot from '@/assets/dialog-screenshot.png'
 import databaseCreationScreenshot from '@/assets/database-creation-screenshot.png'
 import tempoGmailScreenshot from '@/assets/gmail-tempo-screenshot.png'
@@ -21,6 +21,7 @@ import tempoGmailScreenshot from '@/assets/gmail-tempo-screenshot.png'
 import { ButtonPopup } from '@/components/showcase/popups/button-popup'
 import { InputPopup } from '@/components/showcase/popups/input-popup'
 import { SelectPopup } from '@/components/showcase/popups/select-popup'
+import { DropdownPopoverPopup } from '@/components/showcase/popups/dropdown-popover-popup'
 import { RadioPopup } from '@/components/showcase/popups/radio-popup'
 import { CheckboxPopup } from '@/components/showcase/popups/checkbox-popup'
 import { BadgePopup } from '@/components/showcase/popups/badge-popup'
@@ -34,6 +35,7 @@ type PopupId =
     | 'button'
     | 'input'
     | 'select'
+    | 'dropdown-popover'
     | 'radio'
     | 'checkbox'
     | 'badge'
@@ -69,7 +71,7 @@ export default function App() {
                         <h2 className="text-2xl font-medium text-foreground">Core Primitives</h2>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
                         <Card onClick={() => setActivePopup('button')}>
                             <CardPreview>
                                 <div className="grid grid-cols-2 gap-2 pointer-events-none select-none">
@@ -87,12 +89,12 @@ export default function App() {
                         <Card onClick={() => setActivePopup('input')}>
                             <CardPreview>
                                 <Field className="w-full max-w-[210px] pointer-events-none select-none">
-                                    <FieldLabel>Search with Icon</FieldLabel>
+                                    <FieldLabel>Search</FieldLabel>
                                     <InputGroup>
                                         <InputGroupAddon align="inline-start">
                                             <Search className="size-4 text-muted" />
                                         </InputGroupAddon>
-                                        <InputGroupInput placeholder="Search documentation..." readOnly />
+                                        <InputGroupInput placeholder="Search…" readOnly />
                                     </InputGroup>
                                 </Field>
                             </CardPreview>
@@ -104,35 +106,58 @@ export default function App() {
                         <Card onClick={() => setActivePopup('select')}>
                             <CardPreview>
                                 <Field className="w-full max-w-[210px] pointer-events-none select-none">
-                                    <FieldLabel>Deployment Region</FieldLabel>
-                                    <Select defaultValue="us-east-1">
+                                    <FieldLabel>Select</FieldLabel>
+                                    <Select defaultValue="option-1">
                                         <SelectTrigger className="h-9">
-                                            <SelectValue placeholder="Select a region..." />
+                                            <SelectValue placeholder="Select an option…" />
                                         </SelectTrigger>
                                     </Select>
                                 </Field>
                             </CardPreview>
                             <CardContent>
-                                <CardTitle>Select, Dropdown & Combobox</CardTitle>
+                                <CardTitle>Select & Combobox</CardTitle>
+                            </CardContent>
+                        </Card>
+
+                        <Card onClick={() => setActivePopup('dropdown-popover')}>
+                            <CardPreview>
+                                <div className="flex flex-col items-center gap-2.5 pointer-events-none select-none w-full max-w-[210px]">
+                                    <Button variant="secondary" className="w-full justify-between h-9 text-xs">
+                                        <span className="flex items-center gap-2">
+                                            <SlidersHorizontal className="size-3.5 text-muted" />
+                                            <span>Options</span>
+                                        </span>
+                                        <ChevronDown className="size-3.5 text-muted" />
+                                    </Button>
+                                    <p className="text-xs text-muted text-center w-full">
+                                        Open a popover by{" "}
+                                        <span className="text-foreground underline underline-offset-4 font-medium">
+                                            clicking here
+                                        </span>
+                                    </p>
+                                </div>
+                            </CardPreview>
+                            <CardContent>
+                                <CardTitle>Dropdown & Popover</CardTitle>
                             </CardContent>
                         </Card>
 
                         <Card onClick={() => setActivePopup('radio')}>
                             <CardPreview>
                                 <Field className="w-full max-w-[190px] gap-2.5! pointer-events-none select-none">
-                                    <FieldLabel>Backup Frequency</FieldLabel>
-                                    <RadioGroup defaultValue="daily" className="gap-1.5">
+                                    <FieldLabel>Radio Group</FieldLabel>
+                                    <RadioGroup defaultValue="opt-2" className="gap-1.5">
                                         <Field orientation="horizontal">
-                                            <RadioGroupItem value="hourly" id="prev-hourly" />
-                                            <FieldLabel htmlFor="prev-hourly" className="text-sm">Hourly</FieldLabel>
+                                            <RadioGroupItem value="opt-1" id="prev-opt-1" />
+                                            <FieldLabel htmlFor="prev-opt-1" className="text-sm">Option 1</FieldLabel>
                                         </Field>
                                         <Field orientation="horizontal">
-                                            <RadioGroupItem value="daily" id="prev-daily" />
-                                            <FieldLabel htmlFor="prev-daily" className="text-sm font-normal">Daily</FieldLabel>
+                                            <RadioGroupItem value="opt-2" id="prev-opt-2" />
+                                            <FieldLabel htmlFor="prev-opt-2" className="text-sm font-normal">Option 2</FieldLabel>
                                         </Field>
                                         <Field orientation="horizontal">
-                                            <RadioGroupItem value="weekly" id="prev-weekly" />
-                                            <FieldLabel htmlFor="prev-weekly" className="text-sm">Weekly</FieldLabel>
+                                            <RadioGroupItem value="opt-3" id="prev-opt-3" />
+                                            <FieldLabel htmlFor="prev-opt-3" className="text-sm">Option 3</FieldLabel>
                                         </Field>
                                     </RadioGroup>
                                 </Field>
@@ -145,19 +170,19 @@ export default function App() {
                         <Card onClick={() => setActivePopup('checkbox')}>
                             <CardPreview>
                                 <Field className="w-full max-w-[190px] gap-2.5! pointer-events-none select-none">
-                                    <FieldLabel>Notifications</FieldLabel>
-                                    <CheckboxGroup defaultValue={['email', 'push']} className="gap-1.5">
+                                    <FieldLabel>Checkbox Group</FieldLabel>
+                                    <CheckboxGroup defaultValue={['opt-1', 'opt-2']} className="gap-1.5">
                                         <Field orientation="horizontal">
-                                            <Checkbox value="email" id="prev-email" />
-                                            <FieldLabel htmlFor="prev-email" className="text-sm font-normal text-foreground">Email</FieldLabel>
+                                            <Checkbox value="opt-1" id="prev-opt-1" />
+                                            <FieldLabel htmlFor="prev-opt-1" className="text-sm font-normal text-foreground">Option 1</FieldLabel>
                                         </Field>
                                         <Field orientation="horizontal">
-                                            <Checkbox value="push" id="prev-push" />
-                                            <FieldLabel htmlFor="prev-push" className="text-sm font-normal text-foreground">Push</FieldLabel>
+                                            <Checkbox value="opt-2" id="prev-opt-2" />
+                                            <FieldLabel htmlFor="prev-opt-2" className="text-sm font-normal text-foreground">Option 2</FieldLabel>
                                         </Field>
                                         <Field orientation="horizontal">
-                                            <Checkbox value="sms" id="prev-sms" />
-                                            <FieldLabel htmlFor="prev-sms" className="text-sm font-normal text-foreground">SMS</FieldLabel>
+                                            <Checkbox value="opt-3" id="prev-opt-3" />
+                                            <FieldLabel htmlFor="prev-opt-3" className="text-sm font-normal text-foreground">Option 3</FieldLabel>
                                         </Field>
                                     </CheckboxGroup>
                                 </Field>
@@ -272,6 +297,10 @@ export default function App() {
             />
             <SelectPopup
                 open={activePopup === 'select'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <DropdownPopoverPopup
+                open={activePopup === 'dropdown-popover'}
                 onOpenChange={(open) => !open && setActivePopup(null)}
             />
             <RadioPopup

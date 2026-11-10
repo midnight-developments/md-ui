@@ -9,27 +9,6 @@ import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/shells/po
 
 const Select = SelectPrimitive.Root
 
-
-function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
-    return (
-        <SelectPrimitive.Group
-            data-slot="select-group"
-            className={cn("scroll-my-1", className)}
-            {...props}
-        />
-    )
-}
-
-function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
-    return (
-        <SelectPrimitive.Value
-            data-slot="select-value"
-            className={cn("flex flex-1 text-left", className)}
-            {...props}
-        />
-    )
-}
-
 function SelectTrigger({
     className,
     children,
@@ -42,8 +21,7 @@ function SelectTrigger({
             render={
                 <InputShell
                     className={cn(
-                        "group/trigger justify-between cursor-pointer",
-                        "*:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 *:data-[slot=select-value]:line-clamp-1",
+                        "group/trigger justify-between cursor-pointer gap-2",
                         className
                     )}
                 />
@@ -51,10 +29,21 @@ function SelectTrigger({
             {...props}
         >
             {children}
-            <SelectPrimitive.Icon
-                render={<ChevronDownIcon className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-hover/trigger:opacity-100 group-data-[popup-open]/trigger:rotate-180" />}
+            <ChevronDownIcon
+                aria-hidden="true"
+                className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-hover/trigger:opacity-100 group-data-[popup-open]/trigger:rotate-180"
             />
         </SelectPrimitive.Trigger>
+    )
+}
+
+function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
+    return (
+        <SelectPrimitive.Value
+            data-slot="select-value"
+            className={cn("flex flex-1 items-center gap-2 line-clamp-1 text-left", className)}
+            {...props}
+        />
     )
 }
 
@@ -90,7 +79,10 @@ function SelectContent({
                     render={<PopupShell />}
                     {...props}
                 >
-                    <SelectPrimitive.List data-slot="select-list" className="flex-1 flex flex-col has-[>[data-slot=select-group]]:gap-2">
+                    <SelectPrimitive.List
+                        data-slot="select-list"
+                        className="flex-1 flex flex-col has-[>[data-slot=select-group]]:gap-2"
+                    >
                         {children}
                     </SelectPrimitive.List>
                 </SelectPrimitive.Popup>
@@ -99,64 +91,61 @@ function SelectContent({
     )
 }
 
-function SelectLabel({ className, ...props }: SelectPrimitive.GroupLabel.Props) {
+function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
     return (
-        <SelectPrimitive.GroupLabel
-            data-slot="select-label"
-            className={cn("px-2 py-1.5 text-sm text-muted-foreground", className)}
+        <SelectPrimitive.Group
+            data-slot="select-group"
+            className={cn("scroll-my-1", className)}
             {...props}
         />
     )
 }
 
-function SelectItemIndicator({
+function SelectLabel({
     className,
-    children,
+    inset,
     ...props
-}: SelectPrimitive.ItemIndicator.Props) {
+}: SelectPrimitive.GroupLabel.Props & {
+    inset?: boolean
+}) {
     return (
-        <SelectPrimitive.ItemIndicator
-            data-slot="select-item-indicator"
-            className={cn("ml-auto flex items-center justify-center shrink-0 text-current", className)}
+        <SelectPrimitive.GroupLabel
+            data-slot="select-label"
+            data-inset={inset}
+            className={cn("px-2 py-1.5 text-sm text-muted-foreground data-inset:pl-7", className)}
             {...props}
-        >
-            {children ?? <PopupCheckIcon />}
-        </SelectPrimitive.ItemIndicator>
+        />
     )
 }
 
 function SelectItem({
     className,
     children,
-    onClick,
-    onKeyDown,
+    inset,
+    variant = "default",
     ...props
-}: SelectPrimitive.Item.Props) {
+}: SelectPrimitive.Item.Props & {
+    inset?: boolean
+    variant?: "default" | "destructive"
+}) {
     return (
         <SelectPrimitive.Item
             data-slot="select-item"
+            data-inset={inset}
+            data-variant={variant}
             className={className}
-            render={<PopupItem />}
-            onClick={(e) => {
-                onClick?.(e)
-                requestAnimationFrame(() => {
-                    (document.activeElement as HTMLElement)?.blur()
-                })
-            }}
-            onKeyDown={(e) => {
-                onKeyDown?.(e)
-                if (e.key === "Enter" || e.key === " ") {
-                    requestAnimationFrame(() => {
-                        (document.activeElement as HTMLElement)?.blur()
-                    })
-                }
-            }}
+            render={<PopupItem variant={variant} className={cn(inset && "pl-7")} />}
             {...props}
         >
             <SelectPrimitive.ItemText className="flex flex-1 shrink-0 items-center gap-2 whitespace-nowrap">
                 {children}
             </SelectPrimitive.ItemText>
-            <SelectItemIndicator />
+            <SelectPrimitive.ItemIndicator
+                data-slot="select-item-indicator"
+                className="ml-auto flex items-center justify-center shrink-0 text-current"
+            >
+                <PopupCheckIcon />
+            </SelectPrimitive.ItemIndicator>
         </SelectPrimitive.Item>
     )
 }
@@ -173,12 +162,11 @@ function SelectSeparator({ className, ...props }: SelectPrimitive.Separator.Prop
 
 export {
     Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectItemIndicator,
-    SelectLabel,
-    SelectSeparator,
     SelectTrigger,
     SelectValue,
+    SelectContent,
+    SelectGroup,
+    SelectLabel,
+    SelectItem,
+    SelectSeparator,
 }

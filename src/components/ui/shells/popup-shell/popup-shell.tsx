@@ -7,7 +7,7 @@ import advancedPopupStyles from "./popup-shell.module.css"
 
 const popupShellClasses = cn(
     advancedPopupStyles.shell,
-    "overflow-y-auto no-scrollbar rounded-md outline-hidden p-1.5",
+    "overflow-y-auto no-scrollbar rounded-lg outline-hidden p-1.5",
     "max-h-(--available-height) min-w-(--anchor-width) max-w-(--available-width) transition-popup",
     "data-[align=start]:origin-top-left data-[align=end]:origin-top-right data-[align=center]:origin-top",
     "data-[side=top]:data-[align=start]:origin-bottom-left data-[side=top]:data-[align=end]:origin-bottom-right data-[side=top]:data-[align=center]:origin-bottom",

@@ -45,6 +45,7 @@
 
 
     --radius-md: 5px;
+    --radius-lg: 6px;
 
     --text-md: 0.9375rem;
 
@@ -90,11 +91,9 @@
         border-radius: inherit;
         pointer-events: none;
         border: var(--shine-border-width) solid transparent;
-        background: radial-gradient(
-            ellipse var(--shine-size) at var(--shine-origin),
-            var(--shine-color) var(--shine-start),
-            transparent var(--shine-end)
-        ) border-box;
+        background: radial-gradient(ellipse var(--shine-size) at var(--shine-origin),
+                var(--shine-color) var(--shine-start),
+                transparent var(--shine-end)) border-box;
         -webkit-mask:
             linear-gradient(#fff 0 0) padding-box,
             linear-gradient(#fff 0 0);
