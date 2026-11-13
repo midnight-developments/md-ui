@@ -206,7 +206,7 @@ function ColourPickerTrigger({
                 {swatch}
                 {label}
             </span>
-            <ChevronDownIcon aria-hidden="true" className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
+            <ChevronDownIcon aria-hidden="true" className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
         </PopoverTrigger>
     );
 }

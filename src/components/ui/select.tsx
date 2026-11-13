@@ -5,34 +5,47 @@ import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { InputShell } from "@/components/ui/shells/input-shell/input-shell"
-import { PopupShell, PopupItem, PopupCheckIcon } from "@/components/ui/shells/popup-shell/popup-shell"
+import {
+    PopupShell,
+    PopupItem,
+    PopupItemText,
+    PopupItemIndicator,
+    PopupSeparator,
+    PopupLabel,
+} from "@/components/ui/shells/popup-shell/popup-shell"
 
 const Select = SelectPrimitive.Root
 
 function SelectTrigger({
     className,
     children,
+    render,
+    nativeButton,
     ...props
 }: SelectPrimitive.Trigger.Props) {
     return (
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
-            nativeButton={false}
+            nativeButton={nativeButton ?? (render ? undefined : false)}
             render={
-                <InputShell
-                    className={cn(
-                        "group/trigger justify-between cursor-pointer gap-2",
-                        className
-                    )}
-                />
+                render ?? (
+                    <InputShell
+                        className={cn(
+                            "group/trigger justify-between cursor-pointer gap-2",
+                            className
+                        )}
+                    />
+                )
             }
             {...props}
         >
             {children}
-            <ChevronDownIcon
-                aria-hidden="true"
-                className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground transition-snappy group-hover/trigger:opacity-100 group-data-[popup-open]/trigger:rotate-180"
-            />
+            {!render && (
+                <ChevronDownIcon
+                    aria-hidden="true"
+                    className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground group-hover/trigger:opacity-100 group-data-[popup-open]/trigger:rotate-180"
+                />
+            )}
         </SelectPrimitive.Trigger>
     )
 }
@@ -102,7 +115,6 @@ function SelectGroup({ className, ...props }: SelectPrimitive.Group.Props) {
 }
 
 function SelectLabel({
-    className,
     inset,
     ...props
 }: SelectPrimitive.GroupLabel.Props & {
@@ -112,7 +124,7 @@ function SelectLabel({
         <SelectPrimitive.GroupLabel
             data-slot="select-label"
             data-inset={inset}
-            className={cn("px-2 py-1.5 text-sm text-muted-foreground data-inset:pl-7", className)}
+            render={<PopupLabel inset={inset} />}
             {...props}
         />
     )
@@ -137,24 +149,19 @@ function SelectItem({
             render={<PopupItem variant={variant} className={cn(inset && "pl-7")} />}
             {...props}
         >
-            <SelectPrimitive.ItemText className="flex flex-1 shrink-0 items-center gap-2 whitespace-nowrap">
+            <SelectPrimitive.ItemText render={<PopupItemText />}>
                 {children}
             </SelectPrimitive.ItemText>
-            <SelectPrimitive.ItemIndicator
-                data-slot="select-item-indicator"
-                className="ml-auto flex items-center justify-center shrink-0 text-current"
-            >
-                <PopupCheckIcon />
-            </SelectPrimitive.ItemIndicator>
+            <SelectPrimitive.ItemIndicator render={<PopupItemIndicator />} />
         </SelectPrimitive.Item>
     )
 }
 
-function SelectSeparator({ className, ...props }: SelectPrimitive.Separator.Props) {
+function SelectSeparator(props: SelectPrimitive.Separator.Props) {
     return (
         <SelectPrimitive.Separator
             data-slot="select-separator"
-            className={cn("pointer-events-none -mx-1 my-1 h-px bg-border", className)}
+            render={<PopupSeparator />}
             {...props}
         />
     )

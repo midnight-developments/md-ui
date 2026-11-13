@@ -109,7 +109,7 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                             <FieldLabel>Combobox Input</FieldLabel>
                             <Combobox
                                 value={comboboxValue}
-                                onValueChange={(val) => setComboboxValue(val)}
+                                onValueChange={(val) => setComboboxValue(val ?? "")}
                             >
                                 <ComboboxInput
                                     placeholder="Select an option…"

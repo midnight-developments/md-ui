@@ -19,7 +19,7 @@
     --letter-spacing-text: -0.3px;
 
     --color-background: rgb(0, 0, 0);
-    --color-foreground: rgb(225, 225, 225);
+    --color-foreground: rgb(215, 215, 215);
     --color-secondary: rgb(165, 165, 165);
     --color-muted: rgb(130, 130, 130);
     --color-accent: rgb(120, 105, 230);
@@ -37,15 +37,14 @@
     --color-input-hover: rgba(42, 42, 42);
     --color-input-active: rgba(255, 255, 255, 0.08);
 
-    --color-card: rgba(14, 14, 14);
+    --color-card: rgba(12, 12, 12);
     --color-card-hover: rgba(255, 255, 255, 0.08);
     --color-card-active: rgba(255, 255, 255, 0.08);
 
 
 
 
-    --radius-md: 5px;
-    --radius-lg: 6px;
+    --radius-lg: 7px;
 
     --text-md: 0.9375rem;
 

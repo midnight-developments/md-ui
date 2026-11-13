@@ -41,8 +41,6 @@ import {
     Code,
     Share2,
     Trash2,
-    Grid,
-    Sparkles,
 } from "lucide-react"
 
 export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
@@ -66,7 +64,7 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                             <FieldLabel>Example Basic Dropdown Menu</FieldLabel>
                             <DropdownMenu>
                                 <DropdownMenuTrigger className="w-40!">Options</DropdownMenuTrigger>
-                                <DropdownMenuContent align="start" className="min-w-[240px]">
+                                <DropdownMenuContent align="start">
                                     <DropdownMenuItem onClick={() => setActionFeedback("Option 1 selected")}>
                                         <Copy className="size-4" />
                                         <span>Option 1</span>

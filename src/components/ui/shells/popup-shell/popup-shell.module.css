@@ -1,29 +1,113 @@
 @reference "@/index.css";
 
-.shell,
-.content {
+.shell {
     @apply border-shine;
     --shine-border-width: 1px;
-    --shine-size: 65% 55%;
-    --shine-origin: 20% 0%;
+    --shine-size: 100% 100%;
+    --shine-origin: 50% 0%;
     --shine-color: var(--dialog-border-shine);
     --shine-start: -100%;
     --shine-end: 80%;
     --shine-opacity: 1;
-    --dialog-bg: var(--color-card, rgb(14, 14, 14));
-    --dialog-color: var(--color-foreground, rgb(225, 225, 225));
-    --dialog-border: rgba(255, 255, 255, 0.06);
-    --dialog-border-shine: rgba(255, 255, 255, 0.3);
+
+    --dialog-bg: rgb(22, 22, 22, 1);
+    --dialog-color: var(--color-foreground);
+    --dialog-border: rgba(44, 44, 44);
+    --dialog-border: rgba(255, 255, 255, 0.075);
+    --dialog-border-shine: rgba(255, 255, 255, 0.5);
 
     position: relative;
     border-width: 0;
     color: var(--dialog-color);
     background:
-        radial-gradient(ellipse at 0% 0%, rgba(255, 255, 255, 0.06) 0%, transparent 75%),
         var(--dialog-bg);
     box-shadow:
-        inset 0 0 0 1px var(--dialog-border);
+        inset 0 0 0 2px var(--dialog-border);
+
 
     transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-}
+    isolation: isolate;
+}
+
+.shell::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: calc(var(--radius-xl, 14px) - 1px);
+    pointer-events: none;
+    z-index: 0;
+
+    box-shadow:
+        inset 0 0 0px 1px rgba(0, 0, 0, .25),
+        inset 0 0 26px 5px rgba(0, 0, 0, 0);
+}
+
+.item {
+    color: var(--color-secondary);
+
+    svg {
+        color: var(--color-muted);
+    }
+
+    &[data-highlighted] {
+        background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+        color: var(--color-accent-text);
+
+        svg {
+            color: currentColor;
+        }
+    }
+
+    &[data-variant="destructive"] {
+        color: var(--color-destructive);
+
+        svg {
+            color: var(--color-destructive);
+        }
+
+        &[data-highlighted] {
+            background: color-mix(in srgb, var(--color-destructive) 15%, transparent);
+        }
+    }
+
+    &[data-disabled] {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}
+
+.item {
+    color: var(--color-secondary);
+
+    svg {
+        color: var(--color-muted);
+    }
+
+    &[data-highlighted] {
+        background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+        color: var(--color-accent-text);
+
+        svg {
+            color: currentColor;
+        }
+    }
+
+    &[data-variant="destructive"] {
+        color: var(--color-destructive);
+
+        svg {
+            color: var(--color-destructive);
+        }
+
+        &[data-highlighted] {
+            background: color-mix(in srgb, var(--color-destructive) 15%, transparent);
+        }
+    }
+
+    &[data-disabled] {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+}

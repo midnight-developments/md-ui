@@ -11,9 +11,10 @@
     --shine-opacity: 1;
 
     --input-bg: linear-gradient(20deg, rgb(36, 36, 36, 0.8) 0%, rgb(32, 32, 32, 0.8) 55%, rgb(36, 36, 36, 0.8) 100%);
+    --input-bg: linear-gradient(140deg, rgb(36, 36, 36, 0.75) 0%, rgb(28, 28, 28, 0.75) 55%, rgb(28, 28, 28, 0.95) 100%);
     --input-text-color: var(--color-foreground);
-    --input-border: rgba(255, 255, 255, 0.0125);
-    --input-border-shine: rgba(255, 255, 255, 0.18);
+    --input-border: rgba(255, 255, 255, 0.025);
+    --input-border-shine: rgba(255, 255, 255, 0.08);
 
     position: relative;
     border-width: 0;

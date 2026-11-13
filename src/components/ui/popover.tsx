@@ -2,58 +2,19 @@
 
 import * as React from "react"
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
-
 import { cn } from "@/lib/utils"
-import { PopupShell } from "@/components/ui/shells/popup-shell/popup-shell"
 
-const Popover = PopoverPrimitive.Root
+function Popover({ ...props }: PopoverPrimitive.Root.Props) {
+    return <PopoverPrimitive.Root data-slot="popover" {...props} />
+}
 
-function PopoverTrigger({
-    onMouseDown,
-    onClick,
-    ...props
-}: PopoverPrimitive.Trigger.Props) {
-    const triggeredOnMouseDownRef = React.useRef(false)
-    return (
-        <PopoverPrimitive.Trigger
-            onMouseDown={(event) => {
-                onMouseDown?.(event)
-                if (event.defaultPrevented) return
-
-                if (event.button === 0) {
-                    const isExpanded = event.currentTarget.getAttribute("aria-expanded") === "true"
-                    if (!isExpanded) {
-                        triggeredOnMouseDownRef.current = true
-
-                        const handleWindowMouseUp = () => {
-                            window.removeEventListener("mouseup", handleWindowMouseUp)
-                            setTimeout(() => {
-                                triggeredOnMouseDownRef.current = false
-                            }, 0)
-                        }
-                        window.addEventListener("mouseup", handleWindowMouseUp)
-
-                        event.currentTarget.click()
-                    }
-                }
-            }}
-            onClick={(event) => {
-                if (triggeredOnMouseDownRef.current && event.isTrusted) {
-                    triggeredOnMouseDownRef.current = false
-                        ; (event as any).preventBaseUIHandler?.()
-                    event.preventDefault()
-                    return
-                }
-                onClick?.(event)
-            }}
-            {...props}
-        />
-    )
+function PopoverTrigger({ ...props }: PopoverPrimitive.Trigger.Props) {
+    return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
 }
 
 function PopoverContent({
     className,
-    align = "start",
+    align = "center",
     alignOffset = 0,
     side = "bottom",
     sideOffset = 4,
@@ -74,16 +35,10 @@ function PopoverContent({
             >
                 <PopoverPrimitive.Popup
                     data-slot="popover-content"
-                    data-align={align}
-                    data-side={side}
-                    render={
-                        <PopupShell
-                            className={cn(
-                                "flex w-72 flex-col gap-2.5 p-2.5 text-base",
-                                className
-                            )}
-                        />
-                    }
+                    className={cn(
+                        "z-50 flex w-72 origin-(--transform-origin) flex-col gap-2.5 rounded-lg bg-popover p-2.5 text-sm text-popover-foreground shadow-md ring-1 ring-foreground/10 outline-hidden",
+                        className
+                    )}
                     {...props}
                 />
             </PopoverPrimitive.Positioner>
@@ -95,7 +50,7 @@ function PopoverHeader({ className, ...props }: React.ComponentProps<"div">) {
     return (
         <div
             data-slot="popover-header"
-            className={cn("flex flex-col gap-0.5 text-base", className)}
+            className={cn("flex flex-col gap-0.5 text-sm", className)}
             {...props}
         />
     )
@@ -105,7 +60,7 @@ function PopoverTitle({ className, ...props }: PopoverPrimitive.Title.Props) {
     return (
         <PopoverPrimitive.Title
             data-slot="popover-title"
-            className={cn(className)}
+            className={cn("font-medium", className)}
             {...props}
         />
     )
