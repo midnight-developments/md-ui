@@ -11,7 +11,8 @@ import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio/radio-group'
 import { Field, FieldLabel } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge/badge'
-import { Search, SlidersHorizontal, ChevronDown } from 'lucide-react'
+import { Search, SlidersHorizontal } from 'lucide-react'
+import { InputShell, TriggerChevron } from '@/components/ui/shells/input-shell/input-shell'
 import modalScreenshot from '@/assets/dialog-screenshot.png'
 import { DialogSurface } from '@/components/ui/dialog/dialog-surface'
 
@@ -120,14 +121,12 @@ export default function App() {
                         <Card onClick={() => setActivePopup('dropdown-popover')}>
                             <CardPreview>
                                 <div className="flex flex-col items-center gap-2.5 pointer-events-none select-none w-full max-w-[210px]">
-                                    <Button variant="secondary" className="w-full justify-between h-9 text-xs">
-                                        <span className="flex items-center gap-2">
-                                            <SlidersHorizontal className="size-3.5 text-muted" />
-                                            <span>Options</span>
-                                        </span>
-                                        <ChevronDown className="size-3.5 text-muted" />
-                                    </Button>
-                                    <p className="text-xs text-muted text-center w-full">
+                                    <InputShell className="w-full">
+                                        <SlidersHorizontal className="size-4 text-muted" />
+                                        <span>Options</span>
+                                        <TriggerChevron />
+                                    </InputShell>
+                                    <p className="text-[14px] text-muted text-left w-full">
                                         Open a popover by{" "}
                                         <span className="text-foreground underline underline-offset-4 font-medium">
                                             clicking here

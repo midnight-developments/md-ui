@@ -1,10 +1,9 @@
 "use client"
 
 import { Select as SelectPrimitive } from "@base-ui/react/select"
-import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { InputShell } from "@/components/ui/shells/input-shell/input-shell"
+import { InputShell, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
 import {
     PopupShell,
     PopupItem,
@@ -27,25 +26,11 @@ function SelectTrigger({
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
             nativeButton={nativeButton ?? (render ? undefined : false)}
-            render={
-                render ?? (
-                    <InputShell
-                        className={cn(
-                            "group/trigger justify-between cursor-pointer gap-2",
-                            className
-                        )}
-                    />
-                )
-            }
+            render={render ?? (<InputShell className={cn("group/trigger cursor-pointer", className)} />)}
             {...props}
         >
             {children}
-            {!render && (
-                <ChevronDownIcon
-                    aria-hidden="true"
-                    className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground group-hover/trigger:opacity-100 group-data-[popup-open]/trigger:rotate-180"
-                />
-            )}
+            {!render && <TriggerChevron />}
         </SelectPrimitive.Trigger>
     )
 }
@@ -67,13 +52,14 @@ function SelectContent({
     sideOffset = 6,
     align = "start",
     alignOffset = 0,
+    anchor,
     alignItemWithTrigger = false,
     finalFocus = false,
     ...props
 }: SelectPrimitive.Popup.Props &
     Pick<
         SelectPrimitive.Positioner.Props,
-        "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger"
+        "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger" | "anchor"
     >) {
     return (
         <SelectPrimitive.Portal>
@@ -82,6 +68,7 @@ function SelectContent({
                 sideOffset={sideOffset}
                 align={align}
                 alignOffset={alignOffset}
+                anchor={anchor}
                 alignItemWithTrigger={alignItemWithTrigger}
                 className="isolate z-50"
             >
@@ -94,7 +81,7 @@ function SelectContent({
                 >
                     <SelectPrimitive.List
                         data-slot="select-list"
-                        className="flex-1 flex flex-col has-[>[data-slot=select-group]]:gap-2"
+                        className="flex flex-col has-[>[data-slot=select-group]]:gap-2"
                     >
                         {children}
                     </SelectPrimitive.List>

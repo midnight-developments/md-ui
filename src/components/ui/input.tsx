@@ -1,10 +1,9 @@
 import * as React from "react"
-import { Input as InputPrimitive } from "@base-ui/react/input"
 import { Lock, Eye, EyeOff } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { InputShell } from "@/components/ui/shells/input-shell/input-shell"
-import { InputGroup, InputGroupAddon } from "./input-group"
+import { InputGroup, InputGroupAddon, InputGroupInput } from "./input-group"
 
 export interface InputProps extends React.ComponentProps<"input"> {
   "data-invalid"?: boolean | string
@@ -30,13 +29,11 @@ function PasswordInput({ className, id, ref, disabled, ...props }: InputProps) {
       <InputGroupAddon align="inline-start">
         <Lock className="size-4 text-muted" />
       </InputGroupAddon>
-      <InputPrimitive
+      <InputGroupInput
         ref={ref}
         id={inputId}
         type={showPassword ? "text" : "password"}
         disabled={disabled}
-        data-slot="input"
-        className="h-full w-full flex-1 rounded-none px-0 bg-transparent border-none outline-none ring-0 shadow-none text-base text-foreground placeholder:text-muted disabled:cursor-not-allowed"
         {...props}
       />
       <InputGroupAddon
@@ -78,17 +75,17 @@ function Input({ className, type, id, ref, disabled, ...props }: InputProps) {
         }
       }}
     >
-      <InputPrimitive
+      <input
         ref={ref}
         id={inputId}
         type={type}
         disabled={disabled}
         data-slot="input"
-        className="h-full w-full bg-transparent border-none outline-none ring-0 shadow-none text-base text-foreground placeholder:text-muted disabled:cursor-not-allowed"
+        className="h-full w-full bg-transparent border-none outline-none text-base text-foreground placeholder:text-muted disabled:cursor-not-allowed"
         {...props}
       />
     </InputShell>
   )
 }
 
-export { Input, PasswordInput }
+export { Input, PasswordInput }

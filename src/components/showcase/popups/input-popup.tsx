@@ -48,7 +48,6 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                             </InputGroup>
                         </Field>
 
-                        {/* Password input with toggle button */}
                         <Field>
                             <FieldLabel>Secure Password Field</FieldLabel>
                             <Input
@@ -57,7 +56,6 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                             />
                         </Field>
 
-                        {/* Plain Textarea */}
                         <Field>
                             <FieldLabel>Textarea</FieldLabel>
                             <Textarea

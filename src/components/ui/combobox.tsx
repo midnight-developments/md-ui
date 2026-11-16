@@ -1,9 +1,9 @@
 "use client"
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react"
-import { ChevronDownIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
 import {
     PopupShell,
     PopupItem,
@@ -28,17 +28,12 @@ function ComboboxTrigger({
         <ComboboxPrimitive.Trigger
             data-slot="combobox-trigger"
             className={cn(
-                "group/trigger flex items-center justify-center -mr-1 size-4 shrink-0 bg-transparent text-muted-foreground opacity-50 cursor-pointer outline-none group-hover/input-group:opacity-100 hover:opacity-100",
+                "group/trigger flex items-center justify-center -mr-1 size-4 shrink-0 bg-transparent cursor-pointer outline-none",
                 className
             )}
             {...props}
         >
-            {children ?? (
-                <ChevronDownIcon
-                    aria-hidden="true"
-                    className="pointer-events-none size-4 group-data-[popup-open]/trigger:rotate-180"
-                />
-            )}
+            {children ?? <TriggerChevron className="mr-0" />}
         </ComboboxPrimitive.Trigger>
     )
 }
@@ -54,7 +49,7 @@ function ComboboxInput({
 }) {
     return (
         <ComboboxPrimitive.InputGroup
-            render={<InputGroup className={cn("w-full justify-between cursor-text", className)} />}
+            render={<InputGroup className={cn(className)} />}
         >
             <ComboboxPrimitive.Input
                 render={<InputGroupInput disabled={disabled} />}

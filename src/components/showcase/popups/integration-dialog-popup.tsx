@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import {
     Popup,
     PopupContent,
@@ -14,12 +13,13 @@ import { DialogSurface } from "@/components/ui/dialog/dialog-surface"
 import {
     DialogHeader,
     DialogTitle,
-    DialogDescription,
     DialogBody,
     DialogFooter,
 } from "@/components/ui/dialog/dialog"
 import { Button } from "@/components/ui/button/button"
 import { InfoIcon } from "lucide-react"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { Separator } from "@/components/ui/seperator"
 
 export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
     return (
@@ -27,7 +27,7 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
             <PopupContent>
                 <PopupPreview>
                     <div className="flex flex-col items-center gap-6  w-full">
-                        <DialogSurface className="w-lg">
+                        <DialogSurface className="w-120">
                             <DialogHeader>
                                 <DialogTitle>Your meeting has been scheduled</DialogTitle>
                             </DialogHeader>
@@ -54,10 +54,41 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
                                         <p className="text-base text-foreground">Online Remote</p>
                                     </div>
                                 </div>
-                                <div>
-                                    <p>Attendees</p>
-                                    <div>
 
+                                <Separator className="-my-1"></Separator>
+
+                                <div className="flex flex-col gap-1">
+                                    <p className="text-base text-secondary">Attendees</p>
+                                    <div className="flex items-center gap-2.5 mt-0.75">
+                                        <Avatar className="w-5 h-5">
+                                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                            <AvatarFallback>CN</AvatarFallback>
+                                        </Avatar>
+                                        Shadab Ahmed
+                                    </div>
+                                    <div className="flex items-center gap-2.5">
+                                        <Avatar className="w-5 h-5">
+                                            <AvatarImage
+                                                src="https://github.com/maxleiter.png"
+                                                alt="@maxleiter"
+                                            />
+                                            <AvatarFallback>LR</AvatarFallback>
+                                        </Avatar>
+                                        Max Leiter
+                                    </div>
+                                    <div className="flex items-center gap-2.5">
+                                        <Avatar className="w-5 h-5">
+                                            <AvatarImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKHfrn7uCuoNUxjLkSUegA83kNg-VhQfv81dj_nS94WraN-o8_3gQFZyoq&s=10" alt="@shadcn" />
+                                            <AvatarFallback>CN</AvatarFallback>
+                                        </Avatar>
+                                        Darren Watkins
+                                    </div>
+                                    <div className="flex items-center gap-2.5">
+                                        <Avatar className="w-5 h-5">
+                                            <AvatarImage src="https://github.com/danyalasghar.png" alt="@shadcn" />
+                                            <AvatarFallback>CN</AvatarFallback>
+                                        </Avatar>
+                                        Danyal Asghar
                                     </div>
                                 </div>
 

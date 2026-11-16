@@ -33,15 +33,16 @@ import {
     PopoverDescription,
 } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button/button"
+import { InputShell, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
 import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
 import { InputGroup, InputGroupInput } from "@/components/ui/input-group"
 import { Checkbox } from "@/components/ui/checkbox/checkbox"
 import {
-    ChevronDown,
     Copy,
     Code,
     Share2,
     Trash2,
+    SlidersHorizontal,
 } from "lucide-react"
 
 export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
@@ -64,16 +65,10 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                         <Field>
                             <FieldLabel>Example Basic Dropdown Menu</FieldLabel>
                             <DropdownMenu>
-                                <DropdownMenuTrigger
-                                    render={
-                                        <Button
-                                            variant="secondary"
-                                            className="w-40 justify-between"
-                                        />
-                                    }
-                                >
-                                    Options
-                                    <ChevronDown className="size-4 opacity-50" />
+                                <DropdownMenuTrigger render={<InputShell className="group/trigger cursor-pointer" />}>
+                                    <SlidersHorizontal className="size-4 text-muted" />
+                                    <span>Options</span>
+                                    <TriggerChevron />
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="start">
                                     <DropdownMenuItem onClick={() => setActionFeedback("Option 1 selected")}>
@@ -99,19 +94,11 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                             <FieldLabel>Example Advanced Dropdown Menu</FieldLabel>
                             <FieldDescription>Multi-level context menu with submenus and inputs</FieldDescription>
                             <DropdownMenu>
-                                <DropdownMenuTrigger
-                                    render={
-                                        <Button
-                                            variant="secondary"
-                                            className="w-40 justify-between"
-                                        />
-                                    }
-                                >
-                                    Options
-                                    <ChevronDown className="size-4 opacity-50" />
+                                <DropdownMenuTrigger render={<InputShell className="group/trigger cursor-pointer" />}>
+                                    <span>Options</span>
+                                    <TriggerChevron />
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="start" className="min-w-[240px]">
-                                    {/* Section 1: Label: Options */}
                                     <DropdownMenuGroup>
                                         <DropdownMenuLabel>Options</DropdownMenuLabel>
                                         <DropdownMenuItem onClick={() => setActionFeedback("Option 1 selected")}>
@@ -130,7 +117,6 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
 
                                     <DropdownMenuSeparator />
 
-                                    {/* Section 2: Label: Sub Menus */}
                                     <DropdownMenuGroup>
                                         <DropdownMenuLabel>Sub Menus</DropdownMenuLabel>
 
@@ -207,7 +193,6 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
 
                                     <DropdownMenuSeparator />
 
-                                    {/* Section 3: Label: None */}
                                     <DropdownMenuItem
                                         variant="destructive"
                                         onClick={() => setActionFeedback("Destructive Option selected")}
@@ -228,7 +213,7 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                                         clicking here
                                     </PopoverTrigger>
                                 </FieldDescription>
-                                <PopoverContent >
+                                <PopoverContent>
                                     <PopoverHeader>
                                         <PopoverTitle >
                                             Display Settings

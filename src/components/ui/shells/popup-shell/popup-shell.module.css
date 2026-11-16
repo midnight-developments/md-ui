@@ -51,7 +51,7 @@
         color: var(--color-muted);
     }
 
-    &[data-highlighted] {
+    &:is([data-highlighted], [data-popup-open]) {
         background: color-mix(in srgb, var(--color-accent) 20%, transparent);
         color: var(--color-accent-text);
 
@@ -67,41 +67,7 @@
             color: var(--color-destructive);
         }
 
-        &[data-highlighted] {
-            background: color-mix(in srgb, var(--color-destructive) 15%, transparent);
-        }
-    }
-
-    &[data-disabled] {
-        pointer-events: none;
-        opacity: 0.5;
-    }
-}
-
-.item {
-    color: var(--color-secondary);
-
-    svg {
-        color: var(--color-muted);
-    }
-
-    &[data-highlighted] {
-        background: color-mix(in srgb, var(--color-accent) 20%, transparent);
-        color: var(--color-accent-text);
-
-        svg {
-            color: currentColor;
-        }
-    }
-
-    &[data-variant="destructive"] {
-        color: var(--color-destructive);
-
-        svg {
-            color: var(--color-destructive);
-        }
-
-        &[data-highlighted] {
+        &:is([data-highlighted], [data-popup-open]) {
             background: color-mix(in srgb, var(--color-destructive) 15%, transparent);
         }
     }

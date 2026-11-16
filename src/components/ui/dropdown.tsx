@@ -17,10 +17,6 @@ function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
     return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />
 }
 
-function DropdownMenuPortal({ ...props }: MenuPrimitive.Portal.Props) {
-    return <MenuPrimitive.Portal data-slot="dropdown-menu-portal" {...props} />
-}
-
 function DropdownMenuTrigger({ ...props }: MenuPrimitive.Trigger.Props) {
     return <MenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />
 }
@@ -32,12 +28,13 @@ function DropdownMenuContent({
     sideOffset = 6,
     align = "start",
     alignOffset = 0,
+    anchor,
     finalFocus = false,
     ...props
 }: MenuPrimitive.Popup.Props &
     Pick<
         MenuPrimitive.Positioner.Props,
-        "align" | "alignOffset" | "side" | "sideOffset"
+        "align" | "alignOffset" | "side" | "sideOffset" | "anchor"
     >) {
     return (
         <MenuPrimitive.Portal>
@@ -46,6 +43,7 @@ function DropdownMenuContent({
                 sideOffset={sideOffset}
                 align={align}
                 alignOffset={alignOffset}
+                anchor={anchor}
                 className="isolate z-50"
             >
                 <MenuPrimitive.Popup
@@ -129,14 +127,7 @@ function DropdownMenuSubTrigger({
             data-slot="dropdown-menu-sub-trigger"
             data-inset={inset}
             className={className}
-            render={
-                <PopupItem
-                    className={cn(
-                        "justify-between data-[popup-open]:bg-white/5 data-[popup-open]:text-foreground",
-                        inset && "pl-7"
-                    )}
-                />
-            }
+            render={<PopupItem className={cn(inset && "pl-7")} />}
             {...props}
         >
             {children}
@@ -233,7 +224,6 @@ function DropdownMenuSeparator(props: MenuPrimitive.Separator.Props) {
 
 export {
     DropdownMenu,
-    DropdownMenuPortal,
     DropdownMenuTrigger,
     DropdownMenuContent,
     DropdownMenuGroup,

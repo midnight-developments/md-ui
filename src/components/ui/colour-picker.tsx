@@ -1,7 +1,6 @@
 import * as React from "react";
 import { HexColorPicker } from "react-colorful";
 import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
-import { ChevronDownIcon } from "lucide-react";
 
 import { PopoverTrigger } from "@/components/ui/popover";
 
@@ -13,7 +12,7 @@ import {
     InputGroupText,
 } from "@/components/ui/input-group";
 import { FieldLabel } from "@/components/ui/field";
-import { InputShell } from "@/components/ui/shells/input-shell/input-shell";
+import { InputShell, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell";
 
 function hexToRgb(hex: string) {
     const raw = hex.replace("#", "");
@@ -192,21 +191,14 @@ function ColourPickerTrigger({
     return (
         <PopoverTrigger
             data-slot="colour-picker-trigger"
-            render={
-                <InputShell
-                    className={cn(
-                        "group/trigger justify-between cursor-pointer",
-                        className
-                    )}
-                />
-            }
+            render={<InputShell className={cn("group/trigger cursor-pointer gap-2", className)} />}
             {...props}
         >
             <span className="flex items-center gap-2 min-w-0">
                 {swatch}
                 {label}
             </span>
-            <ChevronDownIcon aria-hidden="true" className="-mr-1 opacity-50 pointer-events-none size-4 text-muted-foreground group-data-[popup-open]/trigger:rotate-180 group-data-[state=open]/trigger:rotate-180" />
+            <TriggerChevron />
         </PopoverTrigger>
     );
 }
