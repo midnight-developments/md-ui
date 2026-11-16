@@ -37,6 +37,7 @@ import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
 import { InputGroup, InputGroupInput } from "@/components/ui/input-group"
 import { Checkbox } from "@/components/ui/checkbox/checkbox"
 import {
+    ChevronDown,
     Copy,
     Code,
     Share2,
@@ -63,7 +64,17 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                         <Field>
                             <FieldLabel>Example Basic Dropdown Menu</FieldLabel>
                             <DropdownMenu>
-                                <DropdownMenuTrigger className="w-40!">Options</DropdownMenuTrigger>
+                                <DropdownMenuTrigger
+                                    render={
+                                        <Button
+                                            variant="secondary"
+                                            className="w-40 justify-between"
+                                        />
+                                    }
+                                >
+                                    Options
+                                    <ChevronDown className="size-4 opacity-50" />
+                                </DropdownMenuTrigger>
                                 <DropdownMenuContent align="start">
                                     <DropdownMenuItem onClick={() => setActionFeedback("Option 1 selected")}>
                                         <Copy className="size-4" />
@@ -88,7 +99,17 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                             <FieldLabel>Example Advanced Dropdown Menu</FieldLabel>
                             <FieldDescription>Multi-level context menu with submenus and inputs</FieldDescription>
                             <DropdownMenu>
-                                <DropdownMenuTrigger className="w-40!">Options</DropdownMenuTrigger>
+                                <DropdownMenuTrigger
+                                    render={
+                                        <Button
+                                            variant="secondary"
+                                            className="w-40 justify-between"
+                                        />
+                                    }
+                                >
+                                    Options
+                                    <ChevronDown className="size-4 opacity-50" />
+                                </DropdownMenuTrigger>
                                 <DropdownMenuContent align="start" className="min-w-[240px]">
                                     {/* Section 1: Label: Options */}
                                     <DropdownMenuGroup>

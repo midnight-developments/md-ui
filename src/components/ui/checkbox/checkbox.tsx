@@ -21,7 +21,6 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
             data-slot="checkbox"
             className={cn(
                 "group/checkbox peer outline-none transition-snappy cursor-pointer select-none",
-                "focus-visible:ring-2 focus-visible:ring-border-active",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 className
             )}

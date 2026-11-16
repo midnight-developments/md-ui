@@ -56,7 +56,6 @@ function CardRadioGroupItem({
             data-slot="card-radio-group-item"
             className={cn(
                 "group/card-radio peer relative flex gap-3 p-3.5 rounded-lg outline-none transition-snappy cursor-pointer select-none text-left",
-                "focus-visible:ring-2 focus-visible:ring-border-active",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 advancedCardRadioGroupStyles.card,
                 isLeftCenter

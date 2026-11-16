@@ -3,19 +3,17 @@ import {
     Card,
     CardPreview,
     CardTitle,
-    CardDescription,
     CardContent,
 } from '@/components/showcase/card'
 import { Button } from '@/components/ui/button/button'
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio/radio-group'
-import { Field, FieldDescription, FieldLabel } from '@/components/ui/field'
+import { Field, FieldLabel } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge/badge'
 import { Search, SlidersHorizontal, ChevronDown } from 'lucide-react'
 import modalScreenshot from '@/assets/dialog-screenshot.png'
-import databaseCreationScreenshot from '@/assets/database-creation-screenshot.png'
-import tempoGmailScreenshot from '@/assets/gmail-tempo-screenshot.png'
+import { DialogSurface } from '@/components/ui/dialog/dialog-surface'
 
 
 import { ButtonPopup } from '@/components/showcase/popups/button-popup'
@@ -233,53 +231,61 @@ export default function App() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <Card onClick={() => setActivePopup('database-creation')}>
                             <CardPreview>
-                                <img
-                                    src={databaseCreationScreenshot}
-                                    alt="Database creation preview"
-                                    className="h-full scale-135 -mb-40 object-contain rounded-lg"
-                                />
+                                <div className="w-full max-w-[220px] pointer-events-none select-none">
+                                    <DialogSurface className="w-full p-4 gap-3 rounded-xl border border-white/10">
+                                        <div className="flex flex-col gap-1">
+                                            <span className="text-sm font-medium text-foreground">Database Creation</span>
+                                            <span className="text-xs text-muted">Mockup shell</span>
+                                        </div>
+                                        <div className="flex flex-col gap-1.5 pt-1">
+                                            <div className="h-2 w-full bg-white/10 rounded" />
+                                            <div className="h-2 w-2/3 bg-white/5 rounded" />
+                                        </div>
+                                    </DialogSurface>
+                                </div>
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Database Creation</CardTitle>
-                                <CardDescription>Provision high-availability cloud database</CardDescription>
                             </CardContent>
                         </Card>
 
                         <Card onClick={() => setActivePopup('integration-dialog')}>
                             <CardPreview>
-                                <img
-                                    src={tempoGmailScreenshot}
-                                    alt="Integration dialog preview"
-                                    className="h-full scale-80 -mb-10 object-contain rounded-lg"
-                                />
+                                <div className="w-full max-w-[220px] pointer-events-none select-none">
+                                    <DialogSurface className="w-full p-4 gap-3 rounded-xl border border-white/10">
+                                        <div className="flex flex-col gap-1">
+                                            <span className="text-sm font-medium text-foreground">Integration Dialog</span>
+                                            <span className="text-xs text-muted">Mockup shell</span>
+                                        </div>
+                                        <div className="flex flex-col gap-1.5 pt-1">
+                                            <div className="h-2 w-full bg-white/10 rounded" />
+                                            <div className="h-2 w-2/3 bg-white/5 rounded" />
+                                        </div>
+                                    </DialogSurface>
+                                </div>
                             </CardPreview>
                             <CardContent>
-                                <CardTitle>Integration Dialog</CardTitle>
-                                <CardDescription>Connect Gmail and Tempo via Google OAuth</CardDescription>
+                                <CardTitle>Meeting Confirmation Dialog</CardTitle>
                             </CardContent>
                         </Card>
 
                         <Card onClick={() => setActivePopup('billing-dialog')}>
                             <CardPreview>
-                                <div className="w-full max-w-[210px] pointer-events-none select-none flex flex-col gap-3">
-                                    <Field>
-                                        <FieldLabel>Citizen ID (#)</FieldLabel>
-                                        <InputGroup>
-                                            <InputGroupInput placeholder="CID-1234" readOnly />
-                                        </InputGroup>
-                                        <FieldDescription>Tung Tung TUng Sahur</FieldDescription>
-                                    </Field>
-                                    <RadioGroup defaultValue="cash">
-                                        <Field orientation="horizontal">
-                                            <RadioGroupItem value="cash" />
-                                            <FieldLabel>Cash</FieldLabel>
-                                        </Field>
-                                    </RadioGroup>
+                                <div className="w-full max-w-[220px] pointer-events-none select-none">
+                                    <DialogSurface className="w-full p-4 gap-3 rounded-xl border border-white/10">
+                                        <div className="flex flex-col gap-1">
+                                            <span className="text-sm font-medium text-foreground">Form Dialog</span>
+                                            <span className="text-xs text-muted">Mockup shell</span>
+                                        </div>
+                                        <div className="flex flex-col gap-1.5 pt-1">
+                                            <div className="h-2 w-full bg-white/10 rounded" />
+                                            <div className="h-2 w-2/3 bg-white/5 rounded" />
+                                        </div>
+                                    </DialogSurface>
                                 </div>
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Form Dialog</CardTitle>
-                                <CardDescription>Multi-input dialog form</CardDescription>
                             </CardContent>
                         </Card>
                     </div>
