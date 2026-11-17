@@ -17,14 +17,11 @@ import {
     DialogFooter,
 } from "@/components/ui/dialog/dialog"
 import { Button } from "@/components/ui/button/button"
-import { CopyIcon, InfoIcon } from "lucide-react"
+import { CopyIcon } from "lucide-react"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { SuccessGraphic } from "@/components/ui/graphics/success-graphic"
-import { Badge } from "@/components/ui/badge/badge"
 import { Field, FieldLabel } from "@/components/ui/field"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
-import { Separator } from "@/components/ui/seperator"
-import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxList, ComboboxTrigger } from "@/components/ui/combobox"
+import { Combobox, ComboboxContent, ComboboxEmpty, ComboboxInput, ComboboxList } from "@/components/ui/combobox"
 import { Select, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
