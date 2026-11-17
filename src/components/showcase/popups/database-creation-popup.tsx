@@ -9,34 +9,43 @@ import {
     PopupDescription,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { DialogSurface } from "@/components/ui/dialog/dialog-surface"
 import {
+    DialogShell,
     DialogHeader,
     DialogTitle,
-    DialogDescription,
+    DialogBody,
+    DialogFooter,
 } from "@/components/ui/dialog/dialog"
+import { Button } from "@/components/ui/button/button"
+import { InfoIcon } from "lucide-react"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import { SuccessGraphic } from "@/components/ui/graphics/success-graphic"
+import { Badge } from "@/components/ui/badge/badge"
 
 export function DatabaseCreationPopup({ open, onOpenChange }: PopupProps) {
     return (
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="flex flex-col items-center gap-6 max-w-md w-full">
-                        <DialogSurface className="w-full">
+                    <div className="flex flex-col items-center gap-6  w-full">
+                        <DialogShell className="w-120">
                             <DialogHeader>
-                                <DialogTitle>Create a new database</DialogTitle>
-                                <DialogDescription>
-                                    Provision high-availability cloud database.
-                                </DialogDescription>
+                                <DialogTitle>Share Project</DialogTitle>
                             </DialogHeader>
-                        </DialogSurface>
+                            <DialogBody className="flex flex-col gap-8">
+
+                            </DialogBody>
+                            <DialogFooter>
+                                <Button className="w-fit">Confirm Access</Button>
+                            </DialogFooter>
+                        </DialogShell>
                     </div>
                 </PopupPreview>
 
                 <PopupDetails>
-                    <PopupTitle>Create a new database</PopupTitle>
+                    <PopupTitle>Integration Dialog</PopupTitle>
                     <PopupDescription>
-                        Provision high-availability cloud database.
+                        Connect external integrations and services.
                     </PopupDescription>
                 </PopupDetails>
             </PopupContent>

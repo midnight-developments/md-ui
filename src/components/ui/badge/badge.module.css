@@ -5,6 +5,7 @@
 .success,
 .warning,
 .destructive {
+
     @apply border-shine;
     --shine-border-width: 1px;
     --shine-size: 65% 55%;
@@ -24,9 +25,6 @@
     background-size: 100% 100%;
     box-shadow:
         inset 0 0 0 1px var(--badge-border);
-
-    transform: translateZ(0);
-    backface-visibility: hidden;
 }
 
 .primary {

@@ -16,11 +16,11 @@ import {
     DialogTrigger,
     DialogClose,
     DialogContent,
+    DialogShell,
     DialogHeader,
     DialogTitle,
     DialogDescription,
 } from "@/components/ui/dialog/dialog"
-import { DialogSurface } from "@/components/ui/dialog/dialog-surface"
 import { Button } from "@/components/ui/button/button"
 import { Sparkles } from "lucide-react"
 
@@ -32,7 +32,7 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
             <PopupContent>
                 <PopupPreview>
                     <div className="flex flex-col items-center gap-6 max-w-sm w-full">
-                        <DialogSurface className="w-full">
+                        <DialogShell className="w-full">
                             <div className="flex flex-col items-center text-center gap-2">
                                 <h2 className="text-2xl text-foreground">Action Confirmation</h2>
                                 <p className="text-[0.95rem] text-muted">
@@ -78,7 +78,7 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                                 </Dialog>
                                 <Button variant="secondary" className="w-full">Cancel</Button>
                             </div>
-                        </DialogSurface>
+                        </DialogShell>
 
                         <p className="text-sm text-muted text-center max-w-xs">
                             Click above to test modal opening/closing

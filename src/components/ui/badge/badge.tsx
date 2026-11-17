@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import advancedBadgeStyles from "./badge.module.css"
 
 const badgeVariants = cva(
-  "group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-full px-2.5 h-6 leading-none text-[0.9rem] whitespace-nowrap transition-snappy has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 data-[invalid]:border-destructive [&>svg]:pointer-events-none [&>svg]:size-3!",
+  "group/badge inline-flex w-fit shrink-0 items-center justify-center gap-1 rounded-full px-2.75 py-0.5 font-normal whitespace-nowrap [text-box-trim:trim-both] [text-box-edge:cap_alphabetic] has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 data-[invalid]:border-destructive [&>svg]:pointer-events-none [&>svg]:size-3!",
   {
     variants: {
       variant: {
@@ -19,9 +19,14 @@ const badgeVariants = cva(
           "hover:bg-muted/50 hover:text-muted-foreground",
         link: "text-foreground underline-offset-4 hover:underline",
       },
+      size: {
+        sm: "text-sm tracking-normal",
+        base: "text-base tracking-tight",
+      },
     },
     defaultVariants: {
       variant: "primary",
+      size: "sm",
     },
   }
 )
@@ -33,12 +38,13 @@ export interface BadgeProps
 function Badge({
   className,
   variant = "primary",
+  size,
   ...props
 }: BadgeProps) {
   return (
     <span
       data-slot="badge"
-      className={cn(badgeVariants({ variant }), className)}
+      className={cn(badgeVariants({ variant, size }), className)}
       {...props}
     />
   )

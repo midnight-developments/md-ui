@@ -1,5 +1,6 @@
 @reference "@/index.css";
 
+.shell,
 .content {
     @apply border-shine;
     --shine-border-width: 1px;
@@ -11,13 +12,11 @@
     --shine-opacity: 1;
 
     --dialog-bg: rgb(15, 15, 15);
-    --dialog-color: var(--color-foreground);
     --dialog-border: rgba(255, 255, 255, 0.06);
     --dialog-border-shine: rgba(255, 255, 255, 0.4);
 
     position: relative;
     border-width: 0;
-    color: var(--dialog-color);
     background:
         var(--dialog-bg);
     box-shadow:
@@ -25,4 +24,24 @@
 
     transform: translateZ(0);
     backface-visibility: hidden;
+}
+
+.shell>[data-slot]:not([data-slot="dialog-background"]) {
+    position: relative;
+    z-index: 1;
+}
+
+.mirror {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    user-select: none;
+    overflow: hidden;
+    transform: scale(0.98) translate3d(15px, 15px, 0);
+    transform-origin: center center;
+    filter: blur(14px) brightness(0.6) saturate(0.8);
+    opacity: 0.38;
+    contain: strict;
+    content-visibility: auto;
+    will-change: transform, filter;
 }

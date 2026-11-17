@@ -9,8 +9,8 @@ import {
     PopupDescription,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { DialogSurface } from "@/components/ui/dialog/dialog-surface"
 import {
+    DialogShell,
     DialogHeader,
     DialogTitle,
     DialogBody,
@@ -19,7 +19,8 @@ import {
 import { Button } from "@/components/ui/button/button"
 import { InfoIcon } from "lucide-react"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Separator } from "@/components/ui/seperator"
+import { SuccessGraphic } from "@/components/ui/graphics/success-graphic"
+import { Badge } from "@/components/ui/badge/badge"
 
 export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
     return (
@@ -27,12 +28,13 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
             <PopupContent>
                 <PopupPreview>
                     <div className="flex flex-col items-center gap-6  w-full">
-                        <DialogSurface className="w-120">
+                        <DialogShell className="w-120">
                             <DialogHeader>
+                                <SuccessGraphic size={56}></SuccessGraphic>
                                 <DialogTitle>Your meeting has been scheduled</DialogTitle>
                             </DialogHeader>
                             <DialogBody className="flex flex-col gap-8">
-                                <div className="flex items-center text-accent-text bg-accent/15 gap-2 bg-background-light px-3 py-2 rounded-lg">
+                                <div className="flex items-center text-accent-text bg-accent/15 gap-2 bg-background-light px-3 py-2 rounded-xl">
                                     <InfoIcon size={20} />
                                     Check your inbox for an email with more details!
                                 </div>
@@ -55,7 +57,6 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
                                     </div>
                                 </div>
 
-                                <Separator className="-my-1"></Separator>
 
                                 <div className="flex flex-col gap-1">
                                     <p className="text-base text-secondary">Attendees</p>
@@ -64,7 +65,7 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
                                             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                                             <AvatarFallback>CN</AvatarFallback>
                                         </Avatar>
-                                        Shadab Ahmed
+                                        Shadab Ahmed <Badge variant="success">Admin</Badge>
                                     </div>
                                     <div className="flex items-center gap-2.5">
                                         <Avatar className="w-5 h-5">
@@ -97,7 +98,7 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
                                 <Button variant="secondary">Return Home</Button>
                                 <Button>Edit Details</Button>
                             </DialogFooter>
-                        </DialogSurface>
+                        </DialogShell>
                     </div>
                 </PopupPreview>
 

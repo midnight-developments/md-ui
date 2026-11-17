@@ -9,8 +9,8 @@ import {
     PopupDescription,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { DialogSurface } from "@/components/ui/dialog/dialog-surface"
 import {
+    DialogShell,
     DialogHeader,
     DialogTitle,
     DialogDescription,
@@ -22,14 +22,14 @@ export function BillingDialogPopup({ open, onOpenChange }: PopupProps) {
             <PopupContent>
                 <PopupPreview>
                     <div className="flex flex-col items-center gap-6 max-w-md w-full">
-                        <DialogSurface className="w-full">
+                        <DialogShell className="w-full">
                             <DialogHeader>
                                 <DialogTitle>Form Dialog</DialogTitle>
                                 <DialogDescription>
                                     Multi-input dialog form.
                                 </DialogDescription>
                             </DialogHeader>
-                        </DialogSurface>
+                        </DialogShell>
                     </div>
                 </PopupPreview>
 

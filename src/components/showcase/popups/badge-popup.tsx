@@ -23,8 +23,8 @@ export function BadgePopup({ open, onOpenChange }: PopupProps) {
                                 Primary Variant
                             </h3>
                             <div className="flex items-center gap-3">
-                                <Badge variant="primary">Primary</Badge>
-                                <Badge variant="primary">Badge</Badge>
+                                <Badge variant="primary" size="base">Primary</Badge>
+                                <Badge variant="primary" size="base">Badge</Badge>
                             </div>
                         </div>
 
@@ -33,8 +33,8 @@ export function BadgePopup({ open, onOpenChange }: PopupProps) {
                                 Secondary Variant
                             </h3>
                             <div className="flex items-center gap-3">
-                                <Badge variant="secondary">Secondary</Badge>
-                                <Badge variant="secondary">Badge</Badge>
+                                <Badge variant="secondary" size="base">Secondary</Badge>
+                                <Badge variant="secondary" size="base">Badge</Badge>
                             </div>
                         </div>
 
@@ -43,8 +43,8 @@ export function BadgePopup({ open, onOpenChange }: PopupProps) {
                                 Success Variant
                             </h3>
                             <div className="flex items-center gap-3">
-                                <Badge variant="success">Success</Badge>
-                                <Badge variant="success">Badge</Badge>
+                                <Badge variant="success" size="base">Success</Badge>
+                                <Badge variant="success" size="base">Badge</Badge>
                             </div>
                         </div>
 
@@ -53,8 +53,8 @@ export function BadgePopup({ open, onOpenChange }: PopupProps) {
                                 Destructive Variant
                             </h3>
                             <div className="flex items-center gap-3">
-                                <Badge variant="destructive">Destructive</Badge>
-                                <Badge variant="destructive">Badge</Badge>
+                                <Badge variant="destructive" size="base">Destructive</Badge>
+                                <Badge variant="destructive" size="base">Badge</Badge>
                             </div>
                         </div>
 
@@ -63,8 +63,8 @@ export function BadgePopup({ open, onOpenChange }: PopupProps) {
                                 Warning Variant
                             </h3>
                             <div className="flex items-center gap-3">
-                                <Badge variant="warning">Warning</Badge>
-                                <Badge variant="warning">Badge</Badge>
+                                <Badge variant="warning" size="base">Warning</Badge>
+                                <Badge variant="warning" size="base">Badge</Badge>
                             </div>
                         </div>
 
@@ -73,8 +73,8 @@ export function BadgePopup({ open, onOpenChange }: PopupProps) {
                                 Flat Variant
                             </h3>
                             <div className="flex items-center gap-3">
-                                <Badge variant="flat">Flat</Badge>
-                                <Badge variant="flat">Badge</Badge>
+                                <Badge variant="flat" size="base">Flat</Badge>
+                                <Badge variant="flat" size="base">Badge</Badge>
                             </div>
                         </div>
 

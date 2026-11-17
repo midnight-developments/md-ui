@@ -14,7 +14,7 @@ import { Badge } from '@/components/ui/badge/badge'
 import { Search, SlidersHorizontal } from 'lucide-react'
 import { InputShell, TriggerChevron } from '@/components/ui/shells/input-shell/input-shell'
 import modalScreenshot from '@/assets/dialog-screenshot.png'
-import { DialogSurface } from '@/components/ui/dialog/dialog-surface'
+import { DialogShell } from '@/components/ui/dialog/dialog'
 
 
 import { ButtonPopup } from '@/components/showcase/popups/button-popup'
@@ -193,12 +193,12 @@ export default function App() {
                             <CardPreview>
                                 <div className="flex flex-col items-center justify-center gap-2 pointer-events-none select-none">
                                     <div className="flex items-center gap-1.5">
-                                        <Badge variant="primary">Primary</Badge>
-                                        <Badge variant="success">Success</Badge>
+                                        <Badge variant="primary" size="base">Primary</Badge>
+                                        <Badge variant="success" size="base">Success</Badge>
                                     </div>
                                     <div className="flex items-center gap-1.5">
-                                        <Badge variant="secondary">Secondary</Badge>
-                                        <Badge variant="destructive">Destructive</Badge>
+                                        <Badge variant="secondary" size="base">Secondary</Badge>
+                                        <Badge variant="destructive" size="base">Destructive</Badge>
                                     </div>
                                 </div>
                             </CardPreview>
@@ -231,7 +231,7 @@ export default function App() {
                         <Card onClick={() => setActivePopup('database-creation')}>
                             <CardPreview>
                                 <div className="w-full max-w-[220px] pointer-events-none select-none">
-                                    <DialogSurface className="w-full p-4 gap-3 rounded-xl border border-white/10">
+                                    <DialogShell className="w-full p-4 gap-3 rounded-xl border border-white/10">
                                         <div className="flex flex-col gap-1">
                                             <span className="text-sm font-medium text-foreground">Database Creation</span>
                                             <span className="text-xs text-muted">Mockup shell</span>
@@ -240,7 +240,7 @@ export default function App() {
                                             <div className="h-2 w-full bg-white/10 rounded" />
                                             <div className="h-2 w-2/3 bg-white/5 rounded" />
                                         </div>
-                                    </DialogSurface>
+                                    </DialogShell>
                                 </div>
                             </CardPreview>
                             <CardContent>
@@ -251,7 +251,7 @@ export default function App() {
                         <Card onClick={() => setActivePopup('integration-dialog')}>
                             <CardPreview>
                                 <div className="w-full max-w-[220px] pointer-events-none select-none">
-                                    <DialogSurface className="w-full p-4 gap-3 rounded-xl border border-white/10">
+                                    <DialogShell className="w-full p-4 gap-3 rounded-xl border border-white/10">
                                         <div className="flex flex-col gap-1">
                                             <span className="text-sm font-medium text-foreground">Integration Dialog</span>
                                             <span className="text-xs text-muted">Mockup shell</span>
@@ -260,7 +260,7 @@ export default function App() {
                                             <div className="h-2 w-full bg-white/10 rounded" />
                                             <div className="h-2 w-2/3 bg-white/5 rounded" />
                                         </div>
-                                    </DialogSurface>
+                                    </DialogShell>
                                 </div>
                             </CardPreview>
                             <CardContent>
@@ -271,7 +271,7 @@ export default function App() {
                         <Card onClick={() => setActivePopup('billing-dialog')}>
                             <CardPreview>
                                 <div className="w-full max-w-[220px] pointer-events-none select-none">
-                                    <DialogSurface className="w-full p-4 gap-3 rounded-xl border border-white/10">
+                                    <DialogShell className="w-full p-4 gap-3 rounded-xl border border-white/10">
                                         <div className="flex flex-col gap-1">
                                             <span className="text-sm font-medium text-foreground">Form Dialog</span>
                                             <span className="text-xs text-muted">Mockup shell</span>
@@ -280,7 +280,7 @@ export default function App() {
                                             <div className="h-2 w-full bg-white/10 rounded" />
                                             <div className="h-2 w-2/3 bg-white/5 rounded" />
                                         </div>
-                                    </DialogSurface>
+                                    </DialogShell>
                                 </div>
                             </CardPreview>
                             <CardContent>
