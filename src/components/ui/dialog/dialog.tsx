@@ -40,7 +40,7 @@ function DialogShell({ className, children, ...props }: DialogShellProps) {
             data-slot="dialog-shell"
             className={cn(
                 advancedDialogStyles.shell,
-                "relative grid w-full max-w-[calc(100%-2rem)] gap-4 rounded-2xl p-5 outline-none overflow-hidden",
+                "relative grid w-full max-w-[calc(100%-2rem)] rounded-2xl p-5 outline-none overflow-hidden",
                 className
             )}
             {...props}
@@ -148,7 +148,7 @@ function DialogBody({
         <div
             data-slot="dialog-body"
             className={cn(
-                "-mx-5 -my-6 flex flex-col p-5",
+                "-mx-5 flex flex-col p-5",
                 className
             )}
             {...props}
@@ -167,7 +167,7 @@ function DialogFooter({
         <div
             data-slot="dialog-footer"
             className={cn(
-                "-mx-5 -mb-5 flex flex-col gap-2 p-5 justify-end",
+                "-mx-5 -mb-5 flex items-center justify-end gap-2 p-5",
                 className
             )}
             {...props}
