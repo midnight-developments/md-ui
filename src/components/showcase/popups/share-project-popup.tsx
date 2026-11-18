@@ -18,7 +18,8 @@ import {
     DialogFooter,
 } from "@/components/ui/dialog/dialog"
 import { Button } from "@/components/ui/button/button"
-import { CopyIcon, Lock } from "lucide-react"
+import { CopyIcon, CheckIcon, Lock } from "lucide-react"
+import { useCopy } from "@/hooks/use-copy"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Field, FieldLabel } from "@/components/ui/field"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
@@ -37,7 +38,6 @@ import {
     DropdownMenuItem,
     DropdownMenuRadioGroup,
     DropdownMenuRadioItem,
-    DropdownMenuSeparator,
 } from "@/components/ui/dropdown"
 import { cn } from "@/lib/utils"
 import { inputShellClasses, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
@@ -110,6 +110,9 @@ const generalAccessDescriptions: Record<Permission, string> = {
 }
 
 export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
+    const documentLink = "https://docs.google.com/document/u/0/"
+    const { copy, copied } = useCopy()
+
     const [recipients, setRecipients] = React.useState<ActiveRecipient[]>(INITIAL_RECIPIENTS)
     const [searchValue, setSearchValue] = React.useState("")
     const [accessType, setAccessType] = React.useState<GeneralAccessType>("anyone_with_link")
@@ -150,10 +153,15 @@ export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
                                 <InputGroup>
                                     <InputGroupInput
                                         readOnly
-                                        value="https://docs.google.com/document/u/0/"
+                                        value={documentLink}
                                     />
-                                    <InputGroupAddon align="inline-end" className="cursor-pointer">
-                                        <CopyIcon />
+                                    <InputGroupAddon
+                                        align="inline-end"
+                                        className="cursor-pointer"
+                                        onClick={() => copy(documentLink)}
+                                        title={copied ? "Copied!" : "Copy link"}
+                                    >
+                                        {copied ? <CheckIcon className="size-4 text-green-400" /> : <CopyIcon />}
                                     </InputGroupAddon>
                                 </InputGroup>
                             </Field>
