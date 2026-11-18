@@ -55,7 +55,7 @@ function CardCheckboxGroupItem({
         <CheckboxPrimitive.Root
             data-slot="card-checkbox-group-item"
             className={cn(
-                "group/card-checkbox peer relative flex gap-3 p-3.5 rounded-md outline-none transition-snappy cursor-pointer select-none text-left",
+                "group/card-checkbox peer relative flex gap-3 p-3.5 rounded-md outline-none cursor-pointer select-none text-left",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 styles.card,
                 isLeftCenter

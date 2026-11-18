@@ -6,7 +6,7 @@ import advancedButtonStyles from "./button.module.css"
 
 const buttonVariants = cva(
   [
-    "group/button h-9 px-4 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-lg bg-clip-padding text-base tracking-tight cursor-pointer active:scale-[0.98] transition-snappy whitespace-nowrap",
+    "group/button h-9 px-4 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-lg bg-clip-padding text-base tracking-tight cursor-pointer whitespace-nowrap",
     "disabled:pointer-events-none disabled:opacity-50 select-none outline-none",
   ].join(" "),
   {
@@ -19,7 +19,7 @@ const buttonVariants = cva(
         ghost:
           "bg-transparent hover:bg-white/10 text-foreground",
         link:
-          "h-auto p-0 bg-transparent gap-1 active:scale-[1] text-foreground underline-offset-4 hover:underline",
+          "h-auto p-0 bg-transparent gap-1 text-foreground underline-offset-4 hover:underline",
       },
     },
     defaultVariants: {

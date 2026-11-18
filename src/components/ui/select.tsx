@@ -3,7 +3,7 @@
 import { Select as SelectPrimitive } from "@base-ui/react/select"
 
 import { cn } from "@/lib/utils"
-import { inputShellClasses, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
+import { TriggerChevron } from "@/components/ui/trigger-chevron"
 import {
     PopupShell,
     PopupItem,
@@ -23,7 +23,7 @@ function SelectTrigger({
     return (
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
-            className={cn(inputShellClasses, "group/trigger cursor-pointer", className)}
+            className={cn("input-shell group/trigger cursor-pointer", className)}
             {...props}
         >
             {children}

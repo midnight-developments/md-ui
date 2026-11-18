@@ -6,7 +6,7 @@ export function Card({ className, children, ...props }: React.ComponentProps<"di
         <div
             data-slot="showcase-card"
             className={cn(
-                "group/showcase-card border-shine cursor-pointer flex flex-col rounded-xl overflow-hidden bg-card border-2 border-white/5 hover:-translate-y-1.5 transition-snappy",
+                "group/showcase-card border-shine cursor-pointer flex flex-col rounded-xl overflow-hidden bg-card border-2 border-white/5",
                 "[--shine-border-width:2px] [--shine-size:65%_55%] [--shine-origin:50%_0%] [--shine-color:rgba(255,255,255,0.2)] [--shine-start:20%] [--shine-end:120%] [--shine-opacity:1]",
                 className
             )}

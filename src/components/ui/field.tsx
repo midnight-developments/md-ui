@@ -2,7 +2,6 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { motion, AnimatePresence } from "framer-motion"
 
 function FieldSet({ className, ...props }: React.ComponentProps<"fieldset">) {
     return (
@@ -87,7 +86,7 @@ function FieldLabel({
         <label
             data-slot="field-label"
             className={cn(
-                "group/field-label peer/field-label text-base font-normal leading-[1] text-foreground cursor-pointer transition-snappy",
+                "group/field-label peer/field-label text-base font-normal leading-[1] text-foreground cursor-pointer",
                 "peer-data-[unchecked]:text-muted peer-data-[checked]:text-foreground",
                 className
             )}
@@ -137,31 +136,24 @@ function FieldDescription({
     const isError = !!error
     const content = isError ? error : (description ?? children)
 
+    if (!content) return null
+
     return (
         <div className="w-full relative -mt-0.75">
-            <AnimatePresence mode="popLayout" initial={false}>
-                {content && (
-                    <motion.p
-                        key={isError ? "error" : "description"}
-                        role={isError ? "alert" : undefined}
-                        data-slot={isError ? "field-error" : "field-description"}
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 20 }}
-                        transition={{ duration: 0.2, ease: [0, 0, 0.2, 1] as any }}
-                        className={cn(
-                            "text-[0.9rem] leading-tight w-full will-change-transform ",
-                            isError
-                                ? "font-normal text-destructive"
-                                : " text-secondary",
-                            className
-                        )}
-                        {...props as any}
-                    >
-                        {content}
-                    </motion.p>
+            <p
+                role={isError ? "alert" : undefined}
+                data-slot={isError ? "field-error" : "field-description"}
+                className={cn(
+                    "text-[0.9rem] leading-tight w-full",
+                    isError
+                        ? "font-normal text-destructive"
+                        : "text-secondary",
+                    className
                 )}
-            </AnimatePresence>
+                {...props}
+            >
+                {content}
+            </p>
         </div>
     )
 }

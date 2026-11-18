@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { createPortal } from "react-dom"
-import { motion, AnimatePresence } from "framer-motion"
 import { X, Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -22,7 +21,6 @@ export function Popup({
     onOpenChange,
     children,
 }: PopupProps) {
-    // Handle Escape key navigation
     React.useEffect(() => {
         if (!open) return
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -41,41 +39,11 @@ export function Popup({
     )
 }
 
-const overlayVariants = {
-    initial: { opacity: 0 },
-    animate: {
-        opacity: 1,
-        transition: { duration: 0.38, ease: [0.16, 1, 0.3, 1] as any }
-    },
-    exit: {
-        opacity: 0,
-        transition: { duration: 0.36, ease: [0.4, 0.15, 0.2, 1] as any }
-    }
-}
-
-const contentVariants = {
-    initial: { y: "100vh", filter: "blur(12px)" },
-    animate: {
-        y: 0,
-        filter: "blur(0px)",
-        transition: { duration: 0.38, ease: [0.16, 1, 0.3, 1] as any }
-    },
-    exit: {
-        y: "100vh",
-        filter: "blur(12px)",
-        transition: { duration: 0.36, ease: [0.4, 0.15, 0.2, 1] as any }
-    }
-}
-
-export function PopupOverlay({ className, ...props }: React.ComponentProps<typeof motion.div>) {
+export function PopupOverlay({ className, ...props }: React.ComponentProps<"div">) {
     const { onOpenChange } = React.useContext(PopupContext)
     return (
-        <motion.div
+        <div
             data-slot="showcase-popup-overlay"
-            variants={overlayVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
             onClick={() => onOpenChange?.(false)}
             className={cn(
                 "fixed inset-0 z-50 bg-black/65 backdrop-blur-md cursor-pointer pointer-events-auto",
@@ -86,7 +54,7 @@ export function PopupOverlay({ className, ...props }: React.ComponentProps<typeo
     )
 }
 
-export interface PopupContentProps extends Omit<React.ComponentProps<typeof motion.div>, "children"> {
+export interface PopupContentProps extends React.ComponentProps<"div"> {
     children?: React.ReactNode
     showCloseButton?: boolean
 }
@@ -104,51 +72,43 @@ export function PopupContent({
         setMounted(true)
     }, [])
 
-    if (!mounted) return null
+    if (!mounted || !open) return null
 
     return createPortal(
-        <AnimatePresence>
-            {open && (
-                <div
-                    key="popup-portal-container"
-                    className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10 pointer-events-none overflow-hidden"
-                >
-                    <PopupOverlay key="popup-overlay" />
-                    <motion.div
-                        key="popup-card-dialog"
-                        data-slot="showcase-popup-content"
-                        role="dialog"
-                        aria-modal="true"
-                        aria-labelledby="showcase-popup-title"
-                        aria-describedby="showcase-popup-description"
-                        variants={contentVariants}
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
-                        onClick={(e) => e.stopPropagation()}
-                        className={cn(
-                            "relative z-50 pointer-events-auto outline-none cursor-default",
-                            "w-full max-w-5xl xl:max-w-6xl h-[90vh] max-h-[920px]",
-                            "rounded-2xl bg-card border border-white/10 ",
-                            "[--shine-border-width:1px] [--shine-size:65%_55%] [--shine-origin:50%_0%] [--shine-color:rgba(255,255,255,0.3)] [--shine-start:-20%] [--shine-end:60%] [--shine-opacity:1]",
-                            "text-foreground flex flex-col overflow-hidden will-change-[transform,filter]",
-                            className
-                        )}
-                        {...props}
-                    >
-                        <div className="flex-1 flex flex-col lg:flex-row h-full w-full overflow-hidden">
-                            {children}
-                        </div>
-                        {showCloseButton && (
-                            <PopupClose
-                                style={{ position: "absolute", zIndex: 9999 }}
-                                className="!absolute top-4 right-4 sm:top-5 sm:right-5 lg:top-6 lg:right-6 !z-[9999]"
-                            />
-                        )}
-                    </motion.div>
+        <div
+            key="popup-portal-container"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-10 pointer-events-none overflow-hidden"
+        >
+            <PopupOverlay key="popup-overlay" />
+            <div
+                key="popup-card-dialog"
+                data-slot="showcase-popup-content"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="showcase-popup-title"
+                aria-describedby="showcase-popup-description"
+                onClick={(e) => e.stopPropagation()}
+                className={cn(
+                    "relative z-50 pointer-events-auto outline-none cursor-default",
+                    "w-full max-w-5xl xl:max-w-6xl h-[90vh] max-h-[920px]",
+                    "rounded-2xl bg-card border border-white/10 ",
+                    "[--shine-border-width:1px] [--shine-size:65%_55%] [--shine-origin:50%_0%] [--shine-color:rgba(255,255,255,0.3)] [--shine-start:-20%] [--shine-end:60%] [--shine-opacity:1]",
+                    "text-foreground flex flex-col overflow-hidden",
+                    className
+                )}
+                {...props}
+            >
+                <div className="flex-1 flex flex-col lg:flex-row h-full w-full overflow-hidden">
+                    {children}
                 </div>
-            )}
-        </AnimatePresence>,
+                {showCloseButton && (
+                    <PopupClose
+                        style={{ position: "absolute", zIndex: 9999 }}
+                        className="!absolute top-4 right-4 sm:top-5 sm:right-5 lg:top-6 lg:right-6 !z-[9999]"
+                    />
+                )}
+            </div>
+        </div>,
         document.body
     )
 }
@@ -167,8 +127,8 @@ export function PopupClose({ className, children, onClick, style, ...props }: Re
             style={style}
             className={cn(
                 "cursor-pointer inline-flex items-center justify-center size-9 rounded-full pointer-events-auto",
-                "bg-white/5 hover:bg-white/10 active:scale-95 text-muted hover:text-foreground border border-white/8 hover:border-white/15",
-                "transition-snappy focus:outline-none backdrop-blur-sm",
+                "bg-white/5 hover:bg-white/10 text-muted hover:text-foreground border border-white/8 hover:border-white/15",
+                "focus:outline-none backdrop-blur-sm",
                 className
             )}
             aria-label="Close"

@@ -23,6 +23,7 @@
     --color-secondary: rgb(165, 165, 165);
     --color-muted: rgb(130, 130, 130);
     --color-accent: rgb(120, 105, 230);
+    --color-accent-border: color-mix(in srgb, var(--color-accent) 80%, white);
     --color-accent-text: rgba(188, 177, 247);
     --color-destructive: rgb(242, 138, 140);
     --color-success: rgb(165, 230, 205);
@@ -48,25 +49,9 @@
 
     --text-md: 0.9375rem;
 
-    --duration-snappy: 200ms;
-    --ease-snappy: cubic-bezier(0, 0, 0.2, 1);
 
-    --duration-popup: 300ms;
-    --ease-popup: cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-popup-bouncy: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@utility transition-snappy {
-    transition-property: all;
-    transition-duration: var(--duration-snappy, 150ms);
-    transition-timing-function: var(--ease-snappy, cubic-bezier(0, 0, 0.2, 1));
-}
-
-@utility transition-popup {
-    transition-property: all;
-    transition-duration: var(--duration-popup, 200ms);
-    transition-timing-function: var(--ease-popup, cubic-bezier(0.16, 1, 0.3, 1));
-}
 
 @property --shine-color {
     syntax: "<color>";
@@ -104,21 +89,36 @@
         transform: translateZ(0);
         backface-visibility: hidden;
         opacity: var(--shine-opacity);
-        transition:
-            opacity var(--duration-snappy) var(--ease-snappy),
-            border-width var(--duration-snappy) var(--ease-snappy),
-            --shine-color var(--duration-snappy) var(--ease-snappy),
-            --shine-border-width var(--duration-snappy) var(--ease-snappy);
+
     }
 }
 
+@utility input-shell {
+    @apply border-shine relative flex h-9 w-full min-w-0 items-center rounded-lg px-2.5 gap-2.25 outline-none select-none border-0;
 
+    @apply text-foreground text-base placeholder:text-muted;
+    @apply bg-input inset-ring-1 inset-ring-white/2;
+
+    @apply focus-within:inset-ring-2 focus-within:inset-ring-accent-border;
+    @apply data-popup-open:inset-ring-2 data-popup-open:inset-ring-accent-border;
+    @apply data-invalid:inset-ring-2 data-invalid:inset-ring-destructive has-data-invalid:inset-ring-2 has-data-invalid:inset-ring-destructive;
+
+    @apply disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50;
+    @apply has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50;
+
+    --shine-border-width: 1px;
+    --shine-size: 85% 100%;
+    --shine-origin: 20% 0%;
+    --shine-color: rgba(255, 255, 255, 0.08);
+    --shine-start: 10%;
+    --shine-end: 100%;
+    --shine-opacity: 1;
+}
 
 
 :root {
     --font-feature-settings: "cv02" 1, "cv03" 1, "cv04" 1, "cv11" 1, "calt" 1, "liga" 1;
 }
-
 
 
 @layer base {
@@ -160,8 +160,8 @@
 
     body {
         @apply font-sans antialiased bg-background text-foreground outline-none;
-        font-weight: var(--font-weight-normal, 380);
-        letter-spacing: var(--letter-spacing-text, -0.15px);
+        font-weight: var(--font-weight-normal);
+        letter-spacing: var(--letter-spacing-text);
         background-color: rgb(10, 10, 10);
         position: relative;
         min-height: 100vh;
@@ -174,32 +174,13 @@
         overflow: hidden;
     }
 
-    h1 {
-        letter-spacing: var(--letter-spacing-h1);
-    }
-
-    h2 {
-        letter-spacing: var(--letter-spacing-h2);
-    }
-
-    h3 {
-        letter-spacing: var(--letter-spacing-h3);
-    }
-
-    p {
-        letter-spacing: var(--letter-spacing-text);
-    }
-
     input[type="number"]::-webkit-outer-spin-button,
     input[type="number"]::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
 
-    input[type="number"] {
-        -moz-appearance: textfield;
-        appearance: textfield;
-    }
+
 }
 
 

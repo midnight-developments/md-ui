@@ -46,13 +46,12 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                                 <Button
                                     variant="secondary"
                                     onClick={() => setIsFavorite((prev) => !prev)}
-                                    className="transition-snappy"
                                 >
                                     <Heart
                                         className={cn(
-                                            "size-4 transition-snappy",
+                                            "size-4",
                                             isFavorite
-                                                ? "fill-red-500 text-red-500 scale-110"
+                                                ? "fill-red-500 text-red-500"
                                                 : "text-red-400"
                                         )}
                                     />

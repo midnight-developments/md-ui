@@ -3,7 +3,7 @@
 import { Combobox as ComboboxPrimitive } from "@base-ui/react"
 
 import { cn } from "@/lib/utils"
-import { TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
+import { TriggerChevron } from "@/components/ui/trigger-chevron"
 import {
     PopupShell,
     PopupItem,
@@ -31,7 +31,7 @@ function ComboboxTrigger({
             className={cn("group/trigger", className)}
             {...props}
         >
-            <TriggerChevron />
+            {children ?? <TriggerChevron />}
         </ComboboxPrimitive.Trigger>
     )
 }

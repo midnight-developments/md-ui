@@ -4,16 +4,6 @@ import * as React from "react"
 import { ChevronDownIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-import advancedInputStyles from "./input-shell.module.css"
-
-export const inputShellClasses = cn(
-    advancedInputStyles.shell,
-    "relative flex h-9 w-full min-w-0 items-center rounded-lg px-2.5 gap-2.25 transition-snappy outline-none select-none",
-    "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
-    "has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50",
-    "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
-)
-
 export function TriggerChevron({
     className,
     ...props
@@ -31,3 +21,4 @@ export function TriggerChevron({
         />
     )
 }
+

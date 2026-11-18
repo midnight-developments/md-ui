@@ -12,7 +12,7 @@ import {
     InputGroupText,
 } from "@/components/ui/input-group";
 import { FieldLabel } from "@/components/ui/field";
-import { inputShellClasses, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell";
+import { TriggerChevron } from "@/components/ui/trigger-chevron";
 
 function hexToRgb(hex: string) {
     const raw = hex.replace("#", "");
@@ -147,8 +147,8 @@ function ColourPicker({
                                     type="button"
                                     onClick={() => onChange(s)}
                                     className={cn(
-                                        "flex-1 h-7 rounded-xs ring-1 ring-border cursor-pointer transition-snappy hover:-translate-y-0.75 outline-none focus-visible:ring-2 focus-visible:ring-border-active",
-                                        isSelected ? "ring-2 ring-white -translate-y-0.5" : ""
+                                        "flex-1 h-7 rounded-xs ring-1 ring-border cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-border-active",
+                                        isSelected ? "ring-2 ring-white" : ""
                                     )}
                                     style={{ backgroundColor: s }}
                                     title={s}
@@ -191,7 +191,7 @@ function ColourPickerTrigger({
     return (
         <PopoverTrigger
             data-slot="colour-picker-trigger"
-            className={cn(inputShellClasses, "group/trigger cursor-pointer gap-2", className)}
+            className={cn("input-shell group/trigger cursor-pointer gap-2", className)}
             {...props}
         >
             <span className="flex items-center gap-2 min-w-0">

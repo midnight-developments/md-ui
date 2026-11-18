@@ -12,6 +12,7 @@ import {
     type PopupProps,
 } from "@/components/showcase/popup"
 import { Input } from "@/components/ui/input"
+import { PasswordInput } from "@/components/ui/password-input"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import { Textarea } from "@/components/ui/textarea"
 import { Field, FieldLabel, FieldGroup, FieldDescription } from "@/components/ui/field"
@@ -50,8 +51,7 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
 
                         <Field>
                             <FieldLabel>Secure Password Field</FieldLabel>
-                            <Input
-                                type="password"
+                            <PasswordInput
                                 defaultValue="super-secret-password-123"
                             />
                         </Field>

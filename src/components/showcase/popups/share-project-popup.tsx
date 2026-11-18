@@ -39,8 +39,7 @@ import {
     DropdownMenuRadioGroup,
     DropdownMenuRadioItem,
 } from "@/components/ui/dropdown"
-import { cn } from "@/lib/utils"
-import { inputShellClasses, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
+import { TriggerChevron } from "@/components/ui/trigger-chevron"
 import GlobeIcon from "@/assets/icons/globe.svg?react"
 import ShareIcon from "@/assets/icons/share.svg?react"
 
@@ -227,7 +226,7 @@ export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
                                                     </div>
                                                 </div>
                                                 <DropdownMenu>
-                                                    <DropdownMenuTrigger className={cn(inputShellClasses, "group/trigger cursor-pointer w-30")}>
+                                                    <DropdownMenuTrigger className="input-shell group/trigger cursor-pointer w-30">
                                                         <span className="flex-1 text-left truncate">{recipient.permission}</span>
                                                         <TriggerChevron />
                                                     </DropdownMenuTrigger>
@@ -299,7 +298,7 @@ export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
                                         </div>
                                         {accessType === "anyone_with_link" && (
                                             <DropdownMenu>
-                                                <DropdownMenuTrigger className={cn(inputShellClasses, "group/trigger cursor-pointer w-30")}>
+                                                <DropdownMenuTrigger className="input-shell group/trigger cursor-pointer w-30">
                                                     <span className="flex-1 text-left truncate">{generalAccessPermission}</span>
                                                     <TriggerChevron />
                                                 </DropdownMenuTrigger>

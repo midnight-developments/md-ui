@@ -1,5 +1,4 @@
 import * as React from "react"
-import { cn } from "@/lib/utils"
 import {
     Card,
     CardPreview,
@@ -13,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio/radio-group'
 import { Field, FieldLabel } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge/badge'
 import { Search, SlidersHorizontal } from 'lucide-react'
-import { inputShellClasses, TriggerChevron } from '@/components/ui/shells/input-shell/input-shell'
+import { TriggerChevron } from '@/components/ui/trigger-chevron'
 import modalScreenshot from '@/assets/dialog-screenshot.png'
 import { DialogShell } from '@/components/ui/dialog/dialog'
 
@@ -190,7 +189,7 @@ export default function App() {
                         <Card onClick={() => setActivePopup('dropdown-popover')}>
                             <CardPreview>
                                 <div className="flex flex-col items-center gap-2.5 pointer-events-none select-none w-full max-w-[210px]">
-                                    <div className={cn(inputShellClasses, "w-full")}>
+                                    <div className="input-shell w-full">
                                         <SlidersHorizontal className="size-4 text-muted" />
                                         <span>Options</span>
                                         <TriggerChevron />

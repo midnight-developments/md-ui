@@ -33,8 +33,7 @@ import {
     PopoverDescription,
 } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button/button"
-import { cn } from "@/lib/utils"
-import { inputShellClasses, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
+import { TriggerChevron } from "@/components/ui/trigger-chevron"
 import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
 import { InputGroup, InputGroupInput } from "@/components/ui/input-group"
 import { Checkbox } from "@/components/ui/checkbox/checkbox"
@@ -66,7 +65,7 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                         <Field>
                             <FieldLabel>Example Basic Dropdown Menu</FieldLabel>
                             <DropdownMenu>
-                                <DropdownMenuTrigger className={cn(inputShellClasses, "group/trigger cursor-pointer")}>
+                                <DropdownMenuTrigger className="input-shell group/trigger cursor-pointer">
                                     <SlidersHorizontal className="size-4 text-muted" />
                                     <span>Options</span>
                                     <TriggerChevron />
@@ -95,7 +94,7 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                             <FieldLabel>Example Advanced Dropdown Menu</FieldLabel>
                             <FieldDescription>Multi-level context menu with submenus and inputs</FieldDescription>
                             <DropdownMenu>
-                                <DropdownMenuTrigger className={cn(inputShellClasses, "group/trigger cursor-pointer")}>
+                                <DropdownMenuTrigger className="input-shell group/trigger cursor-pointer">
                                     <span>Options</span>
                                     <TriggerChevron />
                                 </DropdownMenuTrigger>
@@ -210,7 +209,7 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                             <Popover>
                                 <FieldDescription>
                                     Open a popover by{" "}
-                                    <PopoverTrigger className="inline font-medium text-foreground underline underline-offset-4 hover:text-accent-text transition-colors cursor-pointer bg-transparent border-none p-0 outline-none">
+                                    <PopoverTrigger className="inline font-medium text-foreground underline underline-offset-4 hover:text-accent-text cursor-pointer bg-transparent border-none p-0 outline-none">
                                         clicking here
                                     </PopoverTrigger>
                                 </FieldDescription>

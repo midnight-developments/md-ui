@@ -20,7 +20,7 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
         <CheckboxPrimitive.Root
             data-slot="checkbox"
             className={cn(
-                "group/checkbox peer outline-none transition-snappy cursor-pointer select-none",
+                "group/checkbox peer outline-none cursor-pointer select-none",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 className
             )}
