@@ -1,4 +1,5 @@
 import * as React from "react"
+import { cn } from "@/lib/utils"
 import {
     Card,
     CardPreview,
@@ -12,7 +13,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio/radio-group'
 import { Field, FieldLabel } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge/badge'
 import { Search, SlidersHorizontal } from 'lucide-react'
-import { InputShell, TriggerChevron } from '@/components/ui/shells/input-shell/input-shell'
+import { inputShellClasses, TriggerChevron } from '@/components/ui/shells/input-shell/input-shell'
 import modalScreenshot from '@/assets/dialog-screenshot.png'
 import { DialogShell } from '@/components/ui/dialog/dialog'
 
@@ -25,7 +26,7 @@ import { RadioPopup } from '@/components/showcase/popups/radio-popup'
 import { CheckboxPopup } from '@/components/showcase/popups/checkbox-popup'
 import { BadgePopup } from '@/components/showcase/popups/badge-popup'
 import { DialogPopup } from '@/components/showcase/popups/dialog-popup'
-import { DatabaseCreationPopup } from '@/components/showcase/popups/database-creation-popup'
+import { ShareProjectPopup } from '@/components/showcase/popups/share-project-popup'
 import { IntegrationDialogPopup } from '@/components/showcase/popups/integration-dialog-popup'
 import { BillingDialogPopup } from '@/components/showcase/popups/billing-dialog-popup'
 import { CheckboxGroup, Checkbox } from '@/components/ui/checkbox/checkbox'
@@ -64,6 +65,74 @@ export default function App() {
                         A quick demonstration of some of my UI component designs with some mockups. Engineered with Base UI headless primitives and Tailwind CSS.
                     </p>
                 </header>
+
+                <section className="flex flex-col gap-4">
+                    <div className="flex items-center justify-center text-center">
+                        <h2 className="text-2xl font-medium text-foreground">Mockups Using Primitives</h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <Card onClick={() => setActivePopup('database-creation')}>
+                            <CardPreview>
+                                <div className="w-full max-w-[220px] pointer-events-none select-none">
+                                    <DialogShell className="w-full p-4 gap-3 rounded-xl border border-white/10">
+                                        <div className="flex flex-col gap-1">
+                                            <span className="text-sm font-medium text-foreground">Database Creation</span>
+                                            <span className="text-xs text-muted">Mockup shell</span>
+                                        </div>
+                                        <div className="flex flex-col gap-1.5 pt-1">
+                                            <div className="h-2 w-full bg-white/10 rounded" />
+                                            <div className="h-2 w-2/3 bg-white/5 rounded" />
+                                        </div>
+                                    </DialogShell>
+                                </div>
+                            </CardPreview>
+                            <CardContent>
+                                <CardTitle>Database Creation</CardTitle>
+                            </CardContent>
+                        </Card>
+
+                        <Card onClick={() => setActivePopup('integration-dialog')}>
+                            <CardPreview>
+                                <div className="w-full max-w-[220px] pointer-events-none select-none">
+                                    <DialogShell className="w-full p-4 gap-3 rounded-xl border border-white/10">
+                                        <div className="flex flex-col gap-1">
+                                            <span className="text-sm font-medium text-foreground">Integration Dialog</span>
+                                            <span className="text-xs text-muted">Mockup shell</span>
+                                        </div>
+                                        <div className="flex flex-col gap-1.5 pt-1">
+                                            <div className="h-2 w-full bg-white/10 rounded" />
+                                            <div className="h-2 w-2/3 bg-white/5 rounded" />
+                                        </div>
+                                    </DialogShell>
+                                </div>
+                            </CardPreview>
+                            <CardContent>
+                                <CardTitle>Meeting Confirmation Dialog</CardTitle>
+                            </CardContent>
+                        </Card>
+
+                        <Card onClick={() => setActivePopup('billing-dialog')}>
+                            <CardPreview>
+                                <div className="w-full max-w-[220px] pointer-events-none select-none">
+                                    <DialogShell className="w-full p-4 gap-3 rounded-xl border border-white/10">
+                                        <div className="flex flex-col gap-1">
+                                            <span className="text-sm font-medium text-foreground">Form Dialog</span>
+                                            <span className="text-xs text-muted">Mockup shell</span>
+                                        </div>
+                                        <div className="flex flex-col gap-1.5 pt-1">
+                                            <div className="h-2 w-full bg-white/10 rounded" />
+                                            <div className="h-2 w-2/3 bg-white/5 rounded" />
+                                        </div>
+                                    </DialogShell>
+                                </div>
+                            </CardPreview>
+                            <CardContent>
+                                <CardTitle>Form Dialog</CardTitle>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </section>
 
                 <section className="flex flex-col gap-4">
                     <div className="flex items-center justify-center text-center">
@@ -121,11 +190,11 @@ export default function App() {
                         <Card onClick={() => setActivePopup('dropdown-popover')}>
                             <CardPreview>
                                 <div className="flex flex-col items-center gap-2.5 pointer-events-none select-none w-full max-w-[210px]">
-                                    <InputShell className="w-full">
+                                    <div className={cn(inputShellClasses, "w-full")}>
                                         <SlidersHorizontal className="size-4 text-muted" />
                                         <span>Options</span>
                                         <TriggerChevron />
-                                    </InputShell>
+                                    </div>
                                     <p className="text-[14px] text-muted text-left w-full">
                                         Open a popover by{" "}
                                         <span className="text-foreground underline underline-offset-4 font-medium">
@@ -222,73 +291,7 @@ export default function App() {
                     </div>
                 </section>
 
-                <section className="flex flex-col gap-4">
-                    <div className="flex items-center justify-center text-center">
-                        <h2 className="text-2xl font-medium text-foreground">Mockups Using Primitives</h2>
-                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <Card onClick={() => setActivePopup('database-creation')}>
-                            <CardPreview>
-                                <div className="w-full max-w-[220px] pointer-events-none select-none">
-                                    <DialogShell className="w-full p-4 gap-3 rounded-xl border border-white/10">
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-sm font-medium text-foreground">Database Creation</span>
-                                            <span className="text-xs text-muted">Mockup shell</span>
-                                        </div>
-                                        <div className="flex flex-col gap-1.5 pt-1">
-                                            <div className="h-2 w-full bg-white/10 rounded" />
-                                            <div className="h-2 w-2/3 bg-white/5 rounded" />
-                                        </div>
-                                    </DialogShell>
-                                </div>
-                            </CardPreview>
-                            <CardContent>
-                                <CardTitle>Database Creation</CardTitle>
-                            </CardContent>
-                        </Card>
-
-                        <Card onClick={() => setActivePopup('integration-dialog')}>
-                            <CardPreview>
-                                <div className="w-full max-w-[220px] pointer-events-none select-none">
-                                    <DialogShell className="w-full p-4 gap-3 rounded-xl border border-white/10">
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-sm font-medium text-foreground">Integration Dialog</span>
-                                            <span className="text-xs text-muted">Mockup shell</span>
-                                        </div>
-                                        <div className="flex flex-col gap-1.5 pt-1">
-                                            <div className="h-2 w-full bg-white/10 rounded" />
-                                            <div className="h-2 w-2/3 bg-white/5 rounded" />
-                                        </div>
-                                    </DialogShell>
-                                </div>
-                            </CardPreview>
-                            <CardContent>
-                                <CardTitle>Meeting Confirmation Dialog</CardTitle>
-                            </CardContent>
-                        </Card>
-
-                        <Card onClick={() => setActivePopup('billing-dialog')}>
-                            <CardPreview>
-                                <div className="w-full max-w-[220px] pointer-events-none select-none">
-                                    <DialogShell className="w-full p-4 gap-3 rounded-xl border border-white/10">
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-sm font-medium text-foreground">Form Dialog</span>
-                                            <span className="text-xs text-muted">Mockup shell</span>
-                                        </div>
-                                        <div className="flex flex-col gap-1.5 pt-1">
-                                            <div className="h-2 w-full bg-white/10 rounded" />
-                                            <div className="h-2 w-2/3 bg-white/5 rounded" />
-                                        </div>
-                                    </DialogShell>
-                                </div>
-                            </CardPreview>
-                            <CardContent>
-                                <CardTitle>Form Dialog</CardTitle>
-                            </CardContent>
-                        </Card>
-                    </div>
-                </section>
 
             </div>
 
@@ -324,7 +327,7 @@ export default function App() {
                 open={activePopup === 'dialog'}
                 onOpenChange={(open) => !open && setActivePopup(null)}
             />
-            <DatabaseCreationPopup
+            <ShareProjectPopup
                 open={activePopup === 'database-creation'}
                 onOpenChange={(open) => !open && setActivePopup(null)}
             />

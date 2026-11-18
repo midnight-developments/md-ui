@@ -15,6 +15,7 @@ import {
 import {
     InputGroup,
     InputGroupInput,
+    InputGroupAddon,
 } from "@/components/ui/input-group"
 
 const Combobox = ComboboxPrimitive.Root
@@ -27,13 +28,10 @@ function ComboboxTrigger({
     return (
         <ComboboxPrimitive.Trigger
             data-slot="combobox-trigger"
-            className={cn(
-                "group/trigger flex items-center justify-center -mr-1 size-4 shrink-0 bg-transparent cursor-pointer outline-none",
-                className
-            )}
+            className={cn("group/trigger", className)}
             {...props}
         >
-            {children ?? <TriggerChevron className="mr-0" />}
+            <TriggerChevron />
         </ComboboxPrimitive.Trigger>
     )
 }
@@ -41,21 +39,23 @@ function ComboboxTrigger({
 function ComboboxInput({
     className,
     children,
-    disabled = false,
+    disabled,
     showTrigger = true,
     ...props
 }: ComboboxPrimitive.Input.Props & {
     showTrigger?: boolean
 }) {
     return (
-        <ComboboxPrimitive.InputGroup
-            render={<InputGroup className={cn(className)} />}
-        >
+        <ComboboxPrimitive.InputGroup render={<InputGroup className={cn(className)} />}>
             <ComboboxPrimitive.Input
                 render={<InputGroupInput disabled={disabled} />}
                 {...props}
             />
-            {showTrigger && <ComboboxTrigger disabled={disabled} />}
+            {showTrigger && (
+                <InputGroupAddon align="inline-end">
+                    <ComboboxTrigger />
+                </InputGroupAddon>
+            )}
             {children}
         </ComboboxPrimitive.InputGroup>
     )

@@ -12,7 +12,7 @@ import {
     InputGroupText,
 } from "@/components/ui/input-group";
 import { FieldLabel } from "@/components/ui/field";
-import { InputShell, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell";
+import { inputShellClasses, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell";
 
 function hexToRgb(hex: string) {
     const raw = hex.replace("#", "");
@@ -191,7 +191,7 @@ function ColourPickerTrigger({
     return (
         <PopoverTrigger
             data-slot="colour-picker-trigger"
-            render={<InputShell className={cn("group/trigger cursor-pointer gap-2", className)} />}
+            className={cn(inputShellClasses, "group/trigger cursor-pointer gap-2", className)}
             {...props}
         >
             <span className="flex items-center gap-2 min-w-0">

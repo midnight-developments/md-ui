@@ -52,7 +52,7 @@
     }
 
     &:is([data-highlighted], [data-popup-open]) {
-        background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+        background: color-mix(in srgb, var(--color-accent) 15%, transparent);
         color: var(--color-accent-text);
 
         svg {

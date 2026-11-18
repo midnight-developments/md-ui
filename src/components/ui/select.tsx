@@ -3,12 +3,12 @@
 import { Select as SelectPrimitive } from "@base-ui/react/select"
 
 import { cn } from "@/lib/utils"
-import { InputShell, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
+import { inputShellClasses, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
 import {
     PopupShell,
     PopupItem,
     PopupItemText,
-    PopupItemIndicator,
+    PopupCheckIcon,
     PopupSeparator,
     PopupLabel,
 } from "@/components/ui/shells/popup-shell/popup-shell"
@@ -18,22 +18,20 @@ const Select = SelectPrimitive.Root
 function SelectTrigger({
     className,
     children,
-    render,
-    nativeButton,
     ...props
 }: SelectPrimitive.Trigger.Props) {
     return (
         <SelectPrimitive.Trigger
             data-slot="select-trigger"
-            nativeButton={nativeButton ?? (render ? undefined : false)}
-            render={render ?? (<InputShell className={cn("group/trigger cursor-pointer", className)} />)}
+            className={cn(inputShellClasses, "group/trigger cursor-pointer", className)}
             {...props}
         >
             {children}
-            {!render && <TriggerChevron />}
+            <TriggerChevron />
         </SelectPrimitive.Trigger>
     )
 }
+
 
 function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
     return (
@@ -139,7 +137,9 @@ function SelectItem({
             <SelectPrimitive.ItemText render={<PopupItemText />}>
                 {children}
             </SelectPrimitive.ItemText>
-            <SelectPrimitive.ItemIndicator render={<PopupItemIndicator />} />
+            <SelectPrimitive.ItemIndicator>
+                <PopupCheckIcon />
+            </SelectPrimitive.ItemIndicator>
         </SelectPrimitive.Item>
     )
 }

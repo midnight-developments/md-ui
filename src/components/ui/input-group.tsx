@@ -4,14 +4,15 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import { InputShell } from "@/components/ui/shells/input-shell/input-shell"
+import { inputShellClasses } from "@/components/ui/shells/input-shell/input-shell"
 
 function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
     return (
-        <InputShell
+        <div
             data-slot="input-group"
             role="group"
             className={cn(
+                inputShellClasses,
                 "group/input-group",
                 "has-[>[data-align^=block]]:h-auto has-[>[data-align^=block]]:flex-col",
                 "has-[textarea]:h-auto",

@@ -7,7 +7,7 @@ import advancedPopupStyles from "./popup-shell.module.css"
 
 const popupShellClasses = cn(
     advancedPopupStyles.shell,
-    "overflow-y-auto no-scrollbar rounded-[9px] p-2 px-1.75",
+    "overflow-y-auto no-scrollbar rounded-[9px] p-1.75",
     "max-h-(--available-height) max-w-(--available-width)"
 )
 
@@ -68,21 +68,9 @@ export function PopupCheckIcon({ className, ...props }: React.ComponentProps<"sv
     return (
         <CheckmarkIcon
             aria-hidden="true"
-            className={cn("size-4.5 shrink-0 text-current", className)}
+            className={cn("size-4.5 -mr-0.5 shrink-0 text-current", className)}
             {...props}
         />
-    )
-}
-
-export function PopupItemIndicator({ className, children, ...props }: React.ComponentProps<"span">) {
-    return (
-        <span
-            data-slot="popup-item-indicator"
-            className={cn("ml-auto flex items-center justify-center shrink-0 text-current", className)}
-            {...props}
-        >
-            {children ?? <PopupCheckIcon />}
-        </span>
     )
 }
 

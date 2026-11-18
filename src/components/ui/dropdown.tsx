@@ -8,7 +8,7 @@ import {
     PopupShell,
     PopupItem,
     PopupItemText,
-    PopupItemIndicator,
+    PopupCheckIcon,
     PopupSeparator,
     PopupLabel,
 } from "@/components/ui/shells/popup-shell/popup-shell"
@@ -131,7 +131,7 @@ function DropdownMenuSubTrigger({
             {...props}
         >
             {children}
-            <ChevronRightIcon aria-hidden="true" className="-mr-1 ml-auto size-4" />
+            <ChevronRightIcon aria-hidden="true" />
         </MenuPrimitive.SubmenuTrigger>
     )
 }
@@ -176,7 +176,9 @@ function DropdownMenuCheckboxItem({
             {...props}
         >
             <PopupItemText>{children}</PopupItemText>
-            <MenuPrimitive.CheckboxItemIndicator render={<PopupItemIndicator />} />
+            <MenuPrimitive.CheckboxItemIndicator>
+                <PopupCheckIcon />
+            </MenuPrimitive.CheckboxItemIndicator>
         </MenuPrimitive.CheckboxItem>
     )
 }
@@ -194,6 +196,7 @@ function DropdownMenuRadioItem({
     className,
     children,
     inset,
+    closeOnClick = true,
     ...props
 }: MenuPrimitive.RadioItem.Props & {
     inset?: boolean
@@ -204,10 +207,13 @@ function DropdownMenuRadioItem({
             data-inset={inset}
             className={className}
             render={<PopupItem className={cn(inset && "pl-7")} />}
+            closeOnClick={closeOnClick}
             {...props}
         >
             <PopupItemText>{children}</PopupItemText>
-            <MenuPrimitive.RadioItemIndicator render={<PopupItemIndicator />} />
+            <MenuPrimitive.RadioItemIndicator className="ml-auto flex items-center justify-center shrink-0 text-current">
+                <PopupCheckIcon />
+            </MenuPrimitive.RadioItemIndicator>
         </MenuPrimitive.RadioItem>
     )
 }

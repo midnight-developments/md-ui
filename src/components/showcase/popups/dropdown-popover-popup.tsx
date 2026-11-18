@@ -33,7 +33,8 @@ import {
     PopoverDescription,
 } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button/button"
-import { InputShell, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
+import { cn } from "@/lib/utils"
+import { inputShellClasses, TriggerChevron } from "@/components/ui/shells/input-shell/input-shell"
 import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
 import { InputGroup, InputGroupInput } from "@/components/ui/input-group"
 import { Checkbox } from "@/components/ui/checkbox/checkbox"
@@ -65,7 +66,7 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                         <Field>
                             <FieldLabel>Example Basic Dropdown Menu</FieldLabel>
                             <DropdownMenu>
-                                <DropdownMenuTrigger render={<InputShell className="group/trigger cursor-pointer" />}>
+                                <DropdownMenuTrigger className={cn(inputShellClasses, "group/trigger cursor-pointer")}>
                                     <SlidersHorizontal className="size-4 text-muted" />
                                     <span>Options</span>
                                     <TriggerChevron />
@@ -94,7 +95,7 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                             <FieldLabel>Example Advanced Dropdown Menu</FieldLabel>
                             <FieldDescription>Multi-level context menu with submenus and inputs</FieldDescription>
                             <DropdownMenu>
-                                <DropdownMenuTrigger render={<InputShell className="group/trigger cursor-pointer" />}>
+                                <DropdownMenuTrigger className={cn(inputShellClasses, "group/trigger cursor-pointer")}>
                                     <span>Options</span>
                                     <TriggerChevron />
                                 </DropdownMenuTrigger>

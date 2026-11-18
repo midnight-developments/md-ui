@@ -2,7 +2,7 @@ import * as React from "react"
 import { Lock, Eye, EyeOff } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { InputShell } from "@/components/ui/shells/input-shell/input-shell"
+import { inputShellClasses } from "@/components/ui/shells/input-shell/input-shell"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "./input-group"
 
 export interface InputProps extends React.ComponentProps<"input"> {
@@ -63,10 +63,11 @@ function Input({ className, type, id, ref, disabled, ...props }: InputProps) {
   const inputId = id || React.useId()
 
   return (
-    <InputShell
+    <div
+      data-slot="input"
       data-disabled={disabled ? "" : undefined}
       data-invalid={props["data-invalid"]}
-      className={cn("relative cursor-text", className)}
+      className={cn(inputShellClasses, "relative cursor-text", className)}
       onClick={(e) => {
         const target = e.target as HTMLElement
         if (target.tagName !== "INPUT") {
@@ -80,11 +81,11 @@ function Input({ className, type, id, ref, disabled, ...props }: InputProps) {
         id={inputId}
         type={type}
         disabled={disabled}
-        data-slot="input"
+        data-slot="input-element"
         className="h-full w-full bg-transparent border-none outline-none text-base text-foreground placeholder:text-muted disabled:cursor-not-allowed"
         {...props}
       />
-    </InputShell>
+    </div>
   )
 }
 
