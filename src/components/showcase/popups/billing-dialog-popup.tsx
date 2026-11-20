@@ -11,9 +11,7 @@ import {
 } from "@/components/showcase/popup"
 import {
     DialogShell,
-    DialogHeader,
-    DialogTitle,
-    DialogDescription,
+    DialogBody,
 } from "@/components/ui/dialog/dialog"
 
 export function BillingDialogPopup({ open, onOpenChange }: PopupProps) {
@@ -21,14 +19,11 @@ export function BillingDialogPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <div className="flex flex-col items-center gap-6 max-w-md w-full">
-                        <DialogShell className="w-full">
-                            <DialogHeader>
-                                <DialogTitle>Form Dialog</DialogTitle>
-                                <DialogDescription>
-                                    Multi-input dialog form.
-                                </DialogDescription>
-                            </DialogHeader>
+                    <div className="flex flex-col items-center gap-6 max-w-xl w-full">
+                        <DialogShell className="w-full h-100 p-0">
+                            <DialogBody>
+                                <input placeholder="Type a command or search" className="px-5"></input>
+                            </DialogBody>
                         </DialogShell>
                     </div>
                 </PopupPreview>

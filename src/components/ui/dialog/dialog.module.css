@@ -26,22 +26,7 @@
     backface-visibility: hidden;
 }
 
-.shell>[data-slot]:not([data-slot="dialog-background"]) {
+.shell>[data-slot]:not([data-slot="blur-mirror-effect"]):not([data-slot="dialog-background"]):not([data-slot="dialog-glow"]) {
     position: relative;
     z-index: 1;
-}
-
-.mirror {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    user-select: none;
-    overflow: hidden;
-    transform: scale(0.98) translate3d(15px, 15px, 0);
-    transform-origin: center center;
-    filter: blur(14px) brightness(0.6) saturate(0.8);
-    opacity: 0.38;
-    contain: strict;
-    content-visibility: auto;
-    will-change: transform, filter;
 }

@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 import { XIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button/button"
+import { BlurMirrorEffect } from "@/components/ui/effects/blur-mirror-effect"
 import advancedDialogStyles from "./dialog.module.css"
 
 const Dialog = DialogPrimitive.Root
@@ -32,9 +33,6 @@ function DialogOverlay({
 export interface DialogShellProps extends React.ComponentProps<"div"> { }
 
 function DialogShell({ className, children, ...props }: DialogShellProps) {
-
-    const staticBackground = React.useMemo(() => children, [])
-
     return (
         <div
             data-slot="dialog-shell"
@@ -48,17 +46,13 @@ function DialogShell({ className, children, ...props }: DialogShellProps) {
             <div
                 aria-hidden="true"
                 inert={true}
-                data-slot="dialog-background"
-                className="pointer-events-none select-none absolute inset-0 z-0 overflow-hidden"
-            >
-                <div className="absolute top-5 left-1/2 -translate-y-1/2 -translate-x-1/2 blur-[100px] bg-white/7 size-50 pointer-events-none" />
+                data-slot="dialog-glow"
+                className="pointer-events-none select-none absolute top-5 left-1/2 -translate-y-1/2 -translate-x-1/2 blur-[100px] bg-white/5 size-50"
+            />
 
-                <div className={advancedDialogStyles.mirror}>
-                    <div className="grid gap-4 w-full p-5">
-                        {staticBackground}
-                    </div>
-                </div>
-            </div>
+            <BlurMirrorEffect contentClassName="grid gap-4 w-full p-5">
+                {children}
+            </BlurMirrorEffect>
 
             {children}
         </div>

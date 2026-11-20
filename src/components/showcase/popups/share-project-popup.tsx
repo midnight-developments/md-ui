@@ -196,7 +196,7 @@ export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
                                                         </Avatar>
                                                         <div className="flex flex-col gap-1.75">
                                                             <p className="leading-none text-foreground">{user.name}</p>
-                                                            <p className="leading-none text-sm text-secondary">{user.email}</p>
+                                                            <p className="leading-none text-secondary">{user.email}</p>
                                                         </div>
                                                     </div>
                                                 </ComboboxItem>
@@ -211,7 +211,7 @@ export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
                                 <p>Recipients</p>
                                 <div className="flex flex-col gap-6">
                                     {recipients.length === 0 ? (
-                                        <p className="text-center text-sm text-secondary">No recipients added</p>
+                                        <p className="text-center text-secondary">No recipients added</p>
                                     ) : (
                                         recipients.map((recipient) => (
                                             <div key={recipient.id} className="flex justify-between items-center">
@@ -222,7 +222,7 @@ export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
                                                     </Avatar>
                                                     <div className="flex flex-col gap-2">
                                                         <p className="leading-none">{recipient.name}</p>
-                                                        <p className="leading-none text-sm text-secondary">{recipient.email}</p>
+                                                        <p className="leading-none text-secondary">{recipient.email}</p>
                                                     </div>
                                                 </div>
                                                 <DropdownMenu>
@@ -269,7 +269,7 @@ export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
                                                     <GlobeIcon className="text-[rgb(7,39,17)] size-6" />
                                                 </div>
                                             )}
-                                            <div className="flex flex-col gap-2">
+                                            <div className="flex flex-col gap-2.25">
                                                 <DropdownMenu>
                                                     <DropdownMenuTrigger className="group/trigger flex items-center gap-1.5 cursor-pointer outline-none select-none">
                                                         <p className="leading-none">

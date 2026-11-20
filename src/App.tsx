@@ -13,7 +13,6 @@ import { Field, FieldLabel } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge/badge'
 import { Search, SlidersHorizontal } from 'lucide-react'
 import { TriggerChevron } from '@/components/ui/trigger-chevron'
-import modalScreenshot from '@/assets/dialog-screenshot.png'
 import { DialogShell } from '@/components/ui/dialog/dialog'
 
 
@@ -277,11 +276,7 @@ export default function App() {
 
                         <Card onClick={() => setActivePopup('dialog')}>
                             <CardPreview>
-                                <img
-                                    src={modalScreenshot}
-                                    alt="Dialog preview"
-                                    className="h-full scale-135 -mb-10 object-contain rounded-lg"
-                                />
+
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Dialog</CardTitle>
