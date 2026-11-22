@@ -30,7 +30,7 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
                     <div className="flex flex-col items-center gap-6  w-full">
                         <DialogShell className="w-120">
                             <DialogHeader>
-                                <SuccessGraphic size={56}></SuccessGraphic>
+                                <SuccessGraphic className="size-14" />
                                 <DialogTitle>Your meeting has been scheduled</DialogTitle>
                             </DialogHeader>
                             <DialogBody className="flex flex-col gap-8">

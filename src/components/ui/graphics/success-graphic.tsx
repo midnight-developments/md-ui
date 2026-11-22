@@ -1,46 +1,42 @@
-import * as React from "react"
+import type * as React from "react"
 import { cn } from "@/lib/utils"
 import CheckmarkCircleIcon from "@/assets/icons/checkmark-circle.svg?react"
-import styles from "./success-graphic.module.css"
+import { ShineEffect } from "@/components/ui/effects/shine-effect"
 
-export interface SuccessGraphicProps extends React.ComponentProps<"div"> {
-    /**
-     * Size in pixels (or any valid CSS length string). Defaults to 64.
-     */
-    size?: number | string
-}
+export interface SuccessGraphicProps extends React.ComponentProps<"div"> { }
 
 export function SuccessGraphic({
-    size = 64,
     className,
-    style,
     ...props
 }: SuccessGraphicProps) {
-    const sizeStyle = typeof size === "number" ? `${size}px` : size
-
     return (
         <div
             data-slot="success-graphic"
-            className={cn(styles.container, className)}
-            style={
-                {
-                    "--graphic-size": sizeStyle,
-                    ...style,
-                } as React.CSSProperties
-            }
+            className={cn("relative inline-flex shrink-0 items-center justify-center size-16 mt-2 select-none", className)}
             {...props}
         >
-            {/* Layer 2: Angled solid colored rounded square in the back */}
-            <div data-slot="success-graphic-back" className={styles.backCard} />
+            <div
+                data-slot="success-graphic-back"
+                className="pointer-events-none absolute inset-0 z-1 rounded-2xl bg-accent rotate-15 translate-x-[18%] -translate-y-[12%] origin-center"
+            />
 
-            {/* Layer 1: Glassmorphic blurred rounded square in front */}
-            <div data-slot="success-graphic-front" className={styles.frontCard}>
+            <div
+                data-slot="success-graphic-front"
+                className="relative z-2 size-full flex items-center justify-center rounded-2xl inset-ring inset-ring-white/2 shadow-md bg-accent-text/20 backdrop-blur-md backdrop-saturate-120 backdrop-brightness-110 transform-gpu overflow-hidden"
+            >
+                <ShineEffect
+                    start={0}
+                    end={150}
+                    opacity={0.3}
+                />
                 <CheckmarkCircleIcon
                     data-slot="success-graphic-icon"
-                    className={cn("size-7", styles.icon)}
+                    className="size-1/2 drop-shadow-sm relative z-1"
                     aria-hidden="true"
                 />
             </div>
         </div>
     )
 }
+
+export default SuccessGraphic
