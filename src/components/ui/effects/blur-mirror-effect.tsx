@@ -4,12 +4,20 @@ import { cn } from "@/lib/utils"
 export interface BlurMirrorEffectProps extends React.ComponentProps<"div"> {
     children?: React.ReactNode
     contentClassName?: string
+    scale?: number
+    blurAmount?: number
+    translateX?: number
+    translateY?: number
 }
 
 export function BlurMirrorEffect({
     children,
     className,
     contentClassName,
+    scale = 0.98,
+    blurAmount = 14,
+    translateX = 15,
+    translateY = 15,
     ...props
 }: BlurMirrorEffectProps) {
     const staticBackground = React.useMemo(() => children, [])
@@ -28,11 +36,14 @@ export function BlurMirrorEffect({
             <div
                 className={cn(
                     "absolute inset-0 pointer-events-none select-none overflow-hidden",
-                    "scale-[0.98] translate-x-[15px] translate-y-[15px] origin-center",
-                    "blur-[14px] brightness-[0.6] saturate-[0.8] opacity-38",
+                    "origin-center opacity-38",
                     "[contain:strict] [content-visibility:auto]",
                     contentClassName
                 )}
+                style={{
+                    transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
+                    filter: `blur(${blurAmount}px) brightness(0.6) saturate(0.8)`,
+                }}
             >
                 {staticBackground}
             </div>

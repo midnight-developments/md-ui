@@ -1,25 +1,25 @@
-import { Button as ButtonPrimitive } from "@base-ui/react/button"
+import type * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
-import advancedButtonStyles from "./button.module.css"
+import { ShineEffect } from "@/components/ui/effects/shine-effect"
+
 
 const buttonVariants = cva(
   [
-    "group/button h-9 px-4 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-lg bg-clip-padding text-base tracking-tight cursor-pointer whitespace-nowrap",
-    "disabled:pointer-events-none disabled:opacity-50 select-none outline-none",
+    "group/button relative border-0 inset-ring-1 outline-none overflow-hidden h-9 px-4 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-lg bg-clip-padding cursor-pointer whitespace-nowrap select-none transform-gpu",
+    "text-base text-foreground tracking-tight",
+    "hover:brightness-110 active:brightness-92 active:text-foreground/80 active:scale-98",
+    "disabled:pointer-events-none disabled:opacity-50",
   ].join(" "),
   {
     variants: {
       variant: {
-        primary: advancedButtonStyles.primary,
-        secondary: advancedButtonStyles.secondary,
-        outline: advancedButtonStyles.secondary,
-        destructive: advancedButtonStyles.destructive,
-        ghost:
-          "bg-transparent hover:bg-white/10 text-foreground",
-        link:
-          "h-auto p-0 bg-transparent gap-1 text-foreground underline-offset-4 hover:underline",
+        primary: "bg-button-primary inset-ring-white/5",
+        secondary: "bg-button-secondary inset-ring-white/2",
+        destructive: "bg-button-destructive inset-ring-white/5",
+        ghost: "bg-transparent inset-ring-0 hover:bg-white/10 text-foreground",
+        link: "h-auto p-0 bg-transparent inset-ring-0 gap-1 underline-offset-4 hover:underline",
       },
     },
     defaultVariants: {
@@ -28,20 +28,38 @@ const buttonVariants = cva(
   }
 )
 
+const buttonShineMap = {
+  primary: { start: 25, end: 120, opacity: 0.4 },
+  secondary: { start: 25, end: 120, opacity: 0.15 },
+  destructive: { start: 25, end: 120, opacity: 0.35 },
+  ghost: { start: 0, end: 0, opacity: 0 },
+  link: { start: 0, end: 0, opacity: 0 },
+}
+
 function Button({
   className,
   variant = "primary",
+  children,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: React.ComponentProps<"button"> & VariantProps<typeof buttonVariants>) {
+  const shine = buttonShineMap[variant ?? "primary"]
+
   return (
-    <ButtonPrimitive
+    <button
       data-slot="button"
       className={cn(buttonVariants({ variant, className }))}
       {...props}
-    />
+    >
+      {shine.opacity > 0 && (
+        <ShineEffect
+          start={shine.start}
+          end={shine.end}
+          opacity={shine.opacity}
+        />
+      )}
+      {children}
+    </button>
   )
 }
 
 export { Button, buttonVariants }
-
-

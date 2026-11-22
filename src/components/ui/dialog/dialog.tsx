@@ -7,6 +7,7 @@ import { XIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button/button"
 import { BlurMirrorEffect } from "@/components/ui/effects/blur-mirror-effect"
+import { ShineEffect } from "@/components/ui/effects/shine-effect"
 import advancedDialogStyles from "./dialog.module.css"
 
 const Dialog = DialogPrimitive.Root
@@ -49,6 +50,8 @@ function DialogShell({ className, children, ...props }: DialogShellProps) {
                 data-slot="dialog-glow"
                 className="pointer-events-none select-none absolute top-5 left-1/2 -translate-y-1/2 -translate-x-1/2 blur-[100px] bg-white/5 size-50"
             />
+
+            <ShineEffect />
 
             <BlurMirrorEffect contentClassName="grid gap-4 w-full p-5">
                 {children}
