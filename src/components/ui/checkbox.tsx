@@ -75,13 +75,13 @@ function CardCheckboxGroupItem({
     indicatorPosition = "right-center",
     ...props
 }: CardCheckboxGroupItemProps) {
-    const isLeftCenter = indicatorPosition === "left-center"
-    const isTopRight = indicatorPosition === "top-right"
+    const isLeft = indicatorPosition === "left-center"
+    const isTop = indicatorPosition === "top-right"
 
     const indicatorElement = showIndicator && (
         <Indicator
             shape="square"
-            className={cn(isTopRight && "mt-0.5")}
+            className={cn(isTop && "mt-0.5")}
         >
             <CheckboxPrimitive.Indicator render={<IndicatorActive />} />
         </Indicator>
@@ -91,13 +91,13 @@ function CardCheckboxGroupItem({
         <CheckboxPrimitive.Root
             data-slot="card-checkbox-group-item"
             className={cn(
-                "group peer relative flex gap-3 p-3.5 rounded-lg outline-none cursor-pointer select-none text-left",
+                "group group/card-checkbox peer relative flex gap-3 p-3.5 rounded-lg outline-none cursor-pointer select-none text-left",
                 "bg-card inset-ring inset-ring-border",
                 "hover:not-data-[checked]:not-disabled:inset-ring-white/14",
                 "data-[checked]:inset-ring-2 data-[checked]:inset-ring-accent data-[checked]:bg-card-active",
                 "disabled:cursor-not-allowed disabled:opacity-50",
-                isTopRight ? "items-start" : "items-center",
-                isLeftCenter ? "justify-start" : "justify-between",
+                isTop ? "items-start" : "items-center",
+                isLeft ? "justify-start" : "justify-between",
                 className
             )}
             {...props}
@@ -111,9 +111,9 @@ function CardCheckboxGroupItem({
                 className="opacity-0 group-data-[checked]:opacity-20"
             />
 
-            {isLeftCenter && indicatorElement}
+            {isLeft && indicatorElement}
             <div className="flex flex-col w-full">{children}</div>
-            {!isLeftCenter && indicatorElement}
+            {!isLeft && indicatorElement}
         </CheckboxPrimitive.Root>
     )
 }
