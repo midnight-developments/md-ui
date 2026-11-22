@@ -3,7 +3,7 @@
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox"
 import { CheckboxGroup as CheckboxGroupPrimitive } from "@base-ui/react/checkbox-group"
 import { cn } from "@/lib/utils"
-import { Indicator, IndicatorActive } from "@/components/ui/indicator/indicator"
+import { Indicator, IndicatorActive } from "@/components/ui/indicator"
 
 function CheckboxGroup({ className, ...props }: CheckboxGroupPrimitive.Props) {
     return (
@@ -20,20 +20,19 @@ function Checkbox({ className, ...props }: CheckboxPrimitive.Root.Props) {
         <CheckboxPrimitive.Root
             data-slot="checkbox"
             className={cn(
-                "group/checkbox peer outline-none cursor-pointer select-none",
+                "peer inline-flex shrink-0 items-center justify-center outline-none cursor-pointer",
                 "disabled:cursor-not-allowed disabled:opacity-50",
                 className
             )}
             {...props}
         >
             <Indicator shape="square">
-                <CheckboxPrimitive.Indicator render={<IndicatorActive shape="square" variant="check" />} />
+                <CheckboxPrimitive.Indicator render={<IndicatorActive />} />
             </Indicator>
         </CheckboxPrimitive.Root>
     )
 }
 
 export { Checkbox, CheckboxGroup }
-export default Checkbox
 
 

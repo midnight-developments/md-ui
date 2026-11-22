@@ -3,7 +3,7 @@
 import { Radio as RadioPrimitive } from "@base-ui/react/radio"
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group"
 import { cn } from "@/lib/utils"
-import { Indicator, IndicatorActive } from "@/components/ui/indicator/indicator"
+import { Indicator, IndicatorActive } from "@/components/ui/indicator"
 import advancedCardRadioGroupStyles from "./card-radio-group.module.css"
 
 const columnClasses: Record<number, string> = {
@@ -47,7 +47,7 @@ function CardRadioGroupItem({
             shape="circle"
             className={cn(isTopRight && "mt-0.5")}
         >
-            <RadioPrimitive.Indicator render={<IndicatorActive shape="circle" variant="check" />} />
+            <RadioPrimitive.Indicator render={<IndicatorActive />} />
         </Indicator>
     )
 

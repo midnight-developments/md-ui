@@ -59,6 +59,12 @@
             color-mix(in srgb, var(--color-destructive) 20%, rgb(106, 23, 30)) 55%,
             color-mix(in srgb, var(--color-destructive) 15%, rgb(140, 16, 27)) 100%);
 
+    --background-image-indicator-active:
+        linear-gradient(20deg,
+            color-mix(in srgb, var(--color-accent) 90%, black) 0%,
+            var(--color-accent) 55%,
+            color-mix(in srgb, var(--color-accent) 90%, black) 100%);
+
     --radius-lg: 7px;
     --text-md: 0.9375rem;
 }

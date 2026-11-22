@@ -3,7 +3,7 @@
 import { Checkbox as CheckboxPrimitive } from "@base-ui/react/checkbox"
 import { CheckboxGroup as CheckboxGroupPrimitive } from "@base-ui/react/checkbox-group"
 import { cn } from "@/lib/utils"
-import { Indicator, IndicatorActive } from "@/components/ui/indicator/indicator"
+import { Indicator, IndicatorActive } from "@/components/ui/indicator"
 import styles from "./card-checkbox.module.css"
 
 const columnClasses: Record<number, string> = {
@@ -47,7 +47,7 @@ function CardCheckboxGroupItem({
             shape="square"
             className={isTopRight ? "mt-0.5" : undefined}
         >
-            <CheckboxPrimitive.Indicator render={<IndicatorActive shape="square" variant="check" />} />
+            <CheckboxPrimitive.Indicator render={<IndicatorActive />} />
         </Indicator>
     )
 

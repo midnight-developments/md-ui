@@ -1,40 +1,35 @@
-"use client"
-
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import CheckmarkIcon from "@/assets/icons/checkmark.svg?react"
 import DashIcon from "@/assets/icons/dash.svg?react"
-import styles from "./indicator.module.css"
+import { ShineEffect } from "@/components/ui/effects/shine-effect"
 
 const ICONS = {
     check: <CheckmarkIcon aria-hidden="true" className="size-3.5 text-white" />,
     dash: <DashIcon aria-hidden="true" className="size-3 text-white" />,
-    dot: null,
 }
 
 export interface IndicatorActiveProps extends Omit<React.ComponentProps<"span">, "children"> {
-    shape?: "circle" | "square"
-    variant?: "dot" | "check" | "dash"
+    variant?: "check" | "dash"
 }
 
 export function IndicatorActive({
     className,
-    shape = "circle",
-    variant = "dot",
+    variant = "check",
     ...props
 }: IndicatorActiveProps) {
     return (
         <span
             data-slot="indicator-active"
             className={cn(
-                styles.activeIndicator,
-                shape === "circle" ? "rounded-full" : "rounded-[3px]",
-                variant === "dot" && styles.dot,
+                "size-full flex items-center justify-center rounded-[inherit]",
+                "bg-indicator-active inset-ring inset-ring-white/15",
                 "data-unchecked:hidden",
                 className
             )}
             {...props}
         >
+            <ShineEffect start={20} end={120} opacity={0.35} />
             {ICONS[variant]}
         </span>
     )
@@ -42,15 +37,11 @@ export function IndicatorActive({
 
 export interface IndicatorProps extends React.ComponentProps<"span"> {
     shape?: "circle" | "square"
-    variant?: "dot" | "check" | "dash"
-    indicatorClassName?: string
 }
 
 export function Indicator({
     className,
     shape = "circle",
-    variant = "dot",
-    indicatorClassName,
     children,
     ...props
 }: IndicatorProps) {
@@ -58,23 +49,14 @@ export function Indicator({
         <span
             data-slot="indicator"
             className={cn(
-                styles.indicator,
-                shape === "circle" ? "rounded-full" : "rounded-[4px]",
+                "relative inline-flex size-[1.2rem] shrink-0 items-center justify-center border-0 pointer-events-none select-none overflow-hidden",
+                "bg-input inset-ring inset-ring-white/10",
+                shape === "circle" ? "rounded-full" : "rounded-sm",
                 className
             )}
             {...props}
         >
-            {children ?? (
-                <IndicatorActive
-                    shape={shape}
-                    variant={variant}
-                    className={indicatorClassName}
-                />
-            )}
+            {children}
         </span>
     )
 }
-
-Indicator.Active = IndicatorActive
-
-export default Indicator
