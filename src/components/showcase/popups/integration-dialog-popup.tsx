@@ -15,8 +15,8 @@ import {
     DialogTitle,
     DialogBody,
     DialogFooter,
-} from "@/components/ui/dialog/dialog"
-import { Button } from "@/components/ui/button/button"
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
 import { InfoIcon } from "lucide-react"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { SuccessGraphic } from "@/components/ui/graphics/success-graphic"

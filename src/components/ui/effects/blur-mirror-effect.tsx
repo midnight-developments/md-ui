@@ -28,7 +28,7 @@ export function BlurMirrorEffect({
             inert={true}
             data-slot="blur-mirror-effect"
             className={cn(
-                "pointer-events-none select-none absolute inset-0 z-0 overflow-hidden",
+                "pointer-events-none select-none absolute inset-0 -z-1 overflow-hidden",
                 className
             )}
             {...props}

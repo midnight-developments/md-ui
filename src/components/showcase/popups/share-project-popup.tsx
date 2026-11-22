@@ -16,8 +16,8 @@ import {
     DialogTitle,
     DialogBody,
     DialogFooter,
-} from "@/components/ui/dialog/dialog"
-import { Button } from "@/components/ui/button/button"
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
 import { CopyIcon, CheckIcon, Lock } from "lucide-react"
 import { useCopy } from "@/hooks/use-copy"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"

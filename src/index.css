@@ -34,6 +34,8 @@
     --color-border-active: rgba(255, 255, 255, 0.8);
     --color-popup: rgb(0, 0, 0, 0.4);
 
+    --color-dialog: rgb(16, 16, 16);
+    --color-dialog-border: rgb(255, 255, 255, 0.06);
     --color-input: rgba(33, 33, 33);
     --color-input-hover: rgba(42, 42, 42);
     --color-input-active: rgba(255, 255, 255, 0.08);

@@ -5,10 +5,9 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { cn } from "@/lib/utils"
 import { XIcon } from "lucide-react"
 
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import { BlurMirrorEffect } from "@/components/ui/effects/blur-mirror-effect"
 import { ShineEffect } from "@/components/ui/effects/shine-effect"
-import advancedDialogStyles from "./dialog.module.css"
 
 const Dialog = DialogPrimitive.Root
 const DialogTrigger = DialogPrimitive.Trigger
@@ -38,8 +37,8 @@ function DialogShell({ className, children, ...props }: DialogShellProps) {
         <div
             data-slot="dialog-shell"
             className={cn(
-                advancedDialogStyles.shell,
-                "relative grid w-full max-w-[calc(100%-2rem)] rounded-2xl p-5 outline-none overflow-hidden",
+                "relative grid w-full rounded-2xl p-5 outline-none overflow-hidden",
+                "bg-dialog inset-ring inset-ring-dialog-border transform-gpu",
                 className
             )}
             {...props}
@@ -86,7 +85,7 @@ function DialogContent({
                 <DialogPrimitive.Close
                     data-slot="dialog-close"
                     render={
-                        <Button variant="ghost" className="absolute top-2 right-2">
+                        <Button variant="ghost" className="absolute top-2 right-2 z-1">
                             <XIcon className="size-4" />
                             <span className="sr-only">Close</span>
                         </Button>

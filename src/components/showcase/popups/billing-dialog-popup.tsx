@@ -12,7 +12,7 @@ import {
 import {
     DialogShell,
     DialogBody,
-} from "@/components/ui/dialog/dialog"
+} from "@/components/ui/dialog"
 
 export function BillingDialogPopup({ open, onOpenChange }: PopupProps) {
     return (

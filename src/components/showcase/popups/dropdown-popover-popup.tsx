@@ -32,7 +32,7 @@ import {
     PopoverTitle,
     PopoverDescription,
 } from "@/components/ui/popover"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import { TriggerChevron } from "@/components/ui/trigger-chevron"
 import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
 import { InputGroup, InputGroupInput } from "@/components/ui/input-group"

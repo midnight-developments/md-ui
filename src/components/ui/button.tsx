@@ -7,7 +7,7 @@ import { ShineEffect } from "@/components/ui/effects/shine-effect"
 
 const buttonVariants = cva(
   [
-    "group/button relative border-0 inset-ring-1 outline-none overflow-hidden h-9 px-4 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-lg bg-clip-padding cursor-pointer whitespace-nowrap select-none transform-gpu",
+    "group/button relative border-0 inset-ring outline-none overflow-hidden h-9 px-4 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-lg bg-clip-padding cursor-pointer whitespace-nowrap select-none transform-gpu",
     "text-base text-foreground tracking-tight",
     "hover:brightness-110 active:brightness-92 active:text-foreground/80 active:scale-98",
     "disabled:pointer-events-none disabled:opacity-50",
@@ -30,7 +30,7 @@ const buttonVariants = cva(
 
 const buttonShineMap = {
   primary: { start: 25, end: 120, opacity: 0.4 },
-  secondary: { start: 25, end: 120, opacity: 0.15 },
+  secondary: { start: 25, end: 100, opacity: 0.15 },
   destructive: { start: 25, end: 120, opacity: 0.35 },
   ghost: { start: 0, end: 0, opacity: 0 },
   link: { start: 0, end: 0, opacity: 0 },

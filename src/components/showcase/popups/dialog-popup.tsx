@@ -20,8 +20,8 @@ import {
     DialogHeader,
     DialogTitle,
     DialogDescription,
-} from "@/components/ui/dialog/dialog"
-import { Button } from "@/components/ui/button/button"
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
 import { Sparkles } from "lucide-react"
 
 export function DialogPopup({ open, onOpenChange }: PopupProps) {

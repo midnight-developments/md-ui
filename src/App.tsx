@@ -5,7 +5,7 @@ import {
     CardTitle,
     CardContent,
 } from '@/components/showcase/card'
-import { Button } from '@/components/ui/button/button'
+import { Button } from '@/components/ui/button'
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio/radio-group'
@@ -13,7 +13,7 @@ import { Field, FieldLabel } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge/badge'
 import { Search, SlidersHorizontal } from 'lucide-react'
 import { TriggerChevron } from '@/components/ui/trigger-chevron'
-import { DialogShell } from '@/components/ui/dialog/dialog'
+import { DialogShell } from '@/components/ui/dialog'
 
 
 import { ButtonPopup } from '@/components/showcase/popups/button-popup'
