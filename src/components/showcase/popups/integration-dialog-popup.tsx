@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button"
 import { InfoIcon } from "lucide-react"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { SuccessGraphic } from "@/components/ui/graphics/success-graphic"
-import { Badge } from "@/components/ui/badge/badge"
+import { Badge } from "@/components/ui/badge"
 
 export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
     return (

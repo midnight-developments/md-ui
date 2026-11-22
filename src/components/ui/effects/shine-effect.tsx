@@ -7,6 +7,8 @@ export interface ShineEffectProps extends React.ComponentProps<"div"> {
     start?: number
     end?: number
     opacity?: number
+    color?: string
+    size?: string
 }
 
 export function ShineEffect({
@@ -15,6 +17,7 @@ export function ShineEffect({
     start = 0,
     end = 40,
     opacity = 0.4,
+    color = "white",
     className,
     style,
     ...props
@@ -30,7 +33,7 @@ export function ShineEffect({
             )}
             style={{
                 border: "1px solid transparent",
-                background: `radial-gradient(ellipse 100% 100% at ${originX}% ${originY}%, white ${start}%, transparent ${end}%) border-box`,
+                background: `radial-gradient(ellipse 100% 100% at ${originX}% ${originY}%, ${color} ${start}%, transparent ${end}%) border-box`,
                 WebkitMask:
                     "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",

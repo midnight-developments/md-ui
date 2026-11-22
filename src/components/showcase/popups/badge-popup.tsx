@@ -10,7 +10,7 @@ import {
     PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
-import { Badge } from "@/components/ui/badge/badge"
+import { Badge } from "@/components/ui/badge"
 
 export function BadgePopup({ open, onOpenChange }: PopupProps) {
     return (
@@ -20,21 +20,21 @@ export function BadgePopup({ open, onOpenChange }: PopupProps) {
                     <div className="flex flex-col gap-6 w-full max-w-md py-2">
                         <div className="flex flex-col gap-3">
                             <h3 className="text-lg text-muted leading-none">
-                                Primary Variant
+                                Accent Variant
                             </h3>
                             <div className="flex items-center gap-3">
-                                <Badge variant="primary" size="base">Primary</Badge>
-                                <Badge variant="primary" size="base">Badge</Badge>
+                                <Badge variant="accent" size="base">Accent</Badge>
+                                <Badge variant="accent" size="base">Badge</Badge>
                             </div>
                         </div>
 
                         <div className="flex flex-col gap-3">
                             <h3 className="text-lg text-muted leading-none">
-                                Secondary Variant
+                                Slate Variant
                             </h3>
                             <div className="flex items-center gap-3">
-                                <Badge variant="secondary" size="base">Secondary</Badge>
-                                <Badge variant="secondary" size="base">Badge</Badge>
+                                <Badge variant="slate" size="base">Slate</Badge>
+                                <Badge variant="slate" size="base">Badge</Badge>
                             </div>
                         </div>
 

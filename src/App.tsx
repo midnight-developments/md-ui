@@ -10,7 +10,7 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/in
 import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio/radio-group'
 import { Field, FieldLabel } from '@/components/ui/field'
-import { Badge } from '@/components/ui/badge/badge'
+import { Badge } from '@/components/ui/badge'
 import { Search, SlidersHorizontal } from 'lucide-react'
 import { TriggerChevron } from '@/components/ui/trigger-chevron'
 import { DialogShell } from '@/components/ui/dialog'
@@ -260,11 +260,11 @@ export default function App() {
                             <CardPreview>
                                 <div className="flex flex-col items-center justify-center gap-2 pointer-events-none select-none">
                                     <div className="flex items-center gap-1.5">
-                                        <Badge variant="primary" size="base">Primary</Badge>
+                                        <Badge variant="accent" size="base">Accent</Badge>
                                         <Badge variant="success" size="base">Success</Badge>
                                     </div>
                                     <div className="flex items-center gap-1.5">
-                                        <Badge variant="secondary" size="base">Secondary</Badge>
+                                        <Badge variant="slate" size="base">Slate</Badge>
                                         <Badge variant="destructive" size="base">Destructive</Badge>
                                     </div>
                                 </div>
