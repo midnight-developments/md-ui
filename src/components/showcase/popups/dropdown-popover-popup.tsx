@@ -36,7 +36,7 @@ import { Button } from "@/components/ui/button"
 import { TriggerChevron } from "@/components/ui/trigger-chevron"
 import { Field, FieldLabel, FieldDescription } from "@/components/ui/field"
 import { InputGroup, InputGroupInput } from "@/components/ui/input-group"
-import { Checkbox } from "@/components/ui/checkbox/checkbox"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
     Copy,
     Code,

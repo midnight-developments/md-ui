@@ -1,4 +1,4 @@
-import * as React from "react"
+import type * as React from "react"
 import { cn } from "@/lib/utils"
 
 export interface ShineEffectProps extends React.ComponentProps<"div"> {
@@ -9,6 +9,7 @@ export interface ShineEffectProps extends React.ComponentProps<"div"> {
     opacity?: number
     color?: string
     size?: string
+    borderWidth?: number | string
 }
 
 export function ShineEffect({
@@ -16,12 +17,17 @@ export function ShineEffect({
     originY = 0,
     start = 0,
     end = 40,
-    opacity = 0.4,
+    opacity,
     color = "white",
+    size = "100% 100%",
+    borderWidth = 1,
     className,
     style,
     ...props
 }: ShineEffectProps) {
+    const borderWidthStyle =
+        typeof borderWidth === "number" ? `${borderWidth}px` : borderWidth
+
     return (
         <div
             aria-hidden="true"
@@ -29,11 +35,12 @@ export function ShineEffect({
             data-slot="shine-effect"
             className={cn(
                 "pointer-events-none select-none absolute inset-0 z-0 rounded-[inherit]",
+                opacity === undefined && "opacity-40",
                 className
             )}
             style={{
-                border: "1px solid transparent",
-                background: `radial-gradient(ellipse 100% 100% at ${originX}% ${originY}%, ${color} ${start}%, transparent ${end}%) border-box`,
+                border: `${borderWidthStyle} solid transparent`,
+                background: `radial-gradient(ellipse ${size} at ${originX}% ${originY}%, ${color} ${start}%, transparent ${end}%) border-box`,
                 WebkitMask:
                     "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
                 WebkitMaskComposite: "xor",
@@ -41,7 +48,7 @@ export function ShineEffect({
                 maskComposite: "exclude",
                 transform: "translateZ(0)",
                 backfaceVisibility: "hidden",
-                opacity,
+                ...(opacity !== undefined ? { opacity } : {}),
                 ...style,
             }}
             {...props}

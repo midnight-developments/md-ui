@@ -27,7 +27,7 @@ import { DialogPopup } from '@/components/showcase/popups/dialog-popup'
 import { ShareProjectPopup } from '@/components/showcase/popups/share-project-popup'
 import { IntegrationDialogPopup } from '@/components/showcase/popups/integration-dialog-popup'
 import { BillingDialogPopup } from '@/components/showcase/popups/billing-dialog-popup'
-import { CheckboxGroup, Checkbox } from '@/components/ui/checkbox/checkbox'
+import { CheckboxGroup, Checkbox } from '@/components/ui/checkbox'
 
 type PopupId =
     | 'button'

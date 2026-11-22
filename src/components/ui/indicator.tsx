@@ -29,7 +29,7 @@ export function IndicatorActive({
             )}
             {...props}
         >
-            <ShineEffect start={20} end={120} opacity={0.35} />
+            <ShineEffect start={20} end={120} opacity={0.4} />
             {ICONS[variant]}
         </span>
     )

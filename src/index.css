@@ -50,6 +50,14 @@
     --color-card-active: rgba(255, 255, 255, 0.08);
 
 
+    /* === CARD CONTROL === */
+    --background-image-card-active:
+        linear-gradient(160deg,
+            color-mix(in srgb, var(--color-accent) 25%, transparent) 10%,
+            color-mix(in srgb, var(--color-accent) 15%, transparent) 35%,
+            transparent 100%);
+
+
     /* === BUTTON === */
     --background-image-button-primary:
         linear-gradient(20deg,
