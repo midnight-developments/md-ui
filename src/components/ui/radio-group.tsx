@@ -26,12 +26,11 @@ function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
             data-slot="radio-group-item"
             className={cn(
                 "peer inline-flex shrink-0 items-center justify-center outline-none cursor-pointer",
-                "disabled:cursor-not-allowed disabled:opacity-50",
                 className
             )}
             {...props}
         >
-            <Indicator shape="circle">
+            <Indicator shape="circle" className="size-4.5">
                 <RadioPrimitive.Indicator render={<IndicatorActive />} />
             </Indicator>
         </RadioPrimitive.Root>
@@ -81,7 +80,7 @@ function CardRadioGroupItem({
     const indicatorElement = showIndicator && (
         <Indicator
             shape="circle"
-            className={cn(isTop && "mt-0.5")}
+            className={cn(isTop && "mt-0.5", "size-4.5")}
         >
             <RadioPrimitive.Indicator render={<IndicatorActive />} />
         </Indicator>
@@ -93,9 +92,8 @@ function CardRadioGroupItem({
             className={cn(
                 "group group/card-radio peer relative flex gap-3 p-3.5 rounded-lg outline-none cursor-pointer select-none text-left",
                 "bg-card inset-ring inset-ring-border",
-                "hover:not-data-[checked]:not-disabled:inset-ring-white/14",
+                "hover:not-data-[checked]:inset-ring-white/14",
                 "data-[checked]:inset-ring-2 data-[checked]:inset-ring-accent data-[checked]:bg-card-active",
-                "disabled:cursor-not-allowed disabled:opacity-50",
                 isTop ? "items-start" : "items-center",
                 isLeft ? "justify-start" : "justify-between",
                 className

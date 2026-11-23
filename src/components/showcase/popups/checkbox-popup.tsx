@@ -38,7 +38,7 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <FieldGroup className="max-w-sm">
+                    <FieldGroup className="max-w-sm gap-12">
                         <FieldSet>
                             <FieldLegend>Selectable Card Checkbox Group</FieldLegend>
                             <CardCheckboxGroup
@@ -49,9 +49,9 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
                                 {cardCheckboxOptions.map((opt) => (
                                     <Field key={opt.value}>
                                         <CardCheckboxGroupItem value={opt.value}>
-                                            <FieldContent>
+                                            <FieldContent className="gap-2">
                                                 <FieldLabel className="cursor-pointer">{opt.label}</FieldLabel>
-                                                <FieldDescription>{opt.description}</FieldDescription>
+                                                <FieldDescription >{opt.description}</FieldDescription>
                                             </FieldContent>
                                         </CardCheckboxGroupItem>
                                     </Field>
@@ -59,8 +59,26 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
                             </CardCheckboxGroup>
                         </FieldSet>
 
+
+
                         <FieldSet>
                             <FieldLegend>Standard Checkbox List</FieldLegend>
+                            <CheckboxGroup
+                                value={standardCheckboxes}
+                                onValueChange={(val) => setStandardCheckboxes(val)}
+
+                            >
+                                {standardCheckboxOptions.map((opt) => (
+                                    <Field key={opt.value} orientation="horizontal">
+                                        <Checkbox value={opt.value} id={`cb-${opt.value}`} />
+                                        <FieldLabel htmlFor={`cb-${opt.value}`}>{opt.label}</FieldLabel>
+                                    </Field>
+                                ))}
+                            </CheckboxGroup>
+                        </FieldSet>
+
+                        <FieldSet>
+                            <FieldLegend>Checkbox List With Descriptions</FieldLegend>
                             <CheckboxGroup
                                 value={standardCheckboxes}
                                 onValueChange={(val) => setStandardCheckboxes(val)}
@@ -80,7 +98,7 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
                 </PopupPreview>
 
                 <PopupDetails>
-                    <PopupTitle>Checkbox</PopupTitle>
+                    <PopupTitle>Standard Checkbox List</PopupTitle>
                     <PopupDescription>
                         Multi-selection checkboxes and rich card-level checkbox groups featuring calibrated tactile states, checkmark glyphs, and accessible group primitives.
                     </PopupDescription>

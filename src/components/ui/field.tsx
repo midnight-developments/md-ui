@@ -38,7 +38,7 @@ const fieldVariants = cva(
             orientation: {
                 vertical: "flex-col *:w-full [&>.sr-only]:w-auto",
                 horizontal:
-                    "flex-row gap-2.5 items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
+                    "flex-row gap-2.75 items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
                 responsive:
                     "flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto @md/field-group:has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px",
             },
@@ -86,8 +86,7 @@ function FieldLabel({
         <label
             data-slot="field-label"
             className={cn(
-                "group/field-label peer/field-label text-base font-normal leading-[1] text-foreground cursor-pointer",
-                "peer-data-[unchecked]:text-muted peer-data-[checked]:text-foreground",
+                "group/field-label peer/field-label text-base font-normal leading-none text-foreground cursor-pointer",
                 className
             )}
             {...props}
@@ -100,7 +99,7 @@ function FieldTitle({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="field-label"
             className={cn(
-                "flex w-fit items-center gap-2 text-base group-data-[disabled=true]/field:opacity-50",
+                "flex w-fit items-center gap-2 text-base",
                 className
             )}
             {...props}
@@ -139,7 +138,7 @@ function FieldDescription({
     if (!content) return null
 
     return (
-        <div className="w-full relative -mt-0.75">
+        <div className="w-full relative -mt-0.5">
             <p
                 role={isError ? "alert" : undefined}
                 data-slot={isError ? "field-error" : "field-description"}

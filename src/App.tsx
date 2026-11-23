@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Field, FieldLabel } from '@/components/ui/field'
+import { Field, FieldLabel, FieldLegend, FieldSet } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge'
 import { Search, SlidersHorizontal } from 'lucide-react'
 import { TriggerChevron } from '@/components/ui/trigger-chevron'
@@ -69,7 +69,7 @@ export default function App() {
                         <h2 className="text-2xl font-medium text-foreground">Mockups Using Primitives</h2>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         <Card onClick={() => setActivePopup('database-creation')}>
                             <CardPreview>
                                 <div className="w-full max-w-[220px] pointer-events-none select-none">
@@ -137,7 +137,7 @@ export default function App() {
                         <h2 className="text-2xl font-medium text-foreground">Core Primitives</h2>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
                         <Card onClick={() => setActivePopup('button')}>
                             <CardPreview>
                                 <div className="grid grid-cols-2 gap-2 pointer-events-none select-none">
@@ -208,23 +208,23 @@ export default function App() {
 
                         <Card onClick={() => setActivePopup('radio')}>
                             <CardPreview>
-                                <Field className="w-full max-w-[190px] gap-2.5! pointer-events-none select-none">
-                                    <FieldLabel>Radio Group</FieldLabel>
-                                    <RadioGroup defaultValue="opt-2" className="gap-1.5">
+                                <FieldSet className="w-full max-w-[190px] gap-2.5! pointer-events-none select-none">
+                                    <FieldLegend>Radio Group</FieldLegend>
+                                    <RadioGroup defaultValue="opt-2" className="gap-3">
                                         <Field orientation="horizontal">
                                             <RadioGroupItem value="opt-1" id="prev-opt-1" />
-                                            <FieldLabel htmlFor="prev-opt-1" className="text-sm">Option 1</FieldLabel>
+                                            <FieldLabel htmlFor="prev-opt-1">Option 1</FieldLabel>
                                         </Field>
                                         <Field orientation="horizontal">
                                             <RadioGroupItem value="opt-2" id="prev-opt-2" />
-                                            <FieldLabel htmlFor="prev-opt-2" className="text-sm font-normal">Option 2</FieldLabel>
+                                            <FieldLabel htmlFor="prev-opt-2">Option 2</FieldLabel>
                                         </Field>
                                         <Field orientation="horizontal">
                                             <RadioGroupItem value="opt-3" id="prev-opt-3" />
-                                            <FieldLabel htmlFor="prev-opt-3" className="text-sm">Option 3</FieldLabel>
+                                            <FieldLabel htmlFor="prev-opt-3">Option 3</FieldLabel>
                                         </Field>
                                     </RadioGroup>
-                                </Field>
+                                </FieldSet>
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Radio</CardTitle>
@@ -233,23 +233,23 @@ export default function App() {
 
                         <Card onClick={() => setActivePopup('checkbox')}>
                             <CardPreview>
-                                <Field className="w-full max-w-[190px] gap-2.5! pointer-events-none select-none">
-                                    <FieldLabel>Checkbox Group</FieldLabel>
-                                    <CheckboxGroup defaultValue={['opt-1', 'opt-2']} className="gap-1.5">
+                                <FieldSet className="w-full max-w-[190px] gap-2.5! pointer-events-none select-none">
+                                    <FieldLegend>Checkbox Group</FieldLegend>
+                                    <CheckboxGroup defaultValue={['opt-1', 'opt-2']} className="gap-3.25">
                                         <Field orientation="horizontal">
                                             <Checkbox value="opt-1" id="prev-opt-1" />
-                                            <FieldLabel htmlFor="prev-opt-1" className="text-sm font-normal text-foreground">Option 1</FieldLabel>
+                                            <FieldLabel htmlFor="prev-opt-1">Option 1</FieldLabel>
                                         </Field>
                                         <Field orientation="horizontal">
                                             <Checkbox value="opt-2" id="prev-opt-2" />
-                                            <FieldLabel htmlFor="prev-opt-2" className="text-sm font-normal text-foreground">Option 2</FieldLabel>
+                                            <FieldLabel htmlFor="prev-opt-2">Option 2</FieldLabel>
                                         </Field>
                                         <Field orientation="horizontal">
                                             <Checkbox value="opt-3" id="prev-opt-3" />
-                                            <FieldLabel htmlFor="prev-opt-3" className="text-sm font-normal text-foreground">Option 3</FieldLabel>
+                                            <FieldLabel htmlFor="prev-opt-3">Option 3</FieldLabel>
                                         </Field>
                                     </CheckboxGroup>
-                                </Field>
+                                </FieldSet>
                             </CardPreview>
                             <CardContent>
                                 <CardTitle>Checkbox</CardTitle>
@@ -287,7 +287,7 @@ export default function App() {
 
 
 
-            </div>
+            </div >
 
             <ButtonPopup
                 open={activePopup === 'button'}
@@ -333,6 +333,6 @@ export default function App() {
                 open={activePopup === 'billing-dialog'}
                 onOpenChange={(open) => !open && setActivePopup(null)}
             />
-        </div>
+        </div >
     )
 }

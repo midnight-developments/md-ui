@@ -26,12 +26,11 @@ function Checkbox({ className, ...props }: CheckboxProps) {
             data-slot="checkbox"
             className={cn(
                 "peer inline-flex shrink-0 items-center justify-center outline-none cursor-pointer",
-                "disabled:cursor-not-allowed disabled:opacity-50",
                 className
             )}
             {...props}
         >
-            <Indicator shape="square">
+            <Indicator shape="square" className="size-4.25">
                 <CheckboxPrimitive.Indicator render={<IndicatorActive />} />
             </Indicator>
         </CheckboxPrimitive.Root>
@@ -81,7 +80,7 @@ function CardCheckboxGroupItem({
     const indicatorElement = showIndicator && (
         <Indicator
             shape="square"
-            className={cn(isTop && "mt-0.5")}
+            className={cn(isTop && "mt-0.5", "size-4.5")}
         >
             <CheckboxPrimitive.Indicator render={<IndicatorActive />} />
         </Indicator>
@@ -93,9 +92,8 @@ function CardCheckboxGroupItem({
             className={cn(
                 "group group/card-checkbox peer relative flex gap-3 p-3.5 rounded-lg outline-none cursor-pointer select-none text-left",
                 "bg-card inset-ring inset-ring-border",
-                "hover:not-data-[checked]:not-disabled:inset-ring-white/14",
-                "data-[checked]:inset-ring-2 data-[checked]:inset-ring-accent data-[checked]:bg-card-active",
-                "disabled:cursor-not-allowed disabled:opacity-50",
+                "hover:not-data-checked:inset-ring-white/14",
+                "data-checked:inset-ring-2 data-checked:inset-ring-accent data-checked:bg-card-active",
                 isTop ? "items-start" : "items-center",
                 isLeft ? "justify-start" : "justify-between",
                 className
@@ -108,7 +106,7 @@ function CardCheckboxGroupItem({
                 start={20}
                 end={120}
                 borderWidth={2}
-                className="opacity-0 group-data-[checked]:opacity-20"
+                className="opacity-0 group-data-checked:opacity-20"
             />
 
             {isLeft && indicatorElement}

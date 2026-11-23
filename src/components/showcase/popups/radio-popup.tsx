@@ -38,7 +38,7 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <FieldGroup className="max-w-lg">
+                    <FieldGroup className="max-w-lg gap-12">
                         <FieldSet>
                             <FieldLegend>Selectable Card Radio Group</FieldLegend>
                             <CardRadioGroup
@@ -61,6 +61,21 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
 
                         <FieldSet>
                             <FieldLegend>Standard Radio List</FieldLegend>
+                            <RadioGroup
+                                value={standardRadio}
+                                onValueChange={(val) => val && setStandardRadio(val as string)}
+                            >
+                                {standardRadioOptions.map((opt) => (
+                                    <Field orientation="horizontal" key={opt.value}>
+                                        <RadioGroupItem value={opt.value} id={`r-${opt.value}`} />
+                                        <FieldLabel htmlFor={`r-${opt.value}`}>{opt.label}</FieldLabel>
+                                    </Field>
+                                ))}
+                            </RadioGroup>
+                        </FieldSet>
+
+                        <FieldSet>
+                            <FieldLegend>Radio List With Descriptions</FieldLegend>
                             <RadioGroup
                                 value={standardRadio}
                                 onValueChange={(val) => val && setStandardRadio(val as string)}

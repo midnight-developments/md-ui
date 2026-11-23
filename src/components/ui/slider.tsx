@@ -45,7 +45,7 @@ function Slider({
             thumbAlignment="edge"
             {...props}
         >
-            <SliderPrimitive.Control className="relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col">
+            <SliderPrimitive.Control className="relative flex w-full touch-none items-center select-none data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col">
                 <SliderPrimitive.Track
                     data-slot="slider-track"
                     className="relative grow overflow-hidden rounded-xs bg-white/10 select-none data-horizontal:h-2 data-horizontal:w-full data-vertical:h-full data-vertical:w-1"
@@ -60,7 +60,7 @@ function Slider({
                         data-slot="slider-thumb"
                         key={index}
                         aria-label={_values.length > 1 ? (index === 0 ? `${label} minimum` : `${label} maximum`) : label}
-                        className="relative block size-4 shrink-0 rounded-full bg-white cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-border-active select-none disabled:pointer-events-none disabled:opacity-50"
+                        className="relative block size-4 shrink-0 rounded-full bg-white cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-border-active select-none"
                     />
                 ))}
             </SliderPrimitive.Control>

@@ -1,18 +1,11 @@
 import * as React from "react"
+import { InputGroup, InputGroupInput } from "@/components/ui/input-group"
 
-import { cn } from "@/lib/utils"
-
-function Input({ className, type = "text", ...props }: React.ComponentProps<"input">) {
+function Input({ className, ...props }: React.ComponentProps<"input">) {
     return (
-        <input
-            type={type}
-            data-slot="input"
-            className={cn(
-                "input-shell cursor-text select-text",
-                className
-            )}
-            {...props}
-        />
+        <InputGroup className={className}>
+            <InputGroupInput {...props} />
+        </InputGroup>
     )
 }
 

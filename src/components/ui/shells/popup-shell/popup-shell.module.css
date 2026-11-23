@@ -71,9 +71,4 @@
             background: color-mix(in srgb, var(--color-destructive) 15%, transparent);
         }
     }
-
-    &[data-disabled] {
-        pointer-events: none;
-        opacity: 0.5;
-    }
 }

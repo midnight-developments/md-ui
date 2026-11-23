@@ -5,8 +5,8 @@ import DashIcon from "@/assets/icons/dash.svg?react"
 import { ShineEffect } from "@/components/ui/effects/shine-effect"
 
 const ICONS = {
-    check: <CheckmarkIcon aria-hidden="true" className="size-3.5 text-white" />,
-    dash: <DashIcon aria-hidden="true" className="size-3 text-white" />,
+    check: <CheckmarkIcon aria-hidden="true" className="size-full text-white shrink-0" />,
+    dash: <DashIcon aria-hidden="true" className="size-full text-white shrink-0" />,
 }
 
 export interface IndicatorActiveProps extends Omit<React.ComponentProps<"span">, "children"> {
@@ -29,7 +29,7 @@ export function IndicatorActive({
             )}
             {...props}
         >
-            <ShineEffect start={20} end={120} opacity={0.4} />
+            <ShineEffect start={20} end={120} opacity={0.4} className="transform-none" />
             {ICONS[variant]}
         </span>
     )
@@ -49,7 +49,7 @@ export function Indicator({
         <span
             data-slot="indicator"
             className={cn(
-                "relative inline-flex size-[1.2rem] shrink-0 items-center justify-center border-0 pointer-events-none select-none overflow-hidden",
+                "transform-gpu relative inline-flex size-4 shrink-0 items-center justify-center border-0 pointer-events-none select-none overflow-hidden",
                 "bg-input inset-ring inset-ring-white/10",
                 shape === "circle" ? "rounded-full" : "rounded-sm",
                 className

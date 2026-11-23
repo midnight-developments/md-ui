@@ -34,7 +34,7 @@ export function ShineEffect({
             inert={true}
             data-slot="shine-effect"
             className={cn(
-                "pointer-events-none select-none absolute inset-0 z-0 rounded-[inherit]",
+                "pointer-events-none select-none absolute inset-0 z-0 rounded-[inherit] transform-gpu backface-hidden",
                 opacity === undefined && "opacity-40",
                 className
             )}
@@ -46,8 +46,6 @@ export function ShineEffect({
                 WebkitMaskComposite: "xor",
                 mask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
                 maskComposite: "exclude",
-                transform: "translateZ(0)",
-                backfaceVisibility: "hidden",
                 ...(opacity !== undefined ? { opacity } : {}),
                 ...style,
             }}

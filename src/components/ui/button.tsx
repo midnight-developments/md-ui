@@ -10,7 +10,6 @@ const buttonVariants = cva(
     "group/button relative border-0 inset-ring outline-none overflow-hidden h-9 px-4 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-lg bg-clip-padding cursor-pointer whitespace-nowrap select-none transform-gpu",
     "text-base text-foreground tracking-tight",
     "hover:brightness-110 active:brightness-92 active:text-foreground/80 active:scale-98",
-    "disabled:pointer-events-none disabled:opacity-50",
   ].join(" "),
   {
     variants: {

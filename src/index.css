@@ -76,10 +76,10 @@
 
     /* === INDICATOR === */
     --background-image-indicator-active:
-        linear-gradient(20deg,
-            color-mix(in srgb, var(--color-accent) 90%, black) 0%,
-            var(--color-accent) 55%,
-            color-mix(in srgb, var(--color-accent) 90%, black) 100%);
+        linear-gradient(40deg,
+            color-mix(in srgb, var(--color-accent) 90%, white) 0%,
+            color-mix(in srgb, var(--color-accent) 100%, black) 55%,
+            color-mix(in srgb, var(--color-accent) 95%, white) 100%);
 
 
     /* === BADGE === */
@@ -169,9 +169,6 @@
     @apply focus-within:inset-ring-2 focus-within:inset-ring-accent-border;
     @apply data-popup-open:inset-ring-2 data-popup-open:inset-ring-accent-border;
     @apply data-invalid:inset-ring-2 data-invalid:inset-ring-destructive has-data-invalid:inset-ring-2 has-data-invalid:inset-ring-destructive;
-
-    @apply disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50;
-    @apply has-disabled:pointer-events-none has-disabled:cursor-not-allowed has-disabled:opacity-50;
 
     --shine-border-width: 1px;
     --shine-size: 85% 100%;

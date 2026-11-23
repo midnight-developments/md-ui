@@ -57,7 +57,7 @@ function Badge({
           color={`var(--color-badge-${variant}-shine)`}
           start={20}
           end={100}
-          opacity={1}
+          opacity={0.5}
         />
       )}
       {children}
