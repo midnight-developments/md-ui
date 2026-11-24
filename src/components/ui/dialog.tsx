@@ -22,7 +22,7 @@ function DialogOverlay({
         <DialogPrimitive.Backdrop
             data-slot="dialog-overlay"
             className={cn(
-                "fixed inset-0 isolate z-50 bg-black/10 supports-backdrop-filter:backdrop-blur-xs",
+                "fixed inset-0 isolate z-50 bg-black/10 backdrop-blur-xs",
                 className
             )}
             {...props}
@@ -37,7 +37,7 @@ function DialogShell({ className, children, ...props }: DialogShellProps) {
         <div
             data-slot="dialog-shell"
             className={cn(
-                "relative grid w-full rounded-2xl p-5 outline-none overflow-hidden",
+                "relative grid w-full rounded-2xl p-5 overflow-hidden",
                 "bg-dialog inset-ring inset-ring-dialog-border transform-gpu",
                 className
             )}
@@ -47,7 +47,7 @@ function DialogShell({ className, children, ...props }: DialogShellProps) {
                 aria-hidden="true"
                 inert={true}
                 data-slot="dialog-glow"
-                className="pointer-events-none select-none absolute top-5 left-1/2 -translate-y-1/2 -translate-x-1/2 blur-[100px] bg-white/5 size-50"
+                className="pointer-events-none select-none absolute top-5 left-1/2 -translate-1/2 blur-[100px] bg-white/5 size-50"
             />
 
             <ShineEffect />
@@ -127,7 +127,7 @@ function DialogDescription({
         <p
             data-slot="dialog-description"
             className={cn(
-                "text-sm text-muted-foreground *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
+                "text-sm text-muted *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
                 className
             )}
             {...props}

@@ -60,7 +60,7 @@ function Slider({
                         data-slot="slider-thumb"
                         key={index}
                         aria-label={_values.length > 1 ? (index === 0 ? `${label} minimum` : `${label} maximum`) : label}
-                        className="relative block size-4 shrink-0 rounded-full bg-white cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-border-active select-none"
+                        className="relative block size-4 shrink-0 rounded-full bg-white cursor-pointer select-none"
                     />
                 ))}
             </SliderPrimitive.Control>

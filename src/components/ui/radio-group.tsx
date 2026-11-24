@@ -25,7 +25,7 @@ function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
         <RadioPrimitive.Root
             data-slot="radio-group-item"
             className={cn(
-                "peer inline-flex shrink-0 items-center justify-center outline-none cursor-pointer",
+                "inline-flex shrink-0 items-center justify-center cursor-pointer",
                 className
             )}
             {...props}
@@ -90,7 +90,7 @@ function CardRadioGroupItem({
         <RadioPrimitive.Root
             data-slot="card-radio-group-item"
             className={cn(
-                "group group/card-radio peer relative flex gap-3 p-3.5 rounded-lg outline-none cursor-pointer select-none text-left",
+                "group relative flex gap-3 p-3.5 rounded-lg cursor-pointer select-none text-left",
                 "bg-card inset-ring inset-ring-border",
                 "hover:not-data-[checked]:inset-ring-white/14",
                 "data-[checked]:inset-ring-2 data-[checked]:inset-ring-accent data-[checked]:bg-card-active",

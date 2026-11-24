@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Lock, Eye, EyeOff } from "lucide-react"
 
-import { cn } from "@/lib/utils"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 
 export interface PasswordInputProps extends React.ComponentProps<"input"> {
@@ -19,7 +18,7 @@ function PasswordInput({
         <InputGroup
             data-disabled={disabled ? "" : undefined}
             data-invalid={props["data-invalid"]}
-            className={cn(className)}
+            className={className}
         >
             <InputGroupAddon align="inline-start">
                 <Lock className="size-4 text-muted" />

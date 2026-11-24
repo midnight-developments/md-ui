@@ -12,7 +12,6 @@
 
     --dialog-bg: rgb(22, 22, 22, 1);
     --dialog-color: var(--color-foreground);
-    --dialog-border: rgba(44, 44, 44);
     --dialog-border: rgba(255, 255, 255, 0.075);
     --dialog-border-shine: rgba(255, 255, 255, 0.5);
 

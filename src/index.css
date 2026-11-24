@@ -41,9 +41,9 @@
     --color-dialog: rgb(16, 16, 16);
     --color-dialog-border: rgb(255, 255, 255, 0.06);
 
-    --color-input: rgba(33, 33, 33);
-    --color-input-hover: rgba(42, 42, 42);
-    --color-input-active: rgba(255, 255, 255, 0.08);
+    --color-input: rgba(32, 32, 32);
+    --color-input-hover: rgba(38, 38, 38);
+    --color-input-active: rgba(38, 38, 38);
 
     --color-card: rgba(12, 12, 12);
     --color-card-hover: rgba(255, 255, 255, 0.08);
@@ -164,19 +164,19 @@
     @apply border-shine relative flex h-9 w-full min-w-0 items-center rounded-lg px-2.5 gap-2.25 outline-none select-none border-0;
 
     @apply text-foreground text-base placeholder:text-muted;
-    @apply bg-input inset-ring-1 inset-ring-white/2;
+    @apply bg-input hover:bg-input-hover inset-ring-1 inset-ring-white/2;
 
-    @apply focus-within:inset-ring-2 focus-within:inset-ring-accent-border;
-    @apply data-popup-open:inset-ring-2 data-popup-open:inset-ring-accent-border;
+    @apply focus-within:inset-ring-2 focus-within:inset-ring-accent-border focus-within:bg-input-active;
+    @apply data-popup-open:inset-ring-2 data-popup-open:inset-ring-accent-border data-popup-open:bg-input-active;
     @apply data-invalid:inset-ring-2 data-invalid:inset-ring-destructive has-data-invalid:inset-ring-2 has-data-invalid:inset-ring-destructive;
 
     --shine-border-width: 1px;
     --shine-size: 85% 100%;
     --shine-origin: 20% 0%;
-    --shine-color: rgba(255, 255, 255, 0.08);
+    --shine-color: rgba(255, 255, 255);
     --shine-start: 10%;
     --shine-end: 100%;
-    --shine-opacity: 1;
+    --shine-opacity: 0.1;
 }
 
 

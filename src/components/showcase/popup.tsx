@@ -89,11 +89,9 @@ export function PopupContent({
                 aria-describedby="showcase-popup-description"
                 onClick={(e) => e.stopPropagation()}
                 className={cn(
-                    "relative z-50 pointer-events-auto outline-none cursor-default",
+                    "relative z-50 pointer-events-auto cursor-default",
                     "w-full max-w-5xl xl:max-w-6xl h-[90vh] max-h-[920px]",
-                    "rounded-2xl bg-card border border-white/10 ",
-                    "[--shine-border-width:1px] [--shine-size:65%_55%] [--shine-origin:50%_0%] [--shine-color:rgba(255,255,255,0.3)] [--shine-start:-20%] [--shine-end:60%] [--shine-opacity:1]",
-                    "text-foreground flex flex-col overflow-hidden",
+                    "rounded-2xl bg-card border border-white/10 text-foreground flex flex-col overflow-hidden",
                     className
                 )}
                 {...props}
@@ -102,10 +100,7 @@ export function PopupContent({
                     {children}
                 </div>
                 {showCloseButton && (
-                    <PopupClose
-                        style={{ position: "absolute", zIndex: 9999 }}
-                        className="!absolute top-4 right-4 sm:top-5 sm:right-5 lg:top-6 lg:right-6 !z-[9999]"
-                    />
+                    <PopupClose className="absolute top-4 right-4 sm:top-5 sm:right-5 lg:top-6 lg:right-6 z-50" />
                 )}
             </div>
         </div>,
@@ -128,7 +123,7 @@ export function PopupClose({ className, children, onClick, style, ...props }: Re
             className={cn(
                 "cursor-pointer inline-flex items-center justify-center size-9 rounded-full pointer-events-auto",
                 "bg-white/5 hover:bg-white/10 text-muted hover:text-foreground border border-white/8 hover:border-white/15",
-                "focus:outline-none backdrop-blur-sm",
+                "backdrop-blur-sm",
                 className
             )}
             aria-label="Close"

@@ -27,7 +27,9 @@ import { DialogPopup } from '@/components/showcase/popups/dialog-popup'
 import { ShareProjectPopup } from '@/components/showcase/popups/share-project-popup'
 import { IntegrationDialogPopup } from '@/components/showcase/popups/integration-dialog-popup'
 import { BillingDialogPopup } from '@/components/showcase/popups/billing-dialog-popup'
+import { TabsPopup } from '@/components/showcase/popups/tabs-popup'
 import { CheckboxGroup, Checkbox } from '@/components/ui/checkbox'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 type PopupId =
     | 'button'
@@ -38,6 +40,7 @@ type PopupId =
     | 'checkbox'
     | 'badge'
     | 'dialog'
+    | 'tabs'
     | 'database-creation'
     | 'integration-dialog'
     | 'billing-dialog'
@@ -282,6 +285,23 @@ export default function App() {
                                 <CardTitle>Dialog</CardTitle>
                             </CardContent>
                         </Card>
+
+                        <Card onClick={() => setActivePopup('tabs')}>
+                            <CardPreview>
+                                <div className="pointer-events-none select-none">
+                                    <Tabs defaultValue="tab-1">
+                                        <TabsList>
+                                            <TabsTrigger value="tab-1">Tab 1</TabsTrigger>
+                                            <TabsTrigger value="tab-2">Tab 2</TabsTrigger>
+                                            <TabsTrigger value="tab-3">Tab 3</TabsTrigger>
+                                        </TabsList>
+                                    </Tabs>
+                                </div>
+                            </CardPreview>
+                            <CardContent>
+                                <CardTitle>Tabs</CardTitle>
+                            </CardContent>
+                        </Card>
                     </div>
                 </section>
 
@@ -319,6 +339,10 @@ export default function App() {
             />
             <DialogPopup
                 open={activePopup === 'dialog'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <TabsPopup
+                open={activePopup === 'tabs'}
                 onOpenChange={(open) => !open && setActivePopup(null)}
             />
             <ShareProjectPopup

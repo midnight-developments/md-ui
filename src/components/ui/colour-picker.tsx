@@ -147,7 +147,7 @@ function ColourPicker({
                                     type="button"
                                     onClick={() => onChange(s)}
                                     className={cn(
-                                        "flex-1 h-7 rounded-xs ring-1 ring-border cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-border-active",
+                                        "flex-1 h-7 rounded-xs ring-1 ring-border cursor-pointer",
                                         isSelected ? "ring-2 ring-white" : ""
                                     )}
                                     style={{ backgroundColor: s }}

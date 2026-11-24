@@ -69,7 +69,7 @@ function InputGroupInput({ className, ...props }: React.ComponentProps<"input">)
         <input
             data-slot="input-group-control"
             className={cn(
-                "h-full w-full flex-1 px-0 bg-transparent border-none outline-none text-base text-foreground placeholder:text-muted",
+                "h-full w-full flex-1 px-0 bg-transparent border-none text-base text-foreground placeholder:text-muted",
                 className
             )}
             {...props}
@@ -82,7 +82,7 @@ function InputGroupTextarea({ className, ...props }: React.ComponentProps<"texta
         <textarea
             data-slot="input-group-control"
             className={cn(
-                "w-full flex-1 resize-none bg-transparent border-none outline-none py-2 text-base text-foreground placeholder:text-muted field-sizing-content min-h-16",
+                "w-full flex-1 resize-none bg-transparent border-none py-2 text-base text-foreground placeholder:text-muted field-sizing-content min-h-16",
                 className
             )}
             {...props}
