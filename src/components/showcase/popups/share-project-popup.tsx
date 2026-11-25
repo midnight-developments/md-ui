@@ -143,7 +143,7 @@ export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
                 <PopupPreview>
                     <DialogShell className="w-140">
                         <DialogHeader className="flex-row items-center justify-start gap-3">
-                            <ShareIcon className="text-foreground size-8 bg-white/10 p-2 rounded-lg" />
+                            <ShareIcon className="text-foreground size-8 bg-white/10 p-1.75 rounded-lg" />
                             <DialogTitle>Share Project</DialogTitle>
                         </DialogHeader>
                         <DialogBody className="flex flex-col gap-8">

@@ -8,7 +8,6 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
-    PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
 import {
@@ -102,23 +101,6 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Multi-selection checkboxes and rich card-level checkbox groups featuring calibrated tactile states, checkmark glyphs, and accessible group primitives.
                     </PopupDescription>
-
-                    <PopupCharacteristics
-                        items={[
-                            {
-                                title: "Card Checkbox System",
-                                description: "Multi-select card layouts with distinct descriptions and configurable grid columns.",
-                            },
-                            {
-                                title: "Tactile Accent Rim",
-                                description: "Crisp active borders and calibrated dark gradient fills with animated SVG checkmark reveal.",
-                            },
-                            {
-                                title: "Base UI Checkbox Primitive",
-                                description: "Headless group value management supporting controlled arrays, mixed/indeterminate states, and ARIA roles.",
-                            },
-                        ]}
-                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

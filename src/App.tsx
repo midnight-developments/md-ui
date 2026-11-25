@@ -69,7 +69,7 @@ export default function App() {
 
                 <section className="flex flex-col gap-4">
                     <div className="flex items-center justify-center text-center">
-                        <h2 className="text-2xl font-medium text-foreground">Mockups Using Primitives</h2>
+                        <h2 className="text-2xl font-medium text-foreground">Mockups Using Components</h2>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
@@ -137,7 +137,7 @@ export default function App() {
 
                 <section className="flex flex-col gap-4">
                     <div className="flex items-center justify-center text-center">
-                        <h2 className="text-2xl font-medium text-foreground">Core Primitives</h2>
+                        <h2 className="text-2xl font-medium text-foreground">Components</h2>
                     </div>
 
                     <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">

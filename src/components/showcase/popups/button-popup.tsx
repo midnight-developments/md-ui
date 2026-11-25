@@ -8,7 +8,6 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
-    PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
 import { Button } from "@/components/ui/button"
@@ -96,23 +95,6 @@ export function ButtonPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         A physical rim light button built with high-fidelity Apple-inspired aesthetics, micro-interactions, and accessible Base UI button primitives.
                     </PopupDescription>
-
-                    <PopupCharacteristics
-                        items={[
-                            {
-                                title: "Rim Light Styling",
-                                description: "Top and inner highlight gradient that simulates modern, physical studio lighting.",
-                            },
-                            {
-                                title: "Snappy Feedback",
-                                description: "Spring-damped 200ms cubic-bezier(0, 0, 0.2, 1) transition for press, hover, and focus states.",
-                            },
-                            {
-                                title: "Accessible Base",
-                                description: "Full keyboard navigation, focus rings, and screen-reader compliance via Base UI.",
-                            },
-                        ]}
-                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

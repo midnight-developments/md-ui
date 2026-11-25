@@ -7,7 +7,6 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
-    PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -69,19 +68,6 @@ export function TabsPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Accessible tabbed navigation built on Base UI Tabs primitives with pill and underline indicator variants.
                     </PopupDescription>
-
-                    <PopupCharacteristics
-                        items={[
-                            {
-                                title: "Default & Line Variants",
-                                description: "Supports segmented pill lists and minimal underline tabs via cva variants on TabsList.",
-                            },
-                            {
-                                title: "Base UI Tabs Primitive",
-                                description: "Full keyboard arrow navigation, automatic or manual activation, and ARIA tablist/tabpanel semantics.",
-                            },
-                        ]}
-                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

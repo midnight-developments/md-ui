@@ -14,10 +14,10 @@ export function BlurMirrorEffect({
     children,
     className,
     contentClassName,
-    scale = 0.98,
-    blurAmount = 14,
-    translateX = 15,
-    translateY = 15,
+    scale = 0,
+    blurAmount = 1,
+    translateX = 0,
+    translateY = 0,
     ...props
 }: BlurMirrorEffectProps) {
     const staticBackground = React.useMemo(() => children, [])

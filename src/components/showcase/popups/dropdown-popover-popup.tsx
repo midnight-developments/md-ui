@@ -8,7 +8,6 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
-    PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
 import {
@@ -291,27 +290,6 @@ export function DropdownPopoverPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Context menus and rich floating overlays built on Base UI primitives, featuring nested flyout submenus, custom interactive forms, and edge-lit glass shells.
                     </PopupDescription>
-
-                    <PopupCharacteristics
-                        items={[
-                            {
-                                title: "Nested Submenus",
-                                description: "Multi-level cascading flyout menus with collision detection, intelligent auto-flip, and instant keyboard traversal.",
-                            },
-                            {
-                                title: "Rich Popover Overlays",
-                                description: "Non-modal floating overlays supporting form controls, inputs, keyboard focus management, and automatic outside dismissal.",
-                            },
-                            {
-                                title: "Item Variants & States",
-                                description: "Unified item styling with check indicators, radio options, submenus, icons, and destructive action themes.",
-                            },
-                            {
-                                title: "Edge-Lit Glass Shell",
-                                description: "Both primitives share the same refined PopupShell container with subtle rim lighting and smooth easing curves.",
-                            },
-                        ]}
-                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

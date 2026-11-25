@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { createPortal } from "react-dom"
-import { X, Check } from "lucide-react"
+import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const PopupContext = React.createContext<{
@@ -197,73 +197,6 @@ export function PopupDescription({ className, children, ...props }: React.Compon
         >
             {children}
         </p>
-    )
-}
-
-export interface CharacteristicItem {
-    title?: React.ReactNode
-    description: React.ReactNode
-}
-
-export interface PopupCharacteristicsProps extends React.ComponentProps<"div"> {
-    heading?: string
-    items?: CharacteristicItem[]
-}
-
-export function PopupCharacteristics({
-    className,
-    heading = "Key Highlights",
-    items,
-    children,
-    ...props
-}: PopupCharacteristicsProps) {
-    return (
-        <div
-            data-slot="showcase-popup-characteristics"
-            className={cn("flex flex-col gap-4 mt-4 pt-8 border-t border-white/6", className)}
-            {...props}
-        >
-            {heading && (
-                <h3 className="text-xl font-semibold text-muted">
-                    {heading}
-                </h3>
-            )}
-            <ul className="flex flex-col gap-4  text-sm text-muted/90">
-                {items
-                    ? items.map((item, index) => (
-                        <PopupCharacteristicItem key={index} title={item.title}>
-                            {item.description}
-                        </PopupCharacteristicItem>
-                    ))
-                    : children}
-            </ul>
-        </div>
-    )
-}
-
-export interface PopupCharacteristicItemProps extends Omit<React.ComponentProps<"li">, "title"> {
-    title?: React.ReactNode
-}
-
-export function PopupCharacteristicItem({
-    className,
-    title,
-    children,
-    ...props
-}: PopupCharacteristicItemProps) {
-    return (
-        <li
-            data-slot="showcase-popup-characteristic-item"
-            className={cn("flex items-start gap-2.5 leading-relaxed", className)}
-            {...props}
-        >
-            <Check className="size-6 text-accent shrink-0 mt-0.5" />
-            <span className="text-base">
-                {title && <strong className="text-foreground font-medium">{title}</strong>}
-                <br></br>
-                {children}
-            </span>
-        </li>
     )
 }
 

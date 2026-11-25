@@ -7,7 +7,6 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
-    PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
 import { Badge } from "@/components/ui/badge"
@@ -86,23 +85,6 @@ export function BadgePopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Compact visual indicators for metadata, labels, and status tags with curated semantic color tokens.
                     </PopupDescription>
-
-                    <PopupCharacteristics
-                        items={[
-                            {
-                                title: "Semantic Transparencies",
-                                description: "Calibrated alpha overlays (accent, success, destructive, secondary) that sit softly on dark backgrounds without visual distraction.",
-                            },
-                            {
-                                title: "Compact Pill Styling",
-                                description: "Clean border radius, refined typography, and balanced padding designed for concise labels.",
-                            },
-                            {
-                                title: "Lightweight Primitive",
-                                description: "Zero overhead span-based component styled using Tailwind CSS and class-variance-authority.",
-                            },
-                        ]}
-                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

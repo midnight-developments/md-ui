@@ -8,7 +8,6 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
-    PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
 import {
@@ -99,23 +98,6 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Single-choice indicators and card-level radio selections with animated indicators, accessible focus styling, and active state transitions.
                     </PopupDescription>
-
-                    <PopupCharacteristics
-                        items={[
-                            {
-                                title: "Card Radio System",
-                                description: "Transform standard radio groups into rich multi-column cards with custom descriptions.",
-                            },
-                            {
-                                title: "Active Rim Light & Gradient",
-                                description: "Smoothly transitioned purple radial gradient and luminous 2px border on selected card states.",
-                            },
-                            {
-                                title: "Base UI Radio Primitive",
-                                description: "Full keyboard arrow navigation (Up/Down/Left/Right) and accessible ARIA radio roles built-in.",
-                            },
-                        ]}
-                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

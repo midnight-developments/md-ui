@@ -8,7 +8,6 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
-    PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
 import {
@@ -135,27 +134,6 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Animated select and searchable combobox primitives built on Base UI, featuring floating pill hover physics, instant keyboard navigation, and edge-lit glass shells.
                     </PopupDescription>
-
-                    <PopupCharacteristics
-                        items={[
-                            {
-                                title: "Smooth Popover Physics",
-                                description: "Calibrated ease curve (cubic-bezier(0.16, 1, 0.3, 1)) ensures clean, non-bouncy opening transitions.",
-                            },
-                            {
-                                title: "Unified InputShell Trigger",
-                                description: "Select triggers seamlessly inherit the exact same InputShell tokens, focus glow, and animated chevron.",
-                            },
-                            {
-                                title: "Searchable Combobox Filtering",
-                                description: "Built-in instant query filtering with empty state detection, keyboard navigation, and synchronized pill transitions.",
-                            },
-                            {
-                                title: "Grouped Options & Hierarchy",
-                                description: "Support for categorized option groups with distinct labels and accessible keyboard traversal.",
-                            },
-                        ]}
-                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

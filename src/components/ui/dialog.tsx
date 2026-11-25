@@ -50,7 +50,7 @@ function DialogShell({ className, children, ...props }: DialogShellProps) {
                 className="pointer-events-none select-none absolute top-5 left-1/2 -translate-1/2 blur-[100px] bg-white/5 size-50"
             />
 
-            <ShineEffect />
+            <ShineEffect opacity={0.3} />
 
             <BlurMirrorEffect contentClassName="grid gap-4 w-full p-5">
                 {children}
@@ -101,7 +101,7 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
         <div
             data-slot="dialog-header"
             className={cn(
-                "-mx-5 -mt-5 flex flex-col gap-5 p-5 justify-end",
+                "-mx-5 -mt-5 flex flex-col gap-2 p-5 justify-end",
                 className
             )}
             {...props}
@@ -113,7 +113,7 @@ function DialogTitle({ className, ...props }: React.ComponentProps<"h2">) {
     return (
         <h2
             data-slot="dialog-title"
-            className={cn("text-[22px] w-5/12 leading-tight font-medium", className)}
+            className={cn("text-[1.5rem] leading-[1.35] tracking-tight font-medium", className)}
             {...props}
         />
     )
@@ -127,7 +127,7 @@ function DialogDescription({
         <p
             data-slot="dialog-description"
             className={cn(
-                "text-sm text-muted *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
+                "text-base text-muted *:[a]:underline *:[a]:underline-offset-3 *:[a]:hover:text-foreground",
                 className
             )}
             {...props}

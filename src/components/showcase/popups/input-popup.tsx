@@ -8,7 +8,6 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
-    PopupCharacteristics,
     type PopupProps,
 } from "@/components/showcase/popup"
 import { Input } from "@/components/ui/input"
@@ -93,27 +92,6 @@ export function InputPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Engineered with composable input groups, polymorphic textareas, interactive icon addons, password visibility toggles, and clean focus ring transitions.
                     </PopupDescription>
-
-                    <PopupCharacteristics
-                        items={[
-                            {
-                                title: "Addon Architecture",
-                                description: "Easily place leading icons, trailing actions, or helper controls inside the input shell.",
-                            },
-                            {
-                                title: "Polymorphic Textarea Support",
-                                description: "Textareas seamlessly adopt the exact same InputShell tokens, focus glow, and elevation without redundant wrapper DOM nodes.",
-                            },
-                            {
-                                title: "Elevated Surface & Rim Light",
-                                description: "Calibrated dark surface (rgba(35, 35, 35)) with subtle top rim lighting that brightens smoothly on hover and active focus.",
-                            },
-                            {
-                                title: "Validation States",
-                                description: "Distinct focus-visible rings, disabled states, and dynamic data-invalid error boundaries via Field primitives.",
-                            },
-                        ]}
-                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>
