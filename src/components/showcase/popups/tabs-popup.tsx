@@ -22,7 +22,7 @@ export function TabsPopup({ open, onOpenChange }: PopupProps) {
                             <h3 className="text-lg text-muted leading-none">
                                 Default Variant
                             </h3>
-                            <Tabs defaultValue="tab-1" className="w-full">
+                            <Tabs defaultValue="tab-1" >
                                 <TabsList>
                                     <TabsTrigger value="tab-1">Tab 1</TabsTrigger>
                                     <TabsTrigger value="tab-2">Tab 2</TabsTrigger>
@@ -44,8 +44,8 @@ export function TabsPopup({ open, onOpenChange }: PopupProps) {
                             <h3 className="text-lg text-muted leading-none">
                                 Line Variant
                             </h3>
-                            <Tabs defaultValue="tab-1" className="w-full">
-                                <TabsList variant="line">
+                            <Tabs defaultValue="tab-1" >
+                                <TabsList variant="line" className="w-2/3">
                                     <TabsTrigger value="tab-1">Tab 1</TabsTrigger>
                                     <TabsTrigger value="tab-2">Tab 2</TabsTrigger>
                                     <TabsTrigger value="tab-3">Tab 3</TabsTrigger>
