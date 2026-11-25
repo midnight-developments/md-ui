@@ -1,7 +1,9 @@
 "use client"
 
+import * as React from "react"
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs"
 import { cva, type VariantProps } from "class-variance-authority"
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { ShineEffect } from "@/components/ui/effects/shine-effect"
 
@@ -56,12 +58,12 @@ function TabsList({
 }
 
 const tabsIndicatorVariants = cva(
-    "pointer-events-none absolute left-0 z-0 w-(--active-tab-width) translate-x-(--active-tab-left) transform-gpu",
+    "pointer-events-none absolute left-0 z-0 transform-gpu",
     {
         variants: {
             variant: {
                 default:
-                    "top-0 h-(--active-tab-height) translate-y-(--active-tab-top) rounded-md bg-button-secondary inset-ring inset-ring-input",
+                    "top-0 rounded-md bg-button-secondary inset-ring inset-ring-white/2",
                 line: "bottom-0 h-0.5 rounded-none bg-foreground",
             },
         },
@@ -70,6 +72,36 @@ const tabsIndicatorVariants = cva(
         },
     }
 )
+
+const INDICATOR_SPRING = {
+    type: "spring",
+    duration: 0.30,
+    bounce: 0.2,
+} as const
+
+function getIndicatorTarget(
+    variant: VariantProps<typeof tabsIndicatorVariants>["variant"],
+    position: TabsPrimitive.Indicator.State["activeTabPosition"],
+    size: TabsPrimitive.Indicator.State["activeTabSize"]
+) {
+    if (!position || !size || size.width <= 0 || size.height <= 0) {
+        return undefined
+    }
+
+    if (variant === "line") {
+        return {
+            x: position.left,
+            width: size.width,
+        }
+    }
+
+    return {
+        x: position.left,
+        y: position.top,
+        width: size.width,
+        height: size.height,
+    }
+}
 
 function TabsIndicator({
     className,
@@ -81,6 +113,26 @@ function TabsIndicator({
         <TabsPrimitive.Indicator
             data-slot="tabs-indicator"
             className={cn(tabsIndicatorVariants({ variant }), className)}
+            render={(indicatorProps, state) => {
+                const animate = getIndicatorTarget(
+                    variant,
+                    state.activeTabPosition,
+                    state.activeTabSize
+                )
+
+                if (!animate) {
+                    return <span {...indicatorProps} />
+                }
+
+                return (
+                    <motion.span
+                        {...(indicatorProps as React.ComponentPropsWithoutRef<typeof motion.span>)}
+                        initial={false}
+                        animate={animate}
+                        transition={INDICATOR_SPRING}
+                    />
+                )
+            }}
             {...props}
         >
             {variant !== "line" && (
@@ -96,8 +148,8 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
         <TabsPrimitive.Tab
             data-slot="tabs-trigger"
             className={cn(
-                "relative z-1 inline-flex h-full cursor-pointer select-none items-center justify-center rounded-md px-4 gap-1.5 ",
-                "text-base font-medium whitespace-nowrap text-muted data-active:text-foreground",
+                "relative z-1 inline-flex h-full cursor-pointer select-none items-center justify-center  px-4 gap-1.5 ",
+                "text-base font-medium whitespace-nowrap text-muted data-active:text-foreground transition-colors duration-200 ease-out",
                 "group-data-[variant=line]/tabs-list:bg-transparent [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
                 className
             )}
