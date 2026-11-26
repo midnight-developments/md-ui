@@ -2,10 +2,9 @@
 
 import * as React from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
+import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
-import { XIcon } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
 import { BlurMirrorEffect } from "@/components/ui/effects/blur-mirror-effect"
 import { ShineEffect } from "@/components/ui/effects/shine-effect"
 
@@ -14,6 +13,33 @@ const DialogTrigger = DialogPrimitive.Trigger
 const DialogPortal = DialogPrimitive.Portal
 const DialogClose = DialogPrimitive.Close
 
+const DIALOG_EASE = [0.22, 1, 0.36, 1] as const
+
+const DIALOG_TRANSITION = {
+    duration: 0.22,
+    ease: DIALOG_EASE,
+} as const
+
+const DIALOG_OVERLAY_VARIANTS = {
+    open: { opacity: 1 },
+    closed: { opacity: 0 },
+} as const
+
+const DIALOG_CONTENT_VARIANTS = {
+    open: { opacity: 1, scale: 1 },
+    closed: { opacity: 0, scale: 0.97 },
+} as const
+
+const DIALOG_INNER_BLUR_TRANSITION = {
+    duration: 0.2,
+    ease: DIALOG_EASE,
+} as const
+
+const DIALOG_INNER_BLUR_VARIANTS = {
+    open: { filter: "blur(0px)" },
+    closed: { filter: "blur(8px)" },
+} as const
+
 function DialogOverlay({
     className,
     ...props
@@ -21,8 +47,17 @@ function DialogOverlay({
     return (
         <DialogPrimitive.Backdrop
             data-slot="dialog-overlay"
+            render={(backdropProps, state) => (
+                <motion.div
+                    {...(backdropProps as React.ComponentProps<typeof motion.div>)}
+                    initial={false}
+                    animate={state.open ? "open" : "closed"}
+                    variants={DIALOG_OVERLAY_VARIANTS}
+                    transition={DIALOG_TRANSITION}
+                />
+            )}
             className={cn(
-                "fixed inset-0 isolate z-50 bg-black/10 backdrop-blur-xs",
+                "fixed inset-0 isolate z-50 bg-black/50 data-closed:pointer-events-none",
                 className
             )}
             {...props}
@@ -67,31 +102,36 @@ function DialogContent({
     ...props
 }: DialogPrimitive.Popup.Props) {
     return (
-        <DialogPortal>
+        <DialogPortal keepMounted>
             <DialogOverlay />
-            <DialogPrimitive.Popup
-                data-slot="dialog-content"
-                render={
-                    <DialogShell
-                        className={cn(
-                            "fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2",
-                            className
-                        )}
-                    />
-                }
-                {...props}
-            >
-                {children}
-                <DialogPrimitive.Close
-                    data-slot="dialog-close"
-                    render={
-                        <Button variant="ghost" className="absolute top-2 right-2 z-1">
-                            <XIcon className="size-4" />
-                            <span className="sr-only">Close</span>
-                        </Button>
-                    }
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+                <DialogPrimitive.Popup
+                    data-slot="dialog-content"
+                    render={(popupProps, state) => (
+                        <motion.div
+                            {...(popupProps as React.ComponentProps<typeof motion.div>)}
+                            initial={false}
+                            animate={state.open ? "open" : "closed"}
+                            variants={DIALOG_CONTENT_VARIANTS}
+                            transition={DIALOG_TRANSITION}
+                        >
+                            <DialogShell>
+                                <motion.div
+                                    className="grid w-full"
+                                    initial={false}
+                                    animate={state.open ? "open" : "closed"}
+                                    variants={DIALOG_INNER_BLUR_VARIANTS}
+                                    transition={DIALOG_INNER_BLUR_TRANSITION}
+                                >
+                                    {children}
+                                </motion.div>
+                            </DialogShell>
+                        </motion.div>
+                    )}
+                    className={cn("w-full pointer-events-auto data-closed:pointer-events-none", className)}
+                    {...props}
                 />
-            </DialogPrimitive.Popup>
+            </div>
         </DialogPortal>
     )
 }

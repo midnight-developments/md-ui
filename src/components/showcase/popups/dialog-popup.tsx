@@ -21,10 +21,27 @@ import {
     DialogClose,
     DialogShell,
 } from "@/components/ui/dialog"
-import { SuccessGraphic } from "@/components/ui/graphics/success-graphic"
 import { Button } from "@/components/ui/button"
-import ForwardIcon from "@/assets/icons/forward.svg?react"
 
+function ExampleDialogBody() {
+    return (
+        <>
+            <DialogHeader>
+                <DialogTitle>Dialog Title</DialogTitle>
+                <DialogDescription>Dialog Description</DialogDescription>
+            </DialogHeader>
+            <DialogBody className="flex flex-col gap-2">
+                <span className="bg-white/7 p-1.5 rounded-sm w-1/2"></span>
+                <span className="bg-white/5 p-4 rounded-sm w-full"></span>
+                <span className="bg-white/3 p-1 rounded-sm w-2/3"></span>
+
+                <span className="bg-white/7 p-1.5 rounded-sm w-1/3 mt-6"></span>
+                <span className="bg-white/5 p-4 rounded-sm w-full"></span>
+                <span className="bg-white/3 p-1 rounded-sm w-2/5"></span>
+            </DialogBody>
+        </>
+    )
+}
 
 export function DialogPopup({ open, onOpenChange }: PopupProps) {
     return (
@@ -36,20 +53,8 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                             <h3 className="text-lg text-muted leading-none">
                                 Preview
                             </h3>
-                            <DialogShell >
-                                <DialogHeader >
-                                    <DialogTitle>Dialog Title</DialogTitle>
-                                    <DialogDescription>Dialog Description</DialogDescription>
-                                </DialogHeader>
-                                <DialogBody className="flex flex-col gap-2">
-                                    <span className="bg-white/7 p-1.5 rounded-sm w-1/2"></span>
-                                    <span className="bg-white/5 p-4 rounded-sm w-full"></span>
-                                    <span className="bg-white/3 p-1 rounded-sm w-2/3"></span>
-
-                                    <span className="bg-white/7 p-1.5 rounded-sm w-1/3 mt-6"></span>
-                                    <span className="bg-white/5 p-4 rounded-sm w-full"></span>
-                                    <span className="bg-white/3 p-1 rounded-sm w-2/5"></span>
-                                </DialogBody>
+                            <DialogShell>
+                                <ExampleDialogBody />
                                 <DialogFooter className="grid grid-cols-2">
                                     <Button variant="secondary">Secondary</Button>
                                     <Button>Primary</Button>
@@ -61,14 +66,30 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                             <h3 className="text-lg text-muted leading-none">
                                 Actual Dialog
                             </h3>
-                            <Button variant="secondary">Open Dialog</Button>
+                            <Dialog>
+                                <DialogTrigger
+                                    render={
+                                        <Button variant="secondary">Open Dialog</Button>
+                                    }
+                                />
+                                <DialogContent className="max-w-md">
+                                    <ExampleDialogBody />
+                                    <DialogFooter className="grid grid-cols-2">
+                                        <DialogClose
+                                            render={
+                                                <Button variant="secondary">Secondary</Button>
+                                            }
+                                        />
+                                        <DialogClose
+                                            render={
+                                                <Button>Primary</Button>
+                                            }
+                                        />
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
                         </div>
-
-
-
-
                     </div>
-
                 </PopupPreview>
                 <PopupDetails>
                     <PopupTitle>Dialog</PopupTitle>
