@@ -169,6 +169,7 @@
     @apply focus-within:inset-ring-2 focus-within:inset-ring-accent-border focus-within:bg-input-active;
     @apply data-popup-open:inset-ring-2 data-popup-open:inset-ring-accent-border data-popup-open:bg-input-active;
     @apply data-invalid:inset-ring-2 data-invalid:inset-ring-destructive has-data-invalid:inset-ring-2 has-data-invalid:inset-ring-destructive;
+    @apply disabled:pointer-events-none disabled:opacity-50 data-disabled:pointer-events-none data-disabled:opacity-50 has-disabled:pointer-events-none has-disabled:opacity-50;
 
     --shine-border-width: 1px;
     --shine-size: 85% 100%;

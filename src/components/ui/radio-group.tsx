@@ -26,6 +26,7 @@ function RadioGroupItem({ className, ...props }: RadioGroupItemProps) {
             data-slot="radio-group-item"
             className={cn(
                 "inline-flex shrink-0 items-center justify-center cursor-pointer",
+                "data-disabled:pointer-events-none data-disabled:opacity-50",
                 className
             )}
             {...props}
@@ -94,6 +95,7 @@ function CardRadioGroupItem({
                 "bg-card inset-ring inset-ring-border",
                 "hover:not-data-[checked]:inset-ring-white/14",
                 "data-[checked]:inset-ring-2 data-[checked]:inset-ring-accent data-[checked]:bg-card-active",
+                "data-disabled:pointer-events-none data-disabled:opacity-50",
                 isTop ? "items-start" : "items-center",
                 isLeft ? "justify-start" : "justify-between",
                 className

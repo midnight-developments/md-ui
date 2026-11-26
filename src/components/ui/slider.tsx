@@ -34,7 +34,7 @@ function Slider({
 
     const sliderElement = (
         <SliderPrimitive.Root
-            className={cn("data-horizontal:w-full data-vertical:h-full", className)}
+            className={cn("data-horizontal:w-full data-vertical:h-full data-disabled:pointer-events-none data-disabled:opacity-50", className)}
             data-slot="slider"
             defaultValue={defaultValue}
             value={value}

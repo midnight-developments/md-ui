@@ -87,6 +87,7 @@ function FieldLabel({
             data-slot="field-label"
             className={cn(
                 "group/field-label peer/field-label text-base font-normal leading-none text-foreground cursor-pointer",
+                "group-has-disabled/field:pointer-events-none group-has-disabled/field:opacity-50 group-has-data-disabled/field:pointer-events-none group-has-data-disabled/field:opacity-50",
                 className
             )}
             {...props}

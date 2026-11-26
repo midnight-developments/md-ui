@@ -46,7 +46,7 @@ function ComboboxInput({
     showTrigger?: boolean
 }) {
     return (
-        <ComboboxPrimitive.InputGroup render={<InputGroup className={cn(className)} />}>
+        <ComboboxPrimitive.InputGroup render={<InputGroup data-disabled={disabled ? "" : undefined} className={cn(className)} />}>
             <ComboboxPrimitive.Input
                 render={<InputGroupInput disabled={disabled} />}
                 {...props}

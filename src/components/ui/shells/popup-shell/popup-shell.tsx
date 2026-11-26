@@ -14,6 +14,7 @@ const popupShellClasses = cn(
 const popupItemClasses = cn(
     advancedPopupStyles.item,
     "flex w-full cursor-pointer items-center gap-2.5 rounded-md px-2 py-1.5 text-base select-none",
+    "data-disabled:pointer-events-none data-disabled:opacity-50",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
 )
 

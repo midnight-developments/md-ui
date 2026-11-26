@@ -150,6 +150,7 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
             className={cn(
                 "relative z-1 inline-flex h-full cursor-pointer select-none items-center justify-center  px-4 gap-1.5 ",
                 "text-base font-medium whitespace-nowrap text-muted data-active:text-foreground transition-colors duration-200 ease-out",
+                "data-disabled:pointer-events-none data-disabled:opacity-50",
                 "group-data-[variant=line]/tabs-list:bg-transparent [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
                 className
             )}
