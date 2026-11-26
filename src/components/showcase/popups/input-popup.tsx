@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import {
     Popup,
     PopupContent,
@@ -11,86 +10,65 @@ import {
     type PopupProps,
 } from "@/components/showcase/popup"
 import { Input } from "@/components/ui/input"
-import { PasswordInput } from "@/components/ui/password-input"
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
 import { Textarea } from "@/components/ui/textarea"
-import { Field, FieldLabel, FieldGroup, FieldDescription } from "@/components/ui/field"
-import { Search } from "lucide-react"
+import {
+    Field,
+    FieldGroup,
+    FieldLabel,
+    FieldMessage,
+} from "@/components/ui/field"
 
 export function InputPopup({ open, onOpenChange }: PopupProps) {
-    const [query, setQuery] = React.useState("")
-    const [email, setEmail] = React.useState("invalid-email-format")
-
-    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-    const isInvalid = !isEmailValid
-
     return (
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
                     <FieldGroup className="max-w-md">
                         <Field>
-                            <FieldLabel>Standard Input</FieldLabel>
-                            <Input placeholder="Enter username or email" defaultValue="danyalasghar@midnight.dev" />
+                            <FieldLabel htmlFor="standard-input">Standard Input</FieldLabel>
+                            <Input id="standard-input" placeholder="Enter text…" />
                         </Field>
 
                         <Field>
-                            <FieldLabel>Search with Icon</FieldLabel>
-                            <InputGroup>
-                                <InputGroupAddon align="inline-start">
-                                    <Search className="size-4 text-muted" />
-                                </InputGroupAddon>
-                                <InputGroupInput
-                                    value={query}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
-                                    placeholder="Search documentation or files..."
-                                />
-                            </InputGroup>
-                        </Field>
-
-                        <Field>
-                            <FieldLabel>Secure Password Field</FieldLabel>
-                            <PasswordInput
-                                defaultValue="super-secret-password-123"
-                            />
-                        </Field>
-
-                        <Field>
-                            <FieldLabel>Textarea</FieldLabel>
-                            <Textarea
-                                placeholder="Write project notes or a description..."
-                                defaultValue="Engineered with automatic field-sizing and unified InputShell styling."
-                                rows={3}
-                            />
-                        </Field>
-
-                        <Field data-invalid={isInvalid ? "" : undefined}>
-                            <FieldLabel>Validation State</FieldLabel>
+                            <FieldLabel htmlFor="description-input">Input With Description</FieldLabel>
                             <Input
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="name@domain.com"
-                                data-invalid={isInvalid ? "" : undefined}
-                                aria-invalid={isInvalid}
+                                id="description-input"
+                                placeholder="Enter text…"
+                                aria-describedby="description-input-message"
                             />
-                            <FieldDescription
-                                description="We'll send updates and verification links here."
-                                error={
-                                    isInvalid
-                                        ? email.length === 0
-                                            ? "Email address is required."
-                                            : "Please enter a valid email address (e.g. name@domain.com)."
-                                        : undefined
-                                }
+                            <FieldMessage id="description-input-message">
+                                Description Goes Here
+                            </FieldMessage>
+                        </Field>
+
+                        <Field data-invalid>
+                            <FieldLabel htmlFor="errored-input">Errored State</FieldLabel>
+                            <Input id="errored-input" placeholder="Enter email…" aria-invalid />
+                            <FieldMessage
+                                invalid
+                                description="Random Description"
+                                error="Please enter a valid email address (e.g. name@domain.com)."
                             />
                         </Field>
+
+                        <Field>
+                            <FieldLabel htmlFor="disabled-input">Disabled State</FieldLabel>
+                            <Input id="disabled-input" placeholder="Disabled input…" disabled />
+                        </Field>
+
+
+                        <Field>
+                            <FieldLabel htmlFor="textarea-input">Textarea Input</FieldLabel>
+                            <Textarea id="textarea-input" placeholder="Enter message…" />
+                        </Field>
+
                     </FieldGroup>
                 </PopupPreview>
 
                 <PopupDetails>
-                    <PopupTitle>Input, Textarea & InputGroup</PopupTitle>
+                    <PopupTitle>Input & Textarea</PopupTitle>
                     <PopupDescription>
-                        Engineered with composable input groups, polymorphic textareas, interactive icon addons, password visibility toggles, and clean focus ring transitions.
+                        Single-line and multi-line text controls sharing the unified input shell, rim lighting, and focus states.
                     </PopupDescription>
                 </PopupDetails>
             </PopupContent>

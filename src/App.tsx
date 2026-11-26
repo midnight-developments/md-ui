@@ -6,8 +6,10 @@ import {
     CardContent,
 } from '@/components/showcase/card'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { Select, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Combobox, ComboboxInput } from '@/components/ui/combobox'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Field, FieldLabel, FieldLegend, FieldSet } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge'
@@ -18,8 +20,11 @@ import { DialogShell } from '@/components/ui/dialog'
 
 import { ButtonPopup } from '@/components/showcase/popups/button-popup'
 import { InputPopup } from '@/components/showcase/popups/input-popup'
+import { InputGroupPopup } from '@/components/showcase/popups/input-group-popup'
 import { SelectPopup } from '@/components/showcase/popups/select-popup'
-import { DropdownPopoverPopup } from '@/components/showcase/popups/dropdown-popover-popup'
+import { ComboboxPopup } from '@/components/showcase/popups/combobox-popup'
+import { DropdownPopup } from '@/components/showcase/popups/dropdown-popup'
+import { PopoverPopup } from '@/components/showcase/popups/popover-popup'
 import { RadioPopup } from '@/components/showcase/popups/radio-popup'
 import { CheckboxPopup } from '@/components/showcase/popups/checkbox-popup'
 import { BadgePopup } from '@/components/showcase/popups/badge-popup'
@@ -34,8 +39,11 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 type PopupId =
     | 'button'
     | 'input'
+    | 'input-group'
     | 'select'
-    | 'dropdown-popover'
+    | 'combobox'
+    | 'dropdown'
+    | 'popover'
     | 'radio'
     | 'checkbox'
     | 'badge'
@@ -158,6 +166,18 @@ export default function App() {
                         <Card onClick={() => setActivePopup('input')}>
                             <CardPreview>
                                 <Field className="w-full max-w-[210px] pointer-events-none select-none">
+                                    <FieldLabel>Input</FieldLabel>
+                                    <Input placeholder="Enter text…" readOnly />
+                                </Field>
+                            </CardPreview>
+                            <CardContent>
+                                <CardTitle>Input & Textarea</CardTitle>
+                            </CardContent>
+                        </Card>
+
+                        <Card onClick={() => setActivePopup('input-group')}>
+                            <CardPreview>
+                                <Field className="w-full max-w-[210px] pointer-events-none select-none">
                                     <FieldLabel>Search</FieldLabel>
                                     <InputGroup>
                                         <InputGroupAddon align="inline-start">
@@ -168,7 +188,7 @@ export default function App() {
                                 </Field>
                             </CardPreview>
                             <CardContent>
-                                <CardTitle>Input & Textarea</CardTitle>
+                                <CardTitle>InputGroup</CardTitle>
                             </CardContent>
                         </Card>
 
@@ -184,28 +204,45 @@ export default function App() {
                                 </Field>
                             </CardPreview>
                             <CardContent>
-                                <CardTitle>Select & Combobox</CardTitle>
+                                <CardTitle>Select</CardTitle>
                             </CardContent>
                         </Card>
 
-                        <Card onClick={() => setActivePopup('dropdown-popover')}>
+                        <Card onClick={() => setActivePopup('combobox')}>
                             <CardPreview>
-                                <div className="flex flex-col items-center gap-2.5 pointer-events-none select-none w-full max-w-[210px]">
-                                    <div className="input-shell w-full">
-                                        <SlidersHorizontal className="size-4 text-muted" />
-                                        <span>Options</span>
-                                        <TriggerChevron />
-                                    </div>
-                                    <p className="text-[14px] text-muted text-left w-full">
-                                        Open a popover by{" "}
-                                        <span className="text-foreground underline underline-offset-4 font-medium">
-                                            clicking here
-                                        </span>
-                                    </p>
+                                <Field className="w-full max-w-[210px] pointer-events-none select-none">
+                                    <FieldLabel>Combobox</FieldLabel>
+                                    <Combobox items={["Option 1"]}>
+                                        <ComboboxInput placeholder="Search options…" readOnly />
+                                    </Combobox>
+                                </Field>
+                            </CardPreview>
+                            <CardContent>
+                                <CardTitle>Combobox</CardTitle>
+                            </CardContent>
+                        </Card>
+
+                        <Card onClick={() => setActivePopup('dropdown')}>
+                            <CardPreview>
+                                <div className="input-shell w-full max-w-[210px] pointer-events-none select-none">
+                                    <SlidersHorizontal className="size-4 text-muted" />
+                                    <span>Options</span>
+                                    <TriggerChevron />
                                 </div>
                             </CardPreview>
                             <CardContent>
-                                <CardTitle>Dropdown & Popover</CardTitle>
+                                <CardTitle>Dropdown</CardTitle>
+                            </CardContent>
+                        </Card>
+
+                        <Card onClick={() => setActivePopup('popover')}>
+                            <CardPreview>
+                                <div className="pointer-events-none select-none">
+                                    <Button variant="secondary">Open Popover</Button>
+                                </div>
+                            </CardPreview>
+                            <CardContent>
+                                <CardTitle>Popover</CardTitle>
                             </CardContent>
                         </Card>
 
@@ -317,12 +354,24 @@ export default function App() {
                 open={activePopup === 'input'}
                 onOpenChange={(open) => !open && setActivePopup(null)}
             />
+            <InputGroupPopup
+                open={activePopup === 'input-group'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
             <SelectPopup
                 open={activePopup === 'select'}
                 onOpenChange={(open) => !open && setActivePopup(null)}
             />
-            <DropdownPopoverPopup
-                open={activePopup === 'dropdown-popover'}
+            <ComboboxPopup
+                open={activePopup === 'combobox'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <DropdownPopup
+                open={activePopup === 'dropdown'}
+                onOpenChange={(open) => !open && setActivePopup(null)}
+            />
+            <PopoverPopup
+                open={activePopup === 'popover'}
                 onOpenChange={(open) => !open && setActivePopup(null)}
             />
             <RadioPopup

@@ -9,14 +9,12 @@ export interface PasswordInputProps extends React.ComponentProps<"input"> {
 
 function PasswordInput({
     className,
-    disabled,
     ...props
 }: PasswordInputProps) {
     const [showPassword, setShowPassword] = React.useState(false)
 
     return (
         <InputGroup
-            data-disabled={disabled ? "" : undefined}
             data-invalid={props["data-invalid"]}
             className={className}
         >
@@ -25,7 +23,6 @@ function PasswordInput({
             </InputGroupAddon>
             <InputGroupInput
                 type={showPassword ? "text" : "password"}
-                disabled={disabled}
                 {...props}
             />
             <InputGroupAddon

@@ -56,6 +56,7 @@ function Field({
 }: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
     return (
         <div
+            role="group"
             data-slot="field"
             data-orientation={orientation}
             className={cn(fieldVariants({ orientation }), className)}
@@ -121,41 +122,74 @@ function FieldLegend({ className, ...props }: React.ComponentProps<"legend">) {
     )
 }
 
-export interface FieldDescriptionProps extends React.ComponentProps<"p"> {
-    description?: React.ReactNode
-    error?: React.ReactNode
+function FieldDescription({
+    className,
+    children,
+    ...props
+}: React.ComponentProps<"p">) {
+    if (!children) return null
+
+    return (
+        <p
+            data-slot="field-description"
+            className={cn(
+                "text-[0.9rem] leading-tight w-full text-secondary",
+                "group-has-disabled/field:pointer-events-none group-has-disabled/field:opacity-50 group-has-data-disabled/field:pointer-events-none group-has-data-disabled/field:opacity-50",
+                className
+            )}
+            {...props}
+        >
+            {children}
+        </p>
+    )
 }
 
-function FieldDescription({
+function FieldError({
+    className,
+    children,
+    ...props
+}: React.ComponentProps<"p">) {
+    return (
+        <p
+            role="alert"
+            data-slot="field-error"
+            className={cn(
+                "text-[0.9rem] leading-tight w-full font-normal text-destructive",
+                "group-has-disabled/field:pointer-events-none group-has-disabled/field:opacity-50 group-has-data-disabled/field:pointer-events-none group-has-data-disabled/field:opacity-50",
+                className
+            )}
+            {...props}
+        >
+            {children}
+        </p>
+    )
+}
+
+export interface FieldMessageProps extends React.ComponentProps<"div"> {
+    description?: React.ReactNode
+    error?: React.ReactNode
+    invalid?: boolean
+}
+
+function FieldMessage({
     className,
     description,
     error,
+    invalid,
     children,
     ...props
-}: FieldDescriptionProps) {
-    const isError = !!error
-    const content = isError ? error : (description ?? children)
-
-    if (!content) return null
-
+}: FieldMessageProps) {
     return (
-        <div className="w-full relative -mt-0.5">
-            <p
-                role={isError ? "alert" : undefined}
-                data-slot={isError ? "field-error" : "field-description"}
-                className={cn(
-                    "text-[0.9rem] leading-tight w-full",
-                    "group-has-disabled/field:pointer-events-none group-has-disabled/field:opacity-50 group-has-data-disabled/field:pointer-events-none group-has-data-disabled/field:opacity-50",
-
-                    isError
-                        ? "font-normal text-destructive"
-                        : "text-secondary",
-                    className
-                )}
-                {...props}
-            >
-                {content}
-            </p>
+        <div
+            data-slot="field-message"
+            className={cn("w-full relative -mt-0.5", className)}
+            {...props}
+        >
+            {invalid && error ? (
+                <FieldError>{error}</FieldError>
+            ) : (
+                <FieldDescription>{description ?? children}</FieldDescription>
+            )}
         </div>
     )
 }
@@ -174,6 +208,8 @@ export {
     Field,
     FieldLabel,
     FieldDescription,
+    FieldError,
+    FieldMessage,
     FieldGroup,
     FieldSet,
     FieldLegend,

@@ -166,10 +166,10 @@
     @apply text-foreground text-base placeholder:text-muted;
     @apply bg-input inset-ring-1 inset-ring-white/2;
 
-    @apply focus-within:inset-ring-2 focus-within:inset-ring-accent-border focus-within:bg-input-active;
+    @apply focus-within:inset-ring-2 focus-within:inset-ring-accent-border;
     @apply data-popup-open:inset-ring-2 data-popup-open:inset-ring-accent-border data-popup-open:bg-input-active;
-    @apply data-invalid:inset-ring-2 data-invalid:inset-ring-destructive has-data-invalid:inset-ring-2 has-data-invalid:inset-ring-destructive;
-    @apply disabled:pointer-events-none disabled:opacity-50 data-disabled:pointer-events-none data-disabled:opacity-50 has-disabled:pointer-events-none has-disabled:opacity-50;
+    @apply data-invalid:inset-ring-2 data-invalid:inset-ring-destructive has-data-invalid:inset-ring-2 has-data-invalid:inset-ring-destructive group-data-invalid/field:inset-ring-2 group-data-invalid/field:inset-ring-destructive;
+    @apply data-disabled:pointer-events-none data-disabled:opacity-50 has-disabled:pointer-events-none has-disabled:opacity-50;
 
     --shine-border-width: 1px;
     --shine-size: 85% 100%;
