@@ -27,10 +27,12 @@ const standardRadioOptions = [
     { value: "opt-1", label: "Option 1", description: "This is a longer description of option 1." },
     { value: "opt-2", label: "Option 2", description: "This is a longer description of option 2." },
     { value: "opt-3", label: "Option 3", description: "This is a longer description of option 3." },
+    { value: "opt-disabled", label: "Disabled Option", description: "This is a disabled option.", disabled: true },
 ]
 
 export function RadioPopup({ open, onOpenChange }: PopupProps) {
     const [standardRadio, setStandardRadio] = React.useState("opt-2")
+    const [descriptionRadio, setDescriptionRadio] = React.useState("opt-2")
     const [cardRadio, setCardRadio] = React.useState("card-2")
 
     return (
@@ -66,7 +68,7 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                             >
                                 {standardRadioOptions.map((opt) => (
                                     <Field orientation="horizontal" key={opt.value}>
-                                        <RadioGroupItem value={opt.value} id={`r-${opt.value}`} />
+                                        <RadioGroupItem value={opt.value} id={`r-${opt.value}`} disabled={opt.disabled} />
                                         <FieldLabel htmlFor={`r-${opt.value}`}>{opt.label}</FieldLabel>
                                     </Field>
                                 ))}
@@ -76,14 +78,14 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                         <FieldSet>
                             <FieldLegend>Radio List With Descriptions</FieldLegend>
                             <RadioGroup
-                                value={standardRadio}
-                                onValueChange={(val) => val && setStandardRadio(val as string)}
+                                value={descriptionRadio}
+                                onValueChange={(val) => val && setDescriptionRadio(val as string)}
                             >
                                 {standardRadioOptions.map((opt) => (
                                     <Field orientation="horizontal" key={opt.value}>
-                                        <RadioGroupItem value={opt.value} id={`r-${opt.value}`} />
+                                        <RadioGroupItem value={opt.value} id={`rd-${opt.value}`} disabled={opt.disabled} />
                                         <FieldContent>
-                                            <FieldLabel htmlFor={`r-${opt.value}`}>{opt.label}</FieldLabel>
+                                            <FieldLabel htmlFor={`rd-${opt.value}`}>{opt.label}</FieldLabel>
                                             <FieldDescription>{opt.description}</FieldDescription>
                                         </FieldContent>
                                     </Field>

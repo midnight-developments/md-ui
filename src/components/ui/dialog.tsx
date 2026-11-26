@@ -26,7 +26,7 @@ const DIALOG_OVERLAY_VARIANTS = {
 } as const
 
 const DIALOG_CONTENT_VARIANTS = {
-    open: { opacity: 1, scale: 1 },
+    open: { opacity: 1, scale: 1, },
     closed: { opacity: 0, scale: 0.97 },
 } as const
 

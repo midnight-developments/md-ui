@@ -27,10 +27,12 @@ const standardCheckboxOptions = [
     { value: "opt-1", label: "Option A", description: "This is a description for Option A." },
     { value: "opt-2", label: "Option B", description: "This is a description for Option B." },
     { value: "opt-3", label: "Option C", description: "This is a description for Option C." },
+    { value: "opt-disabled", label: "Disabled Option", description: "This is a disabled option.", disabled: true },
 ]
 
 export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
     const [standardCheckboxes, setStandardCheckboxes] = React.useState<string[]>([])
+    const [descriptionCheckboxes, setDescriptionCheckboxes] = React.useState<string[]>([])
     const [cardCheckboxes, setCardCheckboxes] = React.useState<string[]>([])
 
     return (
@@ -69,7 +71,7 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
                             >
                                 {standardCheckboxOptions.map((opt) => (
                                     <Field key={opt.value} orientation="horizontal">
-                                        <Checkbox value={opt.value} id={`cb-${opt.value}`} />
+                                        <Checkbox value={opt.value} id={`cb-${opt.value}`} disabled={opt.disabled} />
                                         <FieldLabel htmlFor={`cb-${opt.value}`}>{opt.label}</FieldLabel>
                                     </Field>
                                 ))}
@@ -79,14 +81,14 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
                         <FieldSet>
                             <FieldLegend>Checkbox List With Descriptions</FieldLegend>
                             <CheckboxGroup
-                                value={standardCheckboxes}
-                                onValueChange={(val) => setStandardCheckboxes(val)}
+                                value={descriptionCheckboxes}
+                                onValueChange={(val) => setDescriptionCheckboxes(val)}
                             >
                                 {standardCheckboxOptions.map((opt) => (
                                     <Field key={opt.value} orientation="horizontal">
-                                        <Checkbox value={opt.value} id={`cb-${opt.value}`} />
+                                        <Checkbox value={opt.value} id={`cbd-${opt.value}`} disabled={opt.disabled} />
                                         <FieldContent>
-                                            <FieldLabel htmlFor={`cb-${opt.value}`}>{opt.label}</FieldLabel>
+                                            <FieldLabel htmlFor={`cbd-${opt.value}`}>{opt.label}</FieldLabel>
                                             <FieldDescription>{opt.description}</FieldDescription>
                                         </FieldContent>
                                     </Field>

@@ -145,6 +145,8 @@ function FieldDescription({
                 data-slot={isError ? "field-error" : "field-description"}
                 className={cn(
                     "text-[0.9rem] leading-tight w-full",
+                    "group-has-disabled/field:pointer-events-none group-has-disabled/field:opacity-50 group-has-data-disabled/field:pointer-events-none group-has-data-disabled/field:opacity-50",
+
                     isError
                         ? "font-normal text-destructive"
                         : "text-secondary",
