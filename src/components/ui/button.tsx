@@ -6,7 +6,7 @@ import { ShineEffect } from "@/components/ui/effects/shine-effect"
 
 
 const buttonVariants = cva(
-  `group/button relative border-0 inset-ring overflow-hidden h-9 px-4 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-lg cursor-pointer whitespace-nowrap select-none transform-gpu 
+  `group/button relative border-0 inset-ring overflow-hidden h-9 px-3 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-lg cursor-pointer whitespace-nowrap select-none transform-gpu 
   text-base text-foreground tracking-tight 
   hover:brightness-110 active:brightness-92 active:text-foreground/80
   focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-accent-border focus-visible:brightness-110 

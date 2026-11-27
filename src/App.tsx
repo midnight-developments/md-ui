@@ -13,9 +13,9 @@ import { Combobox, ComboboxInput } from '@/components/ui/combobox'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Field, FieldLabel, FieldLegend, FieldSet } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge'
-import { Search, SlidersHorizontal } from 'lucide-react'
-import { TriggerChevron } from '@/components/ui/trigger-chevron'
+import { InfoIcon, Search } from 'lucide-react'
 import { DialogShell } from '@/components/ui/dialog'
+import { PopupShell } from '@/components/ui/shells/popup-shell/popup-shell'
 
 
 import { ButtonPopup } from '@/components/showcase/popups/button-popup'
@@ -148,7 +148,7 @@ export default function App() {
                         <h2 className="text-2xl font-medium text-foreground">Components</h2>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         <Card onClick={() => setActivePopup('button')}>
                             <CardPreview>
                                 <div className="grid grid-cols-2 gap-2 pointer-events-none select-none">
@@ -224,10 +224,8 @@ export default function App() {
 
                         <Card onClick={() => setActivePopup('dropdown')}>
                             <CardPreview>
-                                <div className="input-shell w-full max-w-[210px] pointer-events-none select-none">
-                                    <SlidersHorizontal className="size-4 text-muted" />
-                                    <span>Options</span>
-                                    <TriggerChevron />
+                                <div className="pointer-events-none select-none">
+                                    <Button variant="secondary">Open Menu</Button>
                                 </div>
                             </CardPreview>
                             <CardContent>
@@ -237,8 +235,23 @@ export default function App() {
 
                         <Card onClick={() => setActivePopup('popover')}>
                             <CardPreview>
-                                <div className="pointer-events-none select-none">
-                                    <Button variant="secondary">Open Popover</Button>
+                                <div className="pointer-events-none select-none flex flex-col items-center gap-4 ">
+                                    <Button variant="secondary">
+                                        <InfoIcon className="w-4.5" />
+                                        Details
+                                    </Button>
+                                    <PopupShell className="relative flex flex-col w-72 gap-2.5 p-3.5 overflow-visible">
+                                        <div
+                                            data-slot="popover-carat"
+                                            className="pointer-events-none absolute left-1/2 -translate-x-1/2 -top-[7px] z-10 size-3.5 rotate-45 rounded-tl-[3px] border-t border-l border-white/25 bg-(--dialog-bg)"
+                                        />
+                                        <div className="flex flex-col gap-1.5">
+                                            <div className="font-medium leading-tight">Additional information</div>
+                                            <div className="text-muted text-sm">
+                                                Popovers allow you to display rich content, such as text, images, or forms, in a floating overlay.
+                                            </div>
+                                        </div>
+                                    </PopupShell>
                                 </div>
                             </CardPreview>
                             <CardContent>

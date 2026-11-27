@@ -22,7 +22,7 @@ export function CardPreview({ className, children, ...props }: React.ComponentPr
         <div
             data-slot="showcase-card-preview"
             className={cn(
-                "w-full aspect-[16/8] flex items-center justify-center overflow-hidden relative p-3 bg-white/[0.015] border-b border-white/6 pointer-events-none select-none",
+                "w-full aspect-[5/3] flex items-center justify-center overflow-hidden relative p-2 bg-white/[0.015] border-b border-white/6 pointer-events-none select-none",
                 className
             )}
             {...props}

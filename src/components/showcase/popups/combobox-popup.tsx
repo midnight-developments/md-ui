@@ -40,9 +40,9 @@ export function ComboboxPopup({ open, onOpenChange }: PopupProps) {
                                 <ComboboxInput id="standard-combobox" placeholder="Search options…" />
                                 <ComboboxContent>
                                     <ComboboxList>
-                                        {(opt: string) => (
-                                            <ComboboxItem key={opt} value={opt}>
-                                                {opt}
+                                        {(item) => (
+                                            <ComboboxItem key={item} value={item}>
+                                                {item}
                                             </ComboboxItem>
                                         )}
                                     </ComboboxList>
@@ -57,13 +57,13 @@ export function ComboboxPopup({ open, onOpenChange }: PopupProps) {
                                 <ComboboxInput id="grouped-combobox" placeholder="Search options…" />
                                 <ComboboxContent>
                                     <ComboboxList>
-                                        {(group: (typeof groupedOptions)[number]) => (
+                                        {(group) => (
                                             <ComboboxGroup key={group.value} items={group.items}>
                                                 <ComboboxLabel>{group.value}</ComboboxLabel>
                                                 <ComboboxCollection>
-                                                    {(opt: string) => (
-                                                        <ComboboxItem key={opt} value={opt}>
-                                                            {opt}
+                                                    {(item: string) => (
+                                                        <ComboboxItem key={item} value={item}>
+                                                            {item}
                                                         </ComboboxItem>
                                                     )}
                                                 </ComboboxCollection>
