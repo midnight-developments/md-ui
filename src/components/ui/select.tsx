@@ -52,7 +52,7 @@ function SelectContent({
     alignOffset = 0,
     anchor,
     alignItemWithTrigger = false,
-    finalFocus = false,
+    finalFocus = true,
     ...props
 }: SelectPrimitive.Popup.Props &
     Pick<
