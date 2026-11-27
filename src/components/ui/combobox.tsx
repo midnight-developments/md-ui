@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/input-group"
 
 const Combobox = ComboboxPrimitive.Root
+const ComboboxCollection = ComboboxPrimitive.Collection
 
 function ComboboxTrigger({
     className,
@@ -214,6 +215,7 @@ function ComboboxSeparator(props: ComboboxPrimitive.Separator.Props) {
 
 export {
     Combobox,
+    ComboboxCollection,
     ComboboxInput,
     ComboboxContent,
     ComboboxList,

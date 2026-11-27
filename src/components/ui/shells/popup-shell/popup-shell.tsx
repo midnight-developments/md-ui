@@ -84,7 +84,7 @@ export function PopupLabel({
         <div
             data-slot="popup-label"
             data-inset={inset}
-            className={cn("px-1.5 py-1.5 text-base text-muted data-inset:pl-7", className)}
+            className={cn("px-2 py-1.5 text-base text-muted data-inset:pl-7", className)}
             {...props}
         />
     )
