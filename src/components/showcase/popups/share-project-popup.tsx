@@ -22,7 +22,7 @@ import { CopyIcon, CheckIcon, Lock } from "lucide-react"
 import { useCopy } from "@/hooks/use-copy"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Field, FieldLabel } from "@/components/ui/field"
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group"
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/components/ui/input-group"
 import {
     Combobox,
     ComboboxContent,
@@ -154,13 +154,14 @@ export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
                                         readOnly
                                         value={documentLink}
                                     />
-                                    <InputGroupAddon
-                                        align="inline-end"
-                                        className="cursor-pointer"
-                                        onClick={() => copy(documentLink)}
-                                        title={copied ? "Copied!" : "Copy link"}
-                                    >
-                                        {copied ? <CheckIcon className="size-4 text-green-400" /> : <CopyIcon />}
+                                    <InputGroupAddon align="inline-end">
+                                        <InputGroupButton
+                                            onClick={() => copy(documentLink)}
+                                            aria-label={copied ? "Copied!" : "Copy link"}
+                                            title={copied ? "Copied!" : "Copy link"}
+                                        >
+                                            {copied ? <CheckIcon className="size-4 text-green-400" /> : <CopyIcon className="size-4" />}
+                                        </InputGroupButton>
                                     </InputGroupAddon>
                                 </InputGroup>
                             </Field>
