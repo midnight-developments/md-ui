@@ -108,7 +108,7 @@ const generalAccessDescriptions: Record<Permission, string> = {
     "Admin": "Anyone on the internet with the link can administer",
 }
 
-export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
+export function ShareProjectDialog() {
     const documentLink = "https://docs.google.com/document/u/0/"
     const { copy, copied } = useCopy()
 
@@ -138,193 +138,199 @@ export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
     }
 
     return (
+        <DialogShell className="w-140">
+            <DialogHeader className="flex-row items-center justify-start gap-3">
+                <ShareIcon className="text-foreground size-8 bg-white/10 p-1.75 rounded-lg" />
+                <DialogTitle>Share Project</DialogTitle>
+            </DialogHeader>
+            <DialogBody className="flex flex-col gap-8">
+                <Field>
+                    <FieldLabel>Document Link</FieldLabel>
+                    <InputGroup>
+                        <InputGroupInput
+                            readOnly
+                            value={documentLink}
+                        />
+                        <InputGroupAddon align="inline-end">
+                            <InputGroupButton
+                                onClick={() => copy(documentLink)}
+                                aria-label={copied ? "Copied!" : "Copy link"}
+                                title={copied ? "Copied!" : "Copy link"}
+                            >
+                                {copied ? <CheckIcon className="size-4 text-green-400" /> : <CopyIcon className="size-4" />}
+                            </InputGroupButton>
+                        </InputGroupAddon>
+                    </InputGroup>
+                </Field>
+
+                <Field>
+                    <FieldLabel>Search Recipients</FieldLabel>
+                    <Combobox
+                        items={availableRecipients}
+                        itemToStringLabel={(item: UserRecipient) => (item ? `${item.name} ${item.email}` : "")}
+                        itemToStringValue={(item: UserRecipient) => (item ? item.id : "")}
+                        isItemEqualToValue={(a: UserRecipient, b: UserRecipient) => a?.id === b?.id}
+                        filter={(item: UserRecipient, query: string) => {
+                            const q = query.toLowerCase().trim()
+                            if (!q) return true
+                            return item.name.toLowerCase().includes(q) || item.email.toLowerCase().includes(q)
+                        }}
+                        inputValue={searchValue}
+                        onInputValueChange={(val) => setSearchValue(val)}
+                        value={null}
+                        onValueChange={(user: UserRecipient | null) => {
+                            if (user) handleAddRecipient(user)
+                        }}
+                    >
+                        <ComboboxInput placeholder="Select an option…" />
+                        <ComboboxContent>
+                            <ComboboxList>
+                                {(user: UserRecipient) => (
+                                    <ComboboxItem key={user.id} value={user}>
+                                        <div className="flex items-center gap-3 py-1.5">
+                                            <Avatar className="w-8 h-8">
+                                                <AvatarImage src={user.avatar} alt={user.name} />
+                                                <AvatarFallback>{user.fallback}</AvatarFallback>
+                                            </Avatar>
+                                            <div className="flex flex-col gap-1.75">
+                                                <p className="leading-none text-foreground">{user.name}</p>
+                                                <p className="leading-none text-secondary">{user.email}</p>
+                                            </div>
+                                        </div>
+                                    </ComboboxItem>
+                                )}
+                            </ComboboxList>
+                            <ComboboxEmpty>No options found</ComboboxEmpty>
+                        </ComboboxContent>
+                    </Combobox>
+                </Field>
+
+                <div className="flex flex-col gap-4">
+                    <p>Recipients</p>
+                    <div className="flex flex-col gap-6">
+                        {recipients.length === 0 ? (
+                            <p className="text-center text-secondary">No recipients added</p>
+                        ) : (
+                            recipients.map((recipient) => (
+                                <div key={recipient.id} className="flex justify-between items-center">
+                                    <div className="flex items-center gap-3.5">
+                                        <Avatar className="w-9 h-9">
+                                            <AvatarImage src={recipient.avatar} alt={recipient.name} />
+                                            <AvatarFallback>{recipient.fallback}</AvatarFallback>
+                                        </Avatar>
+                                        <div className="flex flex-col gap-2">
+                                            <p className="leading-none">{recipient.name}</p>
+                                            <p className="leading-none text-secondary">{recipient.email}</p>
+                                        </div>
+                                    </div>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger className="input-shell group/trigger cursor-pointer w-30">
+                                            <span className="flex-1 text-left truncate">{recipient.permission}</span>
+                                            <TriggerChevron />
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end" className="w-40">
+                                            <DropdownMenuRadioGroup
+                                                value={recipient.permission}
+                                                onValueChange={(val) => {
+                                                    if (val) handlePermissionChange(recipient.id, val as Permission)
+                                                }}
+                                            >
+                                                <DropdownMenuRadioItem value="Admin">Admin</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Can Edit">Can Edit</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Can View">Can View</DropdownMenuRadioItem>
+                                            </DropdownMenuRadioGroup>
+                                            <DropdownMenuItem
+                                                variant="destructive"
+                                                onClick={() => handleRemoveRecipient(recipient.id)}
+                                            >
+                                                Remove
+                                            </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                </div>
+
+                <div className="flex flex-col gap-4">
+                    <p>General Access</p>
+                    <div className="flex flex-col gap-4">
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center gap-3.5">
+                                {accessType === "restricted" ? (
+                                    <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
+                                        <Lock className="text-foreground size-4" />
+                                    </div>
+                                ) : (
+                                    <div className="w-9 h-9 rounded-full bg-[rgb(196,238,208)] flex items-center justify-center">
+                                        <GlobeIcon className="text-[rgb(7,39,17)] size-6" />
+                                    </div>
+                                )}
+                                <div className="flex flex-col gap-2.25">
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger className="group/trigger flex items-center gap-1.5 cursor-pointer outline-none select-none">
+                                            <p className="leading-none">
+                                                {accessType === "restricted" ? "Restricted" : "Anyone with link"}
+                                            </p>
+                                            <TriggerChevron className="ml-0 mr-0 size-3.5 text-muted group-hover/trigger:text-foreground" />
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="start" className="w-50">
+                                            <DropdownMenuRadioGroup
+                                                value={accessType}
+                                                onValueChange={(val) => {
+                                                    if (val) setAccessType(val as GeneralAccessType)
+                                                }}
+                                            >
+                                                <DropdownMenuRadioItem value="restricted">Restricted</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="anyone_with_link">Anyone with link</DropdownMenuRadioItem>
+                                            </DropdownMenuRadioGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                    <p className="leading-none text-sm text-secondary">
+                                        {accessType === "restricted"
+                                            ? "Only people with access can open with the link"
+                                            : generalAccessDescriptions[generalAccessPermission]}
+                                    </p>
+                                </div>
+                            </div>
+                            {accessType === "anyone_with_link" && (
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger className="input-shell group/trigger cursor-pointer w-30">
+                                        <span className="flex-1 text-left truncate">{generalAccessPermission}</span>
+                                        <TriggerChevron />
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end" className="w-40">
+                                        <DropdownMenuRadioGroup
+                                            value={generalAccessPermission}
+                                            onValueChange={(val) => {
+                                                if (val) setGeneralAccessPermission(val as Permission)
+                                            }}
+                                        >
+                                            <DropdownMenuRadioItem value="Can View">Can View</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="Can Edit">Can Edit</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="Admin">Admin</DropdownMenuRadioItem>
+                                        </DropdownMenuRadioGroup>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </DialogBody>
+            <DialogFooter>
+                <Button className="w-fit">Confirm Access</Button>
+            </DialogFooter>
+        </DialogShell>
+    )
+}
+
+export function ShareProjectPopup({ open, onOpenChange }: PopupProps) {
+    return (
         <Popup open={open} onOpenChange={onOpenChange}>
             <PopupContent>
                 <PopupPreview>
-                    <DialogShell className="w-140">
-                        <DialogHeader className="flex-row items-center justify-start gap-3">
-                            <ShareIcon className="text-foreground size-8 bg-white/10 p-1.75 rounded-lg" />
-                            <DialogTitle>Share Project</DialogTitle>
-                        </DialogHeader>
-                        <DialogBody className="flex flex-col gap-8">
-                            <Field>
-                                <FieldLabel>Document Link</FieldLabel>
-                                <InputGroup>
-                                    <InputGroupInput
-                                        readOnly
-                                        value={documentLink}
-                                    />
-                                    <InputGroupAddon align="inline-end">
-                                        <InputGroupButton
-                                            onClick={() => copy(documentLink)}
-                                            aria-label={copied ? "Copied!" : "Copy link"}
-                                            title={copied ? "Copied!" : "Copy link"}
-                                        >
-                                            {copied ? <CheckIcon className="size-4 text-green-400" /> : <CopyIcon className="size-4" />}
-                                        </InputGroupButton>
-                                    </InputGroupAddon>
-                                </InputGroup>
-                            </Field>
-
-                            <Field>
-                                <FieldLabel>Search Recipients</FieldLabel>
-                                <Combobox
-                                    items={availableRecipients}
-                                    itemToStringLabel={(item: UserRecipient) => (item ? `${item.name} ${item.email}` : "")}
-                                    itemToStringValue={(item: UserRecipient) => (item ? item.id : "")}
-                                    isItemEqualToValue={(a: UserRecipient, b: UserRecipient) => a?.id === b?.id}
-                                    filter={(item: UserRecipient, query: string) => {
-                                        const q = query.toLowerCase().trim()
-                                        if (!q) return true
-                                        return item.name.toLowerCase().includes(q) || item.email.toLowerCase().includes(q)
-                                    }}
-                                    inputValue={searchValue}
-                                    onInputValueChange={(val) => setSearchValue(val)}
-                                    value={null}
-                                    onValueChange={(user: UserRecipient | null) => {
-                                        if (user) handleAddRecipient(user)
-                                    }}
-                                >
-                                    <ComboboxInput placeholder="Select an option…" />
-                                    <ComboboxContent>
-                                        <ComboboxList>
-                                            {(user: UserRecipient) => (
-                                                <ComboboxItem key={user.id} value={user}>
-                                                    <div className="flex items-center gap-3 py-1.5">
-                                                        <Avatar className="w-8 h-8">
-                                                            <AvatarImage src={user.avatar} alt={user.name} />
-                                                            <AvatarFallback>{user.fallback}</AvatarFallback>
-                                                        </Avatar>
-                                                        <div className="flex flex-col gap-1.75">
-                                                            <p className="leading-none text-foreground">{user.name}</p>
-                                                            <p className="leading-none text-secondary">{user.email}</p>
-                                                        </div>
-                                                    </div>
-                                                </ComboboxItem>
-                                            )}
-                                        </ComboboxList>
-                                        <ComboboxEmpty>No options found</ComboboxEmpty>
-                                    </ComboboxContent>
-                                </Combobox>
-                            </Field>
-
-                            <div className="flex flex-col gap-4">
-                                <p>Recipients</p>
-                                <div className="flex flex-col gap-6">
-                                    {recipients.length === 0 ? (
-                                        <p className="text-center text-secondary">No recipients added</p>
-                                    ) : (
-                                        recipients.map((recipient) => (
-                                            <div key={recipient.id} className="flex justify-between items-center">
-                                                <div className="flex items-center gap-3.5">
-                                                    <Avatar className="w-9 h-9">
-                                                        <AvatarImage src={recipient.avatar} alt={recipient.name} />
-                                                        <AvatarFallback>{recipient.fallback}</AvatarFallback>
-                                                    </Avatar>
-                                                    <div className="flex flex-col gap-2">
-                                                        <p className="leading-none">{recipient.name}</p>
-                                                        <p className="leading-none text-secondary">{recipient.email}</p>
-                                                    </div>
-                                                </div>
-                                                <DropdownMenu>
-                                                    <DropdownMenuTrigger className="input-shell group/trigger cursor-pointer w-30">
-                                                        <span className="flex-1 text-left truncate">{recipient.permission}</span>
-                                                        <TriggerChevron />
-                                                    </DropdownMenuTrigger>
-                                                    <DropdownMenuContent align="end" className="w-40">
-                                                        <DropdownMenuRadioGroup
-                                                            value={recipient.permission}
-                                                            onValueChange={(val) => {
-                                                                if (val) handlePermissionChange(recipient.id, val as Permission)
-                                                            }}
-                                                        >
-                                                            <DropdownMenuRadioItem value="Admin">Admin</DropdownMenuRadioItem>
-                                                            <DropdownMenuRadioItem value="Can Edit">Can Edit</DropdownMenuRadioItem>
-                                                            <DropdownMenuRadioItem value="Can View">Can View</DropdownMenuRadioItem>
-                                                        </DropdownMenuRadioGroup>
-                                                        <DropdownMenuItem
-                                                            variant="destructive"
-                                                            onClick={() => handleRemoveRecipient(recipient.id)}
-                                                        >
-                                                            Remove
-                                                        </DropdownMenuItem>
-                                                    </DropdownMenuContent>
-                                                </DropdownMenu>
-                                            </div>
-                                        ))
-                                    )}
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col gap-4">
-                                <p>General Access</p>
-                                <div className="flex flex-col gap-4">
-                                    <div className="flex justify-between items-center">
-                                        <div className="flex items-center gap-3.5">
-                                            {accessType === "restricted" ? (
-                                                <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center">
-                                                    <Lock className="text-foreground size-4" />
-                                                </div>
-                                            ) : (
-                                                <div className="w-9 h-9 rounded-full bg-[rgb(196,238,208)] flex items-center justify-center">
-                                                    <GlobeIcon className="text-[rgb(7,39,17)] size-6" />
-                                                </div>
-                                            )}
-                                            <div className="flex flex-col gap-2.25">
-                                                <DropdownMenu>
-                                                    <DropdownMenuTrigger className="group/trigger flex items-center gap-1.5 cursor-pointer outline-none select-none">
-                                                        <p className="leading-none">
-                                                            {accessType === "restricted" ? "Restricted" : "Anyone with link"}
-                                                        </p>
-                                                        <TriggerChevron className="ml-0 mr-0 size-3.5 text-muted group-hover/trigger:text-foreground" />
-                                                    </DropdownMenuTrigger>
-                                                    <DropdownMenuContent align="start" className="w-50">
-                                                        <DropdownMenuRadioGroup
-                                                            value={accessType}
-                                                            onValueChange={(val) => {
-                                                                if (val) setAccessType(val as GeneralAccessType)
-                                                            }}
-                                                        >
-                                                            <DropdownMenuRadioItem value="restricted">Restricted</DropdownMenuRadioItem>
-                                                            <DropdownMenuRadioItem value="anyone_with_link">Anyone with link</DropdownMenuRadioItem>
-                                                        </DropdownMenuRadioGroup>
-                                                    </DropdownMenuContent>
-                                                </DropdownMenu>
-                                                <p className="leading-none text-sm text-secondary">
-                                                    {accessType === "restricted"
-                                                        ? "Only people with access can open with the link"
-                                                        : generalAccessDescriptions[generalAccessPermission]}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        {accessType === "anyone_with_link" && (
-                                            <DropdownMenu>
-                                                <DropdownMenuTrigger className="input-shell group/trigger cursor-pointer w-30">
-                                                    <span className="flex-1 text-left truncate">{generalAccessPermission}</span>
-                                                    <TriggerChevron />
-                                                </DropdownMenuTrigger>
-                                                <DropdownMenuContent align="end" className="w-40">
-                                                    <DropdownMenuRadioGroup
-                                                        value={generalAccessPermission}
-                                                        onValueChange={(val) => {
-                                                            if (val) setGeneralAccessPermission(val as Permission)
-                                                        }}
-                                                    >
-                                                        <DropdownMenuRadioItem value="Can View">Can View</DropdownMenuRadioItem>
-                                                        <DropdownMenuRadioItem value="Can Edit">Can Edit</DropdownMenuRadioItem>
-                                                        <DropdownMenuRadioItem value="Admin">Admin</DropdownMenuRadioItem>
-                                                    </DropdownMenuRadioGroup>
-                                                </DropdownMenuContent>
-                                            </DropdownMenu>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </DialogBody>
-                        <DialogFooter>
-                            <Button className="w-fit">Confirm Access</Button>
-                        </DialogFooter>
-                    </DialogShell>
+                    <ShareProjectDialog />
                 </PopupPreview>
 
                 <PopupDetails>

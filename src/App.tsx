@@ -13,9 +13,9 @@ import { Combobox, ComboboxInput } from '@/components/ui/combobox'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Field, FieldLabel, FieldLegend, FieldSet } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge'
-import { InfoIcon, Search } from 'lucide-react'
+import { InfoIcon, MoreHorizontal, Search } from 'lucide-react'
 import { DialogShell } from '@/components/ui/dialog'
-import { PopupShell } from '@/components/ui/shells/popup-shell/popup-shell'
+import { PopupItem, PopupItemText, PopupSeparator, PopupShell } from '@/components/ui/shells/popup-shell/popup-shell'
 
 
 import { ButtonPopup } from '@/components/showcase/popups/button-popup'
@@ -29,8 +29,8 @@ import { RadioPopup } from '@/components/showcase/popups/radio-popup'
 import { CheckboxPopup } from '@/components/showcase/popups/checkbox-popup'
 import { BadgePopup } from '@/components/showcase/popups/badge-popup'
 import { DialogPopup } from '@/components/showcase/popups/dialog-popup'
-import { ShareProjectPopup } from '@/components/showcase/popups/share-project-popup'
-import { IntegrationDialogPopup } from '@/components/showcase/popups/integration-dialog-popup'
+import { ShareProjectPopup, ShareProjectDialog } from '@/components/showcase/popups/share-project-popup'
+import { IntegrationDialogPopup, IntegrationDialog } from '@/components/showcase/popups/integration-dialog-popup'
 import { BillingDialogPopup } from '@/components/showcase/popups/billing-dialog-popup'
 import { TabsPopup } from '@/components/showcase/popups/tabs-popup'
 import { CheckboxGroup, Checkbox } from '@/components/ui/checkbox'
@@ -82,38 +82,20 @@ export default function App() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                         <Card onClick={() => setActivePopup('database-creation')}>
-                            <CardPreview>
-                                <div className="w-full max-w-[220px] pointer-events-none select-none">
-                                    <DialogShell className="w-full p-4 gap-3 rounded-xl border border-white/10">
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-sm font-medium text-foreground">Database Creation</span>
-                                            <span className="text-xs text-muted">Mockup shell</span>
-                                        </div>
-                                        <div className="flex flex-col gap-1.5 pt-1">
-                                            <div className="h-2 w-full bg-white/10 rounded" />
-                                            <div className="h-2 w-2/3 bg-white/5 rounded" />
-                                        </div>
-                                    </DialogShell>
+                            <CardPreview className="items-start">
+                                <div className="scale-75 -mt-14">
+                                    <ShareProjectDialog />
                                 </div>
                             </CardPreview>
                             <CardContent>
-                                <CardTitle>Database Creation</CardTitle>
+                                <CardTitle>Share Project</CardTitle>
                             </CardContent>
                         </Card>
 
                         <Card onClick={() => setActivePopup('integration-dialog')}>
-                            <CardPreview>
-                                <div className="w-full max-w-[220px] pointer-events-none select-none">
-                                    <DialogShell className="w-full p-4 gap-3 rounded-xl border border-white/10">
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-sm font-medium text-foreground">Integration Dialog</span>
-                                            <span className="text-xs text-muted">Mockup shell</span>
-                                        </div>
-                                        <div className="flex flex-col gap-1.5 pt-1">
-                                            <div className="h-2 w-full bg-white/10 rounded" />
-                                            <div className="h-2 w-2/3 bg-white/5 rounded" />
-                                        </div>
-                                    </DialogShell>
+                            <CardPreview className="items-start">
+                                <div className="scale-85 -mt-5">
+                                    <IntegrationDialog />
                                 </div>
                             </CardPreview>
                             <CardContent>
@@ -224,8 +206,25 @@ export default function App() {
 
                         <Card onClick={() => setActivePopup('dropdown')}>
                             <CardPreview>
-                                <div className="pointer-events-none select-none">
-                                    <Button variant="secondary">Open Menu</Button>
+                                <div className="pointer-events-none select-none flex items-start gap-2">
+                                    <Button variant="secondary" className="size-8 rounded-full p-0" aria-label="Profile options">
+                                        <MoreHorizontal className="size-4" />
+                                    </Button>
+                                    <PopupShell className="w-48 flex flex-col">
+                                        <PopupItem data-highlighted="">
+                                            <PopupItemText>View Full Profile</PopupItemText>
+                                        </PopupItem>
+                                        <PopupItem>
+                                            <PopupItemText>Share Profile</PopupItemText>
+                                        </PopupItem>
+                                        <PopupSeparator />
+                                        <PopupItem variant="destructive">
+                                            <PopupItemText>Remove Friend</PopupItemText>
+                                        </PopupItem>
+                                        <PopupItem variant="destructive">
+                                            <PopupItemText>Block</PopupItemText>
+                                        </PopupItem>
+                                    </PopupShell>
                                 </div>
                             </CardPreview>
                             <CardContent>

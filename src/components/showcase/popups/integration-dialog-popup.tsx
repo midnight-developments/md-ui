@@ -22,13 +22,9 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { SuccessGraphic } from "@/components/ui/graphics/success-graphic"
 import { Badge } from "@/components/ui/badge"
 
-export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
+export function IntegrationDialog() {
     return (
-        <Popup open={open} onOpenChange={onOpenChange}>
-            <PopupContent>
-                <PopupPreview>
-                    <div className="flex flex-col items-center gap-6  w-full">
-                        <DialogShell className="w-120">
+        <DialogShell className="w-120">
                             <DialogHeader className="gap-5">
                                 <SuccessGraphic className="size-14 " />
                                 <DialogTitle className="max-w-xs">Your meeting has been scheduled</DialogTitle>
@@ -99,6 +95,16 @@ export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
                                 <Button>Edit Details</Button>
                             </DialogFooter>
                         </DialogShell>
+    )
+}
+
+export function IntegrationDialogPopup({ open, onOpenChange }: PopupProps) {
+    return (
+        <Popup open={open} onOpenChange={onOpenChange}>
+            <PopupContent>
+                <PopupPreview>
+                    <div className="flex flex-col items-center gap-6  w-full">
+                        <IntegrationDialog />
                     </div>
                 </PopupPreview>
 
