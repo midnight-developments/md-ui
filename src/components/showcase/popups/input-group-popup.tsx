@@ -7,6 +7,7 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
+    PopupKeyboardInteractions,
     type PopupProps,
 } from "@/components/showcase/popup"
 import {
@@ -20,6 +21,7 @@ import {
 import { PasswordInput } from "@/components/ui/password-input"
 import { Field, FieldGroup, FieldLabel, FieldMessage } from "@/components/ui/field"
 import { CopyIcon, FileCode, RotateCw, Search, CreditCardIcon } from "lucide-react"
+import { KbdEnter, KbdGroup, KbdShift, KbdSpace, KbdTab } from "@/components/ui/kbd"
 
 export function InputGroupPopup({ open, onOpenChange }: PopupProps) {
     return (
@@ -124,6 +126,23 @@ export function InputGroupPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Composable input container supporting leading and trailing icon or text addons inside the input shell.
                     </PopupDescription>
+
+                    <PopupKeyboardInteractions
+                        items={[
+                            {
+                                keys: <KbdTab />,
+                                description: "Moves focus between the input and interactive buttons in the group.",
+                            },
+                            {
+                                keys: <KbdGroup separator="+"><KbdShift /><KbdTab /></KbdGroup>,
+                                description: "Moves focus backward through buttons and the input in the group.",
+                            },
+                            {
+                                keys: <KbdGroup separator="or"><KbdEnter /><KbdSpace /></KbdGroup>,
+                                description: "Activates the focused button inside the group.",
+                            },
+                        ]}
+                    />
                 </PopupDetails>
             </PopupContent>
         </Popup >

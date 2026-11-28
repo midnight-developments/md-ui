@@ -7,6 +7,7 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
+    PopupKeyboardInteractions,
     type PopupProps,
 } from "@/components/showcase/popup"
 import {
@@ -21,6 +22,7 @@ import {
     ComboboxEmpty,
 } from "@/components/ui/combobox"
 import { Field, FieldGroup, FieldLabel, FieldMessage } from "@/components/ui/field"
+import { Kbd, KbdArrowDown, KbdArrowUp, KbdEnter, KbdGroup } from "@/components/ui/kbd"
 
 const options = ["Option 1", "Option 2", "Option 3"]
 const groupedOptions = [
@@ -129,6 +131,27 @@ export function ComboboxPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Searchable option selector built on Base UI Combobox primitives with live filtering and keyboard navigation.
                     </PopupDescription>
+
+                    <PopupKeyboardInteractions
+                        items={[
+                            {
+                                keys: <KbdGroup separator="or"><KbdArrowDown /><KbdArrowUp /></KbdGroup>,
+                                description: "Opens the list or moves between filtered options.",
+                            },
+                            {
+                                keys: <KbdGroup separator="or"><Kbd>Home</Kbd><Kbd>End</Kbd></KbdGroup>,
+                                description: "Jumps to the first or last option.",
+                            },
+                            {
+                                keys: <KbdEnter />,
+                                description: "Selects the highlighted option.",
+                            },
+                            {
+                                keys: <Kbd>Escape</Kbd>,
+                                description: "Closes the list or clears the input.",
+                            },
+                        ]}
+                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

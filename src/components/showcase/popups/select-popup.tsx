@@ -7,6 +7,7 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
+    PopupKeyboardInteractions,
     type PopupProps,
 } from "@/components/showcase/popup"
 import {
@@ -19,6 +20,7 @@ import {
     SelectItem,
 } from "@/components/ui/select"
 import { Field, FieldGroup, FieldLabel, FieldMessage } from "@/components/ui/field"
+import { Kbd, KbdArrowDown, KbdArrowUp, KbdEnter, KbdGroup, KbdSpace } from "@/components/ui/kbd"
 
 export function SelectPopup({ open, onOpenChange }: PopupProps) {
     return (
@@ -116,6 +118,31 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Accessible option picker built on Base UI Select primitives with the unified input shell trigger and floating popup shell.
                     </PopupDescription>
+
+                    <PopupKeyboardInteractions
+                        items={[
+                            {
+                                keys: <KbdGroup separator="or"><KbdEnter /><KbdSpace /><KbdArrowDown /></KbdGroup>,
+                                description: "Opens the menu from the trigger.",
+                            },
+                            {
+                                keys: <KbdGroup separator="or"><KbdArrowDown /><KbdArrowUp /></KbdGroup>,
+                                description: "Moves between options.",
+                            },
+                            {
+                                keys: <KbdGroup separator="or"><Kbd>Home</Kbd><Kbd>End</Kbd></KbdGroup>,
+                                description: "Jumps to the first or last option.",
+                            },
+                            {
+                                keys: <KbdGroup separator="or"><KbdEnter /><KbdSpace /></KbdGroup>,
+                                description: "Selects the highlighted option and closes the menu.",
+                            },
+                            {
+                                keys: <Kbd>Escape</Kbd>,
+                                description: "Closes the menu and returns focus to the trigger.",
+                            },
+                        ]}
+                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

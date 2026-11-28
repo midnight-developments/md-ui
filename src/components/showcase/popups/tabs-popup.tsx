@@ -7,9 +7,11 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
+    PopupKeyboardInteractions,
     type PopupProps,
 } from "@/components/showcase/popup"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Kbd, KbdArrowLeft, KbdArrowRight, KbdGroup, KbdShift, KbdTab } from "@/components/ui/kbd"
 
 export function TabsPopup({ open, onOpenChange }: PopupProps) {
     return (
@@ -68,6 +70,27 @@ export function TabsPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Accessible tabbed navigation built on Base UI Tabs primitives with pill and underline indicator variants.
                     </PopupDescription>
+
+                    <PopupKeyboardInteractions
+                        items={[
+                            {
+                                keys: <KbdTab />,
+                                description: "Moves focus into the active tab or forward to its panel.",
+                            },
+                            {
+                                keys: <KbdGroup separator="+"><KbdShift /><KbdTab /></KbdGroup>,
+                                description: "Moves focus back from the panel to the active tab.",
+                            },
+                            {
+                                keys: <KbdGroup separator="or"><KbdArrowRight /><KbdArrowLeft /></KbdGroup>,
+                                description: "Moves focus between tabs and activates them.",
+                            },
+                            {
+                                keys: <KbdGroup separator="or"><Kbd>Home</Kbd><Kbd>End</Kbd></KbdGroup>,
+                                description: "Jumps to the first or last tab.",
+                            },
+                        ]}
+                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

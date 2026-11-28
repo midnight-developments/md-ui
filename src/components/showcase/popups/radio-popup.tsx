@@ -8,6 +8,7 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
+    PopupKeyboardInteractions,
     type PopupProps,
 } from "@/components/showcase/popup"
 import {
@@ -17,6 +18,7 @@ import {
     CardRadioGroupItem,
 } from "@/components/ui/radio-group"
 import { Field, FieldGroup, FieldLabel, FieldContent, FieldLegend, FieldDescription, FieldSet } from "@/components/ui/field"
+import { KbdArrowDown, KbdArrowLeft, KbdArrowRight, KbdArrowUp, KbdGroup, KbdShift, KbdSpace, KbdTab } from "@/components/ui/kbd"
 
 const cardRadioOptions = [
     { value: "card-1", label: "Option 1", description: "Description for option 1" },
@@ -100,6 +102,31 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Single-choice indicators and card-level radio selections with animated indicators, accessible focus styling, and active state transitions.
                     </PopupDescription>
+
+                    <PopupKeyboardInteractions
+                        items={[
+                            {
+                                keys: <KbdTab />,
+                                description: "Moves focus into the radio group or to the next element.",
+                            },
+                            {
+                                keys: <KbdGroup separator="+"><KbdShift /><KbdTab /></KbdGroup>,
+                                description: "Moves focus out of the radio group to the previous element.",
+                            },
+                            {
+                                keys: <KbdGroup separator="or"><KbdArrowDown /><KbdArrowRight /></KbdGroup>,
+                                description: "Moves focus and selects the next option.",
+                            },
+                            {
+                                keys: <KbdGroup separator="or"><KbdArrowUp /><KbdArrowLeft /></KbdGroup>,
+                                description: "Moves focus and selects the previous option.",
+                            },
+                            {
+                                keys: <KbdSpace />,
+                                description: "Selects the focused option if none is selected.",
+                            },
+                        ]}
+                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

@@ -13,7 +13,7 @@ import { Combobox, ComboboxInput } from '@/components/ui/combobox'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Field, FieldLabel, FieldLegend, FieldSet } from '@/components/ui/field'
 import { Badge } from '@/components/ui/badge'
-import { InfoIcon, MoreHorizontal, Search } from 'lucide-react'
+import { Ban, InfoIcon, MoreHorizontal, Search, Share2, User, UserMinus } from 'lucide-react'
 import { DialogShell } from '@/components/ui/dialog'
 import { PopupItem, PopupItemText, PopupSeparator, PopupShell } from '@/components/ui/shells/popup-shell/popup-shell'
 
@@ -212,16 +212,20 @@ export default function App() {
                                     </Button>
                                     <PopupShell className="w-48 flex flex-col">
                                         <PopupItem data-highlighted="">
+                                            <User />
                                             <PopupItemText>View Full Profile</PopupItemText>
                                         </PopupItem>
                                         <PopupItem>
+                                            <Share2 />
                                             <PopupItemText>Share Profile</PopupItemText>
                                         </PopupItem>
                                         <PopupSeparator />
                                         <PopupItem variant="destructive">
+                                            <UserMinus />
                                             <PopupItemText>Remove Friend</PopupItemText>
                                         </PopupItem>
                                         <PopupItem variant="destructive">
+                                            <Ban />
                                             <PopupItemText>Block</PopupItemText>
                                         </PopupItem>
                                     </PopupShell>

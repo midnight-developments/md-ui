@@ -8,6 +8,7 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
+    PopupKeyboardInteractions,
     type PopupProps,
 } from "@/components/showcase/popup"
 import {
@@ -17,6 +18,7 @@ import {
     CardCheckboxGroupItem,
 } from "@/components/ui/checkbox"
 import { Field, FieldGroup, FieldLabel, FieldContent, FieldLegend, FieldDescription, FieldSet } from "@/components/ui/field"
+import { KbdGroup, KbdShift, KbdSpace, KbdTab } from "@/components/ui/kbd"
 
 const cardCheckboxOptions = [
     { value: "card-1", label: "Option 1", description: "Description for option 1" },
@@ -103,6 +105,23 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         Multi-selection checkboxes and rich card-level checkbox groups featuring calibrated tactile states, checkmark glyphs, and accessible group primitives.
                     </PopupDescription>
+
+                    <PopupKeyboardInteractions
+                        items={[
+                            {
+                                keys: <KbdTab />,
+                                description: "Moves focus to the next checkbox in the group.",
+                            },
+                            {
+                                keys: <KbdGroup separator="+"><KbdShift /><KbdTab /></KbdGroup>,
+                                description: "Moves focus to the previous checkbox in the group.",
+                            },
+                            {
+                                keys: <KbdSpace />,
+                                description: "Toggles the focused checkbox checked or unchecked.",
+                            },
+                        ]}
+                    />
                 </PopupDetails>
             </PopupContent>
         </Popup>

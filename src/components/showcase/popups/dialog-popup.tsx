@@ -7,6 +7,7 @@ import {
     PopupDetails,
     PopupTitle,
     PopupDescription,
+    PopupKeyboardInteractions,
     type PopupProps,
 } from "@/components/showcase/popup"
 import {
@@ -22,6 +23,7 @@ import {
     DialogShell,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
+import { Kbd, KbdEnter, KbdGroup, KbdShift, KbdSpace, KbdTab } from "@/components/ui/kbd"
 
 function ExampleDialogBody() {
     return (
@@ -96,6 +98,27 @@ export function DialogPopup({ open, onOpenChange }: PopupProps) {
                     <PopupDescription>
                         A physics-tuned modal dialog featuring custom rim lighting, backdrop blur, and zero DOM layout shifting.
                     </PopupDescription>
+
+                    <PopupKeyboardInteractions
+                        items={[
+                            {
+                                keys: <KbdGroup separator="or"><KbdEnter /><KbdSpace /></KbdGroup>,
+                                description: "Opens the dialog from the trigger.",
+                            },
+                            {
+                                keys: <KbdTab />,
+                                description: "Moves focus to the next focusable element inside the dialog.",
+                            },
+                            {
+                                keys: <KbdGroup separator="+"><KbdShift /><KbdTab /></KbdGroup>,
+                                description: "Moves focus to the previous focusable element inside the dialog.",
+                            },
+                            {
+                                keys: <Kbd>Escape</Kbd>,
+                                description: "Closes the dialog and returns focus to the trigger.",
+                            },
+                        ]}
+                    />
                 </PopupDetails>
             </PopupContent >
         </Popup >
