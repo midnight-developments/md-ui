@@ -118,7 +118,7 @@ export function CheckboxPopup({ open, onOpenChange }: PopupProps) {
                             },
                             {
                                 keys: <KbdSpace />,
-                                description: "Toggles the focused checkbox checked or unchecked.",
+                                description: "Selects and deselects the focused checkbox.",
                             },
                         ]}
                     />

@@ -136,7 +136,7 @@ export function ComboboxPopup({ open, onOpenChange }: PopupProps) {
                         items={[
                             {
                                 keys: <KbdGroup separator="or"><KbdArrowDown /><KbdArrowUp /></KbdGroup>,
-                                description: "Opens the list or moves between filtered options.",
+                                description: "Opens the list or moves focus between filtered options.",
                             },
                             {
                                 keys: <KbdGroup separator="or"><Kbd>Home</Kbd><Kbd>End</Kbd></KbdGroup>,

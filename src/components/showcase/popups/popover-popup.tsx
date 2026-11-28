@@ -36,7 +36,7 @@ export function PopoverPopup({ open, onOpenChange }: PopupProps) {
                             },
                             {
                                 keys: <KbdGroup separator="+"><KbdShift /><KbdTab /></KbdGroup>,
-                                description: "Moves focus to the previous focusable element inside the popover.",
+                                description: "Moves focus to the previous focusable element inside the popover, or back to the trigger.",
                             },
                             {
                                 keys: <Kbd>Escape</Kbd>,

@@ -25,7 +25,8 @@ function Checkbox({ className, ...props }: CheckboxProps) {
         <CheckboxPrimitive.Root
             data-slot="checkbox"
             className={cn(
-                "inline-flex shrink-0 items-center justify-center cursor-pointer",
+                "inline-flex shrink-0 items-center justify-center rounded-sm cursor-pointer outline-none",
+                "focus-visible:focus-ring",
                 "data-disabled:pointer-events-none data-disabled:opacity-50",
                 className
             )}
@@ -91,10 +92,11 @@ function CardCheckboxGroupItem({
         <CheckboxPrimitive.Root
             data-slot="card-checkbox-group-item"
             className={cn(
-                "group/card-checkbox relative flex gap-3 p-3.5 rounded-lg cursor-pointer select-none text-left",
+                "group/card-checkbox relative flex gap-3 p-3.5 rounded-lg cursor-pointer select-none text-left outline-none",
                 "bg-card inset-ring inset-ring-border",
                 "hover:not-data-checked:inset-ring-white/14",
                 "data-checked:inset-ring-2 data-checked:inset-ring-accent data-checked:bg-card-active",
+                "focus-visible:focus-ring",
                 "data-disabled:pointer-events-none data-disabled:opacity-50",
                 isTop ? "items-start" : "items-center",
                 isLeft ? "justify-start" : "justify-between",

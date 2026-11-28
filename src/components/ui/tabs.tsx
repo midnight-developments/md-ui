@@ -41,6 +41,7 @@ const tabsListVariants = cva(
 function TabsList({
     className,
     variant = "default",
+    activateOnFocus = true,
     children,
     ...props
 }: TabsPrimitive.List.Props & VariantProps<typeof tabsListVariants>) {
@@ -48,6 +49,7 @@ function TabsList({
         <TabsPrimitive.List
             data-slot="tabs-list"
             data-variant={variant}
+            activateOnFocus={activateOnFocus}
             className={cn(tabsListVariants({ variant }), className)}
             {...props}
         >
@@ -58,13 +60,12 @@ function TabsList({
 }
 
 const tabsIndicatorVariants = cva(
-    "pointer-events-none absolute left-0 z-0 transform-gpu",
+    "pointer-events-none absolute left-0 top-0 z-0 rounded-md transform-gpu group-has-[:focus-visible]/tabs-list:focus-ring",
     {
         variants: {
             variant: {
-                default:
-                    "top-0 rounded-md bg-button-secondary inset-ring inset-ring-white/2",
-                line: "bottom-0 h-0.5 rounded-none bg-foreground",
+                default: "bg-button-secondary inset-ring inset-ring-white/2",
+                line: "bg-transparent",
             },
         },
         defaultVariants: {
@@ -80,19 +81,11 @@ const INDICATOR_SPRING = {
 } as const
 
 function getIndicatorTarget(
-    variant: VariantProps<typeof tabsIndicatorVariants>["variant"],
     position: TabsPrimitive.Indicator.State["activeTabPosition"],
     size: TabsPrimitive.Indicator.State["activeTabSize"]
 ) {
     if (!position || !size || size.width <= 0 || size.height <= 0) {
         return undefined
-    }
-
-    if (variant === "line") {
-        return {
-            x: position.left,
-            width: size.width,
-        }
     }
 
     return {
@@ -115,7 +108,6 @@ function TabsIndicator({
             className={cn(tabsIndicatorVariants({ variant }), className)}
             render={(indicatorProps, state) => {
                 const animate = getIndicatorTarget(
-                    variant,
                     state.activeTabPosition,
                     state.activeTabSize
                 )
@@ -135,7 +127,9 @@ function TabsIndicator({
             }}
             {...props}
         >
-            {variant !== "line" && (
+            {variant === "line" ? (
+                <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-0.5 bg-foreground" />
+            ) : (
                 <ShineEffect start={5} end={100} opacity={0.15} />
             )}
             {children}
@@ -148,7 +142,7 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
         <TabsPrimitive.Tab
             data-slot="tabs-trigger"
             className={cn(
-                "relative z-1 inline-flex h-full cursor-pointer select-none items-center justify-center  px-4 gap-1.5 ",
+                "relative z-1 inline-flex h-full cursor-pointer select-none items-center justify-center rounded-md px-4 gap-1.5 outline-none",
                 "text-base font-medium whitespace-nowrap text-muted data-active:text-foreground transition-colors duration-200 ease-out",
                 "data-disabled:pointer-events-none data-disabled:opacity-50",
                 "group-data-[variant=line]/tabs-list:bg-transparent [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",

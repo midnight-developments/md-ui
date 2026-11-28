@@ -240,7 +240,7 @@ export function DropdownPopup({ open, onOpenChange }: PopupProps) {
                             },
                             {
                                 keys: <KbdGroup separator="or"><KbdArrowDown /><KbdArrowUp /></KbdGroup>,
-                                description: "Moves between items, looping at the ends.",
+                                description: "Moves focus between items, looping at the ends.",
                             },
                             {
                                 keys: <KbdGroup separator="or"><Kbd>Home</Kbd><Kbd>End</Kbd></KbdGroup>,

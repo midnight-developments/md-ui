@@ -131,15 +131,15 @@ export function InputGroupPopup({ open, onOpenChange }: PopupProps) {
                         items={[
                             {
                                 keys: <KbdTab />,
-                                description: "Moves focus between the input and interactive buttons in the group.",
+                                description: "Moves focus to the next interactive element in the group.",
                             },
                             {
                                 keys: <KbdGroup separator="+"><KbdShift /><KbdTab /></KbdGroup>,
-                                description: "Moves focus backward through buttons and the input in the group.",
+                                description: "Moves focus to the previous interactive element in the group.",
                             },
                             {
                                 keys: <KbdGroup separator="or"><KbdEnter /><KbdSpace /></KbdGroup>,
-                                description: "Activates the focused button inside the group.",
+                                description: "Activates the focused button in the group.",
                             },
                         ]}
                     />

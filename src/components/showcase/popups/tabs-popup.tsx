@@ -75,15 +75,15 @@ export function TabsPopup({ open, onOpenChange }: PopupProps) {
                         items={[
                             {
                                 keys: <KbdTab />,
-                                description: "Moves focus into the active tab or forward to its panel.",
+                                description: "Moves focus to the next focusable element inside the tab panel.",
                             },
                             {
                                 keys: <KbdGroup separator="+"><KbdShift /><KbdTab /></KbdGroup>,
-                                description: "Moves focus back from the panel to the active tab.",
+                                description: "Moves focus to the previous focusable element inside the tab panel, or back to the active tab.",
                             },
                             {
                                 keys: <KbdGroup separator="or"><KbdArrowRight /><KbdArrowLeft /></KbdGroup>,
-                                description: "Moves focus between tabs and activates them.",
+                                description: "Moves focus and activates the next or previous tab.",
                             },
                             {
                                 keys: <KbdGroup separator="or"><Kbd>Home</Kbd><Kbd>End</Kbd></KbdGroup>,

@@ -18,7 +18,7 @@ import {
     CardRadioGroupItem,
 } from "@/components/ui/radio-group"
 import { Field, FieldGroup, FieldLabel, FieldContent, FieldLegend, FieldDescription, FieldSet } from "@/components/ui/field"
-import { KbdArrowDown, KbdArrowLeft, KbdArrowRight, KbdArrowUp, KbdGroup, KbdShift, KbdSpace, KbdTab } from "@/components/ui/kbd"
+import { KbdArrowDown, KbdArrowLeft, KbdArrowRight, KbdArrowUp, KbdGroup, KbdSpace } from "@/components/ui/kbd"
 
 const cardRadioOptions = [
     { value: "card-1", label: "Option 1", description: "Description for option 1" },
@@ -106,24 +106,16 @@ export function RadioPopup({ open, onOpenChange }: PopupProps) {
                     <PopupKeyboardInteractions
                         items={[
                             {
-                                keys: <KbdTab />,
-                                description: "Moves focus into the radio group or to the next element.",
-                            },
-                            {
-                                keys: <KbdGroup separator="+"><KbdShift /><KbdTab /></KbdGroup>,
-                                description: "Moves focus out of the radio group to the previous element.",
-                            },
-                            {
                                 keys: <KbdGroup separator="or"><KbdArrowDown /><KbdArrowRight /></KbdGroup>,
-                                description: "Moves focus and selects the next option.",
+                                description: "Moves focus and selects the next option in the group.",
                             },
                             {
                                 keys: <KbdGroup separator="or"><KbdArrowUp /><KbdArrowLeft /></KbdGroup>,
-                                description: "Moves focus and selects the previous option.",
+                                description: "Moves focus and selects the previous option in the group.",
                             },
                             {
                                 keys: <KbdSpace />,
-                                description: "Selects the focused option if none is selected.",
+                                description: "Selects the focused radio option.",
                             },
                         ]}
                     />

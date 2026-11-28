@@ -127,7 +127,7 @@ export function SelectPopup({ open, onOpenChange }: PopupProps) {
                             },
                             {
                                 keys: <KbdGroup separator="or"><KbdArrowDown /><KbdArrowUp /></KbdGroup>,
-                                description: "Moves between options.",
+                                description: "Moves focus between options.",
                             },
                             {
                                 keys: <KbdGroup separator="or"><Kbd>Home</Kbd><Kbd>End</Kbd></KbdGroup>,

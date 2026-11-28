@@ -9,7 +9,7 @@ const buttonVariants = cva(
   `group/button relative border-0 inset-ring overflow-hidden h-9 px-3 gap-1.5 inline-flex shrink-0 items-center justify-center rounded-lg cursor-pointer whitespace-nowrap select-none transform-gpu 
   text-base text-foreground tracking-tight 
   hover:brightness-110 active:brightness-92 active:text-foreground/80
-  focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-accent-border focus-visible:brightness-110 
+  focus-visible:focus-ring focus-visible:brightness-110 
   disabled:pointer-events-none disabled:opacity-50`,
   {
     variants: {

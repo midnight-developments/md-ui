@@ -180,6 +180,10 @@
     --shine-opacity: 0.1;
 }
 
+@utility focus-ring {
+    @apply ring-2 ring-offset-2 ring-offset-background ring-accent-border;
+}
+
 
 
 :root {
